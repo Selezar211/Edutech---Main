@@ -40,6 +40,10 @@
 			    height: 100%;
 			    background-color: #49274A;
 			    font-family: 'Cinzel';
+				background-image: url("https://i.imgur.com/GuDU01B.jpg");
+			    background-size: 100% 100%;
+			    background-position: center;
+			    background-repeat: no-repeat;
 			}
 
 		/*scrollbar stuff*/
@@ -117,7 +121,7 @@
 				height: 95%;
 				position: relative;
 				top: 0%;
-				background-color: #FEDCD2; /*#CAEBF2;*/
+				background-color: rgba(0,0,0,0); /*#CAEBF2;*/
 				z-index: 101;
 			}
 
@@ -125,11 +129,11 @@
 			    width: 6.4%;
 			    height: 95%;
 			    left: 1.5%;
-			    top: 2%;
+			    top: 2.5%;
 			    position: relative;
 			    display: inline-block;
 			    float: left;
-			    background-color: #94618E;
+			    background-color: rgba(0,0,0,0); /*#94618E;*/
 			    opacity: 0.9;
 			    border-radius: 3px;
 			    z-index: 105;
@@ -145,13 +149,13 @@
 				height: 14.28%;
 				display: inline-block;
 				text-align: center;
-				background-color: #94618E;
-				transition: 200ms;
+				background-color: rgba(0,0,0,0); /*background-color: #94618E;*/
+				transition: 500ms;
 			}
 
-			.TopFaDIV:hover {
-				background-color: black; 
-				transition: 200ms;
+			.TopFaDIV:hover .fas {
+				transform: scale(2.8,2.8);
+				transition: 500ms;
 			}
 
 			.fas{
@@ -159,8 +163,10 @@
 				display: inline-block;
 				position: relative;
 				top: 35%;
+				transition: 500ms;
 				margin:auto
 			}
+
 
 			.MainContent{
 			    width: 89%;
@@ -170,7 +176,7 @@
 			    float: right;
 			    position: relative;
 			    display: inline-block;
-			    background-color: #FEDCD2;
+			    background-color: rgba(0,0,0,0);
 			}
 
 /*		profile info tab*/
@@ -180,7 +186,7 @@
 				height: 100%;
 				position: relative;
 				top: 0%;
-			    background-color: #FEDCD2;
+			    background-color: rgba(0,0,0,0); /*background-color: #FEDCD2;*/
 			    overflow: hidden;
 			}
 
@@ -193,21 +199,17 @@
 			    z-index: 97;
 			   /* border: 0.6vw solid #BDBDBD;*/
 			    transition: 500ms;
-			    border-radius: 1.5vw;
 			}
 			.Blackboard_container{
 			    font-family: 'Fredericka the Great';
-			    background-image: url("https://i.imgur.com/ryh9zg8.jpg");
 			    width: 100%;
 			    height: 100%;
-			    color: white;
+			    color: rgba(0,0,0,0);
 			    position: relative;
 			    display: inline-block;
 			    z-index: 99;
 			   /* border: 0.6vw solid #BDBDBD;*/
 			    transition: 500ms;
-			    border-radius: 1.5vw;
-			
 			}
 
 			.BlackBoard{
@@ -221,10 +223,8 @@
     			position: relative;
     			display: inline-block;
     			z-index: 102;
-    /* border: 0.6vw solid #BDBDBD; */
+    			border-radius: 0.2vw;
     			transition: 500ms;
-    			border-radius: 1.5vw;
-			
 			}
 
 			.BlackBoardChalk1{
@@ -293,7 +293,6 @@
 			.Notification_container{
 				font-size: 1vw;
 			    font-family: "Cinzel";
-			    background-image: url("https://i.imgur.com/ryh9zg8.jpg");
 			    width: 100%;
 			    height: 37%;
 			    color: white;
@@ -301,15 +300,14 @@
 			    position: absolute;
 			    display: inline-block;
 			    z-index: 99;
-			    /*border: 0.6vw solid #321c20;*/
+			    background-color: rgba(0,0,0,0);
 			    transition: 500ms;
-			    border-radius: 1.5vw;
 			}
 
 			.NotificationBox{
 				font-size: 1vw;
     			font-family: "Cinzel";
-    			background-color: #6E3667;
+    			background-color: black;
    				width: 98%;
     			height: 93%;
     			color: white;
@@ -318,9 +316,7 @@
     			position: absolute;
     			display: inline-block;
     			z-index: 100;
-    			border-radius: 1.5vw;
-
-    /* border: 0.6vw solid #321c20; */
+    			border-radius: 0.2vw;
     			transition: 500ms;
 			}
 
@@ -331,7 +327,7 @@
 			    width: 30%;
 			    position: relative;
 			    float: left;
-			    border-bottom: 0.2vw solid #BDBDBD;
+			    border-bottom: 0.2vw solid rgb(100,148,171);
 			    color: white;
 			}
 
@@ -606,45 +602,42 @@
 		<div class="MainContent">
 
 			<div class="ProfileInfo_Cont">
+
 				<div class="Blackboard_MasterContainer">
+
 					<div class="Blackboard_container">
+
 						<div class="BlackBoard">
 							<span class="BlackBoardWaterMark">i love edutech!</span>
 							<div class="BlackBoardChalk1"></div>
 							<div class="BlackBoardChalk2"></div>
+
 							<div class="BlackBoardName_Date_Cont">
 								<span class="BlackBoardStudentName" id="BlackBoardStudentName_ID">Student#34 Md Ekram</span>
 								<span class="BlackBoardDate">25th July 2018</span>
 							</div>
+
 							<div class="BlackBoard_MainInfo">
-							<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in : Physics - Sabbir Sir | Chemistry - Qudrot Sir | Maths - Shakib Sir</span>
-							<span class="BB_MainInfo_Child" id="BlackBoardNextClass">Next Class : Chemistry - Qudrot Sir - 5:00 PM</span>
-							<span class="BB_MainInfo_Child" id="UpcomingMock">Upcoming Mock : 30th July 2:30 PM - Mathematics</span>
-							<span class="BB_MainInfo_Child">I dunno what more information to put here</span>
-							<span class="BB_MainInfo_Child">Have to come out with more stuff</span>
-							<span class="BB_MainInfo_Child">Maybe inspirational quotes?</span>
-							<span class="BB_MainInfo_Child">What if you could use this as an ACTUAL facebook wall</span>
-							<span class="BB_MainInfo_Child">That would be wild</span>
+								<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in : Physics - Sabbir Sir | Chemistry - Qudrot Sir | Maths - Shakib Sir</span>
+								<span class="BB_MainInfo_Child" id="BlackBoardNextClass">Next Class : Chemistry - Qudrot Sir - 5:00 PM</span>
+								<span class="BB_MainInfo_Child" id="UpcomingMock">Upcoming Mock : 30th July 2:30 PM - Mathematics</span>
+								<span class="BB_MainInfo_Child">I dunno what more information to put here</span>
+								<span class="BB_MainInfo_Child">Have to come out with more stuff</span>
+								<span class="BB_MainInfo_Child">Maybe inspirational quotes?</span>
+								<span class="BB_MainInfo_Child">What if you could use this as an ACTUAL facebook wall</span>
+								<span class="BB_MainInfo_Child">That would be wild</span>
 							</div>
+
 							<div class="MainVideoPlayer_Cont">
-<!-- 						<iframe frameBorder="0" class="VideoFrame_Youtube" src="https://www.youtube.com/embed/YR-l0b2iYy0"> -->
 	
+							</div>
+
 						</div>
-					</div>
-				</div>
 
-					<div class="TimeTable_MainCont">
-						<table id="myTable">
-							<colgroup>
-		    					<col span="1" style="background-color:red">
-		    					<col style="background-color:yellow">
-		  					</colgroup>
-
-
-						</table>
 					</div>
 
 				</div>
+
 				<div class= "Notification_container">
 					<div class="NotificationBox" id="NotificationBox_ID">
 						<span class="NotifTitle">Notifications</span>
@@ -807,7 +800,7 @@
 
 			CreateTable_Headings(heading_fields);
 			CreateTable_Data(table_data_Array);
-			SetCSS_Colors();
+			//SetCSS_Colors();
 
 		}
 
