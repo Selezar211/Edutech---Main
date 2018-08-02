@@ -91,6 +91,7 @@
 			    top: 0%;
 			    position: relative;
 			    background-color: #49274A;
+      			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 			    overflow: hidden;
 			    z-index: 101;
 			}
@@ -130,7 +131,7 @@
 			    width: 6.4%;
 			    height: 95%;
 			    left: 1.5%;
-			    top: 2.5%;
+			    top: 2%;
 			    position: relative;
 			    display: inline-block;
 			    float: left;
@@ -138,6 +139,7 @@
 			    opacity: 0.9;
 			    border-radius: 3px;
 			    z-index: 105;
+      			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 			}
 
 			.TopFaDIV{
@@ -169,7 +171,7 @@
 			    font-family: 'Montserrat';
 			    font-size: 0.8vw;
 			    position: absolute;
-			    bottom: 18%;
+			    bottom: 10%;
 			    left: 30%;
 			    display: inline-block;
 			    transition: 500ms;
@@ -190,7 +192,7 @@
 				transform: scale(2,2);
 				display: inline-block;
 				position: relative;
-				top: 35%;
+				top: 45%;
 				transition: 500ms;
 				margin:auto
 			}
@@ -215,44 +217,34 @@
 				position: relative;
 				top: 0%;
 			    background-color: rgba(0,0,0,0); /*background-color: #FEDCD2;*/
+      			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 			    overflow: hidden;
 			}
 
-			.Blackboard_MasterContainer{
-			    width: 100%;
-			    height: 60%;
-			    color: white;
-			    position: relative;
-			    display: inline-block;
-			    z-index: 97;
-			   /* border: 0.6vw solid #BDBDBD;*/
-			    transition: 500ms;
-			}
+
 			.Blackboard_container{
-			    font-family: 'Fredericka the Great';
-			    width: 100%;
+			    font-family: 'Cinzel';
+			    width: 98%;
 			    height: 100%;
+			    float: left;
 			    color: rgba(0,0,0,0);
 			    position: relative;
 			    display: inline-block;
 			    z-index: 99;
-			   /* border: 0.6vw solid #BDBDBD;*/
+			    background-color: black;
 			    transition: 500ms;
 			}
 
 			.BlackBoard{
-			    font-family: 'Fredericka the Great';
+			    font-family: 'Cinzel';
     			background-color: black;
     			width: 98%;
-   				top: 3.3%;
-    			height: 94%;
-    			left: 1%;
+    			height: 100%;
     			color: white;
     			position: relative;
     			display: inline-block;
     			z-index: 102;
     			border-radius: 0.2vw;
-    			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
     			transition: 500ms;
 			}
 
@@ -301,12 +293,12 @@
 			    position: absolute;
 			    font-size: 1.4vw;
 			    opacity: 0.9;
-			    top: 13%;
+			    top: 8%;
 			    right: 2%;
 			}
 
 			.BlackBoard_MainInfo{
-				margin-top: 8%;
+				margin-top: 10vw;
 			    width: 95%;
 			    display: inline-block;
 			    position: absolute;
@@ -319,82 +311,143 @@
 			    font-size: 1.5vw;
 			    opacity: 0.9;
 			    float: left;
-			    margin-left: 2%;	
+			    margin-left: 2%;
+			    padding-left: 0.5vw;
+			    transition: 500ms;	
 			}
 
-			.Notification_container{
-				font-size: 1vw;
-			    font-family: "Cinzel";
-			    width: 100%;
-			    height: 37%;
+			.BB_MainInfo_Child:hover{
+				transition: 500ms;
+				margin-left: 4%;
+			}
+
+/*			Notification*/
+			.NotificationOpenButton{
+				color: yellow;
+			    width: 2%;
+			    height: 100%;
 			    color: white;
-			    top: 63%;
-			    position: absolute;
+			    float: left;
+			    position: relative;
 			    display: inline-block;
-			    z-index: 99;
-			    background-color: rgba(0,0,0,0);
+			    background-color: black;
+				text-align: center;
+			    z-index: 97;
 			    transition: 500ms;
 			}
 
-			.NotificationBox{
-				font-size: 1vw;
-    			font-family: "Cinzel";
-    			background-color: black;
-   				width: 98%;
-    			height: 93%;
-    			color: white;
-    			left: 1%;
-    			top: 3.5%;
-    			position: absolute;
-    			display: inline-block;
-    			z-index: 100;
-    			border-radius: 0.2vw;
-    			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
-    			transition: 500ms;
+			#ExclaimIcon{
+				transform: scale(1.2,1.2);
+				color: white;
+				display: block;
+				cursor: pointer;
+				transition: 200ms;
 			}
 
-			.NotifTitle{
-			    padding-top: 1%;
-			    padding-left: 1%;
-			    font-size: 1.7vw;
-			    width: 30%;
+			#ExclaimIcon:hover, #CloseNotif:hover{
+				transition: 200ms;
+				transform: scale(1.8,1.8);
+			}
+
+
+			#CloseNotif{
+				transform: scale(1.5,1.5);
+				color: white;
+				display: block;
+				cursor: pointer;
+				position: absolute;
+			    top: 2%;
+			    right: 4%;
+			    transition: 200ms;
+			}
+
+
+			.NotificationMainCont{
+			    width: 0%;
+			    height: 100%;
+			    color: white;
 			    position: relative;
 			    float: left;
-			    border-bottom: 0.2vw solid rgb(100,148,171);
-			    color: white;
+			    background-color: rgba(0,0,0,0);
+			    display: inline-block;
+			    z-index: 97;
+			    transition: 500ms;
 			}
 
-			.ActualNotif{
-			    border: 0.2vw solid black;
-			    width: 90%;
-			    margin-left: 5%;
+			.InnerNotifMain{
+				width: 100%;
+				height: 100%;
+				display: none;
+				position: relative;
+				background-color: rgba(0,0,0,0);
+				transition: 500ms;
+			}
+
+			.NotifHeading{
+			    font-family: 'Cinzel';
+			    text-align: center;
+			    padding: 5%;
+			    height: 10%;
+			    background-color: rgba(0,0,0,0);
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			    position: relative;
+			    display: inline-block;
+			    font-weight: bolder;
+			    color: black;
 			    margin-top: 5%;
-			    position: relative;
-			    float: left;
-			    background-color: rgb(30,30,30);
+			    margin-left: 25%;
+			    font-size: 1.5vw;
 			}
 
-			.ActualNotifTItle{
-			    padding-left: 1%;
-			    padding-right: 2%;
-			    padding-top: 0.5%;
-			    font-size: 1.8vw;
-			    position: relative;
-			    width: 26%;
-			    float: left;
-			    color: white;
+			.NotificationBox_Cont{
+				width: 100%;
+				height: 88%;
+				padding-top: 10%;
+				position: relative;
+				display: inline-block;
+				 overflow: auto;
 			}
 
-			.NotifMainText{
-				padding-left: 1%;
-			    padding-right: 2%;
-			    padding-top: 0.5%;
-			    font-size: 1vw;
-			    position: relative;
-			    border-left: 1px solid black;
-			    width: 73%;
-			    float: right;
-			    color: white;
+			.NotificationBox{
+				width: 90%;
+				margin-bottom: 7%;
+				height: 20%;
+				margin-left: 5%;
+				position: relative;
+				display: inline-block;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			}
+
+			.NotifBoxHeading{
+				width: 100%;
+				height: 25%;
+				padding-top: 1%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background-color: rgba(0,0,0,1);
+				position: relative;
+				top: 0%;
+			}
+
+			.NotifBoxSender{
+				float: left;
+			}
+
+			.NotifDateTime{
+				float: right;
+			}
+
+			.NotifBoxMessage{
+				font-family: 'Quattrocento';
+				width: 100%;
+				height: 75%;
+				padding-top: 2%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background-color: rgba(0,0,0,0);
+				color: black;
+				position: relative
+				top: 0%;
 			}
 
 /*		timetable tab*/
@@ -636,34 +689,30 @@
 
 			<div class="ProfileInfo_Cont">
 
-				<div class="Blackboard_MasterContainer">
+				<div class="Blackboard_container">
 
-					<div class="Blackboard_container">
+					<div class="BlackBoard">
+						<span class="BlackBoardWaterMark">i love edutech!</span>
+						<div class="BlackBoardChalk1"></div>
+						<div class="BlackBoardChalk2"></div>
 
-						<div class="BlackBoard">
-							<span class="BlackBoardWaterMark">i love edutech!</span>
-							<div class="BlackBoardChalk1"></div>
-							<div class="BlackBoardChalk2"></div>
+						<div class="BlackBoardName_Date_Cont">
+							<span class="BlackBoardStudentName" id="BlackBoardStudentName_ID">Student#34 Md Ekram</span>
+						</div>
+							<span class="BlackBoardDate">25th July 2018</span>
 
-							<div class="BlackBoardName_Date_Cont">
-								<span class="BlackBoardStudentName" id="BlackBoardStudentName_ID">Student#34 Md Ekram</span>
-							</div>
-								<span class="BlackBoardDate">25th July 2018</span>
+						<div class="BlackBoard_MainInfo">
+							<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in : Physics - Sabbir Sir | Chemistry - Qudrot Sir | Maths - Shakib Sir</span>
+							<span class="BB_MainInfo_Child" id="BlackBoardNextClass">Next Class : Chemistry - Qudrot Sir - 5:00 PM</span>
+							<span class="BB_MainInfo_Child" id="UpcomingMock">Upcoming Mock : 30th July 2:30 PM - Mathematics</span>
+							<span class="BB_MainInfo_Child">I dunno what more information to put here</span>
+							<span class="BB_MainInfo_Child">Have to come out with more stuff</span>
+							<span class="BB_MainInfo_Child">Maybe inspirational quotes?</span>
+							<span class="BB_MainInfo_Child">What if you could use this as an ACTUAL facebook wall</span>
+							<span class="BB_MainInfo_Child">That would be wild</span>
+						</div>
 
-							<div class="BlackBoard_MainInfo">
-								<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in : Physics - Sabbir Sir | Chemistry - Qudrot Sir | Maths - Shakib Sir</span>
-								<span class="BB_MainInfo_Child" id="BlackBoardNextClass">Next Class : Chemistry - Qudrot Sir - 5:00 PM</span>
-								<span class="BB_MainInfo_Child" id="UpcomingMock">Upcoming Mock : 30th July 2:30 PM - Mathematics</span>
-								<span class="BB_MainInfo_Child">I dunno what more information to put here</span>
-								<span class="BB_MainInfo_Child">Have to come out with more stuff</span>
-								<span class="BB_MainInfo_Child">Maybe inspirational quotes?</span>
-								<span class="BB_MainInfo_Child">What if you could use this as an ACTUAL facebook wall</span>
-								<span class="BB_MainInfo_Child">That would be wild</span>
-							</div>
-
-							<div class="MainVideoPlayer_Cont">
-	
-							</div>
+						<div class="MainVideoPlayer_Cont">
 
 						</div>
 
@@ -671,16 +720,91 @@
 
 				</div>
 
-				<div class= "Notification_container">
-					<div class="NotificationBox" id="NotificationBox_ID">
-						<span class="NotifTitle">Notifications</span>
+				<div class="NotificationOpenButton" id="NotifButton">
+					<i class="fas fa-exclamation" id="ExclaimIcon"></i>
+				</div>
 
-						<div class="ActualNotif">
-							<span class="ActualNotifTItle">Sabbir Sir | 5:30 PM</span>
-							<span class="NotifMainText"> Classes cancelled today because of rain. Makeup class tomorrow at 7:00 PM. If you have a problem at that time send me a private message.</span>
+				<div class="NotificationMainCont">
+
+					<div class="InnerNotifMain">
+						<i class="fas fa-times" id="CloseNotif"></i>
+						<div class="NotifHeading">Notifications</div>
+
+						<div class="NotificationBox_Cont">
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
+
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
+
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
+
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
+
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
+
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
+
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
+
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
+
+							<div class="NotificationBox">
+								<div class="NotifBoxHeading">
+									<span class="NotifBoxSender">Sabbir Sir</span>
+									<span class="NotifDateTime">28 July, 2:30 PM</span>
+								</div>
+								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
+							</div>
 						</div>
 					</div>
-
+					
 				</div>
 
 			</div>
@@ -833,93 +957,30 @@
 
 			CreateTable_Headings(heading_fields);
 			CreateTable_Data(table_data_Array);
-			//SetCSS_Colors();
 
 		}
 
-	//Clicking the home tab
-	document.getElementById("HomeIcon").addEventListener('click', e => {
-		$(".Blackboard_MasterContainer").animate({
-			height: "60%"
-			}, 100, function() {
 
-			});
-
-				$(".MainVideoPlayer_Cont").fadeOut("fast");
-				$(".TimeTable_MainCont").fadeOut("fast");
-
-				$(".Notification_container").delay(500).fadeIn("fast");
-				$(".BlackBoard_MainInfo").fadeIn("slow");
-
+	// Clicking the notification icon
+	document.getElementById("NotifButton").addEventListener('click', e => {
+		$(".Blackboard_container").css('width', '65%');
+		$(".NotificationMainCont").css('width', '33%');
+		$("#ExclaimIcon").css('display', 'none');
+		$(".InnerNotifMain").fadeIn('fast');
+		$(".NotificationBox_Cont").fadeIn('slow');
 	});
 
-	//Clicking the video tab
-	document.getElementById("VidIcon").addEventListener('click', e => {
-		AnimateBlackBoardStretchingHeight();
-		$(".Notification_container").fadeOut("fast");
-		$(".BlackBoard_MainInfo").fadeOut("slow");
-		$(".BlackBoardDate").fadeOut("fast");
-		$(".TimeTable_MainCont").fadeOut("fast");
+	//Clicking the close notif tab
+	document.getElementById("CloseNotif").addEventListener('click', e => {
+		$(".NotificationBox_Cont").fadeOut('fast');
+		$(".InnerNotifMain").fadeOut('fast');
+		$(".Blackboard_container").css('width', '98%');
+		$(".NotificationMainCont").css('width', '0%');
+		$("#ExclaimIcon").delay(100).css('display', 'block');
 
-		$(".MainVideoPlayer_Cont").fadeIn("slow");
 	});
+	
 
-
-	//Clicking the timetable tab
-	document.getElementById("TableIcon").addEventListener('click', e => {
-		AnimateBlackBoardStretchingHeight();
-
-		//Vanish all the not needed stuff
-		$(".Notification_container").fadeOut("fast");
-		$(".BlackBoard_MainInfo").fadeOut("slow");
-		$(".MainVideoPlayer_Cont").fadeOut("fast");
-		$(".BlackBoardDate").fadeOut("fast");
-
-		$(".TimeTable_MainCont").delay(100).fadeIn("slow");
-	});
-
-
-	function AnimateBlackBoardStretchingHeight(){
-		$(".Blackboard_MasterContainer").animate({
-			height: "100%"
-			}, 200, function() {
-				console.log('Stretched complete');
-			});
-	}
-
-	function SetCSS_Colors(){
-
-		Header_Footer_Color = '#01579B';
-
-		IconBar_Color = "#0277BD";
-
-		MainBackgroundColor = "white";
-
-		BlackBoard_background = "black";
-		BlackBoard_Border = "#039BE5";
-
-		Notifications_Background = "black";
-
-	//color setters
-		$('.TopNAVBar').css("background-color", Header_Footer_Color);
-		$('.TopNAVBar').css("color", "white");
-
-		$('.Top_FA_Container').css("background-color", IconBar_Color);
-		$('.TopFaDIV').css("background-color", IconBar_Color);
-
-		$('.PageBanner').css("background-color", MainBackgroundColor);
-		$('.MainContent').css("background-color", MainBackgroundColor);
-		$('.ProfileInfo_Cont').css("background-color", MainBackgroundColor);
-
-		$('.BlackBoard').css("background-color", BlackBoard_background);
-		$('.BlackBoard').css("border-color", BlackBoard_Border);
-
-		$('.NotificationBox').css("background-color", Notifications_Background);
-
-		$('.Footer').css("background-color", Header_Footer_Color);
-
-
-	}
 
 	//Calling the main function
 		Main();
