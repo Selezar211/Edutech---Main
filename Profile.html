@@ -111,7 +111,8 @@
 			}
 
 			.SignOut:hover{
-				color: silver;
+				/*color: #222;*/
+				transform: scale(1.1,1.1);
 				transition: 500ms;
 			}
 
@@ -274,10 +275,11 @@
 			}
 
 			.BlackBoardName_Date_Cont{
-			    width: 26%;
 			    display: inline-block;
-			    position: absolute;
-			    right: 0.5%;
+			    position: relative;
+			    float: right;
+			    margin-top: 1%;
+			    margin-right: 2%;
 			}
 
 			.BlackBoardWaterMark{
@@ -296,10 +298,11 @@
 			}
 
 			.BlackBoardDate{
-			    position: relative;
+			    position: absolute;
 			    font-size: 1.4vw;
 			    opacity: 0.9;
-			    float: right;
+			    top: 13%;
+			    right: 2%;
 			}
 
 			.BlackBoard_MainInfo{
@@ -315,7 +318,8 @@
 			    width: 100%;
 			    font-size: 1.5vw;
 			    opacity: 0.9;
-			    float: left;	
+			    float: left;
+			    margin-left: 2%;	
 			}
 
 			.Notification_container{
@@ -643,8 +647,8 @@
 
 							<div class="BlackBoardName_Date_Cont">
 								<span class="BlackBoardStudentName" id="BlackBoardStudentName_ID">Student#34 Md Ekram</span>
-								<span class="BlackBoardDate">25th July 2018</span>
 							</div>
+								<span class="BlackBoardDate">25th July 2018</span>
 
 							<div class="BlackBoard_MainInfo">
 								<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in : Physics - Sabbir Sir | Chemistry - Qudrot Sir | Maths - Shakib Sir</span>
@@ -854,6 +858,7 @@
 		AnimateBlackBoardStretchingHeight();
 		$(".Notification_container").fadeOut("fast");
 		$(".BlackBoard_MainInfo").fadeOut("slow");
+		$(".BlackBoardDate").fadeOut("fast");
 		$(".TimeTable_MainCont").fadeOut("fast");
 
 		$(".MainVideoPlayer_Cont").fadeIn("slow");
@@ -868,6 +873,7 @@
 		$(".Notification_container").fadeOut("fast");
 		$(".BlackBoard_MainInfo").fadeOut("slow");
 		$(".MainVideoPlayer_Cont").fadeOut("fast");
+		$(".BlackBoardDate").fadeOut("fast");
 
 		$(".TimeTable_MainCont").delay(100).fadeIn("slow");
 	});
