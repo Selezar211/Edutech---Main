@@ -9,7 +9,7 @@
         <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet'>
 		<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
-
+		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
         <link rel="icon" type="image/png" href="https://png.icons8.com/ios-glyphs/40/000000/cup.png">
 
@@ -154,10 +154,37 @@
 			}
 
 			.TopFaDIV:hover .fas {
-				transform: scale(2.8,2.8);
+				color: #222;
+				transform: scale(2.4,2.4);
 				transition: 500ms;
 			}
 
+			.TopFaDIV:hover .IconDescription {
+				color: #222;
+				transition: 500ms;
+			}
+
+			.IconDescription{
+			    font-family: 'Montserrat';
+			    font-size: 0.8vw;
+			    position: absolute;
+			    bottom: 18%;
+			    left: 30%;
+			    display: inline-block;
+			    transition: 500ms;
+			}
+
+			#TimetableIcon{
+				left: 20%;
+			}
+
+			#LectureIcon{
+				left: 26%;
+			}
+
+			#SettingsIcon{
+				left: 26%;
+			}
 			.fas{
 				transform: scale(2,2);
 				display: inline-block;
@@ -224,6 +251,7 @@
     			display: inline-block;
     			z-index: 102;
     			border-radius: 0.2vw;
+    			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
     			transition: 500ms;
 			}
 
@@ -317,6 +345,7 @@
     			display: inline-block;
     			z-index: 100;
     			border-radius: 0.2vw;
+    			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
     			transition: 500ms;
 			}
 
@@ -590,13 +619,13 @@
 	<div class="PageBanner">
 
 		<div class="Top_FA_Container">
-			<div class="TopFaDIV" id="HomeIcon"><i class="fas fa-home"></i></div>
-			<div class="TopFaDIV"><i class="fas fa-graduation-cap"></i></div>
-			<div class="TopFaDIV" id="TableIcon"><i class="fas fa-table"></i></div>
-			<div class="TopFaDIV" id="VidIcon"><i class="fas fa-video"></i></div>
-			<div class="TopFaDIV"><i class="fas fa-file-alt"></i></div>
-			<div class="TopFaDIV"><i class="fas fa-chalkboard-teacher"></i>	</div>	
-			<div class="TopFaDIV"><i class="fas fa-cog"></i></div>		
+			<div class="TopFaDIV" id="HomeIcon"><i class="fas fa-home"></i> <span class="IconDescription">Home</span></div>
+			<div class="TopFaDIV"><i class="fas fa-graduation-cap"></i><span class="IconDescription">Exam</span></div>
+			<div class="TopFaDIV" id="TableIcon"><i class="fas fa-table"></i><span class="IconDescription" id="TimetableIcon">Timetable</span></div>
+			<div class="TopFaDIV" id="VidIcon"><i class="fas fa-video"></i><span class="IconDescription">Video</span></div>
+			<div class="TopFaDIV"><i class="fas fa-file-alt"></i><span class="IconDescription" id="LectureIcon">Lecture</span></div>
+			<div class="TopFaDIV"><i class="fas fa-chalkboard-teacher"></i><span class="IconDescription">Teacher</span></div>	
+			<div class="TopFaDIV"><i class="fas fa-cog"></i><span class="IconDescription" id="SettingsIcon">Settings</span></div>		
 		</div>
 
 		<div class="MainContent">
