@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html>
+<head> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ekram - Profile</title>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+        <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet'>
+		<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+
+
+        <link rel="icon" type="image/png" href="https://png.icons8.com/ios-glyphs/40/000000/cup.png">
+
+        <script src='https://code.jquery.com/jquery-1.12.0.min.js'></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+        <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+			html {
+			  margin: 0;
+			  height: 100%;
+			  padding: 0 !important;
+			}
+			 
+
+			body {
+				margin: 0;
+			    height: 100%;
+			    background-color: #49274A;
+			    font-family: 'Cinzel';
+			}
+
+		/*scrollbar stuff*/
+
+			::-webkit-scrollbar {
+			    width: 0.2%;
+			    height: 70%;
+			    margin: 0 auto;
+				background-color: rgba(255, 0, 0, 0.1);
+			   
+			}
+			::-webkit-scrollbar-thumb {
+			    height: 6px;
+			    border: 1px solid rgba(0, 0, 0, 0.9);
+			    background-clip: padding-box;
+			    -webkit-border-radius: 15px;
+			    background-color: rgba(0, 0, 0, 0.5);
+			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+			    height: 6px;
+			    background-clip: padding-box;
+			    -webkit-border-radius: 15px;
+			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+			}
+
+
+			::-webkit-scrollbar-button {
+			    width: 0;
+			    height: 0;
+			    display: none;
+			}
+
+			::-webkit-scrollbar-corner {
+			    background-color: transparent;
+			   }
+
+/*		header*/
+			.TopNAVBar{
+				color: white;
+				font-size: 1vw;
+			    width: 100%;
+			    height: 6%;
+			    top: 0%;
+			    position: relative;
+			    background-color: #49274A;
+			    overflow: hidden;
+			    z-index: 101;
+			}
+
+			.CompanyName{
+				margin: 2%;
+				margin-top: 1%;
+				float: right;
+			}
+
+			.SignOut{
+				cursor: pointer;
+				margin: 2%;
+				margin-top: 1%;
+				float: left;
+				margin-left: 1%;
+				transition: 500ms;
+			}
+
+			.SignOut:hover{
+				color: silver;
+				transition: 500ms;
+			}
+
+		/*Top BANNER STUFF*/
+			.PageBanner{
+				width: 100%;
+				height: 95%;
+				position: relative;
+				top: 0%;
+				background-color: #FEDCD2; /*#CAEBF2;*/
+				z-index: 101;
+			}
+
+			.Top_FA_Container{
+			    width: 6.4%;
+			    height: 95%;
+			    left: 1.5%;
+			    top: 2%;
+			    position: relative;
+			    display: inline-block;
+			    float: left;
+			    background-color: #94618E;
+			    opacity: 0.9;
+			    border-radius: 3px;
+			    z-index: 105;
+			}
+
+			.TopFaDIV{
+				border-radius: 3px;
+				cursor: pointer;
+				color: white;
+				position: relative;
+				float: left;
+				width: 100%;
+				height: 14.28%;
+				display: inline-block;
+				text-align: center;
+				background-color: #94618E;
+				transition: 200ms;
+			}
+
+			.TopFaDIV:hover {
+				background-color: black; 
+				transition: 200ms;
+			}
+
+			.fas{
+				transform: scale(2,2);
+				display: inline-block;
+				position: relative;
+				top: 35%;
+				margin:auto
+			}
+
+			.MainContent{
+			    width: 89%;
+			    height: 95%;
+			    margin-right: 1%;
+			    top:2%;
+			    float: right;
+			    position: relative;
+			    display: inline-block;
+			    background-color: #FEDCD2;
+			}
+
+/*		profile info tab*/
+			.ProfileInfo_Cont{
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+				position: relative;
+				top: 0%;
+			    background-color: #FEDCD2;
+			    overflow: hidden;
+			}
+
+			.Blackboard_MasterContainer{
+			    width: 100%;
+			    height: 60%;
+			    color: white;
+			    position: relative;
+			    display: inline-block;
+			    z-index: 97;
+			   /* border: 0.6vw solid #BDBDBD;*/
+			    transition: 500ms;
+			    border-radius: 1.5vw;
+			}
+			.Blackboard_container{
+			    font-family: 'Fredericka the Great';
+			    background-image: url("https://i.imgur.com/ryh9zg8.jpg");
+			    width: 100%;
+			    height: 100%;
+			    color: white;
+			    position: relative;
+			    display: inline-block;
+			    z-index: 99;
+			   /* border: 0.6vw solid #BDBDBD;*/
+			    transition: 500ms;
+			    border-radius: 1.5vw;
+			
+			}
+
+			.BlackBoard{
+			    font-family: 'Fredericka the Great';
+    			background-color: black;
+    			width: 98%;
+   				top: 3.3%;
+    			height: 94%;
+    			left: 1%;
+    			color: white;
+    			position: relative;
+    			display: inline-block;
+    			z-index: 102;
+    /* border: 0.6vw solid #BDBDBD; */
+    			transition: 500ms;
+    			border-radius: 1.5vw;
+			
+			}
+
+			.BlackBoardChalk1{
+			    width: 5%;
+			    height: 2%;
+			    position: absolute;
+			    bottom: 0.5%;
+			    right: 25%;
+			    background-color: white;
+			}
+
+			.BlackBoardChalk2{
+			    width: 3%;
+			    height: 2%;
+			    position: absolute;
+			    bottom: 0.5%;
+			    right: 31%;
+			    background-color: white;
+			}
+
+			.BlackBoardName_Date_Cont{
+			    width: 26%;
+			    display: inline-block;
+			    position: absolute;
+			    right: 0.5%;
+			}
+
+			.BlackBoardWaterMark{
+			    position: absolute;
+			    font-size: 1.3vw;
+			    opacity: 0.7;
+			    bottom: 0%;
+			    right: 1%;
+			}
+
+			.BlackBoardStudentName{
+			    position: relative;
+			    font-size: 2vw;
+			    opacity: 0.9;
+			    float: right;
+			}
+
+			.BlackBoardDate{
+			    position: relative;
+			    font-size: 1.4vw;
+			    opacity: 0.9;
+			    float: right;
+			}
+
+			.BlackBoard_MainInfo{
+				margin-top: 8%;
+			    width: 95%;
+			    display: inline-block;
+			    position: absolute;
+			    left: 1.5%;
+			}
+
+			.BB_MainInfo_Child{
+			    position: relative;
+			    width: 100%;
+			    font-size: 1.5vw;
+			    opacity: 0.9;
+			    float: left;	
+			}
+
+			.Notification_container{
+				font-size: 1vw;
+			    font-family: "Cinzel";
+			    background-image: url("https://i.imgur.com/ryh9zg8.jpg");
+			    width: 100%;
+			    height: 37%;
+			    color: white;
+			    top: 63%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 99;
+			    /*border: 0.6vw solid #321c20;*/
+			    transition: 500ms;
+			    border-radius: 1.5vw;
+			}
+
+			.NotificationBox{
+				font-size: 1vw;
+    			font-family: "Cinzel";
+    			background-color: #6E3667;
+   				width: 98%;
+    			height: 93%;
+    			color: white;
+    			left: 1%;
+    			top: 3.5%;
+    			position: absolute;
+    			display: inline-block;
+    			z-index: 100;
+    			border-radius: 1.5vw;
+
+    /* border: 0.6vw solid #321c20; */
+    			transition: 500ms;
+			}
+
+			.NotifTitle{
+			    padding-top: 1%;
+			    padding-left: 1%;
+			    font-size: 1.7vw;
+			    width: 30%;
+			    position: relative;
+			    float: left;
+			    border-bottom: 0.2vw solid #BDBDBD;
+			    color: white;
+			}
+
+			.ActualNotif{
+			    border: 0.2vw solid black;
+			    width: 90%;
+			    margin-left: 5%;
+			    margin-top: 5%;
+			    position: relative;
+			    float: left;
+			    background-color: rgb(30,30,30);
+			}
+
+			.ActualNotifTItle{
+			    padding-left: 1%;
+			    padding-right: 2%;
+			    padding-top: 0.5%;
+			    font-size: 1.8vw;
+			    position: relative;
+			    width: 26%;
+			    float: left;
+			    color: white;
+			}
+
+			.NotifMainText{
+				padding-left: 1%;
+			    padding-right: 2%;
+			    padding-top: 0.5%;
+			    font-size: 1vw;
+			    position: relative;
+			    border-left: 1px solid black;
+			    width: 73%;
+			    float: right;
+			    color: white;
+			}
+
+/*		timetable tab*/
+			.TimeTable_MainCont{
+				display: inline-block;
+				width: 100%;
+				position: relative;
+				top: 15%;
+			}
+
+			table {
+				font-family: "Quattrocento"
+				border-collapse: collapse;
+			    width: 100%;
+			    position: relative;
+			    font-size: 1.2vw;
+			    color: white;
+			}
+			th {
+				background-color: #580000;
+			    text-align: center;
+			    padding: 0.8%;
+			}
+
+			td {
+			    border: 0.1vw solid black;
+			    text-align: center;
+			    padding: 0.8%;
+			}
+
+			tr:nth-child(even) {
+				cursor: pointer;
+				color: white;
+			    background-color: black;
+			    border-bottom: 0.2vw solid black;
+			    transition: 500ms;
+			}
+
+			tr:nth-child(odd) {
+				cursor: pointer;
+				color: white;
+			    background-color: black;
+			    border-bottom: 0.2vwx solid black;
+			    transition: 100ms;
+			}
+
+
+/*		VideoPlayer stuff*/
+		.MainVideoPlayer_Cont{
+		    display: none;
+		    width: 80%;
+		    position: absolute;
+		    top: 10%;
+		    left: 10%;
+		    height: 80%;
+		}
+
+		.VideoFrame_Youtube{
+			width: 100%;
+			height: 100%;
+			display: inline-block;
+			position: relative;
+		}
+
+		/*Footer stuff*/
+			.Footer{
+				display: inline-block;
+				top: 0%;
+			    width: 100%;
+			    height: 20%;
+			    position: relative;
+			    background-color: #49274A;
+			    overflow: hidden;
+			}
+
+			.TradeMark{
+			    font-size: 1vw;
+			    top: 81%;
+			    left: 34%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: relative;
+			}
+
+			.fa-twitter {
+				width: 1%;
+			    height: 11%;
+			    top: 38%;
+			    left: 83%;
+			    transform: scale(2,2);
+			    color: white;
+			    position: absolute;
+			    text-align: center;
+			}
+
+			.fa-facebook-square {
+				width: 1%;
+			    height: 11%;
+			    top: 38%;
+			    left: 87%;
+			    transform: scale(2,2);
+			    color: white;
+			    position: absolute;
+			    text-align: center;
+			}
+
+			.fa-youtube-play{
+				width: 1%;
+			    height: 11%;
+			    top: 38%;
+			    left: 91%;
+			    transform: scale(2,2);
+			    color: white;
+			    position: absolute;
+			    text-align: center;
+			}
+
+			.fa-reddit-alien {
+				width: 1%;
+			    height: 11%;
+			    top: 38%;
+			    left: 95%;
+			    transform: scale(2,2);
+			    color: white;
+			    position: absolute;
+			    text-align: center;
+			}
+
+			.fa-twitter:hover ,.fa-facebook-square:hover,  .fa-youtube-play:hover, .fa-reddit-alien:hover {
+				cursor: pointer;
+				color: silver;
+			}
+
+			.Forums_{
+				font-size: 1vw;
+			    top: 40%;
+			    left: 15.1%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: absolute;
+			    transition: 200ms;
+			}
+
+			.divider1{
+			    top: 40%;
+			    left: 7.5%;
+			    width: 0.1%;
+			    height: 15%;
+			    background-color: white;
+			    display: inline-block;
+			    position: absolute;
+			}
+
+			.Contact_{
+			    font-size: 1vw;
+			    top: 41%;
+			    left: 2%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: absolute;
+			    transition: 200ms;
+			}
+
+			.divider2{
+			    top: 40%;
+			    left: 14.2%;
+			    width: 0.1%;
+			    height: 15%;
+			    background-color: white;
+			    display: inline-block;
+			    position: absolute;
+			}
+
+			.AboutUs_{
+			    font-size: 1vw;
+			    top: 40%;
+			    left: 8.5%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: absolute;
+			    transition: 200ms;
+			}
+
+			.divider3{
+			    top: 40%;
+			    left: 19.5%;
+			    width: 0.1%;
+			    height: 15%;
+			    background-color: white;
+			    display: inline-block;
+			    position: absolute;
+			}
+
+			.Support_{
+			    font-size: 1vw;
+			    top: 40%;
+			    left: 20.5%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: absolute;
+			    transition: 200ms;
+			}
+
+			.Support_:hover, .Forums_:hover, .AboutUs_:hover, .Contact_:hover{
+				cursor: pointer;
+				transition: 200ms;
+				color: silver;
+			}
+/*		footer stuff end*/
+        </style>
+
+       
+</head>
+<body>
+
+	<div class="TopNAVBar">
+		<span class="SignOut" id="SignOut_ID">Sign Out</span>
+		<span class="CompanyName">EduTech</span>
+	</div>
+
+	<div class="PageBanner">
+
+		<div class="Top_FA_Container">
+			<div class="TopFaDIV" id="HomeIcon"><i class="fas fa-home"></i></div>
+			<div class="TopFaDIV"><i class="fas fa-graduation-cap"></i></div>
+			<div class="TopFaDIV" id="TableIcon"><i class="fas fa-table"></i></div>
+			<div class="TopFaDIV" id="VidIcon"><i class="fas fa-video"></i></div>
+			<div class="TopFaDIV"><i class="fas fa-file-alt"></i></div>
+			<div class="TopFaDIV"><i class="fas fa-chalkboard-teacher"></i>	</div>	
+			<div class="TopFaDIV"><i class="fas fa-cog"></i></div>		
+		</div>
+
+		<div class="MainContent">
+
+			<div class="ProfileInfo_Cont">
+				<div class="Blackboard_MasterContainer">
+					<div class="Blackboard_container">
+						<div class="BlackBoard">
+							<span class="BlackBoardWaterMark">i love edutech!</span>
+							<div class="BlackBoardChalk1"></div>
+							<div class="BlackBoardChalk2"></div>
+							<div class="BlackBoardName_Date_Cont">
+								<span class="BlackBoardStudentName" id="BlackBoardStudentName_ID">Student#34 Md Ekram</span>
+								<span class="BlackBoardDate">25th July 2018</span>
+							</div>
+							<div class="BlackBoard_MainInfo">
+							<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in : Physics - Sabbir Sir | Chemistry - Qudrot Sir | Maths - Shakib Sir</span>
+							<span class="BB_MainInfo_Child" id="BlackBoardNextClass">Next Class : Chemistry - Qudrot Sir - 5:00 PM</span>
+							<span class="BB_MainInfo_Child" id="UpcomingMock">Upcoming Mock : 30th July 2:30 PM - Mathematics</span>
+							<span class="BB_MainInfo_Child">I dunno what more information to put here</span>
+							<span class="BB_MainInfo_Child">Have to come out with more stuff</span>
+							<span class="BB_MainInfo_Child">Maybe inspirational quotes?</span>
+							<span class="BB_MainInfo_Child">What if you could use this as an ACTUAL facebook wall</span>
+							<span class="BB_MainInfo_Child">That would be wild</span>
+							</div>
+							<div class="MainVideoPlayer_Cont">
+<!-- 						<iframe frameBorder="0" class="VideoFrame_Youtube" src="https://www.youtube.com/embed/YR-l0b2iYy0"> -->
+	
+						</div>
+					</div>
+				</div>
+
+					<div class="TimeTable_MainCont">
+						<table id="myTable">
+							<colgroup>
+		    					<col span="1" style="background-color:red">
+		    					<col style="background-color:yellow">
+		  					</colgroup>
+
+
+						</table>
+					</div>
+
+				</div>
+				<div class= "Notification_container">
+					<div class="NotificationBox" id="NotificationBox_ID">
+						<span class="NotifTitle">Notifications</span>
+
+						<div class="ActualNotif">
+							<span class="ActualNotifTItle">Sabbir Sir | 5:30 PM</span>
+							<span class="NotifMainText"> Classes cancelled today because of rain. Makeup class tomorrow at 7:00 PM. If you have a problem at that time send me a private message.</span>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+		
+	</div>
+
+    <div class="Footer">
+        <div class="TradeMark">
+            &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram
+        </div>
+
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-facebook-square"></i>
+        <i class="fa fa-youtube-play"></i>
+        <i class="fa fa-reddit-alien"></i>
+
+        <div class="Forums_">Forum</div>
+        <div class=divider1></div>
+        <div class="Contact_">Contact</div>
+        <div class=divider2></div>
+        <div class="AboutUs_">About us</div>
+        <div class=divider3></div>
+        <div class="Support_">Support</div>
+  
+    </div>
+
+	<!-- Firebase App is always required and must be first -->
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
+
+	<!-- Add additional services that you want to use -->
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-functions.js"></script>
+
+    <script>
+
+		// Initialize Firebase
+		var config = {
+			apiKey: "AIzaSyCBGF5jQfpK_yktdnUs8a80XPn0MLxSt9Y",
+			authDomain: "edutech-2121.firebaseapp.com",
+			databaseURL: "https://edutech-2121.firebaseio.com",
+			projectId: "edutech-2121",
+			storageBucket: "edutech-2121.appspot.com",
+			messagingSenderId: "981500378332"
+		};
+
+		firebase.initializeApp(config);
+
+		var database = firebase.database();
+		var Current_UID;
+
+	//Fetch all relevant data for logged in user from our database using UID
+		function FetchAllDataFromDatabase(){
+			var ref = database.ref('USERS/' + Current_UID);
+			console.log('Fetching data from database with UID ' + Current_UID);
+			ref.once('value', ReceivedData, errData);
+
+
+			//Functions for fetching data
+			function ReceivedData(data){
+
+				tableData = data.val();
+				console.log(tableData);
+				//Change the top name to user name
+				document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Student#34 ' + tableData['UserName'];
+				document.title = tableData['UserName'] + ' - Profile';
+			}
+
+			function errData(err){
+				console.log('Error!');
+				console.log(err);
+			}
+		}
+
+		//Add a realtime listener for state auth change
+		  firebase.auth().onAuthStateChanged( firebaseUser => {
+		  	if (firebaseUser){
+		  		console.log('Logged In..')
+		  		console.log(firebaseUser);
+		  		Current_UID = firebaseUser.uid;
+		  		FetchAllDataFromDatabase();
+
+		  	}
+		  	else{
+		  		console.log('Not logged in..');
+		  		//window.location.href = "http://www.edutechs.org";
+		  	}
+		  });
+
+	//Log out event trigger
+		document.getElementById("SignOut_ID").addEventListener('click', e => {
+
+		  	const auth = firebase.auth();
+
+		  	//logout
+		  	const promise = auth.signOut().then(function(){
+		  		//send to front page
+		  		console.log('Successfully logged out..');
+
+		  		},function(err){
+		  		console.log(err.code);
+		  	});
+
+
+		  });
+
+    //Time table stuff
+		var global_Number_of_Rows = 0;
+
+		function CreateTable_Headings(Heading_Array) {
+		    table_headings = Heading_Array ;
+		    var x = document.createElement("TR");
+		    Unique_ID_For_TR = 'H' + String(1);
+		    x.setAttribute("id", Unique_ID_For_TR);
+		    document.getElementById("myTable").appendChild(x);
+		        for (var z = 0; z < table_headings.length; z++) {
+		            var y = document.createElement("TH");
+		            var t = document.createTextNode(String(table_headings[z]));
+		            y.appendChild(t);
+		            Current_TH_ID = 'H' + String(1);
+		            document.getElementById(Current_TH_ID).appendChild(y);
+		        
+		        }
+		}
+
+		function CreateTable_Data(table_data) {
+
+		    for (var i=0;i<table_data.length; i++) {
+		    var x = document.createElement("TR");
+		    global_Number_of_Rows = global_Number_of_Rows + 1;
+		    Unique_ID_For_TR = 'R' + String(i);
+		    x.setAttribute("id", Unique_ID_For_TR);
+		    document.getElementById("myTable").appendChild(x);
+		        for (var z = 0; z < table_data[i].length; z++) {
+		            var y = document.createElement("TD");
+		            var t = document.createTextNode(String(table_data[i][z]));
+		            y.appendChild(t);
+		            Current_TR_ID = 'R' + String(i);
+		            document.getElementById(Current_TR_ID).appendChild(y);
+		        
+		        }
+		    }	
+		}
+
+		function Main(){
+			heading_fields = ["", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			table_data_Array = [["2:00", "lol", "lol", "lol", "lol", "lol", "lol", "lol"],["2:30", "lol", "lol", "lol", "lol", "lol", "lol", "lol"],["3:00", "lol", "lol", "lol", "lol", "lol", "lol", "lol"],["3:30", "lol", "lol", "lol", "lol", "lol", "lol", "lol"],["4:00", "lol", "lol", "lol", "lol", "lol", "lol", "lol"],["4:30", "lol", "lol", "lol", "lol", "lol", "lol", "lol"],["5:00", "lol", "lol", "lol", "lol", "lol", "lol", "lol"],["5:00", "lol", "lol", "lol", "lol", "lol", "lol", "lol"]];
+
+			CreateTable_Headings(heading_fields);
+			CreateTable_Data(table_data_Array);
+			SetCSS_Colors();
+
+		}
+
+	//Clicking the home tab
+	document.getElementById("HomeIcon").addEventListener('click', e => {
+		$(".Blackboard_MasterContainer").animate({
+			height: "60%"
+			}, 100, function() {
+
+			});
+
+				$(".MainVideoPlayer_Cont").fadeOut("fast");
+				$(".TimeTable_MainCont").fadeOut("fast");
+
+				$(".Notification_container").delay(500).fadeIn("fast");
+				$(".BlackBoard_MainInfo").fadeIn("slow");
+
+	});
+
+	//Clicking the video tab
+	document.getElementById("VidIcon").addEventListener('click', e => {
+		AnimateBlackBoardStretchingHeight();
+		$(".Notification_container").fadeOut("fast");
+		$(".BlackBoard_MainInfo").fadeOut("slow");
+		$(".TimeTable_MainCont").fadeOut("fast");
+
+		$(".MainVideoPlayer_Cont").fadeIn("slow");
+	});
+
+
+	//Clicking the timetable tab
+	document.getElementById("TableIcon").addEventListener('click', e => {
+		AnimateBlackBoardStretchingHeight();
+
+		//Vanish all the not needed stuff
+		$(".Notification_container").fadeOut("fast");
+		$(".BlackBoard_MainInfo").fadeOut("slow");
+		$(".MainVideoPlayer_Cont").fadeOut("fast");
+
+		$(".TimeTable_MainCont").delay(100).fadeIn("slow");
+	});
+
+
+	function AnimateBlackBoardStretchingHeight(){
+		$(".Blackboard_MasterContainer").animate({
+			height: "100%"
+			}, 200, function() {
+				console.log('Stretched complete');
+			});
+	}
+
+	function SetCSS_Colors(){
+
+		Header_Footer_Color = '#01579B';
+
+		IconBar_Color = "#0277BD";
+
+		MainBackgroundColor = "white";
+
+		BlackBoard_background = "black";
+		BlackBoard_Border = "#039BE5";
+
+		Notifications_Background = "black";
+
+	//color setters
+		$('.TopNAVBar').css("background-color", Header_Footer_Color);
+		$('.TopNAVBar').css("color", "white");
+
+		$('.Top_FA_Container').css("background-color", IconBar_Color);
+		$('.TopFaDIV').css("background-color", IconBar_Color);
+
+		$('.PageBanner').css("background-color", MainBackgroundColor);
+		$('.MainContent').css("background-color", MainBackgroundColor);
+		$('.ProfileInfo_Cont').css("background-color", MainBackgroundColor);
+
+		$('.BlackBoard').css("background-color", BlackBoard_background);
+		$('.BlackBoard').css("border-color", BlackBoard_Border);
+
+		$('.NotificationBox').css("background-color", Notifications_Background);
+
+		$('.Footer').css("background-color", Header_Footer_Color);
+
+
+	}
+
+	//Calling the main function
+		Main();
+    </script>
+
+</body>
+</html>

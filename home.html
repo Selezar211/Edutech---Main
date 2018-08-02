@@ -1,0 +1,1650 @@
+<!doctype html>
+<html>
+    <head> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>EduTech - Home</title>
+
+		<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+
+        <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet'>
+
+        <link rel="icon" type="image/png" href="https://png.icons8.com/ios-glyphs/40/000000/cup.png">
+
+        <script src='https://code.jquery.com/jquery-1.12.0.min.js'></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+        crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+        <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <style>
+		/*scrollbar stuff*/
+
+			::-webkit-scrollbar {
+			    width: 0.2%;
+			    height: 70%;
+			    margin: 0 auto;
+				background-color: rgba(255, 0, 0, 0.1);
+
+			}
+			::-webkit-scrollbar-thumb {
+			    height: 6px;
+			    border: 1px solid rgba(0, 0, 0, 0.9);
+			    background-clip: padding-box;
+			    -webkit-border-radius: 15px;
+			    background-color: rgba(0, 0, 0, 0.5);
+			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+			    height: 6px;
+			    background-clip: padding-box;
+			    -webkit-border-radius: 15px;
+			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+			}
+
+
+			::-webkit-scrollbar-button {
+			    width: 0;
+			    height: 0;
+			    display: none;
+			}
+
+			::-webkit-scrollbar-corner {
+			    background-color: transparent;
+			   }
+
+
+			html {
+			  margin: 0;
+			  height: 100%;
+			  padding: 0 !important;
+			}
+
+			/*div shadow: http://i.imgur.com/0gMD2Jz.png*/
+
+			input, textarea, select, a { outline: none; }
+
+
+			body {
+				margin: 0;
+			    height: 100%;
+			    background-color: black;
+			}
+
+
+			.MainBanner {
+				width: 100%;
+			    height: 100%;
+			    position: relative;
+			    background-color: white;
+			    background:   url(https://i.imgur.com/nWU02IF.jpg);
+			    background-size: 100% 100%;
+			    background-position: center;
+			    background-blend-mode:darken;
+			    background-repeat: no-repeat;
+			    overflow: hidden;
+			}
+
+			.Top_Hidden_Spacer{
+				width: 100%;
+			    height: 6%;
+			    background-color: black;
+			    position: relative;
+			}
+
+			.Main_Title {
+				font-size: 7vw;
+			    font-family: "Cinzel";
+			    background-color: rgba(0,0,0,0.15);
+			    letter-spacing: 2vw;
+			    width: 100%;
+			    height: 19%;
+			    color: black;
+			    top: 23%;
+			    text-align: center;
+			    padding-right: 2%;
+			    padding-bottom: 1%;
+			    padding-top: 1%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			}
+
+			.Logo_Title {
+			    font-size: 1.2vw;
+			    font-family: "Cinzel";
+			    background-color: rgba(0,0,0,1);
+			    letter-spacing: 1.2vw;
+			    width: 100%;
+			    word-spacing: 1vw;
+			    height: 4%;
+			    color: white;
+			    top: 51%;
+			    text-align: center;
+			    padding-bottom: 0%;
+			    padding-top: 0.7%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			}
+
+
+			.Header{
+			    width: 100%;
+			    height: 6%;
+			    position: fixed;
+			    background-color: black;
+			    overflow: hidden;
+			    z-index: 101;
+			}
+
+			.LeftHeader_Cont{
+				width: 20%;
+			    height: 4%;
+			    margin-left:1%;
+			    position: fixed;
+			    background-color: black;
+			    overflow: hidden;
+			}
+
+			.LogIn {
+			    z-index: 101;
+			    font-weight: bold;
+			    position: relative;
+			    display: inline-block;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    padding: 4.2%;
+			    float: left;
+			    transition: 200ms;
+			}
+
+			.SignUp {
+			    z-index: 101;
+			    font-weight: bold;
+			    float: left;
+			    position: relative;
+			    display: inline-block;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    padding: 4.2%;
+			    transition: 200ms;
+			}
+
+			.SignOut{
+			    z-index: 101;
+			    font-weight: bold;
+			    float: left;
+			    position: relative;
+			    display: none;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    padding: 4.2%;
+			    transition: 200ms;
+			}
+
+			.Profile {
+			    z-index: 101;
+			    font-weight: bold;
+			    float: left;
+			    position: relative;
+			    display: none;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    padding: 4.2%;
+			    transition: 200ms;
+			}
+
+			.Welcome {
+			    z-index: 101;
+			    font-weight: bold;
+			    float: left;
+			    position: relative;
+			    display: none;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    padding: 4.2%;
+			    transition: 200ms;
+			}
+
+			.GamescendLogo{
+			    z-index: 101;
+			    font-weight: bold;
+			    top: 1.2%;
+			    left: 92%;
+			    position: fixed;
+			    display: inline-block;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    width: 5%;
+			    padding: 0.2%;
+			    padding-right: 0.5%;
+			    transition: 200ms;
+			}
+
+			.SignUp:hover, .LogIn:hover, .SignOut:hover, .Profile:hover {
+				cursor: pointer;
+				color: red;
+				font-weight: bolder;
+				transition: 200ms;
+			}
+
+
+			/*LOGIN ELEMENT BLOCK*/
+
+			.LOG_IN_MASTER_CONTAINER{
+				position: fixed;
+			    top: -40%;
+			    left: 38%;
+			    background-color: black;
+			    z-index: 101;
+			    width: 25%;
+			    height: 30%;
+			    display: block;
+			    border-top: 1vw solid darkred;
+			    border-radius: 10px;
+			}
+
+			.Login_Form {
+			    position: relative;
+			    top: 5%;
+			    left: -2%;
+			    width: 100%;
+			    height: 80%;
+			    display: block;
+			}
+
+			.Text_Field_Container{
+			    position: relative;
+			    width: 100%;
+			    height: 66%;
+			    top: 6%;
+			    display: inline-block;
+			}
+
+			.LOGIN_NAME{
+				padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 30%;
+			    left: 7%;
+			    position: relative;
+			    top: 10%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+			}
+
+			.Password{
+			    padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 30%;
+			    left: 7%;
+			    position: relative;
+			    top: 27%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+			}
+
+			.Button_Container{
+			    position: relative;
+			    width: 100%;
+			    height: 31%;
+			    top: 19%;
+			    display: inline-block;
+			}
+
+			.Cancel_Login{
+				cursor: pointer;
+				width: 20%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 80%;
+			    margin-left: 26%;
+			    border: 1px solid black;
+			    font-weight: 300;
+			    transition: 500ms;
+			    border-radius: 4px;
+			}
+
+			.LOGIN_Submit{
+				cursor: pointer;
+			    width: 20%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 80%;
+			    margin-left: 7%;
+			    border: 1px solid black;
+			    font-weight: 300;
+			    transition: 500ms;
+			    border-radius: 4px;
+			}
+
+			.LOGIN_NAME:hover, .Password:hover, .Cancel_Login:hover, .LOGIN_Submit:hover {
+				color: black;
+				background-color: silver;
+				transition: 500ms;
+			}
+
+
+			/*SIGNUP BLOCK ELEMENT*/
+
+			.SIGNUP_MASTER_CONTAINER {
+				position: fixed;
+			    top: -60%;
+			    left: 38%;
+			    background-color: black;
+			    z-index: 101;
+			    width: 27%;
+			    height: 55%;
+			    display: block;
+			    border-top: 1vw solid darkred;
+			    border-radius: 10px;
+			}
+
+			.SignUp_Form{
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+
+			.SIGNUP_Text_Field_Container{
+			    position: relative;
+			    width: 100%;
+			    height: 69%;
+			    top: 6%;
+			    display: inline-block;
+			}
+
+			.SignUP_USERNAME{
+			    padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 17%;
+			    left: 5%;
+			    position: relative;
+			    top: 3%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+			}
+
+			.SignUP_Email{
+				padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 17%;
+			    left: 5%;
+			    position: relative;
+			    top: 10%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+			}
+
+			.SignUP_Password{
+			    padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 17%;
+			    left: 5%;
+			    position: relative;
+			    top: 18%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+
+			}
+
+			.ReEnter_SignUP_Password{
+				padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 17%;
+			    left: 5%;
+			    position: relative;
+			    top: 25%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+			}
+
+			.SIGNUP_Button_Container{
+				position: relative;
+			    width: 100%;
+			    height: 20%;
+			    top: 16%;
+			    display: inline-block;
+			}
+
+			.Cancel_Signup{
+				cursor: pointer;
+				width: 20%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 50%;
+			    margin-left: 26%;
+			    border: 1px solid black;
+			    font-weight: 300;
+			    border-radius: 4px;
+			    transition: 500ms;
+			}
+
+			.Signup_Submit{
+				cursor: pointer;
+			    width: 20%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 50%;
+			    margin-left: 7%;
+			    border: 1px solid black;
+			    font-weight: 300;
+			    border-radius: 4px;
+			    transition: 500ms;
+			}
+
+			.SignUP_USERNAME:hover, .SignUP_Email:hover, .SignUP_Password:hover, .ReEnter_SignUP_Password:hover {
+				color: black;
+				background-color: silver;
+				transition: 500ms;
+			}
+
+			.Cancel_Signup:hover, .Signup_Submit:hover {
+				color: black;
+				background-color: silver;
+				transition: 500ms;
+			}
+
+			/*Second banner stuff*/
+
+			.SecondBanner {
+				width: 100%;
+			    height: 105%;
+			    position: relative;
+			    top: 2%;
+			    background-color: darkgrey;
+			    background:   url(https://i.imgur.com/kIeTPC0.jpg);
+			    background-size: 100% 100%;
+			    background-position: center;
+			    background-blend-mode:darken;
+			    background-repeat: no-repeat;
+			    overflow: hidden;
+			}
+
+			.ChevronPlusSecondTitleCont{
+				width: 55%;
+				height: 29vw;
+				top: 5%;
+				left: -53.8%;
+				position: absolute;
+				display: inline-block;
+			}
+
+			#ChevronRight_SecondBanner{
+				cursor: pointer;
+				position: absolute;
+				top: 45%;
+				left: 30%;
+				display: inline-block;
+				color: rgba(255,255,255,1);
+				transition: 500ms;
+			}
+
+			.ChevronRight_SDIV{
+				cursor: pointer;
+			    font-family: "Quattrocento";
+			    font-weight: lighter;
+			    background-color: rgba(0,0,0,1);
+			    width: 2.5%;
+			    height: 100%;
+			    top: 0%;
+			    left: 97%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			    border-radius: 0px 3px 3px 0px;
+			}
+
+			.ChevronRight_SDIV:hover{
+				background-color: rgba(0,0,0,0.7);
+				transition: 500ms;
+			}
+
+			.Second_Title{
+				border-radius: 2px;
+			    font-size: 1.3vw;
+			    font-family: "Quattrocento";
+			    font-weight: lighter;
+			    background-color: rgba(0,0,0,1);
+			    width: 97.5%;
+			    height: 100%;
+			    color: rgba(255,255,255,1);
+			    top: 0%;
+			    left: 0%;
+			    text-align: left;
+			    vertical-align: center;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			}
+
+			.SecondTitle_TextSpan{
+				position: relative;
+			    display: inline-block;
+			    padding: 4%;
+			}
+
+
+			.SecondLogo_Title{
+			    font-size: 1.2vw;
+			    font-family: "Cinzel";
+			    background-color: rgba(0,0,0,1);
+			    letter-spacing: 1.2vw;
+			    width: 100%;
+			    word-spacing: 1vw;
+			    height: 3.5%;
+			    color: white;
+			    top: 64%;
+			    text-align: center;
+			    padding-bottom: 0%;
+			    padding-top: 0.7%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			}
+
+			/*Third banner stuff*/
+
+			.ThirdBanner {
+				width: 100%;
+			    height: 105%;
+			    position: relative;
+			    top: 4%;
+			    background-color: darkgrey;
+			    background:   url(https://a0.muscache.com/im/pictures/fe85605b-f885-4663-be28-8e8f1aac5287.jpg?aki_policy=x_large);
+			    background-size: 100% 100%;
+			    background-position: center;
+			    background-blend-mode:darken;
+			    background-repeat: no-repeat;
+			    overflow: hidden;
+			}
+
+			.ChevronPlusThirdTitleCont{
+				width: 55%;
+				height: 26vw;
+				top: 5%;
+				left: 98.5%;
+				position: absolute;
+				display: inline-block;
+			}
+
+			#ChevronRight_ThirdBanner{
+				cursor: pointer;
+				position: absolute;
+				top: 45%;
+				left: 30%;
+				display: inline-block;
+				color: rgba(255,255,255,1);
+				transition: 500ms;
+				transform: rotate(180deg);
+			}
+
+			.ChevronRight_TDIV{
+				cursor: pointer;
+			    font-family: "Quattrocento";
+			    font-weight: lighter;
+			    background-color: rgba(0,0,0,1);
+			    width: 2.5%;
+			    height: 100%;
+			    top: 0%;
+			    left: 0%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			    border-radius: 3px 0px 0px 3px;
+			}
+
+			.ChevronRight_TDIV:hover{
+				background-color: rgba(0,0,0,0.7);
+				transition: 500ms;
+			}
+
+			.Third_Title{
+				border-radius: 2px;
+			    font-size: 1.3vw;
+			    font-family: "Quattrocento";
+			    font-weight: lighter;
+			    background-color: rgba(0,0,0,1);
+			    width: 97.5%;
+			    height: 100%;
+			    color: rgba(255,255,255,1);
+			    top: 0%;
+			    left: 2%;
+			    text-align: left;
+			    vertical-align: center;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			}
+
+			.ThirdTitle_TextSpan{
+				position: relative;
+			    display: inline-block;
+			    padding: 4%;
+			}
+
+
+			.ThirdLogo_Title{
+			    font-size: 1.2vw;
+			    font-family: "Cinzel";
+			    background-color: rgba(0,0,0,1);
+			    letter-spacing: 1.2vw;
+			    width: 100%;
+			    word-spacing: 1vw;
+			    height: 3.5%;
+			    color: white;
+			    top: 64%;
+			    text-align: center;
+			    padding-bottom: 0%;
+			    padding-top: 0.7%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			}
+
+
+
+			/*Footer stuff*/
+			.Footer{
+				top: 4%;
+			    width: 100%;
+			    height: 20%;
+			    position: relative;
+			    background-color: black;
+			    overflow: hidden;
+			}
+
+			.TradeMark{
+			    font-size: 1vw;
+			    top: 81%;
+			    left: 34%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: relative;
+			}
+
+			.fa-twitter {
+				width: 1%;
+			    height: 11%;
+			    top: 38%;
+			    left: 83%;
+			    transform: scale(2,2);
+			    color: white;
+			    position: absolute;
+			    text-align: center;
+			}
+
+			.fa-facebook-square {
+				width: 1%;
+			    height: 11%;
+			    top: 38%;
+			    left: 87%;
+			    transform: scale(2,2);
+			    color: white;
+			    position: absolute;
+			    text-align: center;
+			}
+
+			.fa-youtube-play{
+				width: 1%;
+			    height: 11%;
+			    top: 38%;
+			    left: 91%;
+			    transform: scale(2,2);
+			    color: white;
+			    position: absolute;
+			    text-align: center;
+			}
+
+			.fa-reddit-alien {
+				width: 1%;
+			    height: 11%;
+			    top: 38%;
+			    left: 95%;
+			    transform: scale(2,2);
+			    color: white;
+			    position: absolute;
+			    text-align: center;
+			}
+
+			.fa-twitter:hover ,.fa-facebook-square:hover,  .fa-youtube-play:hover, .fa-reddit-alien:hover {
+				cursor: pointer;
+				color: gray;
+			}
+
+			.Forums_{
+				font-size: 1vw;
+			    top: 40%;
+			    left: 15.1%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: absolute;
+			    transition: 200ms;
+			}
+
+			.divider1{
+			    top: 40%;
+			    left: 7.5%;
+			    width: 0.1%;
+			    height: 15%;
+			    background-color: white;
+			    display: inline-block;
+			    position: absolute;
+			}
+
+			.Contact_{
+			    font-size: 1vw;
+			    top: 41%;
+			    left: 2%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: absolute;
+			    transition: 200ms;
+			}
+
+			.divider2{
+			    top: 40%;
+			    left: 14.2%;
+			    width: 0.1%;
+			    height: 15%;
+			    background-color: white;
+			    display: inline-block;
+			    position: absolute;
+			}
+
+			.AboutUs_{
+			    font-size: 1vw;
+			    top: 40%;
+			    left: 8.5%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: absolute;
+			    transition: 200ms;
+			}
+
+			.divider3{
+			    top: 40%;
+			    left: 19.5%;
+			    width: 0.1%;
+			    height: 15%;
+			    background-color: white;
+			    display: inline-block;
+			    position: absolute;
+			}
+
+			.Support_{
+			    font-size: 1vw;
+			    top: 40%;
+			    left: 20.5%;
+			    color: white;
+			    font-family: "Cinzel";
+			    display: inline-block;
+			    position: absolute;
+			    transition: 200ms;
+			}
+
+			.Support_:hover, .Forums_:hover, .AboutUs_:hover, .Contact_:hover{
+				cursor: pointer;
+				transition: 200ms;
+				color: red;
+			}
+
+			.SignUp_Successful{
+				padding: 1%;
+			    padding-left: 2.5%;
+			    padding-bottom: 1.9%;
+			    font-size: 1vw;
+			    width: 14vw;
+			    height: 3%;
+			    position: absolute;
+			    display: inline-block;
+			    top: 13%;
+			    left: -19%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    z-index: 200;
+			}
+
+			.Password_NotMatch{
+				padding: 1%;
+			    padding-left: 2.5%;
+			    padding-bottom: 1.9%;
+			    font-size: 1vw;
+			    width: 14vw;
+			    height: 3%;
+			    position: absolute;
+			    display: inline-block;
+			    top: 13%;
+			    left: -19%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    z-index: 200;
+			}
+
+			.Email_Already_Exists {
+				padding: 1%;
+			    padding-left: 2.5%;
+			    padding-bottom: 1.9%;
+			    font-size: 1vw;
+			    width: 14vw;
+			    height: 3%;
+			    position: absolute;
+			    display: inline-block;
+			    top: 13%;
+			    left: -19%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    z-index: 200;
+			}
+
+			.Password_Weak{
+				padding: 1%;
+			    padding-left: 2.5%;
+			    padding-bottom: 1.9%;
+			    font-size: 1vw;
+			    width: 14vw;
+			    height: 3%;
+			    position: absolute;
+			    display: inline-block;
+			    top: 13%;
+			    left: -19%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    z-index: 200;
+			}
+
+			.Loading{
+				padding: 1%;
+			    padding-left: 2.5%;
+			    padding-bottom: 1.9%;
+			    font-size: 1vw;
+			    width: 14vw;
+			    height: 3%;
+			    position: absolute;
+			    display: inline-block;
+			    top: 22%;
+			    left: -19%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    z-index: 200;
+			}
+
+
+        </style>
+
+    </head>
+    <body>
+
+        <div class="Header">
+
+        	<div class="LeftHeader_Cont">
+		   		<div class="LogIn" id="LOGIN_ID">Log In</div>
+		   		<div class="SignUp" id="SIGNUP_ID">Sign Up</div>
+            	<div class="Welcome" id="Welcome_ID"></div>
+            	<div class="Profile" id="Profile_ID">Profile</div>
+            	<div class="SignOut" id="SignOut_ID">Sign Out</div>
+        	</div>
+
+            <div class="GamescendLogo" id="Gamescend_Logo_ID">EduTech</div>
+        </div>
+
+       <div class="LOG_IN_MASTER_CONTAINER">
+
+            <form class="Login_Form" method="post">
+
+                <div class="Text_Field_Container">
+
+                    <input type="text" name="LOGIN_NAME" class="LOGIN_NAME" id="LOGIN_NAME" placeholder="Enter Email"/>
+                    <input type="password" name="Password" class="Password" id="Password" placeholder="Enter Password"/>
+
+                </div>
+
+                <div class="Button_Container">
+
+                    <input type="button" class="Cancel_Login" value="Cancel">
+                    <input type="button" class="LOGIN_Submit" id="LOGIN_Submit" value="Submit" name="Login_Submit">
+
+                </div>
+
+            </form>
+
+        </div>
+
+        <div class="SIGNUP_MASTER_CONTAINER">
+
+        	<form class="SignUp_Form" method="post">
+
+	            <div class="SIGNUP_Text_Field_Container">
+
+	                <input type="text" name="SignUP_USERNAME" class="SignUP_USERNAME" id="SignUP_USERNAME" placeholder="Enter User Name 6 chars or less"/>
+	                <input type="text" name="SignUP_Email" class="SignUP_Email" id="SignUP_Email" placeholder="Enter Valid Email"/>
+	                <input type="password" name="SignUP_Password" class="SignUP_Password" id="SignUP_Password" placeholder="Enter Password with 6 or more chars"/>
+	                <input type="password" name="ReEnter_SignUP_Password" class="ReEnter_SignUP_Password" id="ReEnter_SignUP_Password" placeholder="Re-enter Password"/>
+
+	            </div>
+
+	            <div class="SIGNUP_Button_Container">
+
+	                <input type="button" class="Cancel_Signup" id="Cancel_Signup" value="Cancel">
+	                <input type="button" class="Signup_Submit" id="Signup_Submit" value="Signup">
+
+	            </div>
+
+
+        	</form>
+
+        </div>
+
+        <div class="SignUp_Successful" id="SignUp_Successful_ID">Sign Up Successful! <br>Now visit your profile!</div>
+
+        <div class="Password_NotMatch">Your Passwords do not match <br>Please try again</div>
+
+        <div class="Password_Weak">Password too weak <br> Must have 6 characters</div>
+
+        <div class="Email_Already_Exists">Email Already exists<br> Please login or use another</div>
+
+        <div class="Loading">Loading<br> Please wait a moment..</div>
+
+        <div class="Top_Hidden_Spacer"></div>
+        <div class="MainBanner">
+
+            <div class="Main_Title">EduTech</div>
+            <div class="Logo_Title">Where Education Meets Technology</div>
+
+        </div>
+
+        <div class="SecondBanner">
+
+        	<div class="ChevronPlusSecondTitleCont">
+	    		<div class="ChevronRight_SDIV"><i class="fas fa-chevron-right" id="ChevronRight_SecondBanner"></i></div>
+
+	            <div class="Second_Title">
+
+	            	<span class="SecondTitle_TextSpan"><b><i>What are the two most important resources that teachers have to wrestle with in their daily coaching practices?</i></b>
+
+	            	<br>
+	            	<br>
+
+	            	The answer is simple. <b>TIME</b> and <b>SPACE</b>. 
+
+	            	<br>
+	            	<br>
+
+	            	Time is finite and hence is a limiting factor to how many students can be taught in a single day. Additionally there is a definite economic and physical limit to how big a classroom can be. With these two factors in play countless students have to be turned away from coaching practices due to this frustrating lack of space and time.
+
+	            	<br>
+	            	<br>
+
+	            	Well we are here to try and alleviate this frustration. At Edutech we offer teachers a High Definition Subscription Based Streaming Platform to target all those young students who are turned away. Stream your class <i>LIVE</i> and reach students far and wide. Engage with them through our General Digital Education platform by using a vast array of tools such as online dynamic timetables, seat management, lecture notes, syllabus, quiz taking facilities and more. It is time we bought education in Bangladesh to the 21st century. </span>
+
+	            </div>
+
+
+
+        	</div>
+
+
+            <div class="SecondLogo_Title">Scale your reach to more students</div>
+
+        </div>
+
+        <div class="ThirdBanner">
+
+			<div class="ChevronPlusThirdTitleCont">
+		    		<div class="ChevronRight_TDIV"><i class="fas fa-chevron-right" id="ChevronRight_ThirdBanner"></i></div>
+
+		            <div class="Third_Title">
+
+		            	<span class="ThirdTitle_TextSpan"><b><i>How annoying is it to come home from your schools and then spend the rest of the day travelling ridiculous distances in ridculous traffics, to and from coachings?</i></b>
+
+		            	<br>
+		            	<br>
+
+		            	We are sympathetic and truly understanding of your plight here at Edutech, since the founding members had to go through something very similar. If only someone had the means and the technology to come up with something to improve this situation. 🤔 
+
+		            	<br>
+		            	<br>
+
+		            	Well there is because now you can chill in the comforts of your own home and tune in to your coaching classes <b>LIVE</b> and get educated in style. So whether you couldn't make it to class or just couldn't get into the class batch, we've got you covered for a modest fee. If this isn't your cup of tea then you are more than welcome to use our suite of Digital Education Services <i>100%</i> free! Technology is supposed to make everything better. Join us now to make sure it starts taking a crack at Education too.</span>
+
+		            </div>
+
+        	</div>
+
+        	<div class="ThirdLogo_Title">Learn From the comforts of your own home</div>
+        </div>
+
+        <div class="Footer">
+            <div class="TradeMark">
+                &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram
+            </div>
+
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-facebook-square"></i>
+            <i class="fa fa-youtube-play"></i>
+            <i class="fa fa-reddit-alien"></i>
+
+            <div class="Forums_">Forum</div>
+            <div class=divider1></div>
+            <div class="Contact_">Contact</div>
+            <div class=divider2></div>
+            <div class="AboutUs_">About us</div>
+            <div class=divider3></div>
+            <div class="Support_">Support</div>
+
+        </div>
+
+        <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+		<script>
+
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyCBGF5jQfpK_yktdnUs8a80XPn0MLxSt9Y",
+		    authDomain: "edutech-2121.firebaseapp.com",
+		    databaseURL: "https://edutech-2121.firebaseio.com",
+		    projectId: "edutech-2121",
+		    storageBucket: "edutech-2121.appspot.com",
+		    messagingSenderId: "981500378332"
+		  };
+		  firebase.initializeApp(config);
+
+		//Functions to check to see if given email already exists
+			// var DoesEmailExist = false;
+			// var CheckingEmailID;
+			// function CheckIfEmailExistsInDatabase(EmailID){
+			// 	var CheckingEmailID = EmailID;
+			// 	var database = firebase.database();
+			// 	var ref = database.ref('USERS/');
+
+			// 	ref.once('value', CheckEmailDatabase, errData);
+			// }
+
+			// function CheckEmailDatabase(data){
+			// 	var WholeFetchedData = data.val();
+			// 	var keys = Object.keys(WholeFetchedData);
+
+			// 	console.log(keys);
+
+			// 	for (var i = 0; i < keys.length; i++) {
+			// 		var Current_UID_Checking = keys[i];
+
+			// 		var Current_Email_Checking = WholeFetchedData[Current_UID_Checking].UserEmail;
+			// 		console.log(Current_Email_Checking);
+			// 		if (CheckingEmailID==Current_Email_Checking){
+			// 			DoesEmailExist = true;
+			// 		}
+			// 	}
+			// }
+
+			// function errData(err){
+			// 	console.log('Error!');
+			// 	console.log(err);
+			// }
+
+
+		//Get all the elements of fields
+		  LoginEmail_Element = document.getElementById("LOGIN_NAME");
+		  LoginPassword_Element = document.getElementById("Password");
+		  LoginSubmit_Element = document.getElementById("LOGIN_Submit");
+		  LogoutSubmit_Element = document.getElementById("SignOut_ID");
+
+		  SignUpUsernameElement = document.getElementById("SignUP_USERNAME");
+		  SignUpEmail_Element = document.getElementById("SignUP_Email");
+		  SignUpPassword_Element = document.getElementById("SignUP_Password");
+		  SignUpSecondPassword_Element = document.getElementById("ReEnter_SignUP_Password");
+		  SignUpSubmit_Element = document.getElementById("Signup_Submit");
+
+		//Addevent for login click
+		  LoginSubmit_Element.addEventListener('click', e => {
+		  	SlideLoadingRight();
+		  	//get email and pass
+		  	LoginEmail = LoginEmail_Element.value;
+		  	LoginPass = LoginPassword_Element.value;
+
+		  	const auth = firebase.auth();
+
+		  	//sign in
+		  	const promise = auth.signInWithEmailAndPassword(LoginEmail,LoginPass).then(function(user){
+
+				//Redirect to home profile page
+				console.log('Login successful');
+
+				document.getElementById("SignUp_Successful_ID").innerHTML = 'Login Successful! <br>Now visit your profile!'
+				SlideSignUpSuccessfulRight();
+
+		  	}, function(err) {
+		  		console.log(err.code);
+		  	});
+
+		  });
+ 
+		//Addevent for logout click
+		  LogoutSubmit_Element.addEventListener('click', e => {
+
+		  	const auth = firebase.auth();
+
+		  	//logout
+		  	const promise = auth.signOut();
+		  	promise.catch( e => console.log(e.code));
+		  	ShowSignUp_AndSlideLoginRight();
+
+		  	//refresh page
+		  	location.reload(true);
+
+		  });
+
+		//Add event for sign up click
+		  SignUpSubmit_Element.addEventListener('click', e => {
+
+		  	SlideLoadingRight();
+
+		  	signEmail = SignUpEmail_Element.value;
+			signPass = SignUpPassword_Element.value;
+
+		  	//Check to see if the password and re entered passwords match
+		  	if (SignUpPassword_Element.value!=SignUpSecondPassword_Element.value) {
+		  		console.log('Passwords do not match..');
+		  		SlideEmailExistsLeft();
+		  		SlidePasswordWeakLeft();
+		  		SlideSignUpSuccessfulLeft();
+		  		SlideLoadingLeft();
+
+		  		SlidePasswordUnMatchRight();
+		  	
+		  	}
+
+		  	else{
+		  		//Authorize and sign up this dude..
+			  	const auth = firebase.auth();
+			  	//sign up
+			  	const promise = auth.createUserWithEmailAndPassword(signEmail,signPass).then(function(user) {
+			  			console.log('Sign Up successful, am now going to make database');
+			  			var user = firebase.auth().currentUser;
+
+		  				SlidePasswordUnMatchLeft();
+		  				SlideEmailExistsLeft();
+		  				SlidePasswordWeakLeft();
+
+		  				SlideLoadingLeft();
+
+		  				//Create the database for this new USER
+				  		var NewUserName = document.getElementById("SignUP_USERNAME").value;
+						var database = firebase.database();
+						var ref = database.ref('USERS/'+user.uid);
+
+						var data = {
+							UserName: NewUserName,
+							UserEmail: user.email,
+							UserAge: 'None',
+							UserAddress: 'None',
+							UserGender: 'None',
+							UserProffession: 'Student',
+							UserClasses: 'None'
+						}
+
+						ref.update(data);
+
+						document.getElementById("Welcome_ID").innerHTML = NewUserName;
+
+
+						MoveSignUpBoxUp();
+						HideSignUp_AndSlideLoginLeft();
+
+		  				SlideSignUpSuccessfulRight();
+
+						//Redirect to home profile page
+						//window.location.href = "file:///Users/ekram/Desktop/Edutech/Profile.html";
+
+			  	}, function(error) {
+			  		console.log(error.code);
+			  		if (String(error.code)=='auth/email-already-in-use'){
+			  				//this means we have hit an error where the email exists
+			  				SlideEmailExistsRight();
+			  				SlidePasswordWeakLeft();
+			  				SlidePasswordUnMatchLeft();
+			  				SlideLoadingLeft();
+
+			  			}
+			  		else if (String(error.code)=='auth/weak-password'){
+			  			SlidePasswordWeakRight();
+			  			SlideEmailExistsLeft();
+			  			SlidePasswordUnMatchLeft();
+			  			SlideLoadingLeft();
+
+			  		}
+			  	});
+
+			}
+
+		  });
+
+		//Add a realtime listener for state auth change
+		  firebase.auth().onAuthStateChanged( firebaseUser => {
+		  	if (firebaseUser){
+		  		console.log('Already logged in..');
+
+		  		//Now change the welcome sign to welcome this logged in dude
+		  		//Fetch the data from the database
+		  		var database = firebase.database();
+		  		var ref = database.ref('USERS/' + firebaseUser.uid);
+
+		  		ref.once('value', function(data){
+		  			tableData = data.val();
+		  			This_UserName = tableData['UserName'];
+					document.getElementById("Welcome_ID").innerHTML = This_UserName;
+					HideSignUp_AndSlideLoginLeft();
+
+					MoveLogInBoxUp();
+					SlideLoadingLeft();
+					
+		  		}, function(err){
+		  			console.log(err.code);
+		  		});
+
+		  	}
+		  	else{
+		  		console.log('Not logged in..');
+		  		ShowSignUp_AndSlideLoginRight();
+		  	}
+		  });
+
+		</script>
+
+		<script>
+
+			var ScrollBooleanSecondBanner = true;
+			var ScrollBooleanThirdBanner = true;
+
+			var IsSecondBannerTextVisible_Boolean = false;
+			var IsThirdBannerTextVisible_Boolean = false;
+
+//Moving login box up and down
+			function MoveLogInBoxUp(){
+				$( ".LOG_IN_MASTER_CONTAINER" ).animate({
+			        top: "-40%"
+			    }, 500, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+			    });
+			}
+
+			function MoveLogInBoxDown(){
+			   $( ".LOG_IN_MASTER_CONTAINER" ).animate({
+			        top: "+30%"
+			      }, 500, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+			    });
+			}
+
+//Moveing signup box up and down
+			function MoveSignUpBoxUp() {
+				$(".SIGNUP_MASTER_CONTAINER").animate({
+			        top: "-60%"
+			    	}, 500, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+			    });
+			}
+
+			function MoveSignUpBoxDown() {
+			       $( ".SIGNUP_MASTER_CONTAINER" ).animate({
+			            top: "+13%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+//SignUp Successful box
+			function SlideSignUpSuccessfulRight() {
+			       $( ".SignUp_Successful" ).animate({
+			            left: "-1%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+			function SlideSignUpSuccessfulLeft() {
+			       $( ".SignUp_Successful" ).animate({
+			            left: "-19%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+//Email already exists box
+			function SlideEmailExistsRight() {
+			       $( ".Email_Already_Exists" ).animate({
+			            left: "-1%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+			function SlideEmailExistsLeft() {
+			       $( ".Email_Already_Exists" ).animate({
+			            left: "-19%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+//Loading box
+			function SlideLoadingRight() {
+			       $( ".Loading" ).animate({
+			            left: "-1%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+			function SlideLoadingLeft() {
+			       $( ".Loading" ).animate({
+			            left: "-19%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+//Password weak box
+			function SlidePasswordWeakRight() {
+			       $( ".Password_Weak" ).animate({
+			            left: "-1%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+			function SlidePasswordWeakLeft() {
+			       $( ".Password_Weak" ).animate({
+			            left: "-19%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+//Password Unmatch box
+			function SlidePasswordUnMatchRight() {
+			       $( ".Password_NotMatch" ).animate({
+			            left: "-1%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+			function SlidePasswordUnMatchLeft() {
+			       $( ".Password_NotMatch" ).animate({
+			            left: "-19%"
+			          }, 500, function() {
+			            // Animation complete.
+			            console.log('animation complete');
+			        });
+			}
+
+//Slide the second banner right left functions
+			function SlideText_SecondBanner_Right() {
+				$( ".ChevronPlusSecondTitleCont" ).animate({
+			        left: "-1%"
+			    }, 600, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+			        $( "#ChevronRight_SecondBanner" ).css("transform","rotate(180deg)");
+			    });
+			    IsSecondBannerTextVisible_Boolean = true;
+			}
+
+			function SlideText_SecondBanner_Left() {
+				$( ".ChevronPlusSecondTitleCont" ).animate({
+			        left: "-53.8%"
+			    }, 600, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+			        $( "#ChevronRight_SecondBanner" ).css("transform","rotate(360deg)");
+			    });
+			    IsSecondBannerTextVisible_Boolean = false;
+			}
+
+//Slide the third banner left right functions
+			function SlideText_ThirdBanner_Right() {
+				$( ".ChevronPlusThirdTitleCont" ).animate({
+			        left: "98.5%"
+			    }, 600, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+			        $( "#ChevronRight_ThirdBanner" ).css("transform","rotate(180deg)");
+			    });
+			    IsThirdBannerTextVisible_Boolean = false;
+			}
+
+			function SlideText_ThirdBanner_Left() {
+				$( ".ChevronPlusThirdTitleCont" ).animate({
+			        left: "45.5%"
+			    }, 600, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+			        $( "#ChevronRight_ThirdBanner" ).css("transform","rotate(360deg)");
+			    });
+			    IsThirdBannerTextVisible_Boolean = true;
+			}
+
+//HideSignup and Slide login left
+			function HideSignUp_AndSlideLoginLeft() {
+				$( ".SignUp" ).css("display", "none");
+				$( ".LogIn" ).css("display", "none");
+
+				$( ".SignOut" ).fadeIn("slow");
+				$( ".Welcome" ).fadeIn("slow");
+				$( ".Profile" ).fadeIn("slow");
+			}
+
+			function ShowSignUp_AndSlideLoginRight() {
+				$( ".SignOut" ).fadeOut("fast");
+				$( ".Welcome" ).fadeOut("fast");
+				$( ".Profile" ).fadeOut("fast");
+
+				$( ".SignUp" ).fadeIn("fast");
+				$( ".LogIn" ).fadeIn("fast");
+			}
+
+//Shake signup box
+			function ShakeSignUpBox() {
+		       $( ".SIGNUP_MASTER_CONTAINER" ).css("left", "37%");
+		       $( ".SIGNUP_MASTER_CONTAINER" ).css("left", "39%");
+		       $( ".SIGNUP_MASTER_CONTAINER" ).css("left", "38%");
+			}
+
+
+
+//Jquery Start
+			jQuery(document).ready(function($) {
+
+			//Login box animate from top
+			        $("#LOGIN_ID").click(function() {
+
+			        	//Check to see if the signup box is already visible and if so make it go up
+			        	SignupCont_CurrentLocation = $( ".SIGNUP_MASTER_CONTAINER" ).css("top");
+			        	SignupCont_CurrentLocation_FirstChar = String(SignupCont_CurrentLocation).charAt(0)
+
+			        	console.log(SignupCont_CurrentLocation_FirstChar);
+
+			        	if (SignupCont_CurrentLocation_FirstChar!="-") {
+			        		console.log('Moving signup cont up..');
+			        		MoveSignUpBoxUp();
+			        	}
+
+						MoveLogInBoxDown();
+			        });
+
+
+			        $(".Cancel_Login").click(function() {
+
+			        	MoveLogInBoxUp();
+
+			        });
+
+			//SIGNUP BOX ANIMATE FROM TOP
+			        $("#SIGNUP_ID").click(function() {
+
+			         	//Check to see if the login box is already visible and if so make it go up
+			        	LoginCont_CurrentLocation = $( ".LOG_IN_MASTER_CONTAINER" ).css("top");
+			        	LoginCont_CurrentLocation_FirstChar = String(LoginCont_CurrentLocation).charAt(0)
+
+			        	console.log(LoginCont_CurrentLocation_FirstChar);
+
+			        	if (LoginCont_CurrentLocation_FirstChar!="-") {
+			        		console.log('Moving Login cont up..');
+			        		MoveLogInBoxUp();
+			        	}
+
+			        	MoveSignUpBoxDown();
+			        });
+
+
+			        $(".Cancel_Signup").click(function() {
+
+			        	MoveSignUpBoxUp();
+
+			        });
+
+			//Profile button click
+			$("#Profile_ID").click(function() {
+				window.location.href = 'http://www.edutechs.org/Profile';
+
+			});
+
+			//SecondTitleInfo Stuff
+			        $(".ChevronRight_SDIV").click(function() {
+
+			        	if (IsSecondBannerTextVisible_Boolean==true){
+			        		SlideText_SecondBanner_Left();
+			        	}
+
+			        	else if (IsSecondBannerTextVisible_Boolean==false){
+			        		 SlideText_SecondBanner_Right();
+			        	}
+
+			        });
+
+			//ThirdTitleInfo Stuff
+			        $(".ChevronRight_TDIV").click(function() {
+
+			        	if (IsThirdBannerTextVisible_Boolean==true){
+			        		SlideText_ThirdBanner_Right();
+			        	}
+
+			        	else if (IsThirdBannerTextVisible_Boolean==false){
+			        		 SlideText_ThirdBanner_Left();
+			        	}
+
+			        });
+
+			//Scrolling unfurl functions
+					$(window).scroll(function (event) {
+					    var scroll = $(window).scrollTop();
+
+					    if (scroll>400 && ScrollBooleanSecondBanner) {
+			        		console.log('Move everything right..');
+							SlideText_SecondBanner_Right();
+			        		ScrollBooleanSecondBanner = false;
+					    }
+					   	else if (scroll>1000 && ScrollBooleanThirdBanner) {
+			        		console.log('Move everything left..');
+							SlideText_ThirdBanner_Left();
+			        		ScrollBooleanThirdBanner = false;
+					    }
+					    // Do something
+					});
+
+			  });
+
+
+
+
+		</script>
+
+
+    </body>
+</html>
