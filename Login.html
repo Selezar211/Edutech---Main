@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Edutech - Login</title>
-  
+  <link rel="icon" type="image/png" href="https://png.icons8.com/ios-glyphs/40/000000/cup.png">
   
   <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
 
@@ -231,6 +231,86 @@
 
 		}
 
+/*Loading page*/
+
+		.LoadingContainer{
+			display: inline-block;
+			z-index: 106;
+			position: fixed;
+			background-color: black;
+			width: 100%;
+			height: 100%;
+			top: 0%;
+
+		}
+
+		.LoadingText{
+			color: white;
+		    position: relative;
+		    top: 40%;
+		    text-align: center;
+		    width: 100%;
+		    display: inline-block;
+		}
+
+		.lds-ellipsis {
+		  display: inline-block;
+		  position: relative;
+		  width: 64px;
+		  height: 64px;
+		  left: 47%;
+		  top: 50%;
+		}
+		.lds-ellipsis div {
+		  position: absolute;
+		  top: 27px;
+		  width: 11px;
+		  height: 11px;
+		  border-radius: 50%;
+		  background: #fff;
+		  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+		}
+		.lds-ellipsis div:nth-child(1) {
+		  left: 6px;
+		  animation: lds-ellipsis1 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(2) {
+		  left: 6px;
+		  animation: lds-ellipsis2 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(3) {
+		  left: 26px;
+		  animation: lds-ellipsis2 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(4) {
+		  left: 45px;
+		  animation: lds-ellipsis3 0.6s infinite;
+		}
+		@keyframes lds-ellipsis1 {
+		  0% {
+		    transform: scale(0);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
+		@keyframes lds-ellipsis3 {
+		  0% {
+		    transform: scale(1);
+		  }
+		  100% {
+		    transform: scale(0);
+		  }
+		}
+		@keyframes lds-ellipsis2 {
+		  0% {
+		    transform: translate(0, 0);
+		  }
+		  100% {
+		    transform: translate(19px, 0);
+		  }
+		}
+
 
 	</style>
 
@@ -238,6 +318,13 @@
 </head>
 
 <body>
+
+    <div class="LoadingContainer">
+    	<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    	<span class="LoadingText">Edutech - Please Wait a Moment..</span>
+    </div>
+
+
 <div class='login'>
 	<div class="Edutech"><span>Edutech</span></div>
   <div class='login_title'>
@@ -248,7 +335,7 @@
       <div class='icon'>
         <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
       </div>
-      <input placeholder='Username' type='text'>
+      <input placeholder='Username' type='text' id="UserName_ID">
         <div class='validation'>
           <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
         </div>
@@ -258,7 +345,7 @@
       <div class='icon'>
         <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png'>
       </div>
-      <input placeholder='Password' type='password'>
+      <input placeholder='Password' type='password' id="Password_ID">
       <div class='validation'>
         <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
       </div>
@@ -271,8 +358,8 @@
     </div>
   </div>
   <div class='success'>
-    <h2>Authentication Success</h2>
-    <p>Welcome back</p>
+    <h2 id="Login_After_Title">Authentication Success</h2>
+    <p id="Login_After_Para">Welcome back. Redirecting to your profile..</p>
   </div>
   <div class='disclaimer'>
     <p>&#169; 2018 EduTech. All rights reserved. Work in progress by Ekram</p>
@@ -283,33 +370,95 @@
   <p>Authenticating...</p>
 </div>
 
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+ <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
-
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
   
 
     <script>
+
+
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyCBGF5jQfpK_yktdnUs8a80XPn0MLxSt9Y",
+		    authDomain: "edutech-2121.firebaseapp.com",
+		    databaseURL: "https://edutech-2121.firebaseio.com",
+		    projectId: "edutech-2121",
+		    storageBucket: "edutech-2121.appspot.com",
+		    messagingSenderId: "981500378332"
+		  };
+		  firebase.initializeApp(config);
+
+
+		//Add a realtime listener for state auth change
+		  firebase.auth().onAuthStateChanged( firebaseUser => {
+		  	if (firebaseUser){
+		  		console.log('Already logged in..');
+
+		  		//Now change the welcome sign to welcome this logged in dude
+		  		//Send to profile page
+		  		window.location.href = 'http://www.edutechs.org/Profile';
+		  	}
+		  	else{
+		  		console.log('Not logged in..');
+		  		$(".LoadingContainer").fadeOut('slow');
+		  	}
+		  });
+
+
+
+
+
 		$('input[type="submit"]').click(function(){
-		  $('.login').addClass('test')
-		  setTimeout(function(){
-		    $('.login').addClass('testtwo')
-		  },300);
-		  setTimeout(function(){
-		    $(".authent").show().animate({right:-320},{easing : 'easeOutQuint' ,duration: 600, queue: false });
-		    $(".authent").animate({opacity: 1},{duration: 200, queue: false }).addClass('visible');
-		  },500);
-		  setTimeout(function(){
-		    $(".authent").show().animate({right:90},{easing : 'easeOutQuint' ,duration: 600, queue: false });
-		    $(".authent").animate({opacity: 0},{duration: 200, queue: false }).addClass('visible');
-		    $('.login').removeClass('testtwo')
-		  },2500);
-		  setTimeout(function(){
-		    $('.login').removeClass('test')
-		    $('.login div').fadeOut(123);
-		  },2800);
-		  setTimeout(function(){
-		    $('.success').fadeIn();
-		  },3200);
+
+			  $('.login').addClass('test')
+
+			  setTimeout(function(){
+			    $('.login').addClass('testtwo')
+			  },300);
+
+			  setTimeout(function(){
+			    $(".authent").show().animate({right:-320},{easing : 'easeOutQuint' ,duration: 600, queue: false });
+			    $(".authent").animate({opacity: 1},{duration: 200, queue: false }).addClass('visible');
+			  },500);
+
+			  setTimeout(function(){
+			    $(".authent").show().animate({right:90},{easing : 'easeOutQuint' ,duration: 600, queue: false });
+			    $(".authent").animate({opacity: 0},{duration: 200, queue: false }).addClass('visible');
+			    $('.login').removeClass('testtwo')
+			  },2500);
+
+			  setTimeout(function(){
+			    $('.login').removeClass('test')
+			    $('.login div').fadeOut(123);
+			  },2800);
+
+			  //Add event for login to firebase
+			LoginEmail = document.getElementById("UserName_ID").value;
+		  	LoginPass =document.getElementById("Password_ID").value;
+
+		  	const auth = firebase.auth();
+
+		  	const promise = auth.signInWithEmailAndPassword(LoginEmail,LoginPass).then(function(user){
+
+				//Redirect to home profile page
+				console.log('Login successful');
+
+				  setTimeout(function(){
+				    $('.success').fadeIn();
+				  },3200);
+
+		  	}, function(err) {
+		  		console.log(err.code);
+		  		
+		  		document.getElementById("Login_After_Title").value = 'Authentication Failed';
+		  		document.getElementById("Login_After_Para").value = 'Please Signup first if you havent. Otherwise double check your Email Id and Password' ;
+
+		  		setTimeout(function(){
+				    $('.success').fadeIn();
+				 },3200);
+		  	});
+
 		});
 
 		$('input[type="text"],input[type="password"]').focus(function(){
