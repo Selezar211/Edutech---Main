@@ -38,7 +38,7 @@
 			body {
 				margin: 0;
 			    height: 100%;
-			    background-color: #49274A;
+			    background-color: rgb(10,14,17);
 			    font-family: 'Cinzel';
 				background-image: url("https://i.imgur.com/GuDU01B.jpg");
 			    background-size: 100% 100%;
@@ -82,45 +82,10 @@
 			    background-color: transparent;
 			   }
 
-/*		header*/
-			.TopNAVBar{
-				color: white;
-				font-size: 1vw;
-			    width: 100%;
-			    height: 6%;
-			    top: 0%;
-			    position: relative;
-			    background-color: #49274A;
-      			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
-			    overflow: hidden;
-			    z-index: 101;
-			}
-
-			.CompanyName{
-				margin: 2%;
-				margin-top: 1%;
-				float: right;
-			}
-
-			.SignOut{
-				cursor: pointer;
-				margin: 2%;
-				margin-top: 1%;
-				float: left;
-				margin-left: 1%;
-				transition: 500ms;
-			}
-
-			.SignOut:hover{
-				/*color: #222;*/
-				transform: scale(1.1,1.1);
-				transition: 500ms;
-			}
-
 		/*Top BANNER STUFF*/
 			.PageBanner{
 				width: 100%;
-				height: 95%;
+				height: 100%;
 				position: relative;
 				top: 0%;
 				background-color: rgba(0,0,0,0); /*#CAEBF2;*/
@@ -223,7 +188,7 @@
 
 
 			.Blackboard_container{
-			    font-family: 'Cinzel';
+			    font-family: 'Quattrocento';
 			    width: 98%;
 			    height: 100%;
 			    float: left;
@@ -236,8 +201,7 @@
 			}
 
 			.BlackBoard{
-			    font-family: 'Cinzel';
-    			background-color: black;
+    			background-color: rgb(10,14,17);
     			width: 100%;
     			height: 100%;
     			color: white;
@@ -322,14 +286,13 @@
 
 /*			Notification*/
 			.NotificationOpenButton{
-				color: yellow;
 			    width: 2%;
 			    height: 100%;
 			    color: white;
 			    float: left;
 			    position: relative;
 			    display: inline-block;
-			    background-color: black;
+			    background-color: rgb(10,14,17);
 				text-align: center;
 			    z-index: 97;
 			    transition: 500ms;
@@ -429,7 +392,7 @@
 				padding-top: 1%;
 				padding-left: 2%;
 				padding-right: 2%;
-				background-color: rgba(0,0,0,1);
+				background-color: rgb(20,24,27);
 				position: relative;
 				top: 0%;
 			}
@@ -522,9 +485,9 @@
 				display: inline-block;
 				top: 0%;
 			    width: 100%;
-			    height: 20%;
+			    height: 23%;
 			    position: relative;
-			    background-color: #49274A;
+			    background-color: rgb(10,14,17);
 			    overflow: hidden;
 			}
 
@@ -667,16 +630,92 @@
 				color: silver;
 			}
 /*		footer stuff end*/
+
+/*Loading page*/
+
+		.LoadingContainer{
+			display: inline-block;
+			z-index: 106;
+			position: fixed;
+			background-color: black;
+			width: 100%;
+			height: 100%;
+			top: 0%;
+
+		}
+
+		.LoadingText{
+			color: white;
+		    position: relative;
+		    top: 40%;
+		    text-align: center;
+		    width: 100%;
+		    display: inline-block;
+		}
+
+		.lds-ellipsis {
+		  display: inline-block;
+		  position: relative;
+		  width: 64px;
+		  height: 64px;
+		  left: 47%;
+		  top: 50%;
+		}
+		.lds-ellipsis div {
+		  position: absolute;
+		  top: 27px;
+		  width: 11px;
+		  height: 11px;
+		  border-radius: 50%;
+		  background: #fff;
+		  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+		}
+		.lds-ellipsis div:nth-child(1) {
+		  left: 6px;
+		  animation: lds-ellipsis1 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(2) {
+		  left: 6px;
+		  animation: lds-ellipsis2 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(3) {
+		  left: 26px;
+		  animation: lds-ellipsis2 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(4) {
+		  left: 45px;
+		  animation: lds-ellipsis3 0.6s infinite;
+		}
+		@keyframes lds-ellipsis1 {
+		  0% {
+		    transform: scale(0);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
+		@keyframes lds-ellipsis3 {
+		  0% {
+		    transform: scale(1);
+		  }
+		  100% {
+		    transform: scale(0);
+		  }
+		}
+		@keyframes lds-ellipsis2 {
+		  0% {
+		    transform: translate(0, 0);
+		  }
+		  100% {
+		    transform: translate(19px, 0);
+		  }
+		}
+
         </style>
 
        
 </head>
 <body>
-
-	<div class="TopNAVBar">
-		<span class="SignOut" id="SignOut_ID">Sign Out</span>
-		<span class="CompanyName">EduTech</span>
-	</div>
 
 	<div class="PageBanner">
 
@@ -838,6 +877,11 @@
   
     </div>
 
+    <div class="LoadingContainer">
+    	<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    	<span class="LoadingText">Edutech - Please Wait a Moment..</span>
+    </div>
+
 	<!-- Firebase App is always required and must be first -->
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
 
@@ -902,7 +946,7 @@
 		  		console.log(firebaseUser);
 		  		Current_UID = firebaseUser.uid;
 		  		FetchAllDataFromDatabase();
-
+		  		FadeOutLoadingFrame();
 		  	}
 		  	else{
 		  		console.log('Not logged in..');
@@ -911,21 +955,21 @@
 		  });
 
 	//Log out event trigger
-		document.getElementById("SignOut_ID").addEventListener('click', e => {
+		// document.getElementById("SignOut_ID").addEventListener('click', e => {
 
-		  	const auth = firebase.auth();
+		//   	const auth = firebase.auth();
 
-		  	//logout
-		  	const promise = auth.signOut().then(function(){
-		  		//send to front page
-		  		console.log('Successfully logged out..');
+		//   	//logout
+		//   	const promise = auth.signOut().then(function(){
+		//   		//send to front page
+		//   		console.log('Successfully logged out..');
 
-		  		},function(err){
-		  		console.log(err.code);
-		  	});
+		//   		},function(err){
+		//   		console.log(err.code);
+		//   	});
 
 
-		  });
+		//   });
 
     //Time table stuff
 		var global_Number_of_Rows = 0;
@@ -985,6 +1029,10 @@
 
 	});
 	
+
+	function FadeOutLoadingFrame(){
+		$(".LoadingContainer").fadeOut('slow');
+	}
 
 
 	//Calling the main function
