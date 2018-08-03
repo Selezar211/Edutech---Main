@@ -212,6 +212,30 @@
     			transition: 500ms;
 			}
 
+			.SignoutCont{
+				width: 3%;
+			    height: 5%;
+			    position: absolute;
+			    text-align: center;
+			    bottom: 0.7%;
+			    right: 0%;
+			    transition: 200ms;
+			    cursor: pointer;
+			}
+
+			#SignoutIcon{
+				transform: scale(1.2,1.4);
+				color: white;
+				cursor: pointer;
+				transition: 200ms;
+			}
+
+			#SignoutIcon:hover{
+				color: silver;
+				transition: 200ms;
+				transform: scale(1.5,1.7);
+			}
+
 			.BlackBoardChalk1{
 			    width: 5%;
 			    height: 2%;
@@ -242,7 +266,7 @@
 			    font-size: 1.3vw;
 			    opacity: 0.7;
 			    bottom: 0%;
-			    right: 1%;
+			    right: 4%;
 			}
 
 			.BlackBoardStudentName{
@@ -264,7 +288,7 @@
 			}
 
 			.BlackBoard_MainInfo{
-				margin-top: 10vw;
+				margin-top: 5%;
 			    width: 95%;
 			    display: inline-block;
 			    position: absolute;
@@ -282,10 +306,52 @@
 			    transition: 500ms;	
 			}
 
-			.BB_MainInfo_Child:hover{
-				transition: 500ms;
-				margin-left: 4%;
+			.BB_MainInfo_Child_Subject{
+			    position: relative;
+			    width: 100%;
+			    font-size: 1.5vw;
+			    opacity: 0.9;
+			    float: left;
+			    margin-left: 2%;
+			    padding-left: 0.5vw;
+			    transition: 500ms;
+			    cursor: pointer;
 			}
+
+			.BB_MainInfo_Child_Subject:hover{
+				transition: 500ms;
+				color: silver;
+			}
+
+			.SubjectContainer{
+			    position: relative;
+			    width: 100%;
+			    font-size: 1.5vw;
+			    float: left;
+			    margin-left: 0%;
+			    margin-bottom: 5%;
+			}
+
+			#PhysicsIcon,#ChemistryIcon,#MathIcon{
+				color: white;
+				transform: scale(1,1);
+				position: relative;
+				float: left;
+				margin-top: 0.3%;
+				margin-right: 1%;
+				cursor: pointer;
+			}
+
+			#BlackBoardClassEnrolled,#BlackBoardNextClass,#UpcomingMock{
+				border-bottom: 0.1vw solid white;
+				width: 45%;
+				margin-bottom: 1%;
+			}
+
+			#NextClassInfo,#UpcomingMockInfo{
+				margin-bottom: 5%;
+			}
+
 
 /*			Notification*/
 			.NotificationOpenButton{
@@ -312,7 +378,8 @@
 
 			#ExclaimIcon:hover{
 				transition: 200ms;
-				transform: scale(1.5,1.5);
+				color: silver;
+				transform: scale(1.5,1.7);
 			}
 
 			#CloseNotif:hover {
@@ -355,7 +422,7 @@
 			}
 
 			.NotifHeading{
-			    font-family: 'Cinzel';
+			    font-family: 'Quattrocento';
 			    text-align: center;
 			    padding: 5%;
 			    height: 10%;
@@ -740,6 +807,7 @@
 
 					<div class="BlackBoard">
 						<span class="BlackBoardWaterMark">i love edutech!</span>
+						<div class="SignoutCont"><i class="fas fa-sign-out-alt" id="SignoutIcon"></i></div>
 						<div class="BlackBoardChalk1"></div>
 						<div class="BlackBoardChalk2"></div>
 
@@ -750,14 +818,16 @@
 							
 
 						<div class="BlackBoard_MainInfo">
-							<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in : Physics - Sabbir Sir | Chemistry - Qudrot Sir | Maths - Shakib Sir</span>
-							<span class="BB_MainInfo_Child" id="BlackBoardNextClass">Next Class : Chemistry - Qudrot Sir - 5:00 PM</span>
-							<span class="BB_MainInfo_Child" id="UpcomingMock">Upcoming Mock : 30th July 2:30 PM - Mathematics</span>
-							<span class="BB_MainInfo_Child">I dunno what more information to put here</span>
-							<span class="BB_MainInfo_Child">Have to come out with more stuff</span>
-							<span class="BB_MainInfo_Child">Maybe inspirational quotes?</span>
-							<span class="BB_MainInfo_Child">What if you could use this as an ACTUAL facebook wall</span>
-							<span class="BB_MainInfo_Child">That would be wild</span>
+							<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in :</span>
+							<div class="SubjectContainer">
+								<span class="BB_MainInfo_Child_Subject" id="PhysicsBlackBoard_Info"><i class="fas fa-rocket" id="PhysicsIcon"></i>Physics - Sabbir Sir</span>
+								<span class="BB_MainInfo_Child_Subject" id="ChemistryBlackBoard_Info"><i class="fas fa-flask" id="ChemistryIcon"></i>Chemistry - Qudrot Sir</span>
+								<span class="BB_MainInfo_Child_Subject" id="MathematicsBlackBoard_Info"><i class="fas fa-calculator" id="MathIcon"></i>Mathematics - Shakib Sir</span>	
+							</div>
+							<span class="BB_MainInfo_Child" id="BlackBoardNextClass">Next Class :</span>
+							<span class="BB_MainInfo_Child" id="NextClassInfo">Chemistry - Qudrot Sir - 5:00 PM</span>
+							<span class="BB_MainInfo_Child" id="UpcomingMock">Upcoming Mock : </span>
+							<span class="BB_MainInfo_Child" id="UpcomingMockInfo">Mathematics - 30th July 2:30 PM</span>
 						</div>
 
 						<div class="MainVideoPlayer_Cont">
