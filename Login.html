@@ -450,9 +450,12 @@
 
 		  	}, function(err) {
 		  		console.log(err.code);
-		  		
-		  		document.getElementById("Login_After_Title").value = 'Authentication Failed';
-		  		document.getElementById("Login_After_Para").value = 'Please Signup first if you havent. Otherwise double check your Email Id and Password' ;
+
+		  		document.getElementById("Login_After_Title").innerHTML = 'Authentication Failed';
+
+		  		Error_String = err.code.substr(5);
+
+		  		document.getElementById("Login_After_Para").innerHTML = 'Error ID: ' + Error_String ;
 
 		  		setTimeout(function(){
 				    $('.success').fadeIn();

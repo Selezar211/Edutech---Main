@@ -244,115 +244,6 @@
 			}
 
 
-			/*LOGIN ELEMENT BLOCK*/
-
-			.LOG_IN_MASTER_CONTAINER{
-				position: fixed;
-			    top: -40%;
-			    left: 38%;
-			    background-color: black;
-			    z-index: 101;
-			    width: 25%;
-			    height: 30%;
-			    display: block;
-			    border-top: 1vw solid darkred;
-			    border-radius: 10px;
-			}
-
-			.Login_Form {
-			    position: relative;
-			    top: 5%;
-			    left: -2%;
-			    width: 100%;
-			    height: 80%;
-			    display: block;
-			}
-
-			.Text_Field_Container{
-			    position: relative;
-			    width: 100%;
-			    height: 66%;
-			    top: 6%;
-			    display: inline-block;
-			}
-
-			.LOGIN_NAME{
-				padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 30%;
-			    left: 7%;
-			    position: relative;
-			    top: 10%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-			}
-
-			.Password{
-			    padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 30%;
-			    left: 7%;
-			    position: relative;
-			    top: 27%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-			}
-
-			.Button_Container{
-			    position: relative;
-			    width: 100%;
-			    height: 31%;
-			    top: 19%;
-			    display: inline-block;
-			}
-
-			.Cancel_Login{
-				cursor: pointer;
-				width: 20%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 80%;
-			    margin-left: 26%;
-			    border: 1px solid black;
-			    font-weight: 300;
-			    transition: 500ms;
-			    border-radius: 4px;
-			}
-
-			.LOGIN_Submit{
-				cursor: pointer;
-			    width: 20%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 80%;
-			    margin-left: 7%;
-			    border: 1px solid black;
-			    font-weight: 300;
-			    transition: 500ms;
-			    border-radius: 4px;
-			}
-
-			.LOGIN_NAME:hover, .Password:hover, .Cancel_Login:hover, .LOGIN_Submit:hover {
-				color: black;
-				background-color: silver;
-				transition: 500ms;
-			}
 
 
 			/*SIGNUP BLOCK ELEMENT*/
@@ -961,28 +852,6 @@
             <div class="GamescendLogo" id="Gamescend_Logo_ID">EduTech</div>
         </div>
 
-       <div class="LOG_IN_MASTER_CONTAINER">
-
-            <form class="Login_Form" method="post">
-
-                <div class="Text_Field_Container">
-
-                    <input type="text" name="LOGIN_NAME" class="LOGIN_NAME" id="LOGIN_NAME" placeholder="Enter Email"/>
-                    <input type="password" name="Password" class="Password" id="Password" placeholder="Enter Password"/>
-
-                </div>
-
-                <div class="Button_Container">
-
-                    <input type="button" class="Cancel_Login" value="Cancel">
-                    <input type="button" class="LOGIN_Submit" id="LOGIN_Submit" value="Submit" name="Login_Submit">
-
-                </div>
-
-            </form>
-
-        </div>
-
         <div class="SIGNUP_MASTER_CONTAINER">
 
         	<form class="SignUp_Form" method="post">
@@ -1166,30 +1035,6 @@
 		  SignUpPassword_Element = document.getElementById("SignUP_Password");
 		  SignUpSecondPassword_Element = document.getElementById("ReEnter_SignUP_Password");
 		  SignUpSubmit_Element = document.getElementById("Signup_Submit");
-
-		//Addevent for login click
-		  LoginSubmit_Element.addEventListener('click', e => {
-		  	SlideLoadingRight();
-		  	//get email and pass
-		  	LoginEmail = LoginEmail_Element.value;
-		  	LoginPass = LoginPassword_Element.value;
-
-		  	const auth = firebase.auth();
-
-		  	//sign in
-		  	const promise = auth.signInWithEmailAndPassword(LoginEmail,LoginPass).then(function(user){
-
-				//Redirect to home profile page
-				console.log('Login successful');
-
-				document.getElementById("SignUp_Successful_ID").innerHTML = 'Login Successful! <br>Now visit your profile!'
-				SlideSignUpSuccessfulRight();
-
-		  	}, function(err) {
-		  		console.log(err.code);
-		  	});
-
-		  });
  
 		//Addevent for logout click
 		  LogoutSubmit_Element.addEventListener('click', e => {
@@ -1330,25 +1175,6 @@
 
 			var IsSecondBannerTextVisible_Boolean = false;
 			var IsThirdBannerTextVisible_Boolean = false;
-
-//Moving login box up and down
-			function MoveLogInBoxUp(){
-				$( ".LOG_IN_MASTER_CONTAINER" ).animate({
-			        top: "-40%"
-			    }, 500, function() {
-			        // Animation complete.
-			        console.log('animation complete');
-			    });
-			}
-
-			function MoveLogInBoxDown(){
-			   $( ".LOG_IN_MASTER_CONTAINER" ).animate({
-			        top: "+30%"
-			      }, 500, function() {
-			        // Animation complete.
-			        console.log('animation complete');
-			    });
-			}
 
 //Moveing signup box up and down
 			function MoveSignUpBoxUp() {
@@ -1541,29 +1367,6 @@
 //Jquery Start
 			jQuery(document).ready(function($) {
 
-			//Login box animate from top
-			        $("#LOGIN_ID").click(function() {
-
-			        	//Check to see if the signup box is already visible and if so make it go up
-			        	SignupCont_CurrentLocation = $( ".SIGNUP_MASTER_CONTAINER" ).css("top");
-			        	SignupCont_CurrentLocation_FirstChar = String(SignupCont_CurrentLocation).charAt(0)
-
-			        	console.log(SignupCont_CurrentLocation_FirstChar);
-
-			        	if (SignupCont_CurrentLocation_FirstChar!="-") {
-			        		console.log('Moving signup cont up..');
-			        		MoveSignUpBoxUp();
-			        	}
-
-						MoveLogInBoxDown();
-			        });
-
-
-			        $(".Cancel_Login").click(function() {
-
-			        	MoveLogInBoxUp();
-
-			        });
 
 			//SIGNUP BOX ANIMATE FROM TOP
 			        $("#SIGNUP_ID").click(function() {
