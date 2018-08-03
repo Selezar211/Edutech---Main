@@ -233,8 +233,8 @@
 			.BlackBoardName_Date_Cont{
 			    display: inline-block;
 			    position: relative;
-			    float: right;
 			    margin-top: 1%;
+			    width: 100%;
 			}
 
 			.BlackBoardWaterMark{
@@ -246,18 +246,21 @@
 			}
 
 			.BlackBoardStudentName{
+				width: 100%;
+				text-align: right;
 			    position: relative;
+			    display: inline-block;
 			    font-size: 2vw;
 			    opacity: 0.9;
-			    float: right;
 			}
 
 			.BlackBoardDate{
-			    position: absolute;
-			    font-size: 1.4vw;
+				width: 100%;
+				text-align: right;
+			    position: relative;
+			    display: inline-block;
+			    font-size: 1.5vw;
 			    opacity: 0.9;
-			    top: 8%;
-			    right: 0%;
 			}
 
 			.BlackBoard_MainInfo{
@@ -742,8 +745,9 @@
 
 						<div class="BlackBoardName_Date_Cont">
 							<span class="BlackBoardStudentName" id="BlackBoardStudentName_ID">Student#34 Md Ekram</span>
-						</div>
 							<span class="BlackBoardDate">25th July 2018</span>
+						</div>
+							
 
 						<div class="BlackBoard_MainInfo">
 							<span class="BB_MainInfo_Child" id="BlackBoardClassEnrolled">Classes enrolled in : Physics - Sabbir Sir | Chemistry - Qudrot Sir | Maths - Shakib Sir</span>
@@ -1037,6 +1041,7 @@
 
 	//Calling the main function
 		Main();
+		FadeOutLoadingFrame();
     </script>
 
 </body>
