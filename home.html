@@ -877,7 +877,7 @@
 
         </div>
 
-        <div class="SignUp_Successful" id="SignUp_Successful_ID">Sign Up Successful! <br>Now visit your profile!</div>
+        <div class="SignUp_Successful" id="SignUp_Successful_ID">Sign Up Successful! <br>Redirecting to login..</div>
 
         <div class="Password_NotMatch">Your Passwords do not match <br>Please try again</div>
 
@@ -1025,9 +1025,6 @@
 
 
 		//Get all the elements of fields
-		  LoginEmail_Element = document.getElementById("LOGIN_NAME");
-		  LoginPassword_Element = document.getElementById("Password");
-		  LoginSubmit_Element = document.getElementById("LOGIN_Submit");
 		  LogoutSubmit_Element = document.getElementById("SignOut_ID");
 
 		  SignUpUsernameElement = document.getElementById("SignUP_USERNAME");
@@ -1037,19 +1034,19 @@
 		  SignUpSubmit_Element = document.getElementById("Signup_Submit");
  
 		//Addevent for logout click
-		  LogoutSubmit_Element.addEventListener('click', e => {
+		  // LogoutSubmit_Element.addEventListener('click', e => {
 
-		  	const auth = firebase.auth();
+		  // 	const auth = firebase.auth();
 
-		  	//logout
-		  	const promise = auth.signOut();
-		  	promise.catch( e => console.log(e.code));
-		  	ShowSignUp_AndSlideLoginRight();
+		  // 	//logout
+		  // 	const promise = auth.signOut();
+		  // 	promise.catch( e => console.log(e.code));
+		  // 	ShowSignUp_AndSlideLoginRight();
 
-		  	//refresh page
-		  	location.reload(true);
+		  // 	//refresh page
+		  // 	location.reload(true);
 
-		  });
+		  // });
 
 		//Add event for sign up click
 		  SignUpSubmit_Element.addEventListener('click', e => {
@@ -1106,12 +1103,10 @@
 
 
 						MoveSignUpBoxUp();
-						HideSignUp_AndSlideLoginLeft();
 
 		  				SlideSignUpSuccessfulRight();
 
-						//Redirect to home profile page
-						//window.location.href = "file:///Users/ekram/Desktop/Edutech/Profile.html";
+		  				window.location.href = 'http://www.edutechs.org/Login';
 
 			  	}, function(error) {
 			  		console.log(error.code);
@@ -1137,34 +1132,33 @@
 		  });
 
 		//Add a realtime listener for state auth change
-		  firebase.auth().onAuthStateChanged( firebaseUser => {
-		  	if (firebaseUser){
-		  		console.log('Already logged in..');
+		  // firebase.auth().onAuthStateChanged( firebaseUser => {
+		  // 	if (firebaseUser){
+		  // 		console.log('Already logged in..');
 
-		  		//Now change the welcome sign to welcome this logged in dude
-		  		//Fetch the data from the database
-		  		var database = firebase.database();
-		  		var ref = database.ref('USERS/' + firebaseUser.uid);
+		  // 		//Now change the welcome sign to welcome this logged in dude
+		  // 		//Fetch the data from the database
+		  // 		var database = firebase.database();
+		  // 		var ref = database.ref('USERS/' + firebaseUser.uid);
 
-		  		ref.once('value', function(data){
-		  			tableData = data.val();
-		  			This_UserName = tableData['UserName'];
-					document.getElementById("Welcome_ID").innerHTML = This_UserName;
-					HideSignUp_AndSlideLoginLeft();
+		  // 		ref.once('value', function(data){
+		  // 			tableData = data.val();
+		  // 			This_UserName = tableData['UserName'];
+				// 	document.getElementById("Welcome_ID").innerHTML = This_UserName;
+				// 	HideSignUp_AndSlideLoginLeft();
 
-					MoveLogInBoxUp();
-					SlideLoadingLeft();
+				// 	SlideLoadingLeft();
 					
-		  		}, function(err){
-		  			console.log(err.code);
-		  		});
+		  // 		}, function(err){
+		  // 			console.log(err.code);
+		  // 		});
 
-		  	}
-		  	else{
-		  		console.log('Not logged in..');
-		  		ShowSignUp_AndSlideLoginRight();
-		  	}
-		  });
+		  // 	}
+		  // 	else{
+		  // 		console.log('Not logged in..');
+		  // 		ShowSignUp_AndSlideLoginRight();
+		  // 	}
+		  // });
 
 		</script>
 
@@ -1336,25 +1330,6 @@
 			    IsThirdBannerTextVisible_Boolean = true;
 			}
 
-//HideSignup and Slide login left
-			function HideSignUp_AndSlideLoginLeft() {
-				$( ".SignUp" ).css("display", "none");
-				$( ".LogIn" ).css("display", "none");
-
-				$( ".SignOut" ).fadeIn("slow");
-				$( ".Welcome" ).fadeIn("slow");
-				$( ".Profile" ).fadeIn("slow");
-			}
-
-			function ShowSignUp_AndSlideLoginRight() {
-				$( ".SignOut" ).fadeOut("fast");
-				$( ".Welcome" ).fadeOut("fast");
-				$( ".Profile" ).fadeOut("fast");
-
-				$( ".SignUp" ).fadeIn("fast");
-				$( ".LogIn" ).fadeIn("fast");
-			}
-
 //Shake signup box
 			function ShakeSignUpBox() {
 		       $( ".SIGNUP_MASTER_CONTAINER" ).css("left", "37%");
@@ -1367,20 +1342,15 @@
 //Jquery Start
 			jQuery(document).ready(function($) {
 
+					$("#LOGIN_ID").click(function() {
+
+			        	window.location.href = 'http://www.edutechs.org/Login';
+			        });
+
+
 
 			//SIGNUP BOX ANIMATE FROM TOP
 			        $("#SIGNUP_ID").click(function() {
-
-			         	//Check to see if the login box is already visible and if so make it go up
-			        	LoginCont_CurrentLocation = $( ".LOG_IN_MASTER_CONTAINER" ).css("top");
-			        	LoginCont_CurrentLocation_FirstChar = String(LoginCont_CurrentLocation).charAt(0)
-
-			        	console.log(LoginCont_CurrentLocation_FirstChar);
-
-			        	if (LoginCont_CurrentLocation_FirstChar!="-") {
-			        		console.log('Moving Login cont up..');
-			        		MoveLogInBoxUp();
-			        	}
 
 			        	MoveSignUpBoxDown();
 			        });

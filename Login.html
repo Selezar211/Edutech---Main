@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="https://png.icons8.com/ios-glyphs/40/000000/cup.png">
   
   <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
 
 	<style>
 			@import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
@@ -234,6 +235,7 @@
 /*Loading page*/
 
 		.LoadingContainer{
+			font-family: 'Cinzel';
 			display: inline-block;
 			z-index: 106;
 			position: fixed;
@@ -241,7 +243,6 @@
 			width: 100%;
 			height: 100%;
 			top: 0%;
-
 		}
 
 		.LoadingText{
@@ -397,7 +398,8 @@
 
 		  		//Now change the welcome sign to welcome this logged in dude
 		  		//Send to profile page
-		  		window.location.href = 'http://www.edutechs.org/Profile';
+		  		//window.location.href = 'http://www.edutechs.org/Profile';
+		  		$(".LoadingContainer").fadeOut('slow');
 		  	}
 		  	else{
 		  		console.log('Not logged in..');

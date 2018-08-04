@@ -2,7 +2,13 @@
 <html>
 <head> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ekram - Profile</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+		<link rel="stylesheet" href="Timetable_css/reset.css"> <!-- Resource style -->
+		<link rel="stylesheet" href="Timetable_css/style.css"> <!-- Resource style -->
+        <title> - Profile</title>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
@@ -196,7 +202,7 @@
 			    position: relative;
 			    display: inline-block;
 			    z-index: 99;
-			    background-color: black;
+			    background-color: rgb(10,14,17);
 			    transition: 500ms;
 			}
 
@@ -255,7 +261,7 @@
 			}
 
 			.BlackBoardName_Date_Cont{
-			    display: inline-block;
+			    display: none;
 			    position: relative;
 			    margin-top: 1%;
 			    width: 100%;
@@ -290,7 +296,7 @@
 			.BlackBoard_MainInfo{
 				margin-top: 5%;
 			    width: 95%;
-			    display: inline-block;
+			    display: none;
 			    position: absolute;
 			    left: 1.5%;
 			}
@@ -433,7 +439,7 @@
 			    font-weight: bolder;
 			    color: black;
 			    margin-top: 5%;
-			    margin-left: 30%;
+			    margin-left: 33%;
 			    font-size: 1.5vw;
 			}
 
@@ -489,47 +495,17 @@
 			}
 
 /*		timetable tab*/
-			.TimeTable_MainCont{
-				display: inline-block;
+			.MainTimeTableCont{
 				width: 100%;
-				position: relative;
-				top: 15%;
-			}
-
-			table {
-				font-family: "Quattrocento"
-				border-collapse: collapse;
-			    width: 100%;
-			    position: relative;
-			    font-size: 1.2vw;
-			    color: white;
-			}
-			th {
-				background-color: #580000;
-			    text-align: center;
-			    padding: 0.8%;
-			}
-
-			td {
-			    border: 0.1vw solid black;
-			    text-align: center;
-			    padding: 0.8%;
-			}
-
-			tr:nth-child(even) {
-				cursor: pointer;
-				color: white;
-			    background-color: black;
-			    border-bottom: 0.2vw solid black;
-			    transition: 500ms;
-			}
-
-			tr:nth-child(odd) {
-				cursor: pointer;
-				color: white;
-			    background-color: black;
-			    border-bottom: 0.2vwx solid black;
-			    transition: 100ms;
+				height: 100%;
+				display: none;
+				position: absolute;
+				font-size: 62.5%;
+			  font-size: 1rem;
+			  font-family: "Source Sans Pro", sans-serif;
+			  color: #222222;
+/*			  background-color: white;*/
+			  overflow: auto;
 			}
 
 
@@ -834,6 +810,198 @@
 
 						</div>
 
+						<div class="MainTimeTableCont">
+							<div class="cd-schedule loading">
+
+								<div class="timeline">
+									<ul>
+										<li><span>1:00 PM</span></li>
+										<li><span>1:30 PM</span></li>
+										<li><span>2:00 PM</span></li>
+										<li><span>2:30 PM</span></li>
+										<li><span>3:00 PM</span></li>
+										<li><span>3:30 PM</span></li>
+										<li><span>4:00 PM</span></li>
+										<li><span>4:30 PM</span></li>
+										<li><span>5:00 PM</span></li>
+										<li><span>5:30 PM</span></li>
+										<li><span>6:00 PM</span></li>
+										<li><span>6:30 PM</span></li>
+										<li><span>7:00 PM</span></li>
+										<li><span>7:30 PM</span></li>
+										<li><span>8:00 PM</span></li>
+										<li><span>8:30 PM</span></li>
+										<li><span>9:00 PM</span></li>
+										<li><span>9:30 PM</span></li>
+										<li><span>10:00 PM</span></li>
+									</ul>
+								</div> <!-- .timeline -->
+
+								<div class="events">
+									<ul>
+
+						<!-- 				Sunday -->
+										<li class="events-group">
+											<div class="top-info"><span>Sunday</span></div>
+
+											<ul>
+												<li class="single-event" data-start="6:30 PM" data-end="7:30 PM" data-content="event-abs-circuit" data-event="event-1">
+													<a href="#0">
+														<em class="event-name">Physics - Sabbir Sir</em>
+													</a>
+												</li>
+
+												<li class="single-event" data-start="1:00 PM" data-end="3:00 PM" data-content="event-rowing-workout" data-event="event-2">
+													<a href="#0">
+														<em class="event-name">Chemistry - Qudrot Sir</em>
+													</a>
+												</li>
+
+												<li class="single-event" data-start="7:00 PM" data-end="7:30 PM"  data-content="event-yoga-1" data-event="event-3">
+													<a href="#0">
+														<em class="event-name">Mathematics</em>
+													</a>
+												</li>
+											</ul>
+										</li>
+
+						<!-- 				Monday -->
+										<li class="events-group">
+											<div class="top-info"><span>Monday</span></div>
+
+											<ul>
+												<li class="single-event" data-start="3:30 PM" data-end="4:30 PM" data-content="event-abs-circuit" data-event="event-1">
+													<a href="#0">
+														<em class="event-name">Physics - Sabbir Sir</em>
+													</a>
+												</li>
+
+												<li class="single-event" data-start="2:00 PM" data-end="3:30 PM" data-content="event-rowing-workout" data-event="event-2">
+													<a href="#0">
+														<em class="event-name">Chemistry - Qudrot Sir</em>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+
+						<!-- 				Tuesday -->
+										<li class="events-group">
+											<div class="top-info"><span>Tuesday</span></div>
+
+											<ul>
+
+												<li class="single-event" data-start="5:30 PM" data-end="6:00 PM"  data-content="event-restorative-yoga" data-event="event-4">
+													<a href="#0">
+														<em class="event-name">Restorative Yoga</em>
+													</a>
+												</li>
+
+												<li class="single-event" data-start="9:30 PM" data-end="10:00 PM" data-content="event-abs-circuit" data-event="event-1">
+													<a href="#0">
+														<em class="event-name">Abs Circuit</em>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+
+						<!-- 				Wednesday -->
+										<li class="events-group">
+											<div class="top-info"><span>Wednesday</span></div>
+
+											<ul>
+												<li class="single-event" data-start="09:00 PM" data-end="10:00 PM" data-content="event-restorative-yoga" data-event="event-4">
+													<a href="#0">
+														<em class="event-name">Restorative Yoga</em>
+													</a>
+												</li>
+
+												<li class="single-event" data-start="2:45 PM" data-end="3:45 PM" data-content="event-yoga-1" data-event="event-3">
+													<a href="#0">
+														<em class="event-name">Yoga Level 1</em>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+
+						<!-- 				Thursday -->
+										<li class="events-group">
+											<div class="top-info"><span>Thursday</span></div>
+
+											<ul>
+
+											</ul>
+										</li>
+
+						<!-- 				Friday -->
+										<li class="events-group">
+											<div class="top-info"><span>Friday</span></div>
+
+											<ul>
+												<li class="single-event" data-start="4:00 PM" data-end="4:30 PM"  data-content="event-rowing-workout" data-event="event-2">
+													<a href="#0">
+														<em class="event-name">Rowing Workout</em>
+													</a>
+												</li>
+
+												<li class="single-event" data-start="6:30 PM" data-end="7:00 PM" data-content="event-abs-circuit" data-event="event-1">
+													<a href="#0">
+														<em class="event-name">Abs Circuit</em>
+													</a>
+												</li>
+
+											</ul>
+										</li>
+
+						<!-- 				Saturday -->
+										<li class="events-group">
+											<div class="top-info"><span>Saturday</span></div>
+
+											<ul>
+												<li class="single-event" data-start="1:00 PM" data-end="1:30 PM"  data-content="event-rowing-workout" data-event="event-2">
+													<a href="#0">
+														<em class="event-name">Rowing Workout</em>
+													</a>
+												</li>
+
+												<li class="single-event" data-start="2:30 PM" data-end="5:00 PM" data-content="event-abs-circuit" data-event="event-1">
+													<a href="#0">
+														<em class="event-name">Abs Circuit</em>
+													</a>
+												</li>
+												
+											</ul>
+										</li>
+									</ul>
+								</div>
+
+								<div class="event-modal">
+									<header class="header">
+										<div class="content">
+											<span class="event-date"></span>
+											<h3 class="event-name"></h3>
+										</div>
+
+										<div class="header-bg"></div>
+									</header>
+
+									<div class="body">
+										<div class="event-info"></div>
+										<div class="body-bg"></div>
+									</div>
+
+									<a href="#0" class="close">Close</a>
+								</div>
+
+								<div class="cover-layer"></div>
+
+							</div> <!-- .cd-schedule -->
+
+
+						</div>
+
 					</div>
 
 				</div>
@@ -1021,29 +1189,53 @@
 		  		Current_UID = firebaseUser.uid;
 		  		FetchAllDataFromDatabase();
 		  		FadeOutLoadingFrame();
+
+		  		$(".BlackBoard_MainInfo").fadeIn('slow');
+		  		$(".BlackBoardName_Date_Cont").fadeIn('slow');
+
 		  	}
 		  	else{
 		  		console.log('Not logged in..');
 		  		//window.location.href = "http://www.edutechs.org";
+		  		$(".BlackBoard_MainInfo").fadeIn('slow');
+		  		$(".BlackBoardName_Date_Cont").fadeIn('slow');
 		  	}
 		  });
 
 	//Log out event trigger
-		// document.getElementById("SignOut_ID").addEventListener('click', e => {
+		document.getElementById("SignoutIcon").addEventListener('click', e => {
 
-		//   	const auth = firebase.auth();
+		  	const auth = firebase.auth();
 
-		//   	//logout
-		//   	const promise = auth.signOut().then(function(){
-		//   		//send to front page
-		//   		console.log('Successfully logged out..');
+		  	//logout
+		  	const promise = auth.signOut().then(function(){
+		  		//send to front page
+		  		console.log('Successfully logged out..');
 
-		//   		},function(err){
-		//   		console.log(err.code);
-		//   	});
+		  		},function(err){
+		  		console.log(err.code);
+		  	});
 
 
-		//   });
+		  });
+
+	//Timetable icon click event
+		document.getElementById("TableIcon").addEventListener('click', e => {
+
+			console.log('Timetable clicked!');
+
+			//fadeout all current stuff
+			$(".BlackBoard_MainInfo").fadeOut('fast');
+			$(".BlackBoardName_Date_Cont").fadeOut('fast');
+
+			$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0');
+			$(".BlackBoard").css('background-color', 'rgba(0,0,0,0');
+			$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0');
+
+			$(".MainTimeTableCont").fadeIn('slow');
+
+
+		  });
 
     //Time table stuff
 		var global_Number_of_Rows = 0;
@@ -1113,6 +1305,13 @@
 		Main();
 		FadeOutLoadingFrame();
     </script>
+
+<script src="Timetable_js/modernizr.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+</script>
+<script src="Timetable_js/main.js"></script> <!-- Resource jQuery -->
 
 </body>
 </html>
