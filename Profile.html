@@ -508,6 +508,19 @@
 			  overflow: auto;
 			}
 
+			.TimeTableHeading{
+				width: 40%;
+			    margin-top: 1%;
+			    height: 12%;
+			    display: inline-block;
+			    position: absolute;
+			    top: 3%;
+			    margin-left: 30%;
+			    font-size: 4em;
+			    text-align: center;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			}
+
 
 /*		VideoPlayer stuff*/
 		.MainVideoPlayer_Cont{
@@ -811,6 +824,7 @@
 						</div>
 
 						<div class="MainTimeTableCont">
+							<div class="TimeTableHeading">Timetable</div>
 							<div class="cd-schedule loading">
 
 								<div class="timeline">
@@ -857,11 +871,6 @@
 													</a>
 												</li>
 
-												<li class="single-event" data-start="7:00 PM" data-end="7:30 PM"  data-content="event-yoga-1" data-event="event-3">
-													<a href="#0">
-														<em class="event-name">Mathematics</em>
-													</a>
-												</li>
 											</ul>
 										</li>
 
@@ -891,12 +900,6 @@
 
 											<ul>
 
-												<li class="single-event" data-start="5:30 PM" data-end="6:00 PM"  data-content="event-restorative-yoga" data-event="event-4">
-													<a href="#0">
-														<em class="event-name">Restorative Yoga</em>
-													</a>
-												</li>
-
 												<li class="single-event" data-start="9:30 PM" data-end="10:00 PM" data-content="event-abs-circuit" data-event="event-1">
 													<a href="#0">
 														<em class="event-name">Abs Circuit</em>
@@ -911,17 +914,7 @@
 											<div class="top-info"><span>Wednesday</span></div>
 
 											<ul>
-												<li class="single-event" data-start="09:00 PM" data-end="10:00 PM" data-content="event-restorative-yoga" data-event="event-4">
-													<a href="#0">
-														<em class="event-name">Restorative Yoga</em>
-													</a>
-												</li>
 
-												<li class="single-event" data-start="2:45 PM" data-end="3:45 PM" data-content="event-yoga-1" data-event="event-3">
-													<a href="#0">
-														<em class="event-name">Yoga Level 1</em>
-													</a>
-												</li>
 
 											</ul>
 										</li>
@@ -1228,12 +1221,30 @@
 			$(".BlackBoard_MainInfo").fadeOut('fast');
 			$(".BlackBoardName_Date_Cont").fadeOut('fast');
 
-			$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0');
-			$(".BlackBoard").css('background-color', 'rgba(0,0,0,0');
-			$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0');
+			$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
+			$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
+			$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
 
 			$(".MainTimeTableCont").fadeIn('slow');
 
+
+		  });
+
+	//Home icon click event
+		document.getElementById("HomeIcon").addEventListener('click', e => {
+
+			console.log('Home clicked!');
+
+			//fadeout all current stuff
+			$(".MainTimeTableCont").fadeOut('fast');
+
+			$(".Blackboard_container").css('background-color', 'rgb(10,14,17)');
+			$(".BlackBoard").css('background-color', 'rgb(10,14,17)');
+			$(".NotificationOpenButton").css('background-color', 'rgb(10,14,17)');
+
+			
+			$(".BlackBoard_MainInfo").fadeIn('slow');
+			$(".BlackBoardName_Date_Cont").fadeIn('slow');
 
 		  });
 

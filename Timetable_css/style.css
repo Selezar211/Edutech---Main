@@ -29,10 +29,13 @@ Main Components
   display: none;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen {
   .cd-schedule {
     width: 99%;
     margin: 2em auto;
+    margin-top: 0;
+    margin-bottom: 3%;
+    top: 23%;
   }
   .cd-schedule::after {
     clear: both;
@@ -48,7 +51,7 @@ Main Components
   display: none;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen {
   .cd-schedule .timeline {
     display: block;
     position: absolute;
@@ -80,7 +83,7 @@ Main Components
   }
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen {
   .cd-schedule .timeline li::after {
     width: calc(100% - 60px);
     left: 60px;
@@ -280,7 +283,7 @@ Main Components
 
 .cd-schedule .event-date {
   /* they are not included in the the HTML but added using JavScript */
-  font-size: 1.4rem;
+  font-size: 1rem;
   opacity: .7;
   line-height: 1.2;
   margin-bottom: .2em;
