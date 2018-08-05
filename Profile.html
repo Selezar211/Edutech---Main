@@ -218,25 +218,16 @@
     			transition: 500ms;
 			}
 
-			.SignoutCont{
-				width: 3%;
-			    height: 5%;
-			    position: absolute;
-			    text-align: center;
-			    bottom: 0.7%;
-			    right: 0%;
-			    transition: 200ms;
-			    cursor: pointer;
-			}
-
-			#SignoutIcon{
-				transform: scale(1.2,1.4);
+			#SignoutIcon2{
+				transform: scale(1.3,1.3);
+				top: 95%;
 				color: white;
+				display: block;
 				cursor: pointer;
 				transition: 200ms;
 			}
 
-			#SignoutIcon:hover{
+			#SignoutIcon2:hover{
 				color: silver;
 				transition: 200ms;
 				transform: scale(1.5,1.7);
@@ -272,8 +263,29 @@
 			    font-size: 1.3vw;
 			    opacity: 0.7;
 			    bottom: 0%;
-			    right: 4%;
+			    right: 14%;
 			}
+
+			.SignOutText{
+			    position: absolute;
+			    font-size: 1.3vw;
+			    opacity: 0.5;
+			    bottom: 0.3%;
+			    right: 1%;
+			    display: none;
+			    transition: 500ms;
+			}
+
+			.NotificationText{
+			    position: absolute;
+			    font-size: 1.3vw;
+			    opacity: 0.5;
+			    bottom: 4%;
+			    right: 0.5%;
+			    display: none;
+			    transition: 500ms;
+			}
+
 
 			.BlackBoardStudentName{
 				width: 100%;
@@ -375,7 +387,7 @@
 
 			#ExclaimIcon{
 				transform: scale(1.2,1.2);
-				top: 97%;
+				top: 93%;
 				color: white;
 				display: block;
 				cursor: pointer;
@@ -796,7 +808,8 @@
 
 					<div class="BlackBoard">
 						<span class="BlackBoardWaterMark">i love edutech!</span>
-						<div class="SignoutCont"><i class="fas fa-sign-out-alt" id="SignoutIcon"></i></div>
+						<span class="SignOutText">Sign Out</span>
+						<span class="NotificationText">Notification</span>
 						<div class="BlackBoardChalk1"></div>
 						<div class="BlackBoardChalk2"></div>
 
@@ -1001,6 +1014,7 @@
 
 				<div class="NotificationOpenButton" id="NotifButton">
 					<i class="fas fa-exclamation" id="ExclaimIcon"></i>
+					<i class="fas fa-sign-out-alt" id="SignoutIcon2"></i>
 				</div>
 
 				<div class="NotificationMainCont">
@@ -1196,7 +1210,7 @@
 		  });
 
 	//Log out event trigger
-		document.getElementById("SignoutIcon").addEventListener('click', e => {
+		document.getElementById("SignoutIcon2").addEventListener('click', e => {
 
 		  	const auth = firebase.auth();
 
@@ -1225,6 +1239,9 @@
 			$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
 			$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
 
+			$("#ExclaimIcon").css('color', 'black');
+			$("#SignoutIcon2").css('color', 'black');
+
 			$(".MainTimeTableCont").fadeIn('slow');
 
 
@@ -1241,6 +1258,9 @@
 			$(".Blackboard_container").css('background-color', 'rgb(10,14,17)');
 			$(".BlackBoard").css('background-color', 'rgb(10,14,17)');
 			$(".NotificationOpenButton").css('background-color', 'rgb(10,14,17)');
+
+			$("#ExclaimIcon").css('color', 'white');
+			$("#SignoutIcon2").css('color', 'white');
 
 			
 			$(".BlackBoard_MainInfo").fadeIn('slow');
@@ -1291,7 +1311,7 @@
 	document.getElementById("NotifButton").addEventListener('click', e => {
 		$(".Blackboard_container").css('width', '65%');
 		$(".NotificationMainCont").css('width', '33%');
-		$("#ExclaimIcon").css('display', 'none');
+		$("#ExclaimIcon").css('color', 'black');
 		$(".InnerNotifMain").fadeIn('fast');
 		$(".NotificationBox_Cont").fadeIn('slow');
 	});
@@ -1302,7 +1322,7 @@
 		$(".InnerNotifMain").fadeOut('fast');
 		$(".Blackboard_container").css('width', '98%');
 		$(".NotificationMainCont").css('width', '0%');
-		$("#ExclaimIcon").delay(100).css('display', 'block');
+		$("#ExclaimIcon").delay(100).css('color', 'white');
 
 	});
 	
@@ -1311,6 +1331,19 @@
 		$(".LoadingContainer").fadeOut('slow');
 	}
 
+	//main jquery run time functions
+	$(document).ready(function(){
+	    $("#SignoutIcon2").hover(function(){
+	        $(".SignOutText").css("display", "block");
+	        }, function(){
+	        $(".SignOutText").css("display", "none");
+	    });
+	    $("#ExclaimIcon").hover(function(){
+	        $(".NotificationText").css("display", "block");
+	        }, function(){
+	        $(".NotificationText").css("display", "none");
+	    });
+	});
 
 	//Calling the main function
 		Main();
