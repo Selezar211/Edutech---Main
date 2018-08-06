@@ -79,12 +79,13 @@
 
 
 			.MainBanner {
+				opacity: 0;
 				width: 100%;
 			    height: 100%;
 			    position: relative;
 			    background-color: white;
 			    background:   url(https://i.imgur.com/nWU02IF.jpg);
-			    background-size: 100% 100%;
+			    background-size: 105% 105%;
 			    background-position: center;
 			    background-blend-mode:darken;
 			    background-repeat: no-repeat;
@@ -115,6 +116,15 @@
 			    display: inline-block;
 			    z-index: 100;
 			    transition: 500ms;
+			    opacity: 0;
+			    overflow: hidden;
+			}
+
+			#Main_TitleSpan_ID{
+				opacity: 0;
+			    position: absolute;
+			    top: -70%;
+			    left: 26%;
 			}
 
 			.Logo_Title {
@@ -134,6 +144,15 @@
 			    display: inline-block;
 			    z-index: 100;
 			    transition: 500ms;
+			    opacity: 0;
+			    overflow: hidden;
+			}
+
+			#Logo_TitleSpan_ID{
+				opacity: 0;
+			    position: absolute;
+			    bottom: -70%;
+			    left: 15%;
 			}
 
 
@@ -887,13 +906,23 @@
 
         <div class="Loading">Loading<br> Please wait a moment..</div>
 
+
+
         <div class="Top_Hidden_Spacer"></div>
+
+
+
         <div class="MainBanner">
 
-            <div class="Main_Title">EduTech</div>
-            <div class="Logo_Title">Where Education Meets Technology</div>
+            <div class="Main_Title"><span id="Main_TitleSpan_ID">EduTech</span></div>
+            <div class="Logo_Title"><span id="Logo_TitleSpan_ID">Where Education Meets Technology</span></div>
 
         </div>
+
+
+
+
+
 
         <div class="SecondBanner">
 
@@ -1337,10 +1366,63 @@
 		       $( ".SIGNUP_MASTER_CONTAINER" ).css("left", "38%");
 			}
 
+//Animate the main edutech title in main banner from the top to down and fade in
+
+			function AnimateMainBannerTitle(){
+
+				$( ".Main_Title" ).animate({
+			        opacity: "1"
+			    }, 200, function() {
+			        // Animation complete.
+			        console.log('animation complete now animating inner span');
+
+					$( "#Main_TitleSpan_ID" ).animate({
+				        top: "6%",
+				        opacity: "1"
+				    }, 800, function() {
+				        // Animation complete.
+				        console.log('animation complete');
+
+				        $( ".Logo_Title" ).animate({
+				        	opacity: "1"
+				    		}, 200, function() {
+				        	// Animation complete.
+				        	console.log('animation complete');
+
+				        		$( "#Logo_TitleSpan_ID" ).animate({
+				        			opacity: "1",
+				        			top: "25%"
+				    				}, 800, function() {
+				        			// Animation complete.
+				        			console.log('animation complete');
+
+				    		});
+
+				    	});
+				    });
+			    });
+
+			}
+
 
 
 //Jquery Start
 			jQuery(document).ready(function($) {
+
+
+				$( ".MainBanner" ).animate({
+			        backgroundSize: "100%",
+			        opacity: "1"
+			    	}, 3000, function() {
+			        // Animation complete.
+			        console.log('background animation complete');
+			    });
+
+			//Make the main title fade in and animate from the top
+					AnimateMainBannerTitle();
+
+
+
 
 					$("#LOGIN_ID").click(function() {
 

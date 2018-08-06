@@ -680,11 +680,24 @@
 
 		.LectureLinksContainer{
 			    width: 98%;
-			  	height: 100%;
 			    display: inline-block;
 			    position: relative;
 			    margin-top: 5%;
 			    margin-left: 2%;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+		}
+
+		.LectureTeacherName{
+				color: white;
+				width: 100%;
+				display: inline-block;
+				padding-top: 1%;
+				padding-bottom: 1%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background-color: rgb(20,24,27);
+				position: relative;
+				top: 0%;
 		}
 
 		.LectureLink{
@@ -1028,11 +1041,34 @@
 							<div class="LectureHeadingMain">Lecture Notes/Slides</div>
 
 							<div class="LectureLinksContainer">
-								<div class="LectureLink">Lecture 1 Notes</div>
 
-								<div class="LectureLink">Lecture 1 Slides</div>
+								<div class="LectureTeacherName">Sabbir Sir | Physics | A Level</div>
 
-								<div class="LectureLink">Lecture 2 Notes</div>
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 1 Notes</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 1 Slides</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
+
+							</div>
+
+							<div class="LectureLinksContainer">
+
+								<div class="LectureTeacherName">Shakib Sir | Mathematics | A Level</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 1 Notes</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 1 Slides</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
 
 							</div>
 
@@ -1393,7 +1429,7 @@
     </div>
 
     <div class="PDF_VIEWER">
-    	<iframe src="http://gahp.net/wp-content/uploads/2017/09/sample.pdf#zoom=50" style="width:100%; height:100%;" frameborder="0"></iframe>
+    	<iframe id="Iframe_PDF" src="" style="width:100%; height:100%;" frameborder="0"></iframe>
     </div>
 
     <i id="PDFCLOSE_ICON" class="fas fa-times-circle"></i>
@@ -1668,9 +1704,11 @@
 
 		$(".LectureLink").click(function() {
 
-        	myVar = $(this).text();
+        	PDF_LINK = String($(this).attr("data-main")) + '#zoom=100';
 
-        	console.log(myVar);
+        	$("#Iframe_PDF").attr('src', PDF_LINK);
+
+        	console.log(PDF_LINK);
 
         	$(".LoadingContainer").fadeIn('slow');
         	$(".PDF_VIEWER").fadeIn("slow");
