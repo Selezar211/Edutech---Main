@@ -7,6 +7,12 @@
 		<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
 		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+
+		<link rel="stylesheet" href="Home_CSS/Slideshow.css">
+
         <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet'>
 
@@ -79,16 +85,13 @@
 
 
 			.MainBanner {
-				opacity: 0;
+				opacity: 1;
 				width: 100%;
 			    height: 100%;
 			    position: relative;
-			    background-color: white;
-			    background:   url(https://i.imgur.com/nWU02IF.jpg);
-			    background-size: 105% 105%;
-			    background-position: center;
-			    background-blend-mode:darken;
-			    background-repeat: no-repeat;
+			    background: #000;
+				overflow-y: scroll;
+				overflow-x: hidden;
 			    overflow: hidden;
 			}
 
@@ -106,7 +109,7 @@
 			    letter-spacing: 2vw;
 			    width: 100%;
 			    height: 19%;
-			    color: black;
+			    color: white;
 			    top: 23%;
 			    text-align: center;
 			    padding-right: 2%;
@@ -914,6 +917,15 @@
 
         <div class="MainBanner">
 
+		  	<ul class="slideshow">
+				<li><span>Image 01</span></li>
+				<li><span>Image 02</span></li>
+				<li><span>Image 03</span></li>
+				<li><span>Image 04</span></li>
+				<li><span>Image 05</span></li>
+				<li><span>Image 06</span></li>
+			</ul>
+
             <div class="Main_Title"><span id="Main_TitleSpan_ID">EduTech</span></div>
             <div class="Logo_Title"><span id="Logo_TitleSpan_ID">Where Education Meets Technology</span></div>
 
@@ -1377,7 +1389,7 @@
 			        console.log('animation complete now animating inner span');
 
 					$( "#Main_TitleSpan_ID" ).animate({
-				        top: "6%",
+				        top: "20%",
 				        opacity: "1"
 				    }, 800, function() {
 				        // Animation complete.
@@ -1391,7 +1403,7 @@
 
 				        		$( "#Logo_TitleSpan_ID" ).animate({
 				        			opacity: "1",
-				        			top: "25%"
+				        			top: "30%"
 				    				}, 800, function() {
 				        			// Animation complete.
 				        			console.log('animation complete');
@@ -1409,20 +1421,8 @@
 //Jquery Start
 			jQuery(document).ready(function($) {
 
-
-				$( ".MainBanner" ).animate({
-			        backgroundSize: "100%",
-			        opacity: "1"
-			    	}, 3000, function() {
-			        // Animation complete.
-			        console.log('background animation complete');
-			    });
-
 			//Make the main title fade in and animate from the top
 					AnimateMainBannerTitle();
-
-
-
 
 					$("#LOGIN_ID").click(function() {
 
