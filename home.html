@@ -821,6 +821,15 @@
 				float: left;
 			}
 
+			.Wrapper{
+				opacity: 0;
+				width: 100%;
+				height: 100%;
+				right: -100%;
+				position: absolute;
+				display: inline-block;
+			}
+
 			.HeadingSecondBanner{
 				margin-left: 20%;
 				margin-right: 20%;
@@ -1320,8 +1329,12 @@
 
 
         	<div class="RightTextBox">
+
+        		<div class="Wrapper">
         			<span class="HeadingSecondBanner">Elaborate your company style in no time with Navy.</span>
         			<span class="SecondBannerInfo">Navy theme is extremely customizable, fully responsive and HiDPI ready WordPress theme based on a well structured framework which allows you to achieve the best response time and look for all your visitors.</span>
+        		</div>
+    
 
         	</div>
 
@@ -1587,6 +1600,7 @@
 			var ScrollBooleanThirdBanner = true;
 			var IsInvisBannerTextShown = false;
 			var IsWhiteTextBannerShown = false;
+			var IsSecondBannerTextShown = false;
 
 			var IsSecondBannerTextVisible_Boolean = false;
 			var IsThirdBannerTextVisible_Boolean = false;
@@ -1875,6 +1889,17 @@
 
 			}
 
+			function AnimateSecondBannerTitle(){
+				$( ".Wrapper" ).animate({
+			        opacity: "1",
+			        right: "0%"
+			    }, 900, function() {
+			        // Animation complete.
+			        console.log('animation complete now animating inner span');
+
+			     });
+			}
+
 
 
 //Jquery Start
@@ -1964,6 +1989,13 @@
 							AnimateInvisBannerTitle();
 
 			        		IsInvisBannerTextShown = true;
+					    }
+
+					   	else if (scroll>1650 && !IsSecondBannerTextShown) {
+			        		console.log('showing second banner text..');
+							AnimateSecondBannerTitle();
+
+			        		IsSecondBannerTextShown = true;
 					    }
 					    // Do something
 					});
