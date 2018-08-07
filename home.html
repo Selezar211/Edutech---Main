@@ -8,7 +8,7 @@
 		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
         <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
@@ -704,7 +704,7 @@
 			}
 
 			.BottomBox{
-				padding-left: 11.5%;
+				padding-left: 9.5%;
 				width: 100%;
 				display: inline-block;
 				height: 45%;
@@ -788,114 +788,81 @@
 			    top: 2%;
 			}
 
-			/*Second banner stuff*/
+		/*Second banner stuff*/
 
 			.SecondBanner {
+				color: white;
+				font-family: 'Raleway', sans-serif;
+				font-weight : 100;
 				width: 100%;
-			    height: 105%;
+			    height: 80%;
 			    position: relative;
 			    top: 2%;
-			    background-color: darkgrey;
-			    background:   url(https://i.imgur.com/kIeTPC0.jpg);
-			    background-size: 100% 100%;
-			    background-position: center;
-			    background-blend-mode:darken;
+			    background-color: rgb(35,35,35);
+			}
+
+			.LeftPictureBox{
+				background-image: url(https://i.imgur.com/l9XNRrV.jpg);
+				background-size: 100% 120%;
+			    background-position: 0% 20%;
 			    background-repeat: no-repeat;
-			    overflow: hidden;
-			}
-
-			.ChevronPlusSecondTitleCont{
-				width: 55%;
-				height: 29vw;
-				top: 5%;
-				left: -53.8%;
-				position: absolute;
-				display: inline-block;
-			}
-
-			#ChevronRight_SecondBanner{
-				cursor: pointer;
-				position: absolute;
-				top: 45%;
-				left: 30%;
-				display: inline-block;
-				color: rgba(255,255,255,1);
-				transition: 500ms;
-			}
-
-			.ChevronRight_SDIV{
-				cursor: pointer;
-			    font-family: "Quattrocento";
-			    font-weight: lighter;
-			    background-color: rgba(0,0,0,1);
-			    width: 2.5%;
-			    height: 100%;
-			    top: 0%;
-			    left: 97%;
-			    position: absolute;
-			    display: inline-block;
-			    z-index: 100;
-			    transition: 500ms;
-			    border-radius: 0px 3px 3px 0px;
-			}
-
-			.ChevronRight_SDIV:hover{
-				background-color: rgba(0,0,0,0.7);
-				transition: 500ms;
-			}
-
-			.Second_Title{
-				border-radius: 2px;
-			    font-size: 1.3vw;
-			    font-family: "Quattrocento";
-			    font-weight: lighter;
-			    background-color: rgba(0,0,0,1);
-			    width: 97.5%;
-			    height: 100%;
-			    color: rgba(255,255,255,1);
-			    top: 0%;
-			    left: 0%;
-			    text-align: left;
-			    vertical-align: center;
-			    position: absolute;
-			    display: inline-block;
-			    z-index: 100;
-			    transition: 500ms;
-			}
-
-			.SecondTitle_TextSpan{
+				width:50%;
+				height: 100%;
 				position: relative;
-			    display: inline-block;
-			    padding: 4%;
+				display: inline-block;
+				float: left;
+			}
+
+			.RightTextBox{
+				width:50%;
+				height: 100%;
+				position: relative;
+				display: inline-block;
+				float: left;
+			}
+
+			.HeadingSecondBanner{
+				margin-left: 20%;
+				margin-right: 20%;
+				margin-top: 20%;
+				margin-bottom: 5%;
+				position: relative;
+				text-align: left;
+				display: inline-block;
+				color: white;
+				font-family: "Quattrocento";
+			    letter-spacing: 3%;
+			    font-weight: 100;
+			    font-style: normal;
+			    font-size: 3em;
+			}
+
+			.SecondBannerInfo{
+				margin-left: 20%;
+				margin-right: 20%;
+				margin-top: 5%;
+				margin-bottom: 5%;
+				position: relative;
+				text-align: left;
+				display: inline-block;
+				color: white;
+				font-family: "Quattrocento";
+				line-height: 150%;
+			    letter-spacing: 1%;
+			    font-weight: 700;
+			    font-style: normal;
+			    opacity: 0.8;
+			    font-size: 1.1em;
 			}
 
 
-			.SecondLogo_Title{
-			    font-size: 1.2vw;
-			    font-family: "Cinzel";
-			    background-color: rgba(0,0,0,1);
-			    letter-spacing: 1.2vw;
-			    width: 100%;
-			    word-spacing: 1vw;
-			    height: 3.5%;
-			    color: white;
-			    top: 64%;
-			    text-align: center;
-			    padding-bottom: 0%;
-			    padding-top: 0.7%;
-			    position: absolute;
-			    display: inline-block;
-			    z-index: 100;
-			    transition: 500ms;
-			}
-
-			/*Third banner stuff*/
+		/*Third banner stuff*/
 
 			.ThirdBanner {
 				width: 100%;
 			    height: 105%;
 			    position: relative;
-			    top: 4%;
+			    top: 2%;
 			    background-color: darkgrey;
 			    background:   url(https://a0.muscache.com/im/pictures/fe85605b-f885-4663-be28-8e8f1aac5287.jpg?aki_policy=x_large);
 			    background-size: 100% 100%;
@@ -1349,36 +1316,14 @@
 
         <div class="SecondBanner">
 
-        	<div class="ChevronPlusSecondTitleCont">
-	    		<div class="ChevronRight_SDIV"><i class="fas fa-chevron-right" id="ChevronRight_SecondBanner"></i></div>
-
-	            <div class="Second_Title">
-
-	            	<span class="SecondTitle_TextSpan"><b><i>What are the two most important resources that teachers have to wrestle with in their daily coaching practices?</i></b>
-
-	            	<br>
-	            	<br>
-
-	            	The answer is simple. <b>TIME</b> and <b>SPACE</b>. 
-
-	            	<br>
-	            	<br>
-
-	            	Time is finite and hence is a limiting factor to how many students can be taught in a single day. Additionally there is a definite economic and physical limit to how big a classroom can be. With these two factors in play countless students have to be turned away from coaching practices due to this frustrating lack of space and time.
-
-	            	<br>
-	            	<br>
-
-	            	Well we are here to try and alleviate this frustration. At Edutech we offer teachers a High Definition Subscription Based Streaming Platform to target all those young students who are turned away. Stream your class <i>LIVE</i> and reach students far and wide. Engage with them through our General Digital Education platform by using a vast array of tools such as online dynamic timetables, seat management, lecture notes, syllabus, quiz taking facilities and more. It is time we bought education in Bangladesh to the 21st century. </span>
-
-	            </div>
+        	<div class="LeftPictureBox"></div>
 
 
+        	<div class="RightTextBox">
+        			<span class="HeadingSecondBanner">Elaborate your company style in no time with Navy.</span>
+        			<span class="SecondBannerInfo">Navy theme is extremely customizable, fully responsive and HiDPI ready WordPress theme based on a well structured framework which allows you to achieve the best response time and look for all your visitors.</span>
 
         	</div>
-
-
-            <div class="SecondLogo_Title">Scale your reach to more students</div>
 
         </div>
 
