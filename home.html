@@ -336,7 +336,7 @@
 			    position: relative;
 			}
 
-			.Main_Title, .Invisible_Title {
+			.Main_Title, .Invisible_Title, .SecInvisible_Title {
 				font-size: 7vw;
 			    font-family: "Cinzel";
 			    background-color: rgba(0,0,0,0.15);
@@ -357,7 +357,7 @@
 			    overflow: hidden;
 			}
 
-			#Main_TitleSpan_ID, #Invisible_TitleSpan_ID{
+			#Main_TitleSpan_ID, #Invisible_TitleSpan_ID, #SecInvisible_TitleSpan_ID{
 				opacity: 0;
 			    position: absolute;
 			    top: -70%;
@@ -385,7 +385,7 @@
 			    overflow: hidden;
 			}
 
-			.InvisibleLogo_Title {
+			.InvisibleLogo_Title, .SecInvisibleLogo_Title {
 			    font-size: 1.2vw;
 			    font-family: "Cinzel";
 			    background-color: rgba(0,0,0,1);
@@ -406,7 +406,7 @@
 			    overflow: hidden;
 			}
 
-			#Logo_TitleSpan_ID, #InvisibleLogo_TitleSpan_ID{
+			#Logo_TitleSpan_ID, #InvisibleLogo_TitleSpan_ID, #SecInvisibleLogo_TitleSpan_ID{
 				opacity: 0;
 			    position: absolute;
 			    bottom: -70%;
@@ -713,6 +713,7 @@
 			}
 
 			.InnerBox{
+				color: black;
 				opacity: 0;
 				margin-right: 5%;
 				width:25%;
@@ -737,7 +738,6 @@
 			.InnerBoxIcon {
 				width: 100%%;
 			    text-align: left;
-			    color: black;
 			    display: inline-block;
 			    margin-bottom: 2%;
 			    padding-top: 7%;
@@ -755,7 +755,6 @@
 				position: relative;
 				text-align: left;
 				display: inline-block;
-				color: black;
 				font-family: "Quattrocento";
 			    letter-spacing: 1%;
 			    font-weight: 700;
@@ -771,7 +770,6 @@
 				position: relative;
 				text-align: left;
 				display: inline-block;
-				color: black;
 				font-family: "Quattrocento";
 				line-height: 150%;
 			    letter-spacing: 1%;
@@ -781,12 +779,14 @@
 			    font-size: 1.1em;
 			}
 
-			.InvisibleBanner{
+			.InvisibleBanner, .SecInvisibleBanner{
 				width: 100%;
 			    height: 95%;
 			    position: relative;
 			    top: 2%;
 			}
+
+
 
 		/*Second banner stuff*/
 
@@ -849,7 +849,7 @@
 			.SecondBannerInfo{
 				margin-left: 20%;
 				margin-right: 20%;
-				margin-top: 5%;
+				margin-top: 3%;
 				margin-bottom: 5%;
 				position: relative;
 				text-align: left;
@@ -861,7 +861,7 @@
 			    font-weight: 700;
 			    font-style: normal;
 			    opacity: 0.8;
-			    font-size: 1.1em;
+			    font-size: 1em;
 			}
 
 
@@ -869,114 +869,53 @@
 
 			.ThirdBanner {
 				width: 100%;
-			    height: 105%;
+			    height: 95%;
 			    position: relative;
 			    top: 2%;
-			    background-color: darkgrey;
-			    background:   url(https://a0.muscache.com/im/pictures/fe85605b-f885-4663-be28-8e8f1aac5287.jpg?aki_policy=x_large);
+			    background:   url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/corporate-man-tablet.jpg);
 			    background-size: 100% 100%;
 			    background-position: center;
-			    background-blend-mode:darken;
 			    background-repeat: no-repeat;
 			    overflow: hidden;
 			}
 
-			.ChevronPlusThirdTitleCont{
-				width: 55%;
-				height: 26vw;
-				top: 5%;
-				left: 98.5%;
-				position: absolute;
-				display: inline-block;
-			}
-
-			#ChevronRight_ThirdBanner{
-				cursor: pointer;
-				position: absolute;
-				top: 45%;
-				left: 30%;
-				display: inline-block;
-				color: rgba(255,255,255,1);
-				transition: 500ms;
-				transform: rotate(180deg);
-			}
-
-			.ChevronRight_TDIV{
-				cursor: pointer;
-			    font-family: "Quattrocento";
-			    font-weight: lighter;
-			    background-color: rgba(0,0,0,1);
-			    width: 2.5%;
-			    height: 100%;
-			    top: 0%;
-			    left: 0%;
-			    position: absolute;
-			    display: inline-block;
-			    z-index: 100;
-			    transition: 500ms;
-			    border-radius: 3px 0px 0px 3px;
-			}
-
-			.ChevronRight_TDIV:hover{
-				background-color: rgba(0,0,0,0.7);
-				transition: 500ms;
-			}
-
-			.Third_Title{
-				border-radius: 2px;
-			    font-size: 1.3vw;
-			    font-family: "Quattrocento";
-			    font-weight: lighter;
-			    background-color: rgba(0,0,0,1);
-			    width: 97.5%;
-			    height: 100%;
-			    color: rgba(255,255,255,1);
-			    top: 0%;
-			    left: 2%;
-			    text-align: left;
-			    vertical-align: center;
-			    position: absolute;
-			    display: inline-block;
-			    z-index: 100;
-			    transition: 500ms;
-			}
-
-			.ThirdTitle_TextSpan{
-				position: relative;
-			    display: inline-block;
-			    padding: 4%;
+			#BB{
+				top:28%;
 			}
 
 
-			.ThirdLogo_Title{
-			    font-size: 1.2vw;
-			    font-family: "Cinzel";
-			    background-color: rgba(0,0,0,1);
-			    letter-spacing: 1.2vw;
-			    width: 100%;
-			    word-spacing: 1vw;
-			    height: 3.5%;
-			    color: white;
-			    top: 64%;
-			    text-align: center;
-			    padding-bottom: 0%;
-			    padding-top: 0.7%;
-			    position: absolute;
-			    display: inline-block;
-			    z-index: 100;
-			    transition: 500ms;
+			#TB1,#TB2,#TB3,#TB4{
+				color: white;
+			}
+
+			#TBox1 {
+				color: white;
+				left: -55%;
+			}
+
+			#TBox2 {
+				color: white;
+				bottom: -145%;
+			}
+
+			#TBox3 {
+				color: white;
+				right: -50%;
+			}
+
+			#flagIcon, #editIcon, #crosshairIcon {
+				transform: scale(2,2);
 			}
 
 
 
-			/*Footer stuff*/
+		/*Footer stuff*/
 			.Footer{
-				top: 4%;
+				top: 2%;
 			    width: 100%;
 			    height: 20%;
 			    position: relative;
 			    background-color: black;
-			    overflow: hidden;
 			}
 
 			.TradeMark{
@@ -1279,7 +1218,7 @@
 
         <div class="WhiteTextBanner">
         	
-        	<div class="TopBox">
+        	<div class="TopBox" id="WTB">
         		<div class="TopBoxLine1"><span>enjoy the best</span></div>
         		<div class="TopBoxLine2"><span>Of Our Themes</span></div>
         		<div class="TopBoxLine3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
@@ -1340,30 +1279,66 @@
 
         </div>
 
+        <div class="SecInvisibleBanner">
+            <div class="SecInvisible_Title"><span id="SecInvisible_TitleSpan_ID">EduTech</span></div>
+            <div class="SecInvisibleLogo_Title"><span id="SecInvisibleLogo_TitleSpan_ID">Bringing Education to the 21st century in Bangladesh</span></div>
+        </div>
+
         <div class="ThirdBanner">
 
-			<div class="ChevronPlusThirdTitleCont">
-		    		<div class="ChevronRight_TDIV"><i class="fas fa-chevron-right" id="ChevronRight_ThirdBanner"></i></div>
+        	<div class="TopBox" id="TB">
+        		<div class="TopBoxLine1" id="TB1"><span>enjoy the best</span></div>
+        		<div class="TopBoxLine2" id="TB2"><span>Of Our Themes</span></div>
+        		<div class="TopBoxLine3" id="TB3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
+        		<div class="TopBoxLine4" id="TB4"><span>Small batch farm-to-table microdosing pour-over trust fund.</span></div>
+        	</div>
 
-		            <div class="Third_Title">
+        	<div class="BottomBox" id="BB">
+        		
+        		<div class="InnerBox" id="TBox1">
+        			<div class="InnerBoxIcon"><i class="far fa-flag" id="flagIcon"></i></i></div>
+        			<div class="InnerBoxHeading">Real-Time Sharing</div>
+        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
 
-		            	<span class="ThirdTitle_TextSpan"><b><i>How annoying is it to come home from your schools and then spend the rest of the day travelling ridiculous distances in ridculous traffics, to and from coachings?</i></b>
+        		</div>
 
-		            	<br>
-		            	<br>
 
-		            	We are sympathetic and truly understanding of your plight here at Edutech, since the founding members had to go through something very similar. If only someone had the means and the technology to come up with something to improve this situation. 🤔 
+        		<div class="InnerBox" id="TBox2">
+        			<div class="InnerBoxIcon"><i class="far fa-edit" id="editIcon"></i></div>
+        			<div class="InnerBoxHeading">Smart Theme Options</div>
+        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
+        		</div>
 
-		            	<br>
-		            	<br>
 
-		            	Well there is because now you can chill in the comforts of your own home and tune in to your coaching classes <b>LIVE</b> and get educated in style. So whether you couldn't make it to class or just couldn't get into the class batch, we've got you covered for a modest fee. If this isn't your cup of tea then you are more than welcome to use our suite of Digital Education Services <i>100%</i> free! Technology is supposed to make everything better. Join us now to make sure it starts taking a crack at Education too.</span>
-
-		            </div>
+        		<div class="InnerBox" id="TBox3">
+        			<div class="InnerBoxIcon"><i class="fas fa-crosshairs" id="crosshairIcon"></i></div>
+        			<div class="InnerBoxHeading">Useful Addons</div>
+        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
+        		</div>
 
         	</div>
 
-        	<div class="ThirdLogo_Title">Learn From the comforts of your own home</div>
+        </div>
+
+
+        <div class="Footer">
+            <div class="TradeMark">
+                &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram
+            </div>
+
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-facebook-square"></i>
+            <i class="fa fa-youtube-play"></i>
+            <i class="fa fa-reddit-alien"></i>
+
+            <div class="Forums_">Forum</div>
+            <div class=divider1></div>
+            <div class="Contact_">Contact</div>
+            <div class=divider2></div>
+            <div class="AboutUs_">About us</div>
+            <div class=divider3></div>
+            <div class="Support_">Support</div>
+
         </div>
 
 		<div class="hidden">
@@ -1387,26 +1362,6 @@
 				//--><!]]>
 			</script>
 		</div>
-
-        <div class="Footer">
-            <div class="TradeMark">
-                &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram
-            </div>
-
-            <i class="fa fa-twitter"></i>
-            <i class="fa fa-facebook-square"></i>
-            <i class="fa fa-youtube-play"></i>
-            <i class="fa fa-reddit-alien"></i>
-
-            <div class="Forums_">Forum</div>
-            <div class=divider1></div>
-            <div class="Contact_">Contact</div>
-            <div class=divider2></div>
-            <div class="AboutUs_">About us</div>
-            <div class=divider3></div>
-            <div class="Support_">Support</div>
-
-        </div>
 
         <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 		<script>
@@ -1596,14 +1551,13 @@
 
 		<script>
 
-			var ScrollBooleanSecondBanner = true;
 			var ScrollBooleanThirdBanner = true;
 			var IsInvisBannerTextShown = false;
 			var IsWhiteTextBannerShown = false;
 			var IsSecondBannerTextShown = false;
+			var IsSecInvisBannerTextShown = false;
+			var IsThirdBannerTextShown = false;
 
-			var IsSecondBannerTextVisible_Boolean = false;
-			var IsThirdBannerTextVisible_Boolean = false;
 
 //Moveing signup box up and down
 			function MoveSignUpBoxUp() {
@@ -1719,28 +1673,6 @@
 			        });
 			}
 
-//Slide the second banner right left functions
-			function SlideText_SecondBanner_Right() {
-				$( ".ChevronPlusSecondTitleCont" ).animate({
-			        left: "-1%"
-			    }, 600, function() {
-			        // Animation complete.
-			        console.log('animation complete');
-			        $( "#ChevronRight_SecondBanner" ).css("transform","rotate(180deg)");
-			    });
-			    IsSecondBannerTextVisible_Boolean = true;
-			}
-
-			function SlideText_SecondBanner_Left() {
-				$( ".ChevronPlusSecondTitleCont" ).animate({
-			        left: "-53.8%"
-			    }, 600, function() {
-			        // Animation complete.
-			        console.log('animation complete');
-			        $( "#ChevronRight_SecondBanner" ).css("transform","rotate(360deg)");
-			    });
-			    IsSecondBannerTextVisible_Boolean = false;
-			}
 
 //Slide the third banner left right functions
 			function SlideText_ThirdBanner_Right() {
@@ -1846,10 +1778,44 @@
 
 			}
 
+			function AnimateSecInvisBannerTitle(){
+				$( ".SecInvisible_Title" ).animate({
+			        opacity: "1"
+			    }, 200, function() {
+			        // Animation complete.
+			        console.log('animation complete now animating inner span');
+
+					$( "#SecInvisible_TitleSpan_ID" ).animate({
+				        top: "20%",
+				        opacity: "1"
+				    }, 800, function() {
+				        // Animation complete.
+				        console.log('animation complete');
+
+				        $( ".SecInvisibleLogo_Title" ).animate({
+				        	opacity: "1"
+				    		}, 200, function() {
+				        	// Animation complete.
+				        	console.log('animation complete');
+
+				        		$( "#SecInvisibleLogo_TitleSpan_ID" ).animate({
+				        			opacity: "1",
+				        			top: "30%"
+				    				}, 800, function() {
+				        			// Animation complete.
+				        			console.log('animation complete');
+
+				    		});
+
+				    	});
+				    });
+			    });
+			}
+
 
 			function AnimateWhiteTextBox(){
 
-				$( ".TopBox" ).animate({
+				$( "#WTB" ).animate({
 			        opacity: "1",
 			        top: "7%"
 			    }, 1100, function() {
@@ -1900,6 +1866,46 @@
 			     });
 			}
 
+			function AnimateThirdBannerTitle(){
+				$( "#TB" ).animate({
+			        opacity: "1",
+			        top: "7%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete now animating inner span');
+
+			     });
+
+
+				$( "#TBox1" ).animate({
+			        opacity: "1",
+			        left: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete now animating inner span');
+
+			     });
+
+
+				$( "#TBox2" ).animate({
+			        opacity: "1",
+			        bottom: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete now animating inner span');
+
+			     });
+
+				$( "#TBox3" ).animate({
+			        opacity: "1",
+			        right: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete now animating inner span');
+
+			     });
+			}
+
 
 
 //Jquery Start
@@ -1934,18 +1940,6 @@
 
 			});
 
-			//SecondTitleInfo Stuff
-			        $(".ChevronRight_SDIV").click(function() {
-
-			        	if (IsSecondBannerTextVisible_Boolean==true){
-			        		SlideText_SecondBanner_Left();
-			        	}
-
-			        	else if (IsSecondBannerTextVisible_Boolean==false){
-			        		 SlideText_SecondBanner_Right();
-			        	}
-
-			        });
 
 			//ThirdTitleInfo Stuff
 			        $(".ChevronRight_TDIV").click(function() {
@@ -1966,13 +1960,7 @@
 
 					    console.log(scroll);
 
-					    if (scroll>400 && ScrollBooleanSecondBanner) {
-			        		console.log('Move everything right..');
-							SlideText_SecondBanner_Right();
-			        		ScrollBooleanSecondBanner = false;
-					    }
-
-					   	else if (scroll>500 && !IsWhiteTextBannerShown) {
+					   	if (scroll>500 && !IsWhiteTextBannerShown) {
 			        		console.log('showing white banner text..');
 							AnimateWhiteTextBox();
 
@@ -1996,6 +1984,20 @@
 							AnimateSecondBannerTitle();
 
 			        		IsSecondBannerTextShown = true;
+					    }
+
+					   	else if (scroll>2650 && !IsSecInvisBannerTextShown) {
+			        		console.log('showing second banner text..');
+							AnimateSecInvisBannerTitle();
+
+			        		IsSecInvisBannerTextShown = true;
+					    }
+
+					   	else if (scroll>3500 && !IsThirdBannerTextShown) {
+			        		console.log('showing second banner text..');
+							AnimateThirdBannerTitle();
+
+			        		IsThirdBannerTextShown = true;
 					    }
 					    // Do something
 					});
