@@ -266,25 +266,26 @@
 		/*scrollbar stuff*/
 
 			::-webkit-scrollbar {
-			    width: 0.3%;
+			    width: 0.5%;
 			    height: 70%;
 			    margin: 0 auto;
-				background-color: rgba(255, 0, 0, 0.1);
+				background-color: rgba(45, 45, 45, 1);
 
 			}
 			::-webkit-scrollbar-thumb {
 			    height: 6px;
 			    border: 1px solid rgba(0, 0, 0, 0.9);
 			    background-clip: padding-box;
-			    -webkit-border-radius: 15px;
+			    -webkit-border-radius: 5px;
 			    background-color: rgba(0, 0, 0, 0.5);
 			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
 			}
 
 			::-webkit-scrollbar-thumb:hover {
 			    height: 6px;
+			    background-color: rgba(0, 0, 0, 1);
 			    background-clip: padding-box;
-			    -webkit-border-radius: 15px;
+			    -webkit-border-radius: 5px;
 			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
 			}
 
@@ -1001,152 +1002,146 @@
 
 		/*Footer stuff*/
 			.Footer{
-				top: 2%;
+				margin-top: -1%;
 			    width: 100%;
-			    height: 20%;
+			    height: 75%;
 			    position: relative;
-			    background-color: black;
+			    background-image: url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/footer-bg.jpg);
+			    background-position: center;
+			    background-repeat: no-repeat;
+			    display: inline-block;
+			}
+
+			.FootLeftBox{
+				width: 50%;
+				height: 80%;
+				float: left;
+				position: relative;
+				display: inline-block;
+			}
+
+			.FootRightBox{
+				padding-left:5%;
+				width: 45%;
+				height: 80%;
+				float: left;
+				position: relative;
+				display: inline-block;
+			}
+
+			.FootBottomBox{
+				margin-left: 10%;
+				width: 80%;
+				height: 19%;
+				border-top: 0.01vw solid gray;
+				position: relative;
+				display: inline-block;
+			}
+
+			.FootBottomBoxContent{
+				margin-top: 2%;
+				width: 16%;
+				position: relative;
+				float: left;
+				text-align: left;
+				display: inline-block;
+				color: silver;
+				font-family: "Quattrocento";
+			    letter-spacing: 1%;
+			    font-weight: 700;
+			    opacity: 0.6;
+			    font-style: normal;
+			    opacity: 1;
+			    font-size: 0.9em;
+			}
+
+			.FootIconBarCONT{
+			    padding-left: 20%;
+			    width: 60%;
+			    display: inline-block;
+			    position: relative;
+			    height: 8%;
+			    margin-top: 15%;
+			}
+
+			.FootIcon{
+				cursor: pointer;
+				color: gray;
+				width: 16%;
+				position: relative;
+				float: left;
+				display: inline-block;
+				text-align: center;
+				transition: 200ms;
+			}
+
+			.FootIcon:hover {
+				color: white;
+				transition: 200ms;
+			}
+
+			.fab{
+				transform: scale(1.6,1.6);
 			}
 
 			.TradeMark{
-			    font-size: 1vw;
-			    top: 81%;
-			    left: 34%;
-			    color: white;
-			    font-family: "Cinzel";
-			    display: inline-block;
-			    position: relative;
+				margin-top: 0%;
+			    padding-left: 22%;
+			    width: 60%;
+				position: relative;
+				float: left;
+				text-align: left;
+				display: inline-block;
+				color: gray;
+				font-family: "Quattrocento";
+			    letter-spacing: 1%;
+			    line-height: 150%;
+			    font-weight: 700;
+			    opacity: 1;
+			    font-style: normal;
+			    opacity: 1;
+			    font-size: 0.9em;
 			}
 
-			.fa-twitter {
-				width: 1%;
-			    height: 11%;
-			    top: 38%;
-			    left: 83%;
-			    transform: scale(2,2);
-			    color: white;
-			    position: absolute;
-			    text-align: center;
+			.FootRightBoxCol{
+				width: 25%;
+				position: relative;
+				display: inline-block;
+				margin-left: 2%;
+				float: left;
+				padding-top: 13%;
 			}
 
-			.fa-facebook-square {
-				width: 1%;
-			    height: 11%;
-			    top: 38%;
-			    left: 87%;
-			    transform: scale(2,2);
-			    color: white;
-			    position: absolute;
-			    text-align: center;
-			}
-
-			.fa-youtube-play{
-				width: 1%;
-			    height: 11%;
-			    top: 38%;
-			    left: 91%;
-			    transform: scale(2,2);
-			    color: white;
-			    position: absolute;
-			    text-align: center;
-			}
-
-			.fa-reddit-alien {
-				width: 1%;
-			    height: 11%;
-			    top: 38%;
-			    left: 95%;
-			    transform: scale(2,2);
-			    color: white;
-			    position: absolute;
-			    text-align: center;
-			}
-
-			.fa-twitter:hover ,.fa-facebook-square:hover,  .fa-youtube-play:hover, .fa-reddit-alien:hover {
-				cursor: pointer;
+			#ColHeading{
 				color: gray;
 			}
 
-			.Forums_{
-				font-size: 1vw;
-			    top: 40%;
-			    left: 15.1%;
-			    color: white;
-			    font-family: "Cinzel";
-			    display: inline-block;
-			    position: absolute;
-			    transition: 200ms;
-			}
-
-			.divider1{
-			    top: 40%;
-			    left: 7.5%;
-			    width: 0.1%;
-			    height: 15%;
-			    background-color: white;
-			    display: inline-block;
-			    position: absolute;
-			}
-
-			.Contact_{
-			    font-size: 1vw;
-			    top: 41%;
-			    left: 2%;
-			    color: white;
-			    font-family: "Cinzel";
-			    display: inline-block;
-			    position: absolute;
-			    transition: 200ms;
-			}
-
-			.divider2{
-			    top: 40%;
-			    left: 14.2%;
-			    width: 0.1%;
-			    height: 15%;
-			    background-color: white;
-			    display: inline-block;
-			    position: absolute;
-			}
-
-			.AboutUs_{
-			    font-size: 1vw;
-			    top: 40%;
-			    left: 8.5%;
-			    color: white;
-			    font-family: "Cinzel";
-			    display: inline-block;
-			    position: absolute;
-			    transition: 200ms;
-			}
-
-			.divider3{
-			    top: 40%;
-			    left: 19.5%;
-			    width: 0.1%;
-			    height: 15%;
-			    background-color: white;
-			    display: inline-block;
-			    position: absolute;
-			}
-
-			.Support_{
-			    font-size: 1vw;
-			    top: 40%;
-			    left: 20.5%;
-			    color: white;
-			    font-family: "Cinzel";
-			    display: inline-block;
-			    position: absolute;
-			    transition: 200ms;
-			}
-
-			.Support_:hover, .Forums_:hover, .AboutUs_:hover, .Contact_:hover{
+			.FootColContent{
 				cursor: pointer;
-				transition: 200ms;
-				color: red;
+				margin-top: 11%;
+				margin-bottom: 2%;
+				width: 100%;
+				position: relative;
+				float: left;
+				text-align: left;
+				display: inline-block;
+				color: white;
+				font-family: "Quattrocento";
+			    font-weight: 700;
+			    opacity: 1;
+			    font-style: normal;
+			    opacity: 1;
+			    font-size: 0.9em;
+			    transition: 200ms;
 			}
 
+			.FootColContent:hover{
+				color: gray;
+				transition: 200ms;
+			}
+
+
+/*		Signup Popup stuff*/
 			.SignUp_Successful{
 				padding: 1%;
 			    padding-left: 2.5%;
@@ -1434,22 +1429,71 @@
 
 
         <div class="Footer">
-            <div class="TradeMark">
-                &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram
-            </div>
+        	<div class="FootLeftBox">
 
-            <i class="fa fa-twitter"></i>
-            <i class="fa fa-facebook-square"></i>
-            <i class="fa fa-youtube-play"></i>
-            <i class="fa fa-reddit-alien"></i>
+        		<div class="FootIconBarCONT">
+        			<div class="FootIcon"><i class="fab fa-linkedin-in"></i></div>
+        			<div class="FootIcon"><i class="fab fa-twitter"></i></div>
+        			<div class="FootIcon"><i class="fab fa-facebook"></i></div>
+        			<div class="FootIcon"><i class="fab fa-youtube"></i></div>
+        			<div class="FootIcon"><i class="fab fa-reddit"></i></div>
+        			<div class="FootIcon"><i class="fab fa-instagram"></i></div>
+        		</div>
 
-            <div class="Forums_">Forum</div>
-            <div class=divider1></div>
-            <div class="Contact_">Contact</div>
-            <div class=divider2></div>
-            <div class="AboutUs_">About us</div>
-            <div class=divider3></div>
-            <div class="Support_">Support</div>
+        		<div class="TradeMark"><span><i> &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram. This better be the bestest site in the whole wide world.</i></span></div>
+
+        	</div>
+
+        	<div class="FootRightBox">
+        		
+        		<div class="FootRightBoxCol">
+        			<div class="FootColContent" id="ColHeading">ABOUT</div>
+        			<div class="FootColContent">About Us</div>
+        			<div class="FootColContent">How it Works</div>
+        			<div class="FootColContent">Team</div>
+        			<div class="FootColContent">Mobile App</div>
+        			<div class="FootColContent">Desktop App</div>
+        			<div class="FootColContent">Security</div>
+        			<div class="FootColContent">Report Bug</div>
+        			<div class="FootColContent">Pricing</div>
+        			<div class="FootColContent">Investors</div>
+        		</div>
+
+        		<div class="FootRightBoxCol">
+        			<div class="FootColContent" id="ColHeading">PRESS</div>
+        			<div class="FootColContent">In the News</div>
+        			<div class="FootColContent">Press Releases</div>
+        			<div class="FootColContent">Awards</div>
+        			<div class="FootColContent">Testimonials</div>
+        			<div class="FootColContent">Partners</div>
+        			
+        		</div>
+
+        		<div class="FootRightBoxCol">
+         			<div class="FootColContent" id="ColHeading">GET IN TOUCH</div>
+        			<div class="FootColContent">Support</div>
+        			<div class="FootColContent">Advertise with us</div>
+        			<div class="FootColContent">Careers</div>
+        			<div class="FootColContent">Forum</div>
+        			<div class="FootColContent">Affiliates</div>
+        			<div class="FootColContent">Blog</div>
+        			<div class="FootColContent">Contact Us</div>
+        			
+        		</div>
+
+
+        	</div>
+
+        	<div class="FootBottomBox">
+        		
+        		<div class="FootBottomBoxContent"><span>PRIVACY POLICY</span></div>
+        		<div class="FootBottomBoxContent"><span>TERMS</span></div>
+        		<div class="FootBottomBoxContent"><span>COPYRIGHT POLICY</span></div>
+        		<div class="FootBottomBoxContent"><span>CODE OF CONDUCT</span></div>
+        		<div class="FootBottomBoxContent"><span>COOKIES</span></div>
+        		<div class="FootBottomBoxContent"><span>EDUTECH</span></div>
+
+        	</div>
 
         </div>
 
