@@ -1140,6 +1140,16 @@
 				transition: 200ms;
 			}
 
+			.BottomSpacer{
+				width: 100%;
+				position: relative;
+				background-color: black;
+				height: 5%;
+				top: 2%;
+				padding-bottom: 1%;
+				display: inline-block;
+			}
+
 
 /*		Signup Popup stuff*/
 			.SignUp_Successful{
@@ -1340,13 +1350,6 @@
         </div>
 
 
-        <div class="InvisibleBanner">
-            <div class="Invisible_Title"><span id="Invisible_TitleSpan_ID">EduTech</span></div>
-            <div class="InvisibleLogo_Title"><span id="InvisibleLogo_TitleSpan_ID">The first General Purpose Education Portal in Bangladesh</span></div>
-        </div>
-
-
-
         <div class="SecondBanner">
 
         	<div class="LeftPictureBox"></div>
@@ -1364,9 +1367,9 @@
 
         </div>
 
-        <div class="SecInvisibleBanner">
-            <div class="SecInvisible_Title"><span id="SecInvisible_TitleSpan_ID">EduTech</span></div>
-            <div class="SecInvisibleLogo_Title"><span id="SecInvisibleLogo_TitleSpan_ID">Bringing Education to the 21st century in Bangladesh</span></div>
+        <div class="InvisibleBanner">
+            <div class="Invisible_Title"><span id="Invisible_TitleSpan_ID">EduTech</span></div>
+            <div class="InvisibleLogo_Title"><span id="InvisibleLogo_TitleSpan_ID">The first General Purpose Education Portal in Bangladesh</span></div>
         </div>
 
         <div class="ThirdBanner">
@@ -1496,6 +1499,8 @@
         	</div>
 
         </div>
+
+        <div class="BottomSpacer"></div>
 
 		<div class="hidden">
 			<script type="text/javascript">
@@ -2110,12 +2115,31 @@
 
 			        });
 
+					$(window).on('scroll', function () {
+					    var pixs = $(document).scrollTop()
+					    pixs = pixs / 50;
+					    $(".slideshow").css({"-webkit-filter": "blur("+pixs+"px)" })     
+					});
+
 			//Scrolling unfurl functions
 					$(window).scroll(function (event) {
+
 					    var scroll = $(window).scrollTop();
 
 					    console.log(scroll);
 
+
+					    //turn of the slideshow if scrolled past to save memory and improve performance
+					    if (scroll>4000 && scroll<5000){
+					    	$('.slideshow').css('opacity', '0');
+					    }
+					    else {
+					    	$('.slideshow').css('opacity', '1');
+					    }
+
+
+
+					    //Scroll functions to autoamtically animate and open text boxes 
 					   	if (scroll>450 && !IsWhiteTextBannerShown) {
 			        		console.log('showing white banner text..');
 							AnimateWhiteTextBox();
@@ -2123,19 +2147,14 @@
 			        		IsWhiteTextBannerShown = true;
 					    }
 
-					   	else if (scroll>1000 && ScrollBooleanThirdBanner) {
-			        		console.log('Move everything left..');
-							SlideText_ThirdBanner_Left();
-			        		ScrollBooleanThirdBanner = false;
-					    }
-					   	else if (scroll>1300 && !IsInvisBannerTextShown) {
+					   	else if (scroll>1700 && !IsInvisBannerTextShown) {
 			        		console.log('showing invis banner text..');
 							AnimateInvisBannerTitle();
 
 			        		IsInvisBannerTextShown = true;
 					    }
 
-					   	else if (scroll>1650 && !IsSecondBannerTextShown) {
+					   	else if (scroll>1100 && !IsSecondBannerTextShown) {
 			        		console.log('showing second banner text..');
 							AnimateSecondBannerTitle();
 
