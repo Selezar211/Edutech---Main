@@ -1,0 +1,42 @@
+		/*Third banner stuff*/
+
+			.ThirdBanner {
+				width: 100%;
+				font-family: "Raleway";
+			    height: 95%;
+			    position: relative;
+			    top: -1%;
+			    background:   url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/corporate-man-tablet.jpg);
+			    background-size: 100% 100%;
+			    background-position: center;
+			    background-repeat: no-repeat;
+			    overflow: hidden;
+			}
+
+			#BB{
+				top:28%;
+			}
+
+
+			#TB1,#TB2,#TB3,#TB4{
+				color: white;
+			}
+
+			#TBox1 {
+				color: white;
+				left: -55%;
+			}
+
+			#TBox2 {
+				color: white;
+				bottom: -145%;
+			}
+
+			#TBox3 {
+				color: white;
+				right: -50%;
+			}
+
+			#flagIcon, #editIcon, #crosshairIcon {
+				transform: scale(2,2);
+			}

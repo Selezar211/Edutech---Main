@@ -1,0 +1,74 @@
+/*			line code banner stuff*/
+
+			.LinesCodeBanner{
+				width: 100%;
+				font-family: "Raleway";
+			    height: 45%;
+			    position: relative;
+			    display: inline-block;
+			    top: 2%;
+			    background: white;
+			}
+
+			.LineBox{
+				width: 33%;
+				height: 100%;
+				position: relative;
+				display: inline-block;
+				float: left;
+				color: black;
+			}
+
+			.LineBoxL1{
+				margin-top: 25%;
+				width: 100%;
+				position: relative;
+				text-align: center;
+				display: inline-block;
+				line-height: 150%;
+			    letter-spacing: 1%;
+			    font-weight: 100;
+			    font-style: normal;
+			    opacity: 0.8;
+			    font-size: 0.8em;
+			}
+
+			.LineBoxL2{
+				font-family: "Quattrocento";
+				width: 100%;
+				position: relative;
+				text-align: center;
+				display: inline-block;
+			    letter-spacing: 3%;
+			    font-weight: 700;
+			    font-style: bolder;
+			    font-size: 4em;
+			}
+
+			.LineBoxL3{
+				width: 100%;
+				position: relative;
+				text-align: center;
+				display: inline-block;
+				line-height: 150%;
+			    letter-spacing: 1%;
+			    font-weight: 400;
+			    font-style: normal;
+			    opacity: 0.8;
+			    font-size: 0.8em;
+			}
+
+			.LineBoxL4{
+				margin-top: 1%;
+				padding-left: 10%;
+				width: 80%;
+				position: relative;
+				text-align: center;
+				display: inline-block;
+				line-height: 150%;
+			    letter-spacing: 1%;
+			    font-weight: 700;
+			    font-style: normal;
+			    opacity: 0.8;
+			    font-size: 0.8em;
+			}

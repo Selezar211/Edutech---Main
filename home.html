@@ -10,6 +10,11 @@
         <link rel="stylesheet" href="static/CSS/homeFooter.css">
         <link rel="stylesheet" href="static/CSS/homeSignUp.css">
         <link rel="stylesheet" href="static/CSS/loading.css">
+        <link rel="stylesheet" href="static/CSS/homeClientBanner.css">
+        <link rel="stylesheet" href="static/CSS/homeLinesCodeBanner.css">
+        <link rel="stylesheet" href="static/CSS/homeSecondBanner.css">
+        <link rel="stylesheet" href="static/CSS/homeThirdBanner.css">
+        <link rel="stylesheet" href="static/CSS/homeWhiteTextBanner.css">
 
 		<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
 		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
@@ -46,6 +51,13 @@
 				margin: 0;
 			    height: 100%;
 			    background-color: black;
+			}
+
+			.ContentWrapper{
+				width: 100%;
+				height: 100%;
+				position: relative;
+				-webkit-filter: blur(0px);
 			}
 
 
@@ -144,435 +156,7 @@
 			    left: 16%;
 			}
 
-
-/*		white text banner stuff*/
-			.WhiteTextBanner {
-				overflow: hidden;
-				width: 100%;
-			    height: 80%;
-			    position: relative;
-			    top: 2%;
-			    background-color: white;
-			}
-
-			.TopBox{
-				opacity: 0;
-				width: 100%;
-				display: inline-block;
-				height: 30%;
-				top: -25%;
-				position: relative;
-			}
-
-			.TopBoxLine1{
-				width:100%;
-				position: relative;
-				text-align: center;
-				display: inline-block;
-				color: black;
-				font-family: "Quattrocento";
-				text-transform: uppercase;
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    font-style: normal;
-			    font-size: 0.9em;
-			}
-
-			.TopBoxLine2{
-				margin-top: 2%;
-				margin-bottom: 3%;
-				width:100%;
-				position: relative;
-				text-align: center;
-				display: inline-block;
-				color: black;
-				font-family: "Quattrocento";
-			    letter-spacing: 3%;
-			    font-weight: 700;
-			    font-style: normal;
-			    font-size: 3em;
-			}
-
-			.TopBoxLine3, .TopBoxLine4{
-				width:100%;
-				position: relative;
-				text-align: center;
-				display: inline-block;
-				color: black;
-				font-family: "Quattrocento";
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    font-style: normal;
-			    font-size: 0.9em;
-			}
-
-			.BottomBox{
-				padding-left: 9.5%;
-				width: 100%;
-				display: inline-block;
-				height: 45%;
-				top: 20%;
-				position: relative;
-			}
-
-			.InnerBox{
-				color: black;
-				opacity: 0;
-				margin-right: 5%;
-				width:25%;
-				height: 100%;
-				display: inline-block;
-				position: relative;
-
-			}
-
-			#Box1{
-				left: -55%;
-			}
-
-			#Box2{
-				bottom: -145%;
-			}
-
-			#Box3 {
-				right: -50%;
-			}
-
-			.InnerBoxIcon {
-				width: 100%%;
-			    text-align: left;
-			    display: inline-block;
-			    margin-bottom: 2%;
-			    padding-top: 7%;
-			    padding-left: 4%;
-			    position: relative;
-			}
-
-			#heartIcon, #fireIcon,#thumbIcon{
-				transform: scale(2,2);
-
-			}
-
-			.InnerBoxHeading{
-				width:100%;
-				position: relative;
-				text-align: left;
-				display: inline-block;
-				font-family: "Quattrocento";
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    font-style: normal;
-			    margin-top: 6%;
-			    margin-bottom: 4%;
-			    opacity: 0.8;
-			    font-size: 1.3em;
-			}
-
-			.InnerBoxInfo {
-				width:100%;
-				position: relative;
-				text-align: left;
-				display: inline-block;
-				font-family: "Quattrocento";
-				line-height: 150%;
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    font-style: normal;
-			    opacity: 0.8;
-			    font-size: 1.1em;
-			}
-
-			.InvisibleBanner, .SecInvisibleBanner{
-				width: 100%;
-			    height: 95%;
-			    position: relative;
-			    top: 2%;
-			}
-
-
-
-		/*Second banner stuff*/
-
-			.SecondBanner {
-				color: white;
-				font-family: 'Raleway', sans-serif;
-				font-weight : 100;
-				width: 100%;
-			    height: 80%;
-			    position: relative;
-			    top: 2%;
-			    background-color: rgb(35,35,35);
-			}
-
-			.LeftPictureBox{
-				background-image: url(https://i.imgur.com/l9XNRrV.jpg);
-				background-size: 100% 120%;
-			    background-position: 0% 20%;
-			    background-repeat: no-repeat;
-				width:50%;
-				height: 100%;
-				position: relative;
-				display: inline-block;
-				float: left;
-			}
-
-			.RightTextBox{
-				width:50%;
-				height: 100%;
-				position: relative;
-				display: inline-block;
-				float: left;
-			}
-
-			.Wrapper{
-				opacity: 0;
-				width: 100%;
-				height: 100%;
-				right: -100%;
-				position: absolute;
-				display: inline-block;
-			}
-
-			.HeadingSecondBanner{
-				margin-left: 20%;
-				margin-right: 20%;
-				margin-top: 20%;
-				margin-bottom: 5%;
-				position: relative;
-				text-align: left;
-				display: inline-block;
-				color: white;
-			    letter-spacing: 3%;
-			    font-weight: 100;
-			    font-style: normal;
-			    font-size: 3em;
-			}
-
-			.SecondBannerInfo{
-				margin-left: 20%;
-				margin-right: 20%;
-				margin-top: 3%;
-				margin-bottom: 5%;
-				position: relative;
-				text-align: left;
-				display: inline-block;
-				color: white;
-				line-height: 150%;
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    font-style: normal;
-			    opacity: 0.8;
-			    font-size: 1em;
-			}
-
-/*			line code banner stuff*/
-
-			.LinesCodeBanner{
-				width: 100%;
-				font-family: "Raleway";
-			    height: 45%;
-			    position: relative;
-			    display: inline-block;
-			    top: 2%;
-			    background: white;
-			}
-
-			.LineBox{
-				width: 33%;
-				height: 100%;
-				position: relative;
-				display: inline-block;
-				float: left;
-				color: black;
-			}
-
-			.LineBoxL1{
-				margin-top: 25%;
-				width: 100%;
-				position: relative;
-				text-align: center;
-				display: inline-block;
-				line-height: 150%;
-			    letter-spacing: 1%;
-			    font-weight: 100;
-			    font-style: normal;
-			    opacity: 0.8;
-			    font-size: 0.8em;
-			}
-
-			.LineBoxL2{
-				font-family: "Quattrocento";
-				width: 100%;
-				position: relative;
-				text-align: center;
-				display: inline-block;
-			    letter-spacing: 3%;
-			    font-weight: 700;
-			    font-style: bolder;
-			    font-size: 4em;
-			}
-
-			.LineBoxL3{
-				width: 100%;
-				position: relative;
-				text-align: center;
-				display: inline-block;
-				line-height: 150%;
-			    letter-spacing: 1%;
-			    font-weight: 400;
-			    font-style: normal;
-			    opacity: 0.8;
-			    font-size: 0.8em;
-			}
-
-			.LineBoxL4{
-				margin-top: 1%;
-				padding-left: 10%;
-				width: 80%;
-				position: relative;
-				text-align: center;
-				display: inline-block;
-				line-height: 150%;
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    font-style: normal;
-			    opacity: 0.8;
-			    font-size: 0.8em;
-			}
-
-		/*Third banner stuff*/
-
-			.ThirdBanner {
-				width: 100%;
-				font-family: "Raleway";
-			    height: 95%;
-			    position: relative;
-			    top: -1%;
-			    background:   url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/corporate-man-tablet.jpg);
-			    background-size: 100% 100%;
-			    background-position: center;
-			    background-repeat: no-repeat;
-			    overflow: hidden;
-			}
-
-			#BB{
-				top:28%;
-			}
-
-
-			#TB1,#TB2,#TB3,#TB4{
-				color: white;
-			}
-
-			#TBox1 {
-				color: white;
-				left: -55%;
-			}
-
-			#TBox2 {
-				color: white;
-				bottom: -145%;
-			}
-
-			#TBox3 {
-				color: white;
-				right: -50%;
-			}
-
-			#flagIcon, #editIcon, #crosshairIcon {
-				transform: scale(2,2);
-			}
-
-
-/*			client banner stuff*/
-			.ClientBanner{
-				width: 100%;
-			    height: 45%;
-			    position: relative;
-			    display: inline-block;
-			    margin-top: -1%;
-			    background-color: white;
-			}
-
-			.ClientLeftBox{
-				width: 50%;
-				height: 100%;
-				position: relative;
-				display: inline-block;
-				float: left;
-			}
-
-			.ClientLBLine1{
-				padding-left: 20%;
-				margin-top: 12%;
-				position: relative;
-				text-align: left;
-				display: inline-block;
-				color: black;
-				line-height: 150%;
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    font-style: normal;
-			    opacity: 0.6;
-			    font-size: 0.8em;
-			}
-
-			.ClientLBLine2{
-				margin-top:1%;
-				padding-left: 20%;
-				position: relative;
-				text-align: left;
-				display: inline-block;
-				color: black;
-			    letter-spacing: 3%;
-			    font-weight: 100;
-			    opacity: 0.7
-			    font-style: normal;
-			    font-size: 3em;
-			}
-
-			.ClientLBLine3{
-				margin-top:2%;
-				padding-left: 20%;
-				position: relative;
-				text-align: left;
-				display: inline-block;
-				color: black;
-				line-height: 150%;
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    opacity: 0.6;
-			    font-style: normal;
-			    opacity: 0.8;
-			    font-size: 0.8em;
-			}
-
-			.ClientRightBox{
-				width: 50%;
-				height: 100%;
-				position: relative;
-				display: inline-block;
-				float: left;
-			}
-
-			.ClientsWrapper{
-				width: 85%;
-				height: 50%;
-				display: inline-block;
-				position: relative;
-				top: 20%;
-			}
-
-			.ClientIcon{
-				display: inline-block;
-				width: 33%;
-				height: 50%;
-				position: relative;
-				float: left;
-			}
-
-
-/*		Signup Popup stuff*/
+			/*		Signup Popup stuff*/
 			.SignUp_Successful{
 				padding: 1%;
 			    padding-left: 2.5%;
@@ -677,278 +261,294 @@
 
         <div class="SIGNUP_MASTER_CONTAINER">
 
-        	<form class="SignUp_Form" method="post">
-
-	            <div class="SIGNUP_Text_Field_Container">
-
-	                <input type="text" name="SignUP_USERNAME" class="SignUP_USERNAME" id="SignUP_USERNAME" placeholder="Enter User Name 6 chars or less"/>
-	                <input type="text" name="SignUP_Email" class="SignUP_Email" id="SignUP_Email" placeholder="Enter Valid Email"/>
-	                <input type="password" name="SignUP_Password" class="SignUP_Password" id="SignUP_Password" placeholder="Enter Password with 6 or more chars"/>
-	                <input type="password" name="ReEnter_SignUP_Password" class="ReEnter_SignUP_Password" id="ReEnter_SignUP_Password" placeholder="Re-enter Password"/>
-
-	            </div>
-
-	            <div class="SIGNUP_Button_Container">
-
-	                <input type="button" class="Cancel_Signup" id="Cancel_Signup" value="Cancel">
-	                <input type="button" class="Signup_Submit" id="Signup_Submit" value="Signup">
-
-	            </div>
-
-
-        	</form>
+			<div class='login'>
+				<div class="Edutech"><span>Edutech</span></div>
+			  <div class='login_title'>
+			    <span>Login to your account</span>
+			  </div>
+			  <div class='login_fields'>
+			    <div class='login_fields__user'>
+			      <div class='icon'>
+			        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
+			      </div>
+			      <input placeholder='Username' type='text' id="UserName_ID">
+			        <div class='validation'>
+			          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			        </div>
+			      </input>
+			    </div>
+			    <div class='login_fields__password'>
+			      <div class='icon'>
+			        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png'>
+			      </div>
+			      <input placeholder='Password' type='password' id="Password_ID">
+			      <div class='validation'>
+			        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			      </div>
+			    </div>
+			    <div class='login_fields__submit'>
+			      <input type='submit' value='Log In'>
+			      <div class='forgot'>
+			        <a href='#'>Forgotten password?</a>
+			      </div>
+			    </div>
+			  </div>
+			  <div class='success'>
+			    <h2 id="Login_After_Title">Authentication Success</h2>
+			    <p id="Login_After_Para">Welcome back. Redirecting to your profile..</p>
+			  </div>
+			  <div class='disclaimer'>
+			    <p>&#169; 2018 EduTech. All rights reserved. Work in progress by Ekram</p>
+			  </div>
+			</div>
+			<div class='authent'>
+			  <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/puff.svg'>
+			  <p>Authenticating...</p>
+			</div>
 
         </div>
-
-        <div class="SignUp_Successful" id="SignUp_Successful_ID">Sign Up Successful! <br>Redirecting to login..</div>
-
-        <div class="Password_NotMatch">Your Passwords do not match <br>Please try again</div>
-
-        <div class="Password_Weak">Password too weak <br> Must have 6 characters</div>
-
-        <div class="Email_Already_Exists">Email Already exists<br> Please login or use another</div>
-
-        <div class="Loading">Loading<br> Please wait a moment..</div>
-
 
 
         <div class="Top_Hidden_Spacer"></div>
 
 
 
-        <div class="MainBanner">
-
-		  	<ul class="slideshow">
-				<li><span class="ParallexImg">Image 01</span></li>
-				<li><span class="ParallexImg">Image 02</span></li>
-				<li><span class="ParallexImg">Image 03</span></li>
-				<li><span class="ParallexImg">Image 04</span></li>
-				<li><span class="ParallexImg">Image 05</span></li>
-				<li><span class="ParallexImg">Image 06</span></li>
-			</ul>
-
-            <div class="Main_Title"><span id="Main_TitleSpan_ID">EduTech</span></div>
-            <div class="Logo_Title"><span id="Logo_TitleSpan_ID">Where Education Meets Technology</span></div>
-
-        </div>
-
-
-        <div class="WhiteTextBanner">
+        <div class="ContentWrapper">
         	
-        	<div class="TopBox" id="WTB">
-        		<div class="TopBoxLine1"><span>For</span></div>
-        		<div class="TopBoxLine2"><span>Of Our Themes</span></div>
-        		<div class="TopBoxLine3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
-        		<div class="TopBoxLine4"><span>Small batch farm-to-table microdosing pour-over trust fund.</span></div>
-        	</div>
+	        <div class="MainBanner">
 
-        	<div class="BottomBox">
-        		<div class="InnerBox" id="Box1">
-        			<div class="InnerBoxIcon"><i class="far fa-heart" id="heartIcon"></i></div>
-        			<div class="InnerBoxHeading">User Oriented</div>
-        			<div class="InnerBoxInfo">Meditation godard health goth, messenger bag hashtag banjo forage XOXO. Literally street art franzen swag gochujang leggings lumbersexual echo park pabst hexagon.</div>
+			  	<ul class="slideshow">
+					<li><span class="ParallexImg">Image 01</span></li>
+					<li><span class="ParallexImg">Image 02</span></li>
+					<li><span class="ParallexImg">Image 03</span></li>
+					<li><span class="ParallexImg">Image 04</span></li>
+					<li><span class="ParallexImg">Image 05</span></li>
+					<li><span class="ParallexImg">Image 06</span></li>
+				</ul>
 
-        		</div>
+	            <div class="Main_Title"><span id="Main_TitleSpan_ID">EduTech</span></div>
+	            <div class="Logo_Title"><span id="Logo_TitleSpan_ID">Where Education Meets Technology</span></div>
 
-
-        		<div class="InnerBox" id="Box2">
-        			<div class="InnerBoxIcon"><i id="fireIcon" class="fas fa-fire"></i></div>
-        			<div class="InnerBoxHeading">Optimised for Speed</div>
-        			<div class="InnerBoxInfo">Meditation godard health goth, messenger bag hashtag banjo forage XOXO. Literally street art franzen swag gochujang leggings lumbersexual echo park pabst hexagon.</div>
-        		</div>
+	        </div>
 
 
-        		<div class="InnerBox" id="Box3">
-        			<div class="InnerBoxIcon"><i id="thumbIcon" class="far fa-thumbs-up"></i></i></div>
-        			<div class="InnerBoxHeading">Modern Ideas</div>
-        			<div class="InnerBoxInfo">Meditation godard health goth, messenger bag hashtag banjo forage XOXO. Literally street art franzen swag gochujang leggings lumbersexual echo park pabst hexagon.</div>
-        		</div>
+	        <div class="WhiteTextBanner">
+	        	
+	        	<div class="TopBox" id="WTB">
+	        		<div class="TopBoxLine1"><span>For</span></div>
+	        		<div class="TopBoxLine2"><span>Of Our Themes</span></div>
+	        		<div class="TopBoxLine3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
+	        		<div class="TopBoxLine4"><span>Small batch farm-to-table microdosing pour-over trust fund.</span></div>
+	        	</div>
+
+	        	<div class="BottomBox">
+	        		<div class="InnerBox" id="Box1">
+	        			<div class="InnerBoxIcon"><i class="far fa-heart" id="heartIcon"></i></div>
+	        			<div class="InnerBoxHeading">User Oriented</div>
+	        			<div class="InnerBoxInfo">Meditation godard health goth, messenger bag hashtag banjo forage XOXO. Literally street art franzen swag gochujang leggings lumbersexual echo park pabst hexagon.</div>
+
+	        		</div>
 
 
-        	</div>
+	        		<div class="InnerBox" id="Box2">
+	        			<div class="InnerBoxIcon"><i id="fireIcon" class="fas fa-fire"></i></div>
+	        			<div class="InnerBoxHeading">Optimised for Speed</div>
+	        			<div class="InnerBoxInfo">Meditation godard health goth, messenger bag hashtag banjo forage XOXO. Literally street art franzen swag gochujang leggings lumbersexual echo park pabst hexagon.</div>
+	        		</div>
+
+
+	        		<div class="InnerBox" id="Box3">
+	        			<div class="InnerBoxIcon"><i id="thumbIcon" class="far fa-thumbs-up"></i></i></div>
+	        			<div class="InnerBoxHeading">Modern Ideas</div>
+	        			<div class="InnerBoxInfo">Meditation godard health goth, messenger bag hashtag banjo forage XOXO. Literally street art franzen swag gochujang leggings lumbersexual echo park pabst hexagon.</div>
+	        		</div>
+
+
+	        	</div>
 
 
 
-        </div>
+	        </div>
 
 
-        <div class="SecondBanner">
+	        <div class="SecondBanner">
 
-        	<div class="LeftPictureBox"></div>
-
-
-        	<div class="RightTextBox">
-
-        		<div class="Wrapper">
-        			<span class="HeadingSecondBanner">Elaborate your company style in no time with Navy.</span>
-        			<span class="SecondBannerInfo">Navy theme is extremely customizable, fully responsive and HiDPI ready WordPress theme based on a well structured framework which allows you to achieve the best response time and look for all your visitors.</span>
-        		</div>
-    
-
-        	</div>
-
-        </div>
-
-        <div class="InvisibleBanner">
-            <div class="Invisible_Title"><span id="Invisible_TitleSpan_ID">EduTech</span></div>
-            <div class="InvisibleLogo_Title"><span id="InvisibleLogo_TitleSpan_ID">The first General Purpose Education Portal in Bangladesh</span></div>
-        </div>
-
-        <div class="LinesCodeBanner">
-        	<div class="LineBox">
-        		<div class="LineBoxL1">WE HAVE</div>
-        		<div class="LineBoxL2">3,600</div>
-        		<div class="LineBoxL3">users per month</div>
-        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
-
-        	</div>
-
-        	<div class="LineBox">
-        		<div class="LineBoxL1">WE ANSWERED</div>
-        		<div class="LineBoxL2">1,200</div>
-        		<div class="LineBoxL3">tickets this year</div>
-        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
-        	</div>
-
-        	<div class="LineBox">
-        		<div class="LineBoxL1">WE HELPED</div>
-        		<div class="LineBoxL2">10,000</div>
-        		<div class="LineBoxL3">business owners</div>
-        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
-        	</div>
-
-        </div>
-
-        <div class="ThirdBanner">
-
-        	<div class="TopBox" id="TB">
-        		<div class="TopBoxLine1" id="TB1"><span>enjoy the best</span></div>
-        		<div class="TopBoxLine2" id="TB2"><span>Of Our Themes</span></div>
-        		<div class="TopBoxLine3" id="TB3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
-        		<div class="TopBoxLine4" id="TB4"><span>Small batch farm-to-table microdosing pour-over trust fund.</span></div>
-        	</div>
-
-        	<div class="BottomBox" id="BB">
-        		
-        		<div class="InnerBox" id="TBox1">
-        			<div class="InnerBoxIcon"><i class="far fa-flag" id="flagIcon"></i></i></div>
-        			<div class="InnerBoxHeading">Real-Time Sharing</div>
-        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
-
-        		</div>
+	        	<div class="LeftPictureBox"></div>
 
 
-        		<div class="InnerBox" id="TBox2">
-        			<div class="InnerBoxIcon"><i class="far fa-edit" id="editIcon"></i></div>
-        			<div class="InnerBoxHeading">Smart Theme Options</div>
-        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
-        		</div>
+	        	<div class="RightTextBox">
+
+	        		<div class="Wrapper">
+	        			<span class="HeadingSecondBanner">Elaborate your company style in no time with Navy.</span>
+	        			<span class="SecondBannerInfo">Navy theme is extremely customizable, fully responsive and HiDPI ready WordPress theme based on a well structured framework which allows you to achieve the best response time and look for all your visitors.</span>
+	        		</div>
+	    
+
+	        	</div>
+
+	        </div>
+
+	        <div class="InvisibleBanner">
+	            <div class="Invisible_Title"><span id="Invisible_TitleSpan_ID">EduTech</span></div>
+	            <div class="InvisibleLogo_Title"><span id="InvisibleLogo_TitleSpan_ID">The first General Purpose Education Portal in Bangladesh</span></div>
+	        </div>
+
+	        <div class="LinesCodeBanner">
+	        	<div class="LineBox">
+	        		<div class="LineBoxL1">WE HAVE</div>
+	        		<div class="LineBoxL2">3,600</div>
+	        		<div class="LineBoxL3">users per month</div>
+	        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+
+	        	</div>
+
+	        	<div class="LineBox">
+	        		<div class="LineBoxL1">WE ANSWERED</div>
+	        		<div class="LineBoxL2">1,200</div>
+	        		<div class="LineBoxL3">tickets this year</div>
+	        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+	        	</div>
+
+	        	<div class="LineBox">
+	        		<div class="LineBoxL1">WE HELPED</div>
+	        		<div class="LineBoxL2">10,000</div>
+	        		<div class="LineBoxL3">business owners</div>
+	        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+	        	</div>
+
+	        </div>
+
+	        <div class="ThirdBanner">
+
+	        	<div class="TopBox" id="TB">
+	        		<div class="TopBoxLine1" id="TB1"><span>enjoy the best</span></div>
+	        		<div class="TopBoxLine2" id="TB2"><span>Of Our Themes</span></div>
+	        		<div class="TopBoxLine3" id="TB3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
+	        		<div class="TopBoxLine4" id="TB4"><span>Small batch farm-to-table microdosing pour-over trust fund.</span></div>
+	        	</div>
+
+	        	<div class="BottomBox" id="BB">
+	        		
+	        		<div class="InnerBox" id="TBox1">
+	        			<div class="InnerBoxIcon"><i class="far fa-flag" id="flagIcon"></i></i></div>
+	        			<div class="InnerBoxHeading">Real-Time Sharing</div>
+	        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
+
+	        		</div>
 
 
-        		<div class="InnerBox" id="TBox3">
-        			<div class="InnerBoxIcon"><i class="fas fa-crosshairs" id="crosshairIcon"></i></div>
-        			<div class="InnerBoxHeading">Useful Addons</div>
-        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
-        		</div>
-
-        	</div>
-
-        </div>
-
-        <div class="ClientBanner">
-        	
-        	<div class="ClientLeftBox">
-        		<div class="ClientLBLine1"><span>CLIENTS/PARTNERS</span></div>
-        		<div class="ClientLBLine2"><span>Our Prestigious Clients and Partners</span></div>
-        		<div class="ClientLBLine3"><span>See All</span></div>
-        	</div>
-
-        	<div class="ClientRightBox">
-        		<div class="ClientsWrapper">
-        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-3.png"></img>
-        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-9.png"></img>
-        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-4.png"></img>
-        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-11.png"></img>
-        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-10.png"></img>
-        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-1.png"></img>
-        		</div>
-
-        	</div>
-
-        </div>
+	        		<div class="InnerBox" id="TBox2">
+	        			<div class="InnerBoxIcon"><i class="far fa-edit" id="editIcon"></i></div>
+	        			<div class="InnerBoxHeading">Smart Theme Options</div>
+	        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
+	        		</div>
 
 
-        <div class="Footer">
-        	<div class="FootLeftBox">
+	        		<div class="InnerBox" id="TBox3">
+	        			<div class="InnerBoxIcon"><i class="fas fa-crosshairs" id="crosshairIcon"></i></div>
+	        			<div class="InnerBoxHeading">Useful Addons</div>
+	        			<div class="InnerBoxInfo">Careful attention to detail and clean, well structured code ensures a smooth user experience for all your visitors</div>
+	        		</div>
 
-        		<div class="FootIconBarCONT">
-        			<div class="FootIcon"><i class="fab fa-linkedin-in"></i></div>
-        			<div class="FootIcon"><i class="fab fa-twitter"></i></div>
-        			<div class="FootIcon"><i class="fab fa-facebook"></i></div>
-        			<div class="FootIcon"><i class="fab fa-youtube"></i></div>
-        			<div class="FootIcon"><i class="fab fa-reddit"></i></div>
-        			<div class="FootIcon"><i class="fab fa-instagram"></i></div>
-        		</div>
+	        	</div>
 
-        		<div class="TradeMark"><span><i> &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram. This better be the bestest site in the whole wide world.</i></span></div>
+	        </div>
 
-        	</div>
+	        <div class="ClientBanner">
+	        	
+	        	<div class="ClientLeftBox">
+	        		<div class="ClientLBLine1"><span>CLIENTS/PARTNERS</span></div>
+	        		<div class="ClientLBLine2"><span>Our Prestigious Clients and Partners</span></div>
+	        		<div class="ClientLBLine3"><span>See All</span></div>
+	        	</div>
 
-        	<div class="FootRightBox">
-        		
-        		<div class="FootRightBoxCol">
-        			<div class="FootColContent" id="ColHeading">ABOUT</div>
-        			<div class="FootColContent">About Us</div>
-        			<div class="FootColContent">How it Works</div>
-        			<div class="FootColContent">Team</div>
-        			<div class="FootColContent">Mobile App</div>
-        			<div class="FootColContent">Desktop App</div>
-        			<div class="FootColContent">Security</div>
-        			<div class="FootColContent">Report Bug</div>
-        			<div class="FootColContent">Pricing</div>
-        			<div class="FootColContent">Investors</div>
-        		</div>
+	        	<div class="ClientRightBox">
+	        		<div class="ClientsWrapper">
+	        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-3.png"></img>
+	        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-9.png"></img>
+	        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-4.png"></img>
+	        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-11.png"></img>
+	        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-10.png"></img>
+	        			<img class="ClientIcon" src="http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/light-partner-1.png"></img>
+	        		</div>
 
-        		<div class="FootRightBoxCol">
-        			<div class="FootColContent" id="ColHeading">PRESS</div>
-        			<div class="FootColContent">In the News</div>
-        			<div class="FootColContent">Press Releases</div>
-        			<div class="FootColContent">Awards</div>
-        			<div class="FootColContent">Testimonials</div>
-        			<div class="FootColContent">Partners</div>
-        			
-        		</div>
+	        	</div>
 
-        		<div class="FootRightBoxCol">
-         			<div class="FootColContent" id="ColHeading">GET IN TOUCH</div>
-        			<div class="FootColContent">Support</div>
-        			<div class="FootColContent">Advertise with us</div>
-        			<div class="FootColContent">Careers</div>
-        			<div class="FootColContent">Forum</div>
-        			<div class="FootColContent">Affiliates</div>
-        			<div class="FootColContent">Blog</div>
-        			<div class="FootColContent">Contact Us</div>
-        			
-        		</div>
+	        </div>
 
 
-        	</div>
+	        <div class="Footer">
+	        	<div class="FootLeftBox">
 
-        	<div class="FootBottomBox">
-        		
-        		<div class="FootBottomBoxContent"><span>PRIVACY POLICY</span></div>
-        		<div class="FootBottomBoxContent"><span>TERMS</span></div>
-        		<div class="FootBottomBoxContent"><span>COPYRIGHT POLICY</span></div>
-        		<div class="FootBottomBoxContent"><span>CODE OF CONDUCT</span></div>
-        		<div class="FootBottomBoxContent"><span>COOKIES</span></div>
-        		<div class="FootBottomBoxContent"><span>EDUTECH</span></div>
+	        		<div class="FootIconBarCONT">
+	        			<div class="FootIcon"><i class="fab fa-linkedin-in"></i></div>
+	        			<div class="FootIcon"><i class="fab fa-twitter"></i></div>
+	        			<div class="FootIcon"><i class="fab fa-facebook"></i></div>
+	        			<div class="FootIcon"><i class="fab fa-youtube"></i></div>
+	        			<div class="FootIcon"><i class="fab fa-reddit"></i></div>
+	        			<div class="FootIcon"><i class="fab fa-instagram"></i></div>
+	        		</div>
 
-        	</div>
+	        		<div class="TradeMark"><span><i> &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram. This better be the bestest site in the whole wide world.</i></span></div>
 
-        </div>
+	        	</div>
 
-        <div class="BottomSpacer"></div>
+	        	<div class="FootRightBox">
+	        		
+	        		<div class="FootRightBoxCol">
+	        			<div class="FootColContent" id="ColHeading">ABOUT</div>
+	        			<div class="FootColContent">About Us</div>
+	        			<div class="FootColContent">How it Works</div>
+	        			<div class="FootColContent">Team</div>
+	        			<div class="FootColContent">Mobile App</div>
+	        			<div class="FootColContent">Desktop App</div>
+	        			<div class="FootColContent">Security</div>
+	        			<div class="FootColContent">Report Bug</div>
+	        			<div class="FootColContent">Pricing</div>
+	        			<div class="FootColContent">Investors</div>
+	        		</div>
 
+	        		<div class="FootRightBoxCol">
+	        			<div class="FootColContent" id="ColHeading">PRESS</div>
+	        			<div class="FootColContent">In the News</div>
+	        			<div class="FootColContent">Press Releases</div>
+	        			<div class="FootColContent">Awards</div>
+	        			<div class="FootColContent">Testimonials</div>
+	        			<div class="FootColContent">Partners</div>
+	        			
+	        		</div>
+
+	        		<div class="FootRightBoxCol">
+	         			<div class="FootColContent" id="ColHeading">GET IN TOUCH</div>
+	        			<div class="FootColContent">Support</div>
+	        			<div class="FootColContent">Advertise with us</div>
+	        			<div class="FootColContent">Careers</div>
+	        			<div class="FootColContent">Forum</div>
+	        			<div class="FootColContent">Affiliates</div>
+	        			<div class="FootColContent">Blog</div>
+	        			<div class="FootColContent">Contact Us</div>
+	        			
+	        		</div>
+
+
+	        	</div>
+
+	        	<div class="FootBottomBox">
+	        		
+	        		<div class="FootBottomBoxContent"><span>PRIVACY POLICY</span></div>
+	        		<div class="FootBottomBoxContent"><span>TERMS</span></div>
+	        		<div class="FootBottomBoxContent"><span>COPYRIGHT POLICY</span></div>
+	        		<div class="FootBottomBoxContent"><span>CODE OF CONDUCT</span></div>
+	        		<div class="FootBottomBoxContent"><span>COOKIES</span></div>
+	        		<div class="FootBottomBoxContent"><span>EDUTECH</span></div>
+
+	        	</div>
+
+	        </div>
+
+	        <div class="BottomSpacer"></div>
+
+		</div>
 	    <div class="LoadingContainer">
 	    	<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
 	    	<span class="LoadingText"></span>
@@ -993,38 +593,7 @@
 		  };
 		  firebase.initializeApp(config);
 
-		//Functions to check to see if given email already exists
-			// var DoesEmailExist = false;
-			// var CheckingEmailID;
-			// function CheckIfEmailExistsInDatabase(EmailID){
-			// 	var CheckingEmailID = EmailID;
-			// 	var database = firebase.database();
-			// 	var ref = database.ref('USERS/');
 
-			// 	ref.once('value', CheckEmailDatabase, errData);
-			// }
-
-			// function CheckEmailDatabase(data){
-			// 	var WholeFetchedData = data.val();
-			// 	var keys = Object.keys(WholeFetchedData);
-
-			// 	console.log(keys);
-
-			// 	for (var i = 0; i < keys.length; i++) {
-			// 		var Current_UID_Checking = keys[i];
-
-			// 		var Current_Email_Checking = WholeFetchedData[Current_UID_Checking].UserEmail;
-			// 		console.log(Current_Email_Checking);
-			// 		if (CheckingEmailID==Current_Email_Checking){
-			// 			DoesEmailExist = true;
-			// 		}
-			// 	}
-			// }
-
-			// function errData(err){
-			// 	console.log('Error!');
-			// 	console.log(err);
-			// }
 
 
 		//Get all the elements of fields
@@ -1036,20 +605,6 @@
 		  SignUpSecondPassword_Element = document.getElementById("ReEnter_SignUP_Password");
 		  SignUpSubmit_Element = document.getElementById("Signup_Submit");
  
-		//Addevent for logout click
-		  // LogoutSubmit_Element.addEventListener('click', e => {
-
-		  // 	const auth = firebase.auth();
-
-		  // 	//logout
-		  // 	const promise = auth.signOut();
-		  // 	promise.catch( e => console.log(e.code));
-		  // 	ShowSignUp_AndSlideLoginRight();
-
-		  // 	//refresh page
-		  // 	location.reload(true);
-
-		  // });
 
 		//Add event for sign up click
 		  SignUpSubmit_Element.addEventListener('click', e => {
@@ -1134,183 +689,10 @@
 
 		  });
 
-		//Add a realtime listener for state auth change
-		  // firebase.auth().onAuthStateChanged( firebaseUser => {
-		  // 	if (firebaseUser){
-		  // 		console.log('Already logged in..');
-
-		  // 		//Now change the welcome sign to welcome this logged in dude
-		  // 		//Fetch the data from the database
-		  // 		var database = firebase.database();
-		  // 		var ref = database.ref('USERS/' + firebaseUser.uid);
-
-		  // 		ref.once('value', function(data){
-		  // 			tableData = data.val();
-		  // 			This_UserName = tableData['UserName'];
-				// 	document.getElementById("Welcome_ID").innerHTML = This_UserName;
-				// 	HideSignUp_AndSlideLoginLeft();
-
-				// 	SlideLoadingLeft();
-					
-		  // 		}, function(err){
-		  // 			console.log(err.code);
-		  // 		});
-
-		  // 	}
-		  // 	else{
-		  // 		console.log('Not logged in..');
-		  // 		ShowSignUp_AndSlideLoginRight();
-		  // 	}
-		  // });
-
 		</script>
 
 		<script>
 
-//Moveing signup box up and down
-			function MoveSignUpBoxUp() {
-				$(".SIGNUP_MASTER_CONTAINER").animate({
-			        top: "-60%"
-			    	}, 500, function() {
-			        // Animation complete.
-			        console.log('animation complete');
-			    });
-			}
-
-			function MoveSignUpBoxDown() {
-			       $( ".SIGNUP_MASTER_CONTAINER" ).animate({
-			            top: "+13%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-//SignUp Successful box
-			function SlideSignUpSuccessfulRight() {
-			       $( ".SignUp_Successful" ).animate({
-			            left: "-1%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-			function SlideSignUpSuccessfulLeft() {
-			       $( ".SignUp_Successful" ).animate({
-			            left: "-19%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-//Email already exists box
-			function SlideEmailExistsRight() {
-			       $( ".Email_Already_Exists" ).animate({
-			            left: "-1%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-			function SlideEmailExistsLeft() {
-			       $( ".Email_Already_Exists" ).animate({
-			            left: "-19%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-//Loading box
-			function SlideLoadingRight() {
-			       $( ".Loading" ).animate({
-			            left: "-1%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-			function SlideLoadingLeft() {
-			       $( ".Loading" ).animate({
-			            left: "-19%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-//Password weak box
-			function SlidePasswordWeakRight() {
-			       $( ".Password_Weak" ).animate({
-			            left: "-1%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-			function SlidePasswordWeakLeft() {
-			       $( ".Password_Weak" ).animate({
-			            left: "-19%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-//Password Unmatch box
-			function SlidePasswordUnMatchRight() {
-			       $( ".Password_NotMatch" ).animate({
-			            left: "-1%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-			function SlidePasswordUnMatchLeft() {
-			       $( ".Password_NotMatch" ).animate({
-			            left: "-19%"
-			          }, 500, function() {
-			            // Animation complete.
-			            console.log('animation complete');
-			        });
-			}
-
-
-//Slide the third banner left right functions
-			function SlideText_ThirdBanner_Right() {
-				$( ".ChevronPlusThirdTitleCont" ).animate({
-			        left: "98.5%"
-			    }, 600, function() {
-			        // Animation complete.
-			        console.log('animation complete');
-			        $( "#ChevronRight_ThirdBanner" ).css("transform","rotate(180deg)");
-			    });
-			    IsThirdBannerTextVisible_Boolean = false;
-			}
-
-			function SlideText_ThirdBanner_Left() {
-				$( ".ChevronPlusThirdTitleCont" ).animate({
-			        left: "45.5%"
-			    }, 600, function() {
-			        // Animation complete.
-			        console.log('animation complete');
-			        $( "#ChevronRight_ThirdBanner" ).css("transform","rotate(360deg)");
-			    });
-			    IsThirdBannerTextVisible_Boolean = true;
-			}
-
-//Shake signup box
-			function ShakeSignUpBox() {
-		       $( ".SIGNUP_MASTER_CONTAINER" ).css("left", "37%");
-		       $( ".SIGNUP_MASTER_CONTAINER" ).css("left", "39%");
-		       $( ".SIGNUP_MASTER_CONTAINER" ).css("left", "38%");
-			}
 
 //Animate the main edutech title in main banner from the top to down and fade in
 
@@ -1537,8 +919,10 @@
 
 			//SIGNUP BOX ANIMATE FROM TOP
 			        $("#SIGNUP_ID").click(function() {
+			        	$('.ContentWrapper').css("-webkit-filter", 'blur(25px');
+			        	$('.SIGNUP_MASTER_CONTAINER').fadeIn("slow");
 
-			        	MoveSignUpBoxDown();
+			        	
 			        });
 
 
@@ -1553,20 +937,6 @@
 				window.location.href = 'http://www.edutechs.org/Profile';
 
 			});
-
-
-			//ThirdTitleInfo Stuff
-			        $(".ChevronRight_TDIV").click(function() {
-
-			        	if (IsThirdBannerTextVisible_Boolean==true){
-			        		SlideText_ThirdBanner_Right();
-			        	}
-
-			        	else if (IsThirdBannerTextVisible_Boolean==false){
-			        		 SlideText_ThirdBanner_Left();
-			        	}
-
-			        });
 
 
 			        //Window scrolling stuff

@@ -1,147 +1,221 @@
-		/*SIGNUP BLOCK ELEMENT*/
+			
 
-			.SIGNUP_MASTER_CONTAINER {
-				position: fixed;
-			    top: -60%;
-			    left: 38%;
-			    background-color: black;
-			    z-index: 101;
-			    width: 27%;
-			    height: 55%;
-			    display: block;
-			    border-top: 1vw solid darkred;
-			    border-radius: 10px;
-			}
 
-			.SignUp_Form{
-				width: 100%;
-				height: 100%;
-				position: relative;
-			}
 
-			.SIGNUP_Text_Field_Container{
-			    position: relative;
-			    width: 100%;
-			    height: 69%;
-			    top: 6%;
-			    display: inline-block;
-			}
+			@import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
+		.SIGNUP_MASTER_CONTAINER {
+			z-index: 200;
+			width: 100%;
+			height: 90%;
+			position: fixed;
+			top: 5%;
+		  margin: 0;
+		  overflow: hidden;
+		  display: none;
+		  font-family: 'Gudea', sans-serif;
+		  background: rgba(0,0,0,0);
 
-			.SignUP_USERNAME{
-			    padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 17%;
-			    left: 5%;
-			    position: relative;
-			    top: 3%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-			}
+		}
 
-			.SignUP_Email{
-				padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 17%;
-			    left: 5%;
-			    position: relative;
-			    top: 10%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-			}
 
-			.SignUP_Password{
-			    padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 17%;
-			    left: 5%;
-			    position: relative;
-			    top: 18%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
 
-			}
+		.SIGNUP_MASTER_CONTAINER ::-webkit-input-placeholder {
+		  color: #4E546D;
+		}
+		.SIGNUP_MASTER_CONTAINER .authent {
+		  display: none;
+		  background: #35394a;
+		  /* Old browsers */
+		  /* FF3.6+ */
+		  /* Chrome,Safari4+ */
+		  /* Chrome10+,Safari5.1+ */
+		  /* Opera 11.10+ */
+		  /* IE10+ */
+		  background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+		  /* W3C */
+		  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
+		  /* IE6-9 fallback on horizontal gradient */
+		  position: absolute;
+		  left: 0;
+		  right: 90px;
+		  margin: auto;
+		  width: 100px;
+		  color: white;
+		  text-transform: uppercase;
+		  letter-spacing: 1px;
+		  text-align: center;
+		  padding: 20px 70px;
+		  top: 200px;
+		  bottom: 0;
+		  height: 70px;
+		  opacity: 0;
+		}
+		.SIGNUP_MASTER_CONTAINER .authent p {
+		  text-align: center;
+		  color: white;
+		}
+		.SIGNUP_MASTER_CONTAINER .success {
+		  display: none;
+		  color: #d5d8e2;
+		}
+		.SIGNUP_MASTER_CONTAINER .success p {
+		  font-size: 14px;
+		}
+		.SIGNUP_MASTER_CONTAINER p {
+		  color: #5B5E6F;
+		  font-size: 10px;
+		  text-align: left;
+		}
+		.SIGNUP_MASTER_CONTAINER .testtwo {
+		  left: -320px !important;
+		}
+		.SIGNUP_MASTER_CONTAINER .test {
+		  box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
+		  pointer-events: none;
+		  top: -100px !important;
+		  -webkit-transform: rotateX(70deg) scale(0.8) !important;
+		          transform: rotateX(70deg) scale(0.8) !important;
+		  opacity: .6 !important;
+		  -webkit-filter: blur(1px);
+		          filter: blur(1px);
+		}
+		.SIGNUP_MASTER_CONTAINER .login {
+		  opacity: 1;
+		  top: 20px;
+		  -webkit-transition-timing-function: cubic-bezier(0.68, -0.25, 0.265, 0.85);
+		  transition-property: opacity,box-shadow,top,left,-webkit-transform;
+		  transition-property: transform,opacity,box-shadow,top,left;
+		  transition-property: transform,opacity,box-shadow,top,left,-webkit-transform;
+		  transition-duration: .5s;
+		  -webkit-transform-origin: 161px 100%;
+		          transform-origin: 161px 100%;
+		  -webkit-transform: rotateX(0deg);
+		          transform: rotateX(0deg);
+		  position: relative;
+		  width: 25%;
+		  border-top: 1vw solid darkred;
+		  height: 45%;
+		  position: absolute;
+		  left: 0;
+		  right: 0;
+		  margin: auto;
+		  top: 0;
+		  bottom: 0;
+		  padding: 100px 40px 40px 40px;
+		  background: #35394a;
+		  /* Old browsers */
+		  /* FF3.6+ */
+		  /* Chrome,Safari4+ */
+		  /* Chrome10+,Safari5.1+ */
+		  /* Opera 11.10+ */
+		  /* IE10+ */
+		  background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+		  /* W3C */
+		  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
+		  /* IE6-9 fallback on horizontal gradient */
+		}
+		.SIGNUP_MASTER_CONTAINER .login .validation {
+		  position: absolute;
+		  z-index: 1;
+		  right: 10px;
+		  top: 6px;
+		  opacity: 0;
+		}
+		.SIGNUP_MASTER_CONTAINER .login .disclaimer {
+		  position: absolute;
+		  bottom: 20px;
+		  left: 35px;
+		  width: 250px;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_title {
+		  color: #afb1be;
+		  height: 60px;
+		  text-align: left;
+		  font-size: 16px;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields {
+		    height: 40%;
+		    width: 100%;
+		    position: absolute;
+		    left: 0;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields .icon {
+		    position: absolute;
+		    z-index: 1;
+		    left: 10%;
+		    top: 35%;
+		    opacity: .5;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields input[type='password'] {
+		  color: #DC6180 !important;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields input[type='text'], body .login_fields input[type='password'] {
+		    color: #afb1be;
+		    width: 100%;
+		    background: #32364a;
+		    left: 0;
+		    padding: 0%;
+		    padding-top: 5%;
+		    padding-bottom: 5%;
+		    padding-left: 20%;
+		    border-top: 2px solid #393d52;
+		    border-bottom: 2px solid #393d52;
+		    border-right: none;
+		    border-left: none;
+		    outline: none;
+		    font-family: 'Gudea', sans-serif;
+		    font-size: 1.3vw;
+		    box-shadow: none;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields__user, .SIGNUP_MASTER_CONTAINER .login_fields__password {
+		  position: relative;
+		  width: 83%;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields__submit {
+		  position: relative;
+		  top: 35px;
+		  left: 0;
+		  width: 80%;
+		  right: 0;
+		  margin: auto;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields__submit .forgot {
+		  float: right;
+		  font-size: 10px;
+		  margin-top: 11px;
+		  text-decoration: underline;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields__submit .forgot a {
+		  color: #606479;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields__submit input {
+		  border-radius: 50px;
+		  background: transparent;
+		  padding: 10px 50px;
+		  border: 2px solid #DC6180;
+		  color: #DC6180;
+		  text-transform: uppercase;
+		  font-size: 11px;
+		  transition-property: background,color;
+		  transition-duration: .2s;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields__submit input:focus {
+		  box-shadow: none;
+		  outline: none;
+		}
+		.SIGNUP_MASTER_CONTAINER .login_fields__submit input:hover {
+		  color: white;
+		  background: #DC6180;
+		  cursor: pointer;
+		  transition-property: background,color;
+		  transition-duration: .2s;
+		}
 
-			.ReEnter_SignUP_Password{
-				padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 17%;
-			    left: 5%;
-			    position: relative;
-			    top: 25%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-			}
-
-			.SIGNUP_Button_Container{
-				position: relative;
-			    width: 100%;
-			    height: 20%;
-			    top: 16%;
-			    display: inline-block;
-			}
-
-			.Cancel_Signup{
-				cursor: pointer;
-				width: 20%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 50%;
-			    margin-left: 26%;
-			    border: 1px solid black;
-			    font-weight: 300;
-			    border-radius: 4px;
-			    transition: 500ms;
-			}
-
-			.Signup_Submit{
-				cursor: pointer;
-			    width: 20%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 50%;
-			    margin-left: 7%;
-			    border: 1px solid black;
-			    font-weight: 300;
-			    border-radius: 4px;
-			    transition: 500ms;
-			}
-
-			.SignUP_USERNAME:hover, .SignUP_Email:hover, .SignUP_Password:hover, .ReEnter_SignUP_Password:hover {
-				color: black;
-				background-color: silver;
-				transition: 500ms;
-			}
-
-			.Cancel_Signup:hover, .Signup_Submit:hover {
-				color: black;
-				background-color: silver;
-				transition: 500ms;
-			}
+		.Edutech{
+		font-family: 'Gudea', sans-serif;
+		  color: #afb1be;
+		  height: 60px;
+		  text-align: left;
+		  font-size: 2vw;
+		  position: relative;
+}
