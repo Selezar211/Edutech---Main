@@ -4,6 +4,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>EduTech - Home</title>
 
+        <link rel="stylesheet" href="static/CSS/scrollbar.css">
+        <link rel="stylesheet" href="static/CSS/homeSlideshow.css">
+        <link rel="stylesheet" href="static/CSS/homeHeader.css">
+        <link rel="stylesheet" href="static/CSS/homeFooter.css">
+        <link rel="stylesheet" href="static/CSS/homeSignUp.css">
+        <link rel="stylesheet" href="static/CSS/loading.css">
+
 		<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
 		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
@@ -17,289 +24,12 @@
         <link rel="icon" type="image/png" href="https://png.icons8.com/ios-glyphs/40/000000/cup.png">
 
         <script src='https://code.jquery.com/jquery-1.12.0.min.js'></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-        crossorigin="anonymous"></script>
+
 
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
-        <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css'>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <style>
-
-/*        slideshow stuff*/
-
-
-
-				/* General Demo Style */
-				body{
-					background: #000;
-					overflow-y: scroll;
-					overflow-x: hidden;
-				}
-
-
-				.slideshow,
-				.slideshow:after {
-				    position: fixed;
-				    width: 100%;
-				    height: 100%;
-				    top: 0px;
-				    left: 0px;
-				    z-index: 0;
-				}
-				.slideshow:after {
-				    content: '';
-				    background: transparent url(../images/pattern.png);
-				}
-
-				.slideshow li span {
-				    width: 100%;
-				    height: 100%;
-				    position: absolute;
-				    top: 0px;
-				    left: 0px;
-				    color: transparent;
-				    background-size: cover;
-				    background-position: 50% 50%;
-				    background-repeat: none;
-				    opacity: 0;
-				    z-index: 0;
-					-webkit-backface-visibility: hidden;
-				    -webkit-animation: imageAnimation 36s linear infinite 0s;
-				    -moz-animation: imageAnimation 36s linear infinite 0s;
-				    -o-animation: imageAnimation 36s linear infinite 0s;
-				    -ms-animation: imageAnimation 36s linear infinite 0s;
-				    animation: imageAnimation 36s linear infinite 0s;
-				}
-
-				.slideshow li:nth-child(1) span { background-image: url(https://i.imgur.com/yTAAWZr.jpg) }
-				.slideshow li:nth-child(2) span {
-				    background-image: url(https://i.imgur.com/j3ulc85.jpg);
-				    -webkit-animation-delay: 6s;
-				    -moz-animation-delay: 6s;
-				    -o-animation-delay: 6s;
-				    -ms-animation-delay: 6s;
-				    animation-delay: 6s;
-				}
-				.slideshow li:nth-child(3) span {
-				    background-image: url(https://i.imgur.com/EzvMvIG.jpg);
-				    -webkit-animation-delay: 12s;
-				    -moz-animation-delay: 12s;
-				    -o-animation-delay: 12s;
-				    -ms-animation-delay: 12s;
-				    animation-delay: 12s;
-				}
-				.slideshow li:nth-child(4) span {
-				    background-image: url(https://i.imgur.com/PfRxV5h.jpg);
-				    -webkit-animation-delay: 18s;
-				    -moz-animation-delay: 18s;
-				    -o-animation-delay: 18s;
-				    -ms-animation-delay: 18s;
-				    animation-delay: 18s;
-				}
-				.slideshow li:nth-child(5) span {
-				    background-image: url(https://i.imgur.com/s5qbdPX.jpg);
-				    -webkit-animation-delay: 24s;
-				    -moz-animation-delay: 24s;
-				    -o-animation-delay: 24s;
-				    -ms-animation-delay: 24s;
-				    animation-delay: 24s;
-				}
-				.slideshow li:nth-child(6) span {
-				    background-image: url(https://i.imgur.com/0HIETui.jpg);
-				    -webkit-animation-delay: 30s;
-				    -moz-animation-delay: 30s;
-				    -o-animation-delay: 30s;
-				    -ms-animation-delay: 30s;
-				    animation-delay: 30s;
-				}
-				.slideshow li:nth-child(2) div {
-				    -webkit-animation-delay: 6s;
-				    -moz-animation-delay: 6s;
-				    -o-animation-delay: 6s;
-				    -ms-animation-delay: 6s;
-				    animation-delay: 6s;
-				}
-				.slideshow li:nth-child(3) div {
-				    -webkit-animation-delay: 12s;
-				    -moz-animation-delay: 12s;
-				    -o-animation-delay: 12s;
-				    -ms-animation-delay: 12s;
-				    animation-delay: 12s;
-				}
-				.slideshow li:nth-child(4) div {
-				    -webkit-animation-delay: 18s;
-				    -moz-animation-delay: 18s;
-				    -o-animation-delay: 18s;
-				    -ms-animation-delay: 18s;
-				    animation-delay: 18s;
-				}
-				.slideshow li:nth-child(5) div {
-				    -webkit-animation-delay: 24s;
-				    -moz-animation-delay: 24s;
-				    -o-animation-delay: 24s;
-				    -ms-animation-delay: 24s;
-				    animation-delay: 24s;
-				}
-				.slideshow li:nth-child(6) div {
-				    -webkit-animation-delay: 30s;
-				    -moz-animation-delay: 30s;
-				    -o-animation-delay: 30s;
-				    -ms-animation-delay: 30s;
-				    animation-delay: 30s;
-				}
-				/* Animation for the slideshow images */
-				@-webkit-keyframes imageAnimation { 
-					0% {
-					    opacity: 0;
-					    -webkit-animation-timing-function: ease-in;
-					}
-					8% {
-					    opacity: 1;
-					    -webkit-transform: scale(1.05);
-					    -webkit-animation-timing-function: ease-out;
-					}
-					17% {
-					    opacity: 1;
-					    -webkit-transform: scale(1.1);
-					}
-					25% {
-					    opacity: 0;
-					    -webkit-transform: scale(1.1);
-					}
-					100% { opacity: 0 }
-				}
-				@-moz-keyframes imageAnimation { 
-					0% {
-					    opacity: 0;
-					    -moz-animation-timing-function: ease-in;
-					}
-					8% {
-					    opacity: 1;
-					    -moz-transform: scale(1.05);
-					    -moz-animation-timing-function: ease-out;
-					}
-					17% {
-					    opacity: 1;
-					    -moz-transform: scale(1.1);
-					}
-					25% {
-					    opacity: 0;
-					    -moz-transform: scale(1.1);
-					}
-					100% { opacity: 0 }
-				}
-				@-o-keyframes imageAnimation { 
-					0% {
-					    opacity: 0;
-					    -o-animation-timing-function: ease-in;
-					}
-					8% {
-					    opacity: 1;
-					    -o-transform: scale(1.05);
-					    -o-animation-timing-function: ease-out;
-					}
-					17% {
-					    opacity: 1;
-					    -o-transform: scale(1.1);
-					}
-					25% {
-					    opacity: 0;
-					    -o-transform: scale(1.1);
-					}
-					100% { opacity: 0 }
-				}
-				@-ms-keyframes imageAnimation { 
-					0% {
-					    opacity: 0;
-					    -ms-animation-timing-function: ease-in;
-					}
-					8% {
-					    opacity: 1;
-					    -ms-transform: scale(1.05);
-					    -ms-animation-timing-function: ease-out;
-					}
-					17% {
-					    opacity: 1;
-					    -ms-transform: scale(1.1);
-					}
-					25% {
-					    opacity: 0;
-					    -ms-transform: scale(1.1);
-					}
-					100% { opacity: 0 }
-				}
-				@keyframes imageAnimation { 
-					0% {
-					    opacity: 0;
-					    animation-timing-function: ease-in;
-					}
-					8% {
-					    opacity: 1;
-					    transform: scale(1.05);
-					    animation-timing-function: ease-out;
-					}
-					17% {
-					    opacity: 1;
-					    transform: scale(1.1);
-					}
-					25% {
-					    opacity: 0;
-					    transform: scale(1.1);
-					}
-					100% { opacity: 0 }
-				}
-
-				/* Show at least something when animations not supported */
-				.no-cssanimations .slideshow li span{
-					opacity: 1;
-				}
-				@media screen and (max-width: 1140px) { 
-					.slideshow li div h3 { font-size: 100px }
-				}
-				@media screen and (max-width: 600px) { 
-					.slideshow li div h3 { font-size: 50px }
-				}
-
-		/*scrollbar stuff*/
-
-			::-webkit-scrollbar {
-			    width: 0.5%;
-			    height: 70%;
-			    margin: 0 auto;
-				background-color: rgba(45, 45, 45, 1);
-
-			}
-			::-webkit-scrollbar-thumb {
-			    height: 6px;
-			    border: 1px solid rgba(0, 0, 0, 0.9);
-			    background-clip: padding-box;
-			    -webkit-border-radius: 5px;
-			    background-color: rgba(0, 0, 0, 0.5);
-			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
-			}
-
-			::-webkit-scrollbar-thumb:hover {
-			    height: 6px;
-			    background-color: rgba(0, 0, 0, 1);
-			    background-clip: padding-box;
-			    -webkit-border-radius: 5px;
-			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
-			}
-
-
-			::-webkit-scrollbar-button {
-			    width: 0;
-			    height: 0;
-			    display: none;
-			}
-
-			::-webkit-scrollbar-corner {
-			    background-color: transparent;
-			   }
-
 
 			html {
 			  margin: 0;
@@ -414,234 +144,6 @@
 			    left: 16%;
 			}
 
-
-/*		header*/
-			.Header{
-				top: -7em;
-			    padding-top: 7em;
-			    width: 100%;
-			    display: inline-block;
-			    height: 6%;
-			    position: fixed;
-			    background-color: black;
-			    overflow: hidden;
-			    z-index: 101;
-			}
-
-			.LeftHeader_Cont{
-				z-index: 101;
-			    font-weight: bold;
-			    bottom: 6%;
-			    left: 2%;
-			    position: absolute;
-			    display: inline-block;
-			    color: white;
-			    font-size: 1vw;
-			    font-family: "Cinzesl";
-			    width: 9%;
-			    padding: 0.2%;
-			    padding-right: 0.5%;
-			    transition: 200ms;
-			}
-
-			.LogIn {
-			    z-index: 101;
-			    font-weight: bold;
-			    position: relative;
-			    display: inline-block;
-			    color: white;
-			    font-size: 1vw;
-			    font-family: "Cinzel";
-			    float: left;
-			    transition: 200ms;
-			}
-
-			.SignUp {
-			    z-index: 101;
-			    font-weight: bold;
-			    float: right;
-			    position: relative;
-			    display: inline-block;
-			    color: white;
-			    font-size: 1vw;
-			    font-family: "Cinzel";
-			    transition: 200ms;
-			}
-
-
-			.GamescendLogo{
-			    z-index: 101;
-			    font-weight: bold;
-			    bottom: 6%;
-			    left: 92%;
-			    position: absolute;
-			    display: inline-block;
-			    color: white;
-			    font-size: 1vw;
-			    font-family: "Cinzel";
-			    width: 5%;
-			    padding: 0.2%;
-			    padding-right: 0.5%;
-			    transition: 200ms;
-			}
-
-			.SignUp:hover, .LogIn:hover, .SignOut:hover, .Profile:hover {
-				cursor: pointer;
-				color: red;
-				font-weight: bolder;
-				transition: 200ms;
-			}
-
-
-
-
-		/*SIGNUP BLOCK ELEMENT*/
-
-			.SIGNUP_MASTER_CONTAINER {
-				position: fixed;
-			    top: -60%;
-			    left: 38%;
-			    background-color: black;
-			    z-index: 101;
-			    width: 27%;
-			    height: 55%;
-			    display: block;
-			    border-top: 1vw solid darkred;
-			    border-radius: 10px;
-			}
-
-			.SignUp_Form{
-				width: 100%;
-				height: 100%;
-				position: relative;
-			}
-
-			.SIGNUP_Text_Field_Container{
-			    position: relative;
-			    width: 100%;
-			    height: 69%;
-			    top: 6%;
-			    display: inline-block;
-			}
-
-			.SignUP_USERNAME{
-			    padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 17%;
-			    left: 5%;
-			    position: relative;
-			    top: 3%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-			}
-
-			.SignUP_Email{
-				padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 17%;
-			    left: 5%;
-			    position: relative;
-			    top: 10%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-			}
-
-			.SignUP_Password{
-			    padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 17%;
-			    left: 5%;
-			    position: relative;
-			    top: 18%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-
-			}
-
-			.ReEnter_SignUP_Password{
-				padding: 1%;
-			    padding-left: 3%;
-			    width: 86%;
-			    background-color: beige;
-			    color: black;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 17%;
-			    left: 5%;
-			    position: relative;
-			    top: 25%;
-			    border: 1px solid black;
-			    border-radius: 10px;
-			    font-weight: 900;
-			}
-
-			.SIGNUP_Button_Container{
-				position: relative;
-			    width: 100%;
-			    height: 20%;
-			    top: 16%;
-			    display: inline-block;
-			}
-
-			.Cancel_Signup{
-				cursor: pointer;
-				width: 20%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 50%;
-			    margin-left: 26%;
-			    border: 1px solid black;
-			    font-weight: 300;
-			    border-radius: 4px;
-			    transition: 500ms;
-			}
-
-			.Signup_Submit{
-				cursor: pointer;
-			    width: 20%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    font-size: 1vw;
-			    height: 50%;
-			    margin-left: 7%;
-			    border: 1px solid black;
-			    font-weight: 300;
-			    border-radius: 4px;
-			    transition: 500ms;
-			}
-
-			.SignUP_USERNAME:hover, .SignUP_Email:hover, .SignUP_Password:hover, .ReEnter_SignUP_Password:hover {
-				color: black;
-				background-color: silver;
-				transition: 500ms;
-			}
-
-			.Cancel_Signup:hover, .Signup_Submit:hover {
-				color: black;
-				background-color: silver;
-				transition: 500ms;
-			}
 
 /*		white text banner stuff*/
 			.WhiteTextBanner {
@@ -840,7 +342,6 @@
 				text-align: left;
 				display: inline-block;
 				color: white;
-				font-family: "Quattrocento";
 			    letter-spacing: 3%;
 			    font-weight: 100;
 			    font-style: normal;
@@ -856,7 +357,6 @@
 				text-align: left;
 				display: inline-block;
 				color: white;
-				font-family: "Quattrocento";
 				line-height: 150%;
 			    letter-spacing: 1%;
 			    font-weight: 700;
@@ -865,14 +365,89 @@
 			    font-size: 1em;
 			}
 
+/*			line code banner stuff*/
+
+			.LinesCodeBanner{
+				width: 100%;
+				font-family: "Raleway";
+			    height: 45%;
+			    position: relative;
+			    display: inline-block;
+			    top: 2%;
+			    background: white;
+			}
+
+			.LineBox{
+				width: 33%;
+				height: 100%;
+				position: relative;
+				display: inline-block;
+				float: left;
+				color: black;
+			}
+
+			.LineBoxL1{
+				margin-top: 25%;
+				width: 100%;
+				position: relative;
+				text-align: center;
+				display: inline-block;
+				line-height: 150%;
+			    letter-spacing: 1%;
+			    font-weight: 100;
+			    font-style: normal;
+			    opacity: 0.8;
+			    font-size: 0.8em;
+			}
+
+			.LineBoxL2{
+				font-family: "Quattrocento";
+				width: 100%;
+				position: relative;
+				text-align: center;
+				display: inline-block;
+			    letter-spacing: 3%;
+			    font-weight: 700;
+			    font-style: bolder;
+			    font-size: 4em;
+			}
+
+			.LineBoxL3{
+				width: 100%;
+				position: relative;
+				text-align: center;
+				display: inline-block;
+				line-height: 150%;
+			    letter-spacing: 1%;
+			    font-weight: 400;
+			    font-style: normal;
+			    opacity: 0.8;
+			    font-size: 0.8em;
+			}
+
+			.LineBoxL4{
+				margin-top: 1%;
+				padding-left: 10%;
+				width: 80%;
+				position: relative;
+				text-align: center;
+				display: inline-block;
+				line-height: 150%;
+			    letter-spacing: 1%;
+			    font-weight: 700;
+			    font-style: normal;
+			    opacity: 0.8;
+			    font-size: 0.8em;
+			}
 
 		/*Third banner stuff*/
 
 			.ThirdBanner {
 				width: 100%;
+				font-family: "Raleway";
 			    height: 95%;
 			    position: relative;
-			    top: 2%;
+			    top: -1%;
 			    background:   url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/corporate-man-tablet.jpg);
 			    background-size: 100% 100%;
 			    background-position: center;
@@ -915,7 +490,7 @@
 			    height: 45%;
 			    position: relative;
 			    display: inline-block;
-			    top: 2%;
+			    margin-top: -1%;
 			    background-color: white;
 			}
 
@@ -934,7 +509,6 @@
 				text-align: left;
 				display: inline-block;
 				color: black;
-				font-family: "Quattrocento";
 				line-height: 150%;
 			    letter-spacing: 1%;
 			    font-weight: 700;
@@ -950,7 +524,6 @@
 				text-align: left;
 				display: inline-block;
 				color: black;
-				font-family: "Quattrocento";
 			    letter-spacing: 3%;
 			    font-weight: 100;
 			    opacity: 0.7
@@ -965,7 +538,6 @@
 				text-align: left;
 				display: inline-block;
 				color: black;
-				font-family: "Quattrocento";
 				line-height: 150%;
 			    letter-spacing: 1%;
 			    font-weight: 700;
@@ -997,157 +569,6 @@
 				height: 50%;
 				position: relative;
 				float: left;
-			}
-
-
-		/*Footer stuff*/
-			.Footer{
-				margin-top: -1%;
-			    width: 100%;
-			    height: 75%;
-			    position: relative;
-			    background-image: url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/footer-bg.jpg);
-			    background-position: center;
-			    background-repeat: no-repeat;
-			    display: inline-block;
-			}
-
-			.FootLeftBox{
-				width: 50%;
-				height: 80%;
-				float: left;
-				position: relative;
-				display: inline-block;
-			}
-
-			.FootRightBox{
-				padding-left:5%;
-				width: 45%;
-				height: 80%;
-				float: left;
-				position: relative;
-				display: inline-block;
-			}
-
-			.FootBottomBox{
-				margin-left: 10%;
-				width: 80%;
-				height: 19%;
-				border-top: 0.01vw solid gray;
-				position: relative;
-				display: inline-block;
-			}
-
-			.FootBottomBoxContent{
-				margin-top: 2%;
-				width: 16%;
-				position: relative;
-				float: left;
-				text-align: left;
-				display: inline-block;
-				color: silver;
-				font-family: "Quattrocento";
-			    letter-spacing: 1%;
-			    font-weight: 700;
-			    opacity: 0.6;
-			    font-style: normal;
-			    opacity: 1;
-			    font-size: 0.9em;
-			}
-
-			.FootIconBarCONT{
-			    padding-left: 20%;
-			    width: 60%;
-			    display: inline-block;
-			    position: relative;
-			    height: 8%;
-			    margin-top: 15%;
-			}
-
-			.FootIcon{
-				cursor: pointer;
-				color: gray;
-				width: 16%;
-				position: relative;
-				float: left;
-				display: inline-block;
-				text-align: center;
-				transition: 200ms;
-			}
-
-			.FootIcon:hover {
-				color: white;
-				transition: 200ms;
-			}
-
-			.fab{
-				transform: scale(1.6,1.6);
-			}
-
-			.TradeMark{
-				margin-top: 0%;
-			    padding-left: 22%;
-			    width: 60%;
-				position: relative;
-				float: left;
-				text-align: left;
-				display: inline-block;
-				color: gray;
-				font-family: "Quattrocento";
-			    letter-spacing: 1%;
-			    line-height: 150%;
-			    font-weight: 700;
-			    opacity: 1;
-			    font-style: normal;
-			    opacity: 1;
-			    font-size: 0.9em;
-			}
-
-			.FootRightBoxCol{
-				width: 25%;
-				position: relative;
-				display: inline-block;
-				margin-left: 2%;
-				float: left;
-				padding-top: 13%;
-			}
-
-			#ColHeading{
-				color: gray;
-			}
-
-			.FootColContent{
-				cursor: pointer;
-				margin-top: 11%;
-				margin-bottom: 2%;
-				width: 100%;
-				position: relative;
-				float: left;
-				text-align: left;
-				display: inline-block;
-				color: white;
-				font-family: "Quattrocento";
-			    font-weight: 700;
-			    opacity: 1;
-			    font-style: normal;
-			    opacity: 1;
-			    font-size: 0.9em;
-			    transition: 200ms;
-			}
-
-			.FootColContent:hover{
-				color: gray;
-				transition: 200ms;
-			}
-
-			.BottomSpacer{
-				width: 100%;
-				position: relative;
-				background-color: black;
-				height: 5%;
-				top: 2%;
-				padding-bottom: 1%;
-				display: inline-block;
 			}
 
 
@@ -1238,6 +659,7 @@
 			}
 
 
+
         </style>
 
     </head>
@@ -1314,7 +736,7 @@
         <div class="WhiteTextBanner">
         	
         	<div class="TopBox" id="WTB">
-        		<div class="TopBoxLine1"><span>enjoy the best</span></div>
+        		<div class="TopBoxLine1"><span>For</span></div>
         		<div class="TopBoxLine2"><span>Of Our Themes</span></div>
         		<div class="TopBoxLine3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
         		<div class="TopBoxLine4"><span>Small batch farm-to-table microdosing pour-over trust fund.</span></div>
@@ -1370,6 +792,31 @@
         <div class="InvisibleBanner">
             <div class="Invisible_Title"><span id="Invisible_TitleSpan_ID">EduTech</span></div>
             <div class="InvisibleLogo_Title"><span id="InvisibleLogo_TitleSpan_ID">The first General Purpose Education Portal in Bangladesh</span></div>
+        </div>
+
+        <div class="LinesCodeBanner">
+        	<div class="LineBox">
+        		<div class="LineBoxL1">WE HAVE</div>
+        		<div class="LineBoxL2">3,600</div>
+        		<div class="LineBoxL3">users per month</div>
+        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+
+        	</div>
+
+        	<div class="LineBox">
+        		<div class="LineBoxL1">WE ANSWERED</div>
+        		<div class="LineBoxL2">1,200</div>
+        		<div class="LineBoxL3">tickets this year</div>
+        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+        	</div>
+
+        	<div class="LineBox">
+        		<div class="LineBoxL1">WE HELPED</div>
+        		<div class="LineBoxL2">10,000</div>
+        		<div class="LineBoxL3">business owners</div>
+        		<div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+        	</div>
+
         </div>
 
         <div class="ThirdBanner">
@@ -1502,9 +949,15 @@
 
         <div class="BottomSpacer"></div>
 
+	    <div class="LoadingContainer">
+	    	<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+	    	<span class="LoadingText"></span>
+	    </div>
+
 		<div class="hidden">
 			<script type="text/javascript">
 				<!--//--><![CDATA[//><!--
+					console.log('walao');
 					var images = new Array()
 					function preload() {
 						for (i = 0; i < preload.arguments.length; i++) {
@@ -1520,6 +973,8 @@
 						"https://i.imgur.com/s5qbdPX.jpg",
 						"https://i.imgur.com/0HIETui.jpg"
 					)
+					console.log('Finished preloading images..');
+					$(".LoadingContainer").fadeOut('slow');
 				//--><!]]>
 			</script>
 		</div>
@@ -1711,14 +1166,6 @@
 		</script>
 
 		<script>
-
-			var ScrollBooleanThirdBanner = true;
-			var IsInvisBannerTextShown = false;
-			var IsWhiteTextBannerShown = false;
-			var IsSecondBannerTextShown = false;
-			var IsSecInvisBannerTextShown = false;
-			var IsThirdBannerTextShown = false;
-
 
 //Moveing signup box up and down
 			function MoveSignUpBoxUp() {
@@ -2070,6 +1517,12 @@
 
 
 //Jquery Start
+
+			var IsInvisBannerTextShown = false;
+			var IsWhiteTextBannerShown = false;
+			var IsSecondBannerTextShown = false;
+			var IsThirdBannerTextShown = false;
+
 			jQuery(document).ready(function($) {
 
 			//Make the main title fade in and animate from the top
@@ -2115,18 +1568,14 @@
 
 			        });
 
+
+			        //Window scrolling stuff
 					$(window).on('scroll', function () {
-					    var pixs = $(document).scrollTop()
-					    pixs = pixs / 50;
-					    $(".slideshow").css({"-webkit-filter": "blur("+pixs+"px)" })     
-					});
+					    var scroll = $(document).scrollTop()
+					    pixs = scroll / 50;
+					    $(".slideshow").css({"-webkit-filter": "blur("+pixs+"px)" }) 
 
-			//Scrolling unfurl functions
-					$(window).scroll(function (event) {
-
-					    var scroll = $(window).scrollTop();
-
-					    console.log(scroll);
+  						console.log(scroll);
 
 
 					    //turn of the slideshow if scrolled past to save memory and improve performance
@@ -2161,20 +1610,14 @@
 			        		IsSecondBannerTextShown = true;
 					    }
 
-					   	else if (scroll>2650 && !IsSecInvisBannerTextShown) {
-			        		console.log('showing second banner text..');
-							AnimateSecInvisBannerTitle();
 
-			        		IsSecInvisBannerTextShown = true;
-					    }
-
-					   	else if (scroll>3400 && !IsThirdBannerTextShown) {
+					   	else if (scroll>2600 && !IsThirdBannerTextShown) {
 			        		console.log('showing second banner text..');
 							AnimateThirdBannerTitle();
 
 			        		IsThirdBannerTextShown = true;
 					    }
-					    // Do something
+
 					});
 
 			  });

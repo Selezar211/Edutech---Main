@@ -1,0 +1,76 @@
+/*		header*/
+			.Header{
+				top: -7em;
+			    padding-top: 7em;
+			    width: 100%;
+			    display: inline-block;
+			    height: 6%;
+			    position: fixed;
+			    background-color: black;
+			    overflow: hidden;
+			    z-index: 101;
+			}
+
+			.LeftHeader_Cont{
+				z-index: 101;
+			    font-weight: bold;
+			    bottom: 6%;
+			    left: 2%;
+			    position: absolute;
+			    display: inline-block;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzesl";
+			    width: 9%;
+			    padding: 0.2%;
+			    padding-right: 0.5%;
+			    transition: 200ms;
+			}
+
+			.LogIn {
+			    z-index: 101;
+			    font-weight: bold;
+			    position: relative;
+			    display: inline-block;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    float: left;
+			    transition: 200ms;
+			}
+
+			.SignUp {
+			    z-index: 101;
+			    font-weight: bold;
+			    float: right;
+			    position: relative;
+			    display: inline-block;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    transition: 200ms;
+			}
+
+
+			.GamescendLogo{
+			    z-index: 101;
+			    font-weight: bold;
+			    bottom: 6%;
+			    left: 92%;
+			    position: absolute;
+			    display: inline-block;
+			    color: white;
+			    font-size: 1vw;
+			    font-family: "Cinzel";
+			    width: 5%;
+			    padding: 0.2%;
+			    padding-right: 0.5%;
+			    transition: 200ms;
+			}
+
+			.SignUp:hover, .LogIn:hover, .SignOut:hover, .Profile:hover {
+				cursor: pointer;
+				color: red;
+				font-weight: bolder;
+				transition: 200ms;
+			}

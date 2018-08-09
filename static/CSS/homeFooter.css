@@ -1,0 +1,147 @@
+		/*Footer stuff*/
+			.Footer{
+				font-family: "Raleway";
+				margin-top: -1%;
+			    width: 100%;
+			    height: 75%;
+			    position: relative;
+			    background-image: url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/footer-bg.jpg);
+			    background-position: center;
+			    background-repeat: no-repeat;
+			    display: inline-block;
+			}
+
+			.FootLeftBox{
+				width: 50%;
+				height: 80%;
+				float: left;
+				position: relative;
+				display: inline-block;
+			}
+
+			.FootRightBox{
+				padding-left:5%;
+				width: 45%;
+				height: 80%;
+				float: left;
+				position: relative;
+				display: inline-block;
+			}
+
+			.FootBottomBox{
+				margin-left: 10%;
+				width: 80%;
+				height: 19%;
+				border-top: 0.01vw solid gray;
+				position: relative;
+				display: inline-block;
+			}
+
+			.FootBottomBoxContent{
+				margin-top: 2%;
+				width: 16%;
+				position: relative;
+				float: left;
+				text-align: left;
+				display: inline-block;
+				color: silver;
+			    letter-spacing: 1%;
+			    font-weight: 700;
+			    opacity: 0.6;
+			    font-style: normal;
+			    opacity: 1;
+			    font-size: 0.9em;
+			}
+
+			.FootIconBarCONT{
+			    padding-left: 20%;
+			    width: 60%;
+			    display: inline-block;
+			    position: relative;
+			    height: 8%;
+			    margin-top: 15%;
+			}
+
+			.FootIcon{
+				cursor: pointer;
+				color: gray;
+				width: 16%;
+				position: relative;
+				float: left;
+				display: inline-block;
+				text-align: center;
+				transition: 200ms;
+			}
+
+			.FootIcon:hover {
+				color: white;
+				transition: 200ms;
+			}
+
+			.fab{
+				transform: scale(1.6,1.6);
+			}
+
+			.TradeMark{
+				margin-top: 0%;
+			    padding-left: 22%;
+			    width: 60%;
+				position: relative;
+				float: left;
+				text-align: left;
+				display: inline-block;
+				color: gray;
+			    letter-spacing: 1%;
+			    line-height: 150%;
+			    font-weight: 700;
+			    opacity: 1;
+			    font-style: normal;
+			    opacity: 1;
+			    font-size: 0.9em;
+			}
+
+			.FootRightBoxCol{
+				width: 25%;
+				position: relative;
+				display: inline-block;
+				margin-left: 2%;
+				float: left;
+				padding-top: 13%;
+			}
+
+			#ColHeading{
+				color: gray;
+			}
+
+			.FootColContent{
+				cursor: pointer;
+				margin-top: 11%;
+				margin-bottom: 2%;
+				width: 100%;
+				position: relative;
+				float: left;
+				text-align: left;
+				display: inline-block;
+				color: white;
+			    font-weight: 700;
+			    opacity: 1;
+			    font-style: normal;
+			    opacity: 1;
+			    font-size: 0.9em;
+			    transition: 200ms;
+			}
+
+			.FootColContent:hover{
+				color: gray;
+				transition: 200ms;
+			}
+
+			.BottomSpacer{
+				width: 100%;
+				position: relative;
+				background-color: black;
+				height: 5%;
+				top: 2%;
+				padding-bottom: 1%;
+				display: inline-block;
+			}

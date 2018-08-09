@@ -1,0 +1,147 @@
+		/*SIGNUP BLOCK ELEMENT*/
+
+			.SIGNUP_MASTER_CONTAINER {
+				position: fixed;
+			    top: -60%;
+			    left: 38%;
+			    background-color: black;
+			    z-index: 101;
+			    width: 27%;
+			    height: 55%;
+			    display: block;
+			    border-top: 1vw solid darkred;
+			    border-radius: 10px;
+			}
+
+			.SignUp_Form{
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+
+			.SIGNUP_Text_Field_Container{
+			    position: relative;
+			    width: 100%;
+			    height: 69%;
+			    top: 6%;
+			    display: inline-block;
+			}
+
+			.SignUP_USERNAME{
+			    padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 17%;
+			    left: 5%;
+			    position: relative;
+			    top: 3%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+			}
+
+			.SignUP_Email{
+				padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 17%;
+			    left: 5%;
+			    position: relative;
+			    top: 10%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+			}
+
+			.SignUP_Password{
+			    padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 17%;
+			    left: 5%;
+			    position: relative;
+			    top: 18%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+
+			}
+
+			.ReEnter_SignUP_Password{
+				padding: 1%;
+			    padding-left: 3%;
+			    width: 86%;
+			    background-color: beige;
+			    color: black;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 17%;
+			    left: 5%;
+			    position: relative;
+			    top: 25%;
+			    border: 1px solid black;
+			    border-radius: 10px;
+			    font-weight: 900;
+			}
+
+			.SIGNUP_Button_Container{
+				position: relative;
+			    width: 100%;
+			    height: 20%;
+			    top: 16%;
+			    display: inline-block;
+			}
+
+			.Cancel_Signup{
+				cursor: pointer;
+				width: 20%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 50%;
+			    margin-left: 26%;
+			    border: 1px solid black;
+			    font-weight: 300;
+			    border-radius: 4px;
+			    transition: 500ms;
+			}
+
+			.Signup_Submit{
+				cursor: pointer;
+			    width: 20%;
+			    background-color: black;
+			    color: white;
+			    font-family: "Quattrocento";
+			    font-size: 1vw;
+			    height: 50%;
+			    margin-left: 7%;
+			    border: 1px solid black;
+			    font-weight: 300;
+			    border-radius: 4px;
+			    transition: 500ms;
+			}
+
+			.SignUP_USERNAME:hover, .SignUP_Email:hover, .SignUP_Password:hover, .ReEnter_SignUP_Password:hover {
+				color: black;
+				background-color: silver;
+				transition: 500ms;
+			}
+
+			.Cancel_Signup:hover, .Signup_Submit:hover {
+				color: black;
+				background-color: silver;
+				transition: 500ms;
+			}
