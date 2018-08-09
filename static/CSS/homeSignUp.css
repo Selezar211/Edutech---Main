@@ -1,5 +1,22 @@
 			
 
+		#SignUpClose{
+		    transform: scale(2,2);
+		    transition: 200ms;
+		    position: fixed;
+		    top: 2%;
+		    right: 3%;
+		    z-index: 200;
+		    display: none;
+		    color: white;
+		    cursor: pointer;
+		}
+
+		#SignUpClose:hover {
+			transform: scale(2.3,2.3);
+			color: gray;
+			transition: 200ms;
+		}
 
 
 			@import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
@@ -81,7 +98,6 @@
 		}
 		.SIGNUP_MASTER_CONTAINER .login {
 		  opacity: 1;
-		  top: 20px;
 		  -webkit-transition-timing-function: cubic-bezier(0.68, -0.25, 0.265, 0.85);
 		  transition-property: opacity,box-shadow,top,left,-webkit-transform;
 		  transition-property: transform,opacity,box-shadow,top,left;
@@ -94,14 +110,14 @@
 		  position: relative;
 		  width: 25%;
 		  border-top: 1vw solid darkred;
-		  height: 45%;
+		  height: 65%;
 		  position: absolute;
 		  left: 0;
 		  right: 0;
 		  margin: auto;
 		  top: 0;
 		  bottom: 0;
-		  padding: 100px 40px 40px 40px;
+		  padding: 4% 4% 4% 4%;
 		  background: #35394a;
 		  /* Old browsers */
 		  /* FF3.6+ */
@@ -167,7 +183,7 @@
 		    font-size: 1.3vw;
 		    box-shadow: none;
 		}
-		.SIGNUP_MASTER_CONTAINER .login_fields__user, .SIGNUP_MASTER_CONTAINER .login_fields__password {
+		.SIGNUP_MASTER_CONTAINER .login_fields__user, .SIGNUP_MASTER_CONTAINER .login_fields__password, .SIGNUP_MASTER_CONTAINER .login_fields__email {
 		  position: relative;
 		  width: 83%;
 		}

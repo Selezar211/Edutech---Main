@@ -20,16 +20,18 @@
 		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
 
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
 
+		<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Quattrocento' rel='stylesheet'>
 
         <link rel="icon" type="image/png" href="https://png.icons8.com/ios-glyphs/40/000000/cup.png">
 
-        <script src='https://code.jquery.com/jquery-1.12.0.min.js'></script>
+  		<link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
 
+ 		<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
@@ -156,93 +158,6 @@
 			    left: 16%;
 			}
 
-			/*		Signup Popup stuff*/
-			.SignUp_Successful{
-				padding: 1%;
-			    padding-left: 2.5%;
-			    padding-bottom: 1.9%;
-			    font-size: 1vw;
-			    width: 14vw;
-			    height: 3%;
-			    position: absolute;
-			    display: inline-block;
-			    top: 13%;
-			    left: -19%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    z-index: 200;
-			}
-
-			.Password_NotMatch{
-				padding: 1%;
-			    padding-left: 2.5%;
-			    padding-bottom: 1.9%;
-			    font-size: 1vw;
-			    width: 14vw;
-			    height: 3%;
-			    position: absolute;
-			    display: inline-block;
-			    top: 13%;
-			    left: -19%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    z-index: 200;
-			}
-
-			.Email_Already_Exists {
-				padding: 1%;
-			    padding-left: 2.5%;
-			    padding-bottom: 1.9%;
-			    font-size: 1vw;
-			    width: 14vw;
-			    height: 3%;
-			    position: absolute;
-			    display: inline-block;
-			    top: 13%;
-			    left: -19%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    z-index: 200;
-			}
-
-			.Password_Weak{
-				padding: 1%;
-			    padding-left: 2.5%;
-			    padding-bottom: 1.9%;
-			    font-size: 1vw;
-			    width: 14vw;
-			    height: 3%;
-			    position: absolute;
-			    display: inline-block;
-			    top: 13%;
-			    left: -19%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    z-index: 200;
-			}
-
-			.Loading{
-				padding: 1%;
-			    padding-left: 2.5%;
-			    padding-bottom: 1.9%;
-			    font-size: 1vw;
-			    width: 14vw;
-			    height: 3%;
-			    position: absolute;
-			    display: inline-block;
-			    top: 22%;
-			    left: -19%;
-			    background-color: black;
-			    color: white;
-			    font-family: "Quattrocento";
-			    z-index: 200;
-			}
-
-
 
         </style>
 
@@ -252,42 +167,61 @@
         <div class="Header">
 
         	<div class="LeftHeader_Cont">
-		   		<div class="LogIn" id="LOGIN_ID">Log In</div>
-		   		<div class="SignUp" id="SIGNUP_ID">Sign Up</div>
+		   		<div class="LogIn" id="LOGIN_ID">LOG IN</div>
+		   		<div class="SignUp" id="SIGNUP_ID">SIGN UP</div>
         	</div>
 
-            <div class="GamescendLogo" id="Gamescend_Logo_ID">EduTech</div>
+            <div class="GamescendLogo" id="Gamescend_Logo_ID">EDUTECH</div>
         </div>
 
         <div class="SIGNUP_MASTER_CONTAINER">
 
 			<div class='login'>
 				<div class="Edutech"><span>Edutech</span></div>
+				<i id="SignUpClose" class="fas fa-times"></i>
 			  <div class='login_title'>
-			    <span>Login to your account</span>
+			    <span>Fill in the bottom fields to sign up!</span>
 			  </div>
 			  <div class='login_fields'>
+
 			    <div class='login_fields__user'>
 			      <div class='icon'>
-			        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
+			        <img src='https://png.icons8.com/material/15/ffffff/person-male.png'>
 			      </div>
-			      <input placeholder='Username' type='text' id="UserName_ID">
-			        <div class='validation'>
-			          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
-			        </div>
-			      </input>
+
+			      	<input placeholder='Username' type='text' id="UserName_ID">
+			        	<div class='validation'>
+			          		<img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			       		 </div>
+			      	</input>
 			    </div>
+
+			    <div class='login_fields__email'>
+			      <div class='icon'>
+			        <img src='https://png.icons8.com/ios-glyphs/20/ffffff/new-post.png'>
+			      </div>
+
+			      	<input placeholder='Email' type='text' id="Email_ID">
+			        	<div class='validation'>
+			          		<img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			       		 </div>
+			      	</input>
+			    </div>
+
 			    <div class='login_fields__password'>
 			      <div class='icon'>
-			        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png'>
+			        <img src='https://png.icons8.com/metro/15/ffffff/lock.png'>
 			      </div>
+
 			      <input placeholder='Password' type='password' id="Password_ID">
-			      <div class='validation'>
-			        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
-			      </div>
+			      	<div class='validation'>
+			        	<img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			      	</div>
+			      </input>
 			    </div>
+
 			    <div class='login_fields__submit'>
-			      <input type='submit' value='Log In'>
+			      <input type='submit' id="SignUPSubmit" value='Sign Up'>
 			      <div class='forgot'>
 			        <a href='#'>Forgotten password?</a>
 			      </div>
@@ -295,12 +229,13 @@
 			  </div>
 			  <div class='success'>
 			    <h2 id="Login_After_Title">Authentication Success</h2>
-			    <p id="Login_After_Para">Welcome back. Redirecting to your profile..</p>
+			    <p id="Login_After_Para">Sign Up Complete. You may now log in!</p>
 			  </div>
 			  <div class='disclaimer'>
 			    <p>&#169; 2018 EduTech. All rights reserved. Work in progress by Ekram</p>
 			  </div>
 			</div>
+
 			<div class='authent'>
 			  <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/puff.svg'>
 			  <p>Authenticating...</p>
@@ -323,7 +258,6 @@
 					<li><span class="ParallexImg">Image 03</span></li>
 					<li><span class="ParallexImg">Image 04</span></li>
 					<li><span class="ParallexImg">Image 05</span></li>
-					<li><span class="ParallexImg">Image 06</span></li>
 				</ul>
 
 	            <div class="Main_Title"><span id="Main_TitleSpan_ID">EduTech</span></div>
@@ -335,7 +269,7 @@
 	        <div class="WhiteTextBanner">
 	        	
 	        	<div class="TopBox" id="WTB">
-	        		<div class="TopBoxLine1"><span>For</span></div>
+	        		<div class="TopBoxLine1"><span>Bringing change into education</span></div>
 	        		<div class="TopBoxLine2"><span>Of Our Themes</span></div>
 	        		<div class="TopBoxLine3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
 	        		<div class="TopBoxLine4"><span>Small batch farm-to-table microdosing pour-over trust fund.</span></div>
@@ -567,11 +501,9 @@
 					}
 					preload(
 						"https://i.imgur.com/yTAAWZr.jpg",
-						"https://i.imgur.com/j3ulc85.jpg",
 						"https://i.imgur.com/EzvMvIG.jpg",
-						"https://i.imgur.com/PfRxV5h.jpg",
-						"https://i.imgur.com/s5qbdPX.jpg",
-						"https://i.imgur.com/0HIETui.jpg"
+						"https://i.imgur.com/j3ulc85.jpg",
+						"https://i.imgur.com/s5qbdPX.jpg"
 					)
 					console.log('Finished preloading images..');
 					$(".LoadingContainer").fadeOut('slow');
@@ -594,100 +526,106 @@
 		  firebase.initializeApp(config);
 
 
+		  function SignUpAnimation(){
+			  $('.login').addClass('test')
+
+			  setTimeout(function(){
+			    $('.login').addClass('testtwo')
+			  },300);
+
+			  setTimeout(function(){
+			    $(".authent").show().animate({right:-320},{easing : 'easeOutQuint' ,duration: 600, queue: false });
+			    $(".authent").animate({opacity: 1},{duration: 200, queue: false }).addClass('visible');
+			  },500);
+
+			  setTimeout(function(){
+			    $(".authent").show().animate({right:90},{easing : 'easeOutQuint' ,duration: 600, queue: false });
+			    $(".authent").animate({opacity: 0},{duration: 200, queue: false }).addClass('visible');
+			    $('.login').removeClass('testtwo')
+			  },2500);
+
+			  setTimeout(function(){
+			    $('.login').removeClass('test')
+			    $('.login div').fadeOut(123);
+			  },2800);
+		  }
 
 
 		//Get all the elements of fields
-		  LogoutSubmit_Element = document.getElementById("SignOut_ID");
+		  SignUpUsernameElement = document.getElementById("UserName_ID");
+		  SignUpEmail_Element = document.getElementById("Email_ID");
+		  SignUpPassword_Element = document.getElementById("Password_ID");
 
-		  SignUpUsernameElement = document.getElementById("SignUP_USERNAME");
-		  SignUpEmail_Element = document.getElementById("SignUP_Email");
-		  SignUpPassword_Element = document.getElementById("SignUP_Password");
-		  SignUpSecondPassword_Element = document.getElementById("ReEnter_SignUP_Password");
-		  SignUpSubmit_Element = document.getElementById("Signup_Submit");
+		  SignUpSubmit_Element = document.getElementById("SignUPSubmit");
  
 
 		//Add event for sign up click
 		  SignUpSubmit_Element.addEventListener('click', e => {
 
-		  	SlideLoadingRight();
+		  	SignUpAnimation();
 
 		  	signEmail = SignUpEmail_Element.value;
 			signPass = SignUpPassword_Element.value;
 
-		  	//Check to see if the password and re entered passwords match
-		  	if (SignUpPassword_Element.value!=SignUpSecondPassword_Element.value) {
-		  		console.log('Passwords do not match..');
-		  		SlideEmailExistsLeft();
-		  		SlidePasswordWeakLeft();
-		  		SlideSignUpSuccessfulLeft();
-		  		SlideLoadingLeft();
+	  		//Authorize and sign up this dude..
+		  	const auth = firebase.auth();
+		  	//sign up
+		  	const promise = auth.createUserWithEmailAndPassword(signEmail,signPass).then(function(user) {
+		  			console.log('Sign Up successful, am now going to make database');
+		  			var user = firebase.auth().currentUser;
 
-		  		SlidePasswordUnMatchRight();
-		  	
-		  	}
+	  				//Create the database for this new USER
+			  		var NewUserName = document.getElementById("UserName_ID").value;
+					var database = firebase.database();
 
-		  	else{
-		  		//Authorize and sign up this dude..
-			  	const auth = firebase.auth();
-			  	//sign up
-			  	const promise = auth.createUserWithEmailAndPassword(signEmail,signPass).then(function(user) {
-			  			console.log('Sign Up successful, am now going to make database');
-			  			var user = firebase.auth().currentUser;
+					var ref = database.ref('USERS/'+user.uid);
 
-		  				SlidePasswordUnMatchLeft();
-		  				SlideEmailExistsLeft();
-		  				SlidePasswordWeakLeft();
+					var data = {
+						UserName: NewUserName,
+						UserEmail: signEmail,
+						UserAge: 'None',
+						UserAddress: 'None',
+						UserGender: 'None',
+						UserProffession: 'Student',
+						UserClasses: 'None'
+					}
 
-		  				SlideLoadingLeft();
+					console.log(data)
 
-		  				//Create the database for this new USER
-				  		var NewUserName = document.getElementById("SignUP_USERNAME").value;
-						var database = firebase.database();
-						var ref = database.ref('USERS/'+user.uid);
+					ref.update(data);
 
-						var data = {
-							UserName: NewUserName,
-							UserEmail: user.email,
-							UserAge: 'None',
-							UserAddress: 'None',
-							UserGender: 'None',
-							UserProffession: 'Student',
-							UserClasses: 'None'
-						}
+					console.log('SignUp Sucess!');
 
-						ref.update(data);
-
-						document.getElementById("Welcome_ID").innerHTML = NewUserName;
+					document.getElementById("Login_After_Title").innerHTML = 'Authentication Success';
+					document.getElementById("Login_After_Para").innerHTML = 'Welcome to the team ' + NewUserName + '! You can now login.'  ;
 
 
-						MoveSignUpBoxUp();
+					  setTimeout(function(){
+					    $('.success').fadeIn();
+					  },3200);
 
-		  				SlideSignUpSuccessfulRight();
+					  console.log('SignUp Sucess after!');
 
-		  				window.location.href = 'http://www.edutechs.org/Login';
 
-			  	}, function(error) {
-			  		console.log(error.code);
-			  		if (String(error.code)=='auth/email-already-in-use'){
-			  				//this means we have hit an error where the email exists
-			  				SlideEmailExistsRight();
-			  				SlidePasswordWeakLeft();
-			  				SlidePasswordUnMatchLeft();
-			  				SlideLoadingLeft();
+	  				// window.location.href = 'http://www.edutechs.org/Login';
 
-			  			}
-			  		else if (String(error.code)=='auth/weak-password'){
-			  			SlidePasswordWeakRight();
-			  			SlideEmailExistsLeft();
-			  			SlidePasswordUnMatchLeft();
-			  			SlideLoadingLeft();
+		  	}, function(err) {
+		  		console.log(err.code);
 
-			  		}
-			  	});
+		  		document.getElementById("Login_After_Title").innerHTML = 'Authentication Failed';
 
-			}
+		  		Error_String = err.code.substr(5);
+
+		  		document.getElementById("Login_After_Para").innerHTML = 'Error ID: ' + Error_String ;
+
+		  		  setTimeout(function(){
+				    $('.success').fadeIn();
+				 },3200);
+
+		  	});
 
 		  });
+
 
 		</script>
 
@@ -767,41 +705,6 @@
 			    });
 
 			}
-
-			function AnimateSecInvisBannerTitle(){
-				$( ".SecInvisible_Title" ).animate({
-			        opacity: "1"
-			    }, 200, function() {
-			        // Animation complete.
-			        console.log('animation complete now animating inner span');
-
-					$( "#SecInvisible_TitleSpan_ID" ).animate({
-				        top: "20%",
-				        opacity: "1"
-				    }, 800, function() {
-				        // Animation complete.
-				        console.log('animation complete');
-
-				        $( ".SecInvisibleLogo_Title" ).animate({
-				        	opacity: "1"
-				    		}, 200, function() {
-				        	// Animation complete.
-				        	console.log('animation complete');
-
-				        		$( "#SecInvisibleLogo_TitleSpan_ID" ).animate({
-				        			opacity: "1",
-				        			top: "30%"
-				    				}, 800, function() {
-				        			// Animation complete.
-				        			console.log('animation complete');
-
-				    		});
-
-				    	});
-				    });
-			    });
-			}
-
 
 			function AnimateWhiteTextBox(){
 
@@ -921,22 +824,20 @@
 			        $("#SIGNUP_ID").click(function() {
 			        	$('.ContentWrapper').css("-webkit-filter", 'blur(25px');
 			        	$('.SIGNUP_MASTER_CONTAINER').fadeIn("slow");
-
+			        	$('#SignUpClose').fadeIn("slow");
 			        	
 			        });
 
 
-			        $(".Cancel_Signup").click(function() {
+			        $("#SignUpClose").click(function() {
 
-			        	MoveSignUpBoxUp();
+			        	$('.SIGNUP_MASTER_CONTAINER').fadeOut("fast");
+			        	$('#SignUpClose').fadeOut("fast");
+			        	$('.ContentWrapper').css("-webkit-filter", 'blur(0px');
+			        	
 
 			        });
 
-			//Profile button click
-			$("#Profile_ID").click(function() {
-				window.location.href = 'http://www.edutechs.org/Profile';
-
-			});
 
 
 			        //Window scrolling stuff
@@ -993,6 +894,84 @@
 			  });
 
 
+
+//SIGN UP SECTION
+		$('input[type="submit"]').click(function(){
+
+			  $('.login').addClass('test')
+
+			  setTimeout(function(){
+			    $('.login').addClass('testtwo')
+			  },300);
+
+			  setTimeout(function(){
+			    $(".authent").show().animate({right:-320},{easing : 'easeOutQuint' ,duration: 600, queue: false });
+			    $(".authent").animate({opacity: 1},{duration: 200, queue: false }).addClass('visible');
+			  },500);
+
+			  setTimeout(function(){
+			    $(".authent").show().animate({right:90},{easing : 'easeOutQuint' ,duration: 600, queue: false });
+			    $(".authent").animate({opacity: 0},{duration: 200, queue: false }).addClass('visible');
+			    $('.login').removeClass('testtwo')
+			  },2500);
+
+			  setTimeout(function(){
+			    $('.login').removeClass('test')
+			    $('.login div').fadeOut(123);
+			  },2800);
+
+			  //Add event for login to firebase
+			LoginEmail = document.getElementById("UserName_ID").value;
+		  	LoginPass =document.getElementById("Password_ID").value;
+
+		  	const auth = firebase.auth();
+
+		  	const promise = auth.signInWithEmailAndPassword(LoginEmail,LoginPass).then(function(user){
+
+				//Redirect to home profile page
+				console.log('Login successful');
+
+				  setTimeout(function(){
+				    $('.success').fadeIn();
+				  },3200);
+
+		  	}, function(err) {
+		  		console.log(err.code);
+
+		  		document.getElementById("Login_After_Title").innerHTML = 'Authentication Failed';
+
+		  		Error_String = err.code.substr(5);
+
+		  		document.getElementById("Login_After_Para").innerHTML = 'Error ID: ' + Error_String ;
+
+		  		setTimeout(function(){
+				    $('.success').fadeIn();
+				 },3200);
+		  	});
+
+		});
+
+		$('input[type="text"],input[type="password"]').focus(function(){
+		  $(this).prev().animate({'opacity':'1'},200)
+		});
+		$('input[type="text"],input[type="password"]').blur(function(){
+		  $(this).prev().animate({'opacity':'.5'},200)
+		});
+
+		$('input[type="text"],input[type="password"]').keyup(function(){
+		  if(!$(this).val() == ''){
+		    $(this).next().animate({'opacity':'1','right' : '30'},200)
+		  } else {
+		    $(this).next().animate({'opacity':'0','right' : '20'},200)
+		  }
+		});
+
+		var open = 0;
+		$('.tab').click(function(){
+		  $(this).fadeOut(200,function(){
+		    $(this).parent().animate({'left':'0'})
+		  });
+		});
 
 
 		</script>

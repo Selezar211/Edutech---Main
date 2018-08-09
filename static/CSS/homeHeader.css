@@ -1,6 +1,7 @@
 /*		header*/
 			.Header{
 				top: -7em;
+				font-family: 'Raleway';
 			    padding-top: 7em;
 			    width: 100%;
 			    display: inline-block;
@@ -20,7 +21,6 @@
 			    display: inline-block;
 			    color: white;
 			    font-size: 1vw;
-			    font-family: "Cinzesl";
 			    width: 9%;
 			    padding: 0.2%;
 			    padding-right: 0.5%;
@@ -34,7 +34,6 @@
 			    display: inline-block;
 			    color: white;
 			    font-size: 1vw;
-			    font-family: "Cinzel";
 			    float: left;
 			    transition: 200ms;
 			}
@@ -47,7 +46,6 @@
 			    display: inline-block;
 			    color: white;
 			    font-size: 1vw;
-			    font-family: "Cinzel";
 			    transition: 200ms;
 			}
 
@@ -61,16 +59,15 @@
 			    display: inline-block;
 			    color: white;
 			    font-size: 1vw;
-			    font-family: "Cinzel";
 			    width: 5%;
 			    padding: 0.2%;
 			    padding-right: 0.5%;
 			    transition: 200ms;
 			}
 
-			.SignUp:hover, .LogIn:hover, .SignOut:hover, .Profile:hover {
+			.SignUp:hover, .LogIn:hover{
 				cursor: pointer;
-				color: red;
+				color: gray;
 				font-weight: bolder;
 				transition: 200ms;
 			}
