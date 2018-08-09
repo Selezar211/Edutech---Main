@@ -13,7 +13,7 @@
 		}
 
 		#SignUpClose:hover {
-			transform: scale(2.3,2.3);
+			transform: rotate(90deg) scale(2.2,2.2);
 			color: gray;
 			transition: 200ms;
 		}
@@ -76,7 +76,7 @@
 		  color: #d5d8e2;
 		}
 		.SIGNUP_MASTER_CONTAINER .success p {
-		  font-size: 14px;
+		  font-size: 2em;
 		}
 		.SIGNUP_MASTER_CONTAINER p {
 		  color: #5B5E6F;
@@ -135,7 +135,7 @@
 		  position: absolute;
 		  z-index: 1;
 		  right: 10px;
-		  top: 6px;
+		  top: 35%;
 		  opacity: 0;
 		}
 		.SIGNUP_MASTER_CONTAINER .login .disclaimer {
