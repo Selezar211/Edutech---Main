@@ -5,6 +5,7 @@
 			    padding-top: 7em;
 			    width: 100%;
 			    display: inline-block;
+			    font-size: 0.9em;
 			    height: 6%;
 			    position: fixed;
 			    background-color: black;
@@ -20,10 +21,8 @@
 			    position: absolute;
 			    display: inline-block;
 			    color: white;
-			    font-size: 1vw;
-			    width: 9%;
 			    padding: 0.2%;
-			    padding-right: 0.5%;
+			    padding-right: 2.5%;
 			    transition: 200ms;
 			}
 
@@ -33,7 +32,6 @@
 			    position: relative;
 			    display: inline-block;
 			    color: white;
-			    font-size: 1vw;
 			    float: left;
 			    transition: 200ms;
 			}
@@ -41,11 +39,11 @@
 			.SignUp {
 			    z-index: 101;
 			    font-weight: bold;
-			    float: right;
+			    float: left;
+			    padding-left: 1em;
 			    position: relative;
 			    display: inline-block;
 			    color: white;
-			    font-size: 1vw;
 			    transition: 200ms;
 			}
 
@@ -58,7 +56,6 @@
 			    position: absolute;
 			    display: inline-block;
 			    color: white;
-			    font-size: 1vw;
 			    width: 5%;
 			    padding: 0.2%;
 			    padding-right: 0.5%;
