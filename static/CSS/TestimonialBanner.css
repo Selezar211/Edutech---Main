@@ -1,0 +1,91 @@
+
+
+.TestimBanner{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	margin-top: -1%;
+	display: inline-block;
+    background:   url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/corporate-testimonials.jpg);
+    background-size: 100% 120%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.TestimLine1{
+	margin-top: 5%;
+	width:100%;
+	position: relative;
+	text-align: center;
+	display: inline-block;
+	color: #1974d2;
+	font-family: "Quattrocento";
+	text-transform: uppercase;
+    letter-spacing: 1%;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 0.9em;
+}
+
+.TestimLine2{
+	margin-top: 2%;
+	margin-bottom: 3%;
+	width:100%;
+	position: relative;
+	text-align: center;
+	display: inline-block;
+	color: white;
+	font-family: "Quattrocento";
+    letter-spacing: 3%;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3em;
+}
+
+.TestimLine3{
+	margin-top: 2%;
+	margin-bottom: 3%;
+	width:70%;
+	margin-left: 15%;
+	position: relative;
+	text-align: center;
+	display: inline-block;
+	color: white;
+	font-family: "Quattrocento";
+    letter-spacing: 3%;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 3.1em;
+}
+
+.TestimLine4{
+	border-radius: 100%;
+	margin-left:48%;
+	margin-right: 30%;
+	margin-top:3%;
+	width: 3%;
+	height: 5%;
+	position: relative;
+	display: inline-block;
+    background:   url(http://highgradelab.com/navy/corporate/wp-content/uploads/sites/7/2016/09/team-4-80x80.jpg);
+    background-size: 100% 120%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.TestimLine5{
+	margin-top:2%;
+	width:100%;
+	position: relative;
+	text-align: center;
+	display: inline-block;
+	color: white;
+	font-family: "Quattrocento";
+	text-transform: uppercase;
+    letter-spacing: 1%;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 0.9em;
+}
