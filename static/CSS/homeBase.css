@@ -1,0 +1,99 @@
+			html {
+			  margin: 0;
+			  height: 100%;
+			  padding: 0 !important;
+			}
+
+			/*div shadow: http://i.imgur.com/0gMD2Jz.png*/
+
+			input, textarea, select, a { outline: none; }
+
+
+			body {
+				margin: 0;
+			    height: 100%;
+			    background-color: black;
+			}
+
+			.ContentWrapper{
+				width: 100%;
+				height: 100%;
+				position: relative;
+				-webkit-filter: blur(0px);
+			}
+
+
+			.MainBanner {
+				opacity: 1;
+				width: 100%;
+			    height: 100%;
+			    position: relative;
+			    background: #000;
+				overflow-y: scroll;
+				overflow-x: hidden;
+			    overflow: hidden;
+			}
+
+			.Top_Hidden_Spacer{
+				width: 100%;
+			    height: 6%;
+			    background-color: black;
+			    position: relative;
+			}
+
+			.Main_Title{
+				font-size: 7vw;
+			    font-family: "Cinzel";
+			    background-color: rgba(0,0,0,0.15);
+			    letter-spacing: 2vw;
+			    width: 100%;
+			    height: 19%;
+			    color: white;
+			    top: 23%;
+			    text-align: center;
+			    padding-right: 2%;
+			    padding-bottom: 1%;
+			    padding-top: 1%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			    opacity: 0;
+			    overflow: hidden;
+			}
+
+
+			#Main_TitleSpan_ID{
+				opacity: 0;
+			    position: absolute;
+			    top: -70%;
+			    left: 29%;
+			}
+
+			.Logo_Title{
+			    font-size: 1.2vw;
+			    font-family: "Cinzel";
+			    background-color: rgba(0,0,0,1);
+			    letter-spacing: 1.2vw;
+			    width: 100%;
+			    word-spacing: 1vw;
+			    height: 4%;
+			    color: white;
+			    top: 51%;
+			    text-align: center;
+			    padding-bottom: 0%;
+			    padding-top: 0.7%;
+			    position: absolute;
+			    display: inline-block;
+			    z-index: 100;
+			    transition: 500ms;
+			    opacity: 0;
+			    overflow: hidden;
+			}
+
+			#Logo_TitleSpan_ID{
+				opacity: 0;
+			    position: absolute;
+			    bottom: -70%;
+			    left: 16%;
+			}
