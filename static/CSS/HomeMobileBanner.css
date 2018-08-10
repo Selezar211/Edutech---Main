@@ -1,0 +1,46 @@
+
+
+.MobileAppBanner{
+	margin-top: -1%;
+	width: 100%;
+	height: 110%;
+	display: inline-block;
+	position: relative;
+	background: url('https://pmcvariety.files.wordpress.com/2017/10/iphone_x_gestures.jpg');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+
+.RightText{
+	margin-top: 20%;
+	width:30%;
+	float: right;
+	position: relative;
+	text-align: center;
+	display: inline-block;
+	color: black;
+	font-family: "Quattrocento";
+    letter-spacing: 3%;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2.8em;
+}
+
+.LeftText{
+	margin-top: 45%;
+	margin-left: 2%;
+	width:30%;
+	position: relative;
+	text-align: center;
+	float: left;
+	display: inline-block;
+	color: black;
+	font-family: "Quattrocento";
+    letter-spacing: 3%;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 2.8em;
+}

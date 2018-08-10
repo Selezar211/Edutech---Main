@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="static/CSS/homeContact.css">
         <link rel="stylesheet" href="static/CSS/homeStreamBanner.css">
         <link rel="stylesheet" href="static/CSS/TestimonialBanner.css">
+        <link rel="stylesheet" href="static/CSS/HomeMobileBanner.css">
 
 		<script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
 		<link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
@@ -313,6 +314,12 @@
 
 	        </div>
 
+            <div class="MobileAppBanner">
+                <div class="RightText"><span>COMING SOON ON IOS..</span></div>
+
+                <div class="LeftText"><span>Dont worry Android is right around the corner too</span></div>
+                
+            </div>
 
             <div class="ContactContainer">
 
@@ -531,6 +538,7 @@
 					var database = firebase.database();
 
 					var ref = database.ref('USERS/'+user.uid);
+
 
 					var data = {
 						UserName: NewUserName,
