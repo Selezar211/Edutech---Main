@@ -9,10 +9,12 @@
 }
 
 .VideoCont{
+	opacity: 0;
 	position: relative;
     display: inline-block;
     width: 45%;
     height: 80%;
+    right: -60%;
     top: 10%;
     float: left;
     margin-left: 4.5%;
@@ -34,9 +36,11 @@
 }
 
 .Wrapper2{
+	opacity: 0;
 	width: 100%;
 	height: 100%;
 	position: relative;
+	left: -110%;
 	display: inline-block;
 	color: black;
 	font-family: 'Raleway';
@@ -45,7 +49,7 @@
 .HeadingVideo{
 	margin-left: 20%;
 	margin-right: 20%;
-	margin-top: 10%;
+	margin-top: 5%;
 	margin-bottom: 5%;
 	position: relative;
 	text-align: left;

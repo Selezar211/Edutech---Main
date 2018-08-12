@@ -148,7 +148,7 @@
 	        <div class="WhiteTextBanner">
 	        	
 	        	<div class="TopBox" id="WTB">
-	        		<div class="TopBoxLine1"><span></span></div>
+	        		<div class="TopBoxLine1">Edutech</div>
 	        		<div class="TopBoxLine2"><span>The First General Purpose Education Portal in Bangladesh</span></div>
 	        		<div class="TopBoxLine3"><span></span></div>
 	        		<div class="TopBoxLine4"><span></span></div>
@@ -193,7 +193,7 @@
 
 	        		<div class="Wrapper">
 	        			<span class="HeadingSecondBanner">Based on Applications used by World Famous Universities</span>
-	        			<span class="SecondBannerInfo">Navy theme is extremely customizable, fully responsive and HiDPI ready WordPress theme based on a well structured framework which allows you to achieve the best response time and look for all your visitors.</span>
+	        			<span class="SecondBannerInfo">Universities abroad have all embraced technology and utilise it to play an integral part in the education process. From the likes of Blackboard used by the University of Manchester, Education has been radically changed. Everything from signing up to classes to sitting for MCQ tests to getting updated on recent ongoings in this University is digitised. Taking Blackboard as an inspiration we at Edutech have worked hard to bring this  experience to <b>YOU</b>. </span>
 	        		</div>
 	    
 
@@ -205,8 +205,8 @@
 
                 <div class="VideoTextCont">
                     <div class="Wrapper2">
-                        <span class="HeadingVideo">Elaborate your company style in no time with Navy.</span>
-                        <span class="VideoInfo">Navy theme is extremely customizable, fully responsive and HiDPI ready WordPress theme based on a well structured framework which allows you to achieve the best response time and look for all your visitors.</span>
+                        <span class="HeadingVideo">A Streaming Platform to Stay</span>
+                        <span class="VideoInfo">With the current advent of high speed internet, cramming 30 students at a time into a class to teach is inefficient in every single way you can think off. There is a definite upper limit to the number of students that can be crammed inside a class alongside the ever present need of time. Well with streaming you will be tackling them both at the same time. Scale your reach to thousands in all corners of Bangladesh by streaming your class <b>live</b> to your audience.</span>
                     </div>
                 </div>
 
@@ -219,8 +219,8 @@
 	        <div class="ThirdBanner">
 
 	        	<div class="TopBox" id="TB">
-	        		<div class="TopBoxLine1" id="TB1"><span>enjoy the best</span></div>
-	        		<div class="TopBoxLine2" id="TB2"><span>Of Our Themes</span></div>
+	        		<div class="TopBoxLine1" id="TB1"><span>Enjoy the best</span></div>
+	        		<div class="TopBoxLine2" id="TB2"><span>Education Application</span></div>
 	        		<div class="TopBoxLine3" id="TB3"><span>Keffiyeh banjo authentic food truck typewriter.</span></div>
 	        		<div class="TopBoxLine4" id="TB4"><span>Small batch farm-to-table microdosing pour-over trust fund.</span></div>
 	        	</div>
@@ -253,26 +253,26 @@
 	        </div>
 
             <div class="LinesCodeBanner">
-                <div class="LineBox">
-                    <div class="LineBoxL1">WE HAVE</div>
-                    <div class="LineBoxL2">3,600</div>
-                    <div class="LineBoxL3">users per month</div>
-                    <div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+                <div class="LineBox" id="LeftLineBox">
+                    <div class="LineBoxL1">AROUND</div>
+                    <div class="LineBoxL2">12,000</div>
+                    <div class="LineBoxL3">Lines of Code</div>
+                    <div class="LineBoxL4">Written so far and increasing every second as we work to make this the most efficient and feature friendly education portal out there.</div>
 
                 </div>
 
-                <div class="LineBox">
-                    <div class="LineBoxL1">WE ANSWERED</div>
+                <div class="LineBox" id="MidLineBox">
+                    <div class="LineBoxL1">DRUNK</div>
                     <div class="LineBoxL2">1,200</div>
-                    <div class="LineBoxL3">tickets this year</div>
-                    <div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+                    <div class="LineBoxL3">Cups of Coffee</div>
+                    <div class="LineBoxL4">This is not actually true, I hate coffee and have always been more of a tea person.</div>
                 </div>
 
-                <div class="LineBox">
-                    <div class="LineBoxL1">WE HELPED</div>
+                <div class="LineBox" id="RightLineBox">
+                    <div class="LineBoxL1">Projecting</div>
                     <div class="LineBoxL2">10,000</div>
-                    <div class="LineBoxL3">business owners</div>
-                    <div class="LineBoxL4">VHS beard post-ironic pok pok, normcore small batch whatever YOLO williamsburg.</div>
+                    <div class="LineBoxL3">Daily Students</div>
+                    <div class="LineBoxL4">Who will be using this and relying on it to take their education to the next level.</div>
                 </div>
 
             </div>
@@ -720,6 +720,26 @@
 			     });
 			}
 
+			function AnimateStreamBannerTitle(){
+				$( ".VideoCont" ).animate({
+			        opacity: "1",
+			        right: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+
+			     });
+
+				$( ".Wrapper2" ).animate({
+			        opacity: "1",
+			        left: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+
+			     });
+			}
+
 			function AnimateThirdBannerTitle(){
 				$( "#TB" ).animate({
 			        opacity: "1",
@@ -760,14 +780,86 @@
 			     });
 			}
 
+			function AnimateCodeBannerTitle(){
+				$( "#LeftLineBox" ).animate({
+			        opacity: "1",
+			        left: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
 
+			     });
+
+				$( "#MidLineBox" ).animate({
+			        opacity: "1",
+			        bottom: "0%"
+			    },1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+
+			     });
+
+				$( "#RightLineBox" ).animate({
+			        opacity: "1",
+			        right: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+
+			     });
+			}
+
+			function AnimateContactBanner(){
+				$( ".Explanation" ).fadeIn("slow");
+				$( ".AddressBox" ).animate({
+			        opacity: "1",
+			        left: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+
+			     });
+
+				$( ".FormMailBox" ).animate({
+			        opacity: "1",
+			        right: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+
+			     });
+			}
+
+			function AnimateClientBanner(){
+				$( ".ClientLeftBox" ).animate({
+			        opacity: "1",
+			        left: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+
+			     });
+
+				$( ".ClientRightBox" ).animate({
+			        opacity: "1",
+			        right: "0%"
+			    }, 1100, function() {
+			        // Animation complete.
+			        console.log('animation complete');
+
+			     });
+			}
 
 //Jquery Start
 
 			var IsInvisBannerTextShown = false;
 			var IsWhiteTextBannerShown = false;
 			var IsSecondBannerTextShown = false;
+			var IsStreamBannerTextShown = false;
 			var IsThirdBannerTextShown = false;
+			var IsCodeLineBannerTextShown = false;
+			var IsContactBannerTextShown = false;
+			var IsClientBannerTextShown = false;
 
 			jQuery(document).ready(function($) {
 
@@ -779,8 +871,6 @@
 			        	window.location.href = 'http://www.edutechs.org/Login';
 			        });
 
-
-
 			//SIGNUP BOX ANIMATE FROM TOP
 			        $("#SIGNUP_ID").click(function() {
 			        	$('.ContentWrapper').css("-webkit-filter", 'blur(25px');
@@ -788,8 +878,6 @@
 			        	$('#SignUpClose').fadeIn("slow");
 			        	
 			        });
-
-
 
 			        $("#SignUpClose").click(function() {
 
@@ -845,12 +933,40 @@
 			        		IsSecondBannerTextShown = true;
 					    }
 
+					   	else if (scroll>1600 && !IsStreamBannerTextShown) {
+			        		console.log('showing second banner text..');
+							AnimateStreamBannerTitle();
 
-					   	else if (scroll>2600 && !IsThirdBannerTextShown) {
+			        		IsStreamBannerTextShown = true;
+					    }
+
+
+					   	else if (scroll>2400 && !IsThirdBannerTextShown) {
 			        		console.log('showing second banner text..');
 							AnimateThirdBannerTitle();
 
 			        		IsThirdBannerTextShown = true;
+					    }
+
+					   	else if (scroll>2950 && !IsCodeLineBannerTextShown) {
+			        		console.log('showing second banner text..');
+							AnimateCodeBannerTitle();
+
+			        		IsCodeLineBannerTextShown = true;
+					    }
+
+					   	else if (scroll>4000 && !IsClientBannerTextShown) {
+			        		console.log('showing second banner text..');
+							AnimateClientBanner();
+
+			        		IsClientBannerTextShown = true;
+					    }
+
+					   	else if (scroll>5400 && !IsContactBannerTextShown) {
+			        		console.log('showing second banner text..');
+							AnimateContactBanner();
+
+			        		IsContactBannerTextShown = true;
 					    }
 
 					});

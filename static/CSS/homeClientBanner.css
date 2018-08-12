@@ -9,6 +9,8 @@
 			}
 
 			.ClientLeftBox{
+				left: -60%;
+				opacity: 0;
 				width: 50%;
 				height: 100%;
 				position: relative;
@@ -62,6 +64,8 @@
 			}
 
 			.ClientRightBox{
+				right: -60%;
+				opacity: 0;
 				width: 50%;
 				height: 100%;
 				position: relative;

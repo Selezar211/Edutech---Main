@@ -11,20 +11,23 @@
 }
 
 .Explanation{
-    width: 50%;
+
+    width: 70%;
     height: 10%;
     position: relative;
-    display: inline-block;
+    display: none;
     text-align: center;
     font-size: 1.5em;
     color: gray;
     padding-top: 4%;
-    padding-left: 25%;
-    padding-right: 25%;
+    padding-left: 15%;
+    padding-right: 15%;
     margin-bottom: 1%;
 }
 
 .AddressBox{
+	left: -80%;
+	opacity: 0;
 	width: 40%;
 	height: 70%;
 	position: relative;
@@ -36,6 +39,8 @@
 }
 
 .FormMailBox{
+	right: -60%;
+	opacity: 0;
 	width: 28%;
 	height: 70%;
 	position: relative;

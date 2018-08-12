@@ -18,21 +18,21 @@
 			}
 
 			.TopBoxLine1{
+				margin-top: 1%;
 				width:100%;
 				position: relative;
 				text-align: center;
 				display: inline-block;
-				color: #1974d2;
+				color: black;
 				font-family: "Quattrocento";
-				text-transform: uppercase;
-			    letter-spacing: 0.1em;
+			    letter-spacing: 3%;
 			    font-weight: 700;
 			    font-style: normal;
-			    font-size: 0.9em;
+			    font-size: 2em;
 			}
 
 			.TopBoxLine2{
-				margin-top: 4%;
+				margin-top: 2%;
 				margin-bottom: 1%;
 				width:100%;
 				position: relative;
@@ -73,6 +73,7 @@
 				color: black;
 				opacity: 0;
 				margin-right: 5%;
+				float: left;
 				width:25%;
 				height: 100%;
 				display: inline-block;

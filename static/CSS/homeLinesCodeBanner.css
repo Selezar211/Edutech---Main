@@ -19,6 +19,21 @@
 				color: black;
 			}
 
+			#LeftLineBox{
+				opacity: 0;
+				left: -40%;
+			}
+
+			#MidLineBox{
+				opacity: 0;
+				bottom: -90%;
+			}
+
+			#RightLineBox{
+				opacity: 0;
+				right: -40%;
+			}
+
 			.LineBoxL1{
 				margin-top: 25%;
 				width: 100%;
