@@ -1,0 +1,94 @@
+/*		Lecture notes stuff*/
+		.MainLectureTab_Cont{
+				color: black;
+			    width: 100%;
+			  	height: 100%;
+			    display: none;
+			    position: relative;
+			    overflow: auto;
+		}
+
+		.LectureHeadingMain{
+				margin-top: 3%;
+			    padding-left: 2%;
+			    padding-right: 2%;
+			    display: inline-block;
+			    position: relative;
+			    top: 3%;
+			    margin-left: 25%;
+			    font-size: 4em;
+			    text-align: center;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+		}
+
+		.LectureLinksContainer{
+			    width: 98%;
+			    display: inline-block;
+			    position: relative;
+			    margin-top: 5%;
+			    margin-left: 2%;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+		}
+
+		.LectureTeacherName{
+				color: white;
+				width: 100%;
+				display: inline-block;
+				padding-top: 1%;
+				padding-bottom: 1%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background-color: rgb(20,24,27);
+				position: relative;
+				top: 0%;
+		}
+
+		.LectureLink{
+				cursor: pointer;
+			    display: inline-block;
+			    position: relative;
+			    margin-right: 2%;
+			    margin-left: 2%;
+			    margin-top: 2%;
+			    margin-bottom: 2%;
+			    padding: 2%;
+			    font-size: 1em;
+			    text-align: center;
+			    transition: 500ms;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+		}
+
+		.LectureLink:hover{
+			transform: scale(1.2,1.2);
+			transition: 500ms;
+		}
+
+		.PDF_VIEWER{
+			width: 60%;
+			height: 100%;
+			overflow: auto;
+			top: 0%;
+			left: 20%;
+			border: 0.1vw solid black;
+			background-color: black;
+			position: absolute;
+			z-index: 107;
+			display: none;
+		}
+
+		#PDFCLOSE_ICON{
+			display: none;
+		    cursor: pointer;
+		    transform: scale(3,3);
+		    color: white;
+		    position: absolute;
+		    z-index: 107;
+		    left: 83%;
+		    transition: 500ms;
+		    top: 3%;
+		}
+
+		#PDFCLOSE_ICON:hover{
+			color: gray;
+			transition: 500ms;
+		}

@@ -1,0 +1,155 @@
+/*		timetable tab*/
+			.MainTimeTableCont{
+				width: 100%;
+				height: 100%;
+				display: none;
+				position: absolute;
+				font-size: 62.5%;
+			  font-size: 1rem;
+			  font-family: "Source Sans Pro", sans-serif;
+			  color: #222222;
+/*			  background-color: white;*/
+			  overflow: auto;
+			}
+
+			.TimeTableHeading{
+				width: 40%;
+			    margin-top: 1%;
+			    height: 12%;
+			    display: inline-block;
+			    position: absolute;
+			    top: 3%;
+			    margin-left: 30%;
+			    font-size: 4em;
+			    text-align: center;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			}
+
+			.SetStreamsButton{
+				transition: 500ms;
+				border-left: 0.0001em solid rgba(0,0,0,0);
+				cursor: pointer;
+				width: 22%;
+			    margin-top: 5%;
+			    height: 5%;
+			    display: inline-block;
+			    position: absolute;
+			    top: 3%;
+			    margin-left: 75%;
+			    font-size: 1.5em;
+			    text-align: center;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			}
+
+			.SetStreamsButton:hover {
+				transition: 500ms;
+				border-left: 1em solid rgba(0,0,0,0);
+			}
+
+
+			#SetStreamIcon{
+				top: 6%;
+				left: -4%;
+				transform: scale(1,1);
+				color: black;
+				display: inline-block;
+				cursor: pointer;
+				transition: 200ms;
+			}
+
+
+			.StreamConfigOptions{
+				font-family: 'Quattrocento';
+				display: inline-block;
+				z-index: 106;
+				position: fixed;
+				background: linear-gradient(135deg, #EA5C54 0%, #bb6dec 100%);
+				width: 100%;
+				height: 100%;
+				top: 0%;
+			}
+
+			.StreamConfigTitle{
+				margin-top: 2%;
+				color: white;
+				background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+			    display: inline-block;
+			    position: relative;
+			    padding: 1%;
+			    padding-left:15%;
+			    padding-right: 2%;
+			    top: 5%;
+			    font-size: 3em;
+			    text-align: right;
+			}
+
+
+			.StreamAddBox{
+				width: 30%;
+				margin-top: 3%;
+				margin-left: 22%;
+				position: relative;
+				display: inline-block;
+				border-bottom: 0.1vw solid white;
+				border-left: 0.1vw solid white;
+				border-right: 0.1vw solid white;
+			}
+
+			.StreamAddBoxHeading{
+				width: 100%;
+				padding-top: 1%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background-color: white;
+				color: black;
+				position: relative;
+				text-align: left;
+				top: 0%;
+			}
+
+		.StreamInput{
+				width: 80%;
+				color: black;
+			    display: inline-block;
+			    position: relative;
+			    margin-right: 2%;
+			    margin-left: 2%;
+			    margin-top: 2%;
+			    margin-bottom: 2%;
+			    padding: 1%;
+			    font-size: 1em;
+			    text-align: center;
+			    transition: 500ms;
+			    background-color: beige;
+		}
+
+		.StreamDaySelect, .StreamStartTime, .StreamEndTime{
+			width: 80%;
+			    display: inline-block;
+			    position: relative;
+			    margin-right: 2%;
+			    margin-left: 2%;
+			    margin-top: 2%;
+			    margin-bottom: 2%;
+			    padding: 2%;
+			    font-size: 1em;
+			    text-align: center;
+			    transition: 500ms;
+			    background-color: beige;
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
