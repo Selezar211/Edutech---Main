@@ -1,0 +1,134 @@
+/*			Notification*/
+			.NotificationOpenButton{
+			    width: 2%;
+			    height: 100%;
+			    color: white;
+			    float: left;
+			    position: relative;
+			    display: inline-block;
+			    background-color: rgb(10,14,17);
+				text-align: center;
+			    z-index: 97;
+			    transition: 500ms;
+			}
+
+			#ExclaimIcon{
+				transform: scale(1.2,1.2);
+				top: 93%;
+				color: white;
+				display: block;
+				cursor: pointer;
+				transition: 200ms;
+			}
+
+			#ExclaimIcon:hover{
+				transition: 200ms;
+				color: silver;
+				transform: scale(1.5,1.7);
+			}
+
+			#CloseNotif:hover {
+				transform: scale(1.8,1.8);;
+				transition: 200ms;
+			}
+
+
+			#CloseNotif{
+				transform: scale(1.5,1.5);
+				color: black;
+				display: block;
+				cursor: pointer;
+				position: absolute;
+			    top: 2%;
+			    right: 4%;
+			    transition: 200ms;
+			}
+
+
+			.NotificationMainCont{
+			    width: 0%;
+			    height: 100%;
+			    color: white;
+			    position: relative;
+			    float: left;
+			    background-color: rgba(0,0,0,0);
+			    display: inline-block;
+			    z-index: 97;
+			    transition: 500ms;
+			}
+
+			.InnerNotifMain{
+				width: 100%;
+				height: 100%;
+				display: none;
+				position: relative;
+				background-color: rgba(0,0,0,0);
+				transition: 500ms;
+			}
+
+			.NotifHeading{
+			    font-family: 'Quattrocento';
+			    text-align: center;
+			    padding: 5%;
+			    height: 10%;
+			    background-color: rgba(0,0,0,0);
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			    position: relative;
+			    display: inline-block;
+			    font-weight: bolder;
+			    color: black;
+			    margin-top: 5%;
+			    margin-left: 33%;
+			    font-size: 1.5vw;
+			}
+
+			.NotificationBox_Cont{
+				width: 100%;
+				height: 88%;
+				padding-top: 10%;
+				position: relative;
+				display: inline-block;
+				 overflow: auto;
+			}
+
+			.NotificationBox{
+				width: 90%;
+				margin-bottom: 7%;
+				height: 20%;
+				margin-left: 5%;
+				position: relative;
+				display: inline-block;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			}
+
+			.NotifBoxHeading{
+				width: 100%;
+				height: 25%;
+				padding-top: 1%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background-color: rgb(20,24,27);
+				position: relative;
+				top: 0%;
+			}
+
+			.NotifBoxSender{
+				float: left;
+			}
+
+			.NotifDateTime{
+				float: right;
+			}
+
+			.NotifBoxMessage{
+				font-family: 'Quattrocento';
+				width: 100%;
+				height: 75%;
+				padding-top: 2%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background-color: rgba(0,0,0,0);
+				color: black;
+				position: relative
+				top: 0%;
+			}

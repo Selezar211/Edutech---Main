@@ -1,0 +1,53 @@
+			html {
+			  margin: 0;
+			  height: 100%;
+			  padding: 0 !important;
+			}
+			 
+
+			body {
+				margin: 0;
+			    height: 100%;
+			    background-color: rgb(10,14,17);
+			    font-family: 'Cinzel';
+				background: url("https://i.imgur.com/GuDU01B.jpg");
+			    background-size: 100% 100%;
+			    background-position: center;
+			    background-repeat: no-repeat;
+			}
+
+		/*scrollbar stuff*/
+
+			::-webkit-scrollbar {
+			    width: 0.2%;
+			    height: 70%;
+			    margin: 0 auto;
+				background-color: rgba(255, 0, 0, 0.1);
+			   
+			}
+			::-webkit-scrollbar-thumb {
+			    height: 6px;
+			    border: 1px solid rgba(0, 0, 0, 0.9);
+			    background-clip: padding-box;
+			    -webkit-border-radius: 15px;
+			    background-color: rgba(0, 0, 0, 0.5);
+			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+			    height: 6px;
+			    background-clip: padding-box;
+			    -webkit-border-radius: 15px;
+			    -webkit-box-shadow: inset -1px -1px 0px rgba(0, 0, 0, 0.05), inset 1px 1px 0px rgba(0, 0, 0, 0.05);
+			}
+
+
+			::-webkit-scrollbar-button {
+			    width: 0;
+			    height: 0;
+			    display: none;
+			}
+
+			::-webkit-scrollbar-corner {
+			    background-color: transparent;
+			   }

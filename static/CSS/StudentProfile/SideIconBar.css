@@ -1,0 +1,69 @@
+			.Top_FA_Container{
+			    width: 6.4%;
+			    height: 95%;
+			    left: 1.5%;
+			    top: 2%;
+			    position: relative;
+			    display: inline-block;
+			    float: left;
+			    background-color: rgba(0,0,0,0); /*#94618E;*/
+			    opacity: 0.9;
+			    border-radius: 3px;
+			    z-index: 105;
+      			box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			}
+
+			.TopFaDIV{
+				border-radius: 3px;
+				cursor: pointer;
+				color: white;
+				position: relative;
+				float: left;
+				width: 100%;
+				height: 14.28%;
+				display: inline-block;
+				text-align: center;
+				background-color: rgba(0,0,0,0); /*background-color: #94618E;*/
+				transition: 500ms;
+			}
+
+			.TopFaDIV:hover .fas {
+				color: #222;
+				transform: scale(2.4,2.4);
+				transition: 500ms;
+			}
+
+			.TopFaDIV:hover .IconDescription {
+				color: #222;
+				transition: 500ms;
+			}
+
+			.IconDescription{
+			    font-family: 'Montserrat';
+			    font-size: 0.8vw;
+			    position: absolute;
+			    bottom: 10%;
+			    left: 30%;
+			    display: inline-block;
+			    transition: 500ms;
+			}
+
+			#TimetableIcon{
+				left: 20%;
+			}
+
+			#LectureIcon{
+				left: 26%;
+			}
+
+			#SettingsIcon{
+				left: 26%;
+			}
+			.fas{
+				transform: scale(2,2);
+				display: inline-block;
+				position: relative;
+				top: 45%;
+				transition: 500ms;
+				margin:auto
+			}
