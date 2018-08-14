@@ -536,12 +536,10 @@
 
 			<div class="StreamAddBox">
 
-				<div class="StreamAddBoxHeading">
-					<span>Add New Stream</span>
-				</div>
+				<label class="StreamNameLabel">Stream Name: </label>
+				<input type="text" class="StreamInput" name="StreamName">
 
-				<input type="text" class="StreamInput" name="StreamName" placeholder="Stream Name">
-
+				<label class="StreamDayLabel">Stream Day: </label>
 				<select class="StreamDaySelect" name="days">
 					<option value="day1">Sunday</option>
 					<option value="day2">Monday</option>
@@ -552,15 +550,22 @@
 					<option value="day7">Saturday</option>
 				</select>
 
+				<label class="StreamStartLabel">Stream Start Time: </label>
 				<select class="StreamStartTime" name="StreamST">
 					<option value="v1">5:30</option>
 					<option value="v2">6:00</option>
 				</select>
 
+				<label class="StreamEndLabel">Stream End Time: </label>
 				<select class="StreamEndTime" name="StreamET">
 					<option value="c1">5:30</option>
 					<option value="c2">6:00</option>
 				</select>
+
+				<label class="StreamSeatLabel">Stream Total Seats: </label>
+				<input type="number" min="0" class="StreamInput" name="StreamSeats">
+
+				<div class="AddNewStream"><span>Add New Stream</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
 
 
 			</div>
