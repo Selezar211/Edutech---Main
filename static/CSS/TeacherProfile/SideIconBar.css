@@ -67,3 +67,7 @@
 				transition: 500ms;
 				margin:auto
 			}
+
+			#StudentIconDesc{
+				left: 22%;
+			}

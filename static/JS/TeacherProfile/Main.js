@@ -132,6 +132,17 @@
 
 	  });
 
+	//open config options tab
+	document.getElementById("SetStreamsButtonID").addEventListener('click', e => {
+		$('.StreamConfigOptions').fadeIn('slow');
+	});
+
+
+	//close config options tab
+	document.getElementById("StreamConfigCloseIcon").addEventListener('click', e => {
+		$('.StreamConfigOptions').fadeOut('slow');
+	});
+
 //Video icon click event
 	document.getElementById("VidIcon").addEventListener('click', e => {
 

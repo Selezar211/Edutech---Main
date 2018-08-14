@@ -97,7 +97,7 @@
 			<div class="TopFaDIV" id="TableIcon"><i class="fas fa-table"></i><span class="IconDescription" id="TimetableIcon">Timetable</span></div>
 			<div class="TopFaDIV" id="VidIcon"><i class="fas fa-video"></i><span class="IconDescription">Video</span></div>
 			<div class="TopFaDIV" id="Lecticn" ><i class="fas fa-file-alt"></i><span class="IconDescription" id="LectureIcon">Lecture</span></div>
-			<div class="TopFaDIV" id="TeacherIcon"><i class="fas fa-chalkboard-teacher"></i><span class="IconDescription">Students</span></div>	
+			<div class="TopFaDIV" id="TeacherIcon"><i class="fas fa-chalkboard-teacher"></i><span class="IconDescription" id="StudentIconDesc">Students</span></div>	
 			<div class="TopFaDIV"><i class="fas fa-cog"></i><span class="IconDescription" id="SettingsIcon">Settings</span></div>		
 		</div>
 
@@ -237,7 +237,7 @@
 
 						<div class="MainTimeTableCont">
 							<div class="TimeTableHeading">Timetable</div>
-							<div class="SetStreamsButton"><i id="SetStreamIcon" class="fas fa-cogs"></i>Configure Streams</div>
+							<div class="SetStreamsButton" id="SetStreamsButtonID"><i id="SetStreamIcon" class="fas fa-cogs"></i>Configure Streams</div>
 							<div class="cd-schedule loading">
 
 								<div class="timeline">
@@ -532,7 +532,7 @@
     </div>
 
     <div class="StreamConfigOptions">
-    		<div class="StreamConfigTitle"><span>Streams Configuration</span></div>
+    		<div class="StreamConfigTitle"><span>Stream Configuration:</span><i id="StreamConfigCloseIcon" class="fas fa-times-circle"></i></div>
 
 			<div class="StreamAddBox">
 
@@ -571,6 +571,38 @@
 			</div>
 
     		<div class="CurrentStreamsTitle"><span>Current Streams: </span></div>
+
+    		<div class="StreamBox">
+    			
+				<div class="StreamConfig">
+					<span class="TimingsStream">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
+					<i id="DeleteStream" class="fas fa-trash-alt"></i>
+					<span class="SeatVacancyStream">Vacant Seats: 5/40</span>
+					
+				</div>
+
+				<div class="StreamConfig">
+					<span class="TimingsStream">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
+					<i id="DeleteStream" class="fas fa-trash-alt"></i>
+					<span class="SeatVacancyStream">Vacant Seats: 5/40</span>
+					
+				</div>
+
+				<div class="StreamConfig">
+					<span class="TimingsStream">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
+					<i id="DeleteStream" class="fas fa-trash-alt"></i>
+					<span class="SeatVacancyStream">Vacant Seats: 5/40</span>
+					
+				</div>
+
+				<div class="StreamConfig">
+					<span class="TimingsStream">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
+					<i id="DeleteStream" class="fas fa-trash-alt"></i>
+					<span class="SeatVacancyStream">Vacant Seats: 5/40</span>
+					
+				</div>
+
+    		</div>
 
     </div>
 
