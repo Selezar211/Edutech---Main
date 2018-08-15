@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Edutech - Teacher SignUp</title>
+  <link rel="icon" type="image/png" href="https://png.icons8.com/ios-glyphs/40/000000/cup.png">
+  
+  <link rel='stylesheet' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+  <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet'>
+
+	<style>
+			@import url(https://fonts.googleapis.com/css?family=Gudea:400,700);
+		body {
+		  -webkit-perspective: 800px;
+		          perspective: 800px;
+		  height: 100vh;
+		  margin: 0;
+		  overflow: hidden;
+		  font-family: 'Gudea', sans-serif;
+		  background: #EA5C54;
+		  /* Old browsers */
+		  /* FF3.6+ */
+		  /* Chrome,Safari4+ */
+		  /* Chrome10+,Safari5.1+ */
+		  /* Opera 11.10+ */
+		  /* IE10+ */
+		  background: linear-gradient(135deg, #EA5C54 0%, #bb6dec 100%);
+		  /* W3C */
+		  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#EA5C54 ', endColorstr='#bb6dec',GradientType=1 );
+		  /* IE6-9 fallback on horizontal gradient */
+		}
+		body ::-webkit-input-placeholder {
+		  color: #4E546D;
+		}
+		body .authent {
+		  display: none;
+		  background: #35394a;
+		  /* Old browsers */
+		  /* FF3.6+ */
+		  /* Chrome,Safari4+ */
+		  /* Chrome10+,Safari5.1+ */
+		  /* Opera 11.10+ */
+		  /* IE10+ */
+		  background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+		  /* W3C */
+		  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
+		  /* IE6-9 fallback on horizontal gradient */
+		  position: absolute;
+		  left: 0;
+		  right: 90px;
+		  margin: auto;
+		  width: 100px;
+		  color: white;
+		  text-transform: uppercase;
+		  letter-spacing: 1px;
+		  text-align: center;
+		  padding: 20px 70px;
+		  top: 200px;
+		  bottom: 0;
+		  height: 70px;
+		  opacity: 0;
+		}
+		body .authent p {
+		  text-align: center;
+		  color: white;
+		}
+		body .success {
+		  display: none;
+		  color: #d5d8e2;
+		}
+		body .success p {
+		  font-size: 2em;
+		}
+		body p {
+		  color: #5B5E6F;
+		  font-size: 10px;
+		  text-align: left;
+		}
+		body .testtwo {
+		  left: -320px !important;
+		}
+		body .test {
+		  box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
+		  pointer-events: none;
+		  top: -100px !important;
+		  -webkit-transform: rotateX(70deg) scale(0.8) !important;
+		          transform: rotateX(70deg) scale(0.8) !important;
+		  opacity: .6 !important;
+		  -webkit-filter: blur(1px);
+		          filter: blur(1px);
+		}
+		body .login {
+		  opacity: 1;
+		  -webkit-transition-timing-function: cubic-bezier(0.68, -0.25, 0.265, 0.85);
+		  transition-property: opacity,box-shadow,top,left,-webkit-transform;
+		  transition-property: transform,opacity,box-shadow,top,left;
+		  transition-property: transform,opacity,box-shadow,top,left,-webkit-transform;
+		  transition-duration: .5s;
+		  -webkit-transform-origin: 161px 100%;
+		          transform-origin: 161px 100%;
+		  -webkit-transform: rotateX(0deg);
+		          transform: rotateX(0deg);
+		  position: relative;
+		  width: 25%;
+		  border-top: 1vw solid darkred;
+		  height: 65%;
+		  position: absolute;
+		  left: 0;
+		  right: 0;
+		  margin: auto;
+		  top: 0;
+		  bottom: 0;
+		  padding: 4% 4% 4% 4%;
+		  background: #35394a;
+		  /* Old browsers */
+		  /* FF3.6+ */
+		  /* Chrome,Safari4+ */
+		  /* Chrome10+,Safari5.1+ */
+		  /* Opera 11.10+ */
+		  /* IE10+ */
+		  background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+		  /* W3C */
+		  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#35394a', endColorstr='#1f222e',GradientType=1 );
+		  /* IE6-9 fallback on horizontal gradient */
+		}
+		body .login .validation {
+		  position: absolute;
+		  z-index: 1;
+		  right: 10px;
+		  top: 35%;
+		  opacity: 0;
+		}
+		body .login .disclaimer {
+		  position: absolute;
+		  bottom: 20px;
+		  left: 35px;
+		  width: 250px;
+		}
+		body .login_title {
+		  color: #afb1be;
+		  height: 60px;
+		  text-align: left;
+		  font-size: 16px;
+		}
+		body .login_fields {
+		    height: 40%;
+		    width: 100%;
+		    position: absolute;
+		    left: 0;
+		}
+		body .login_fields .icon {
+		    position: absolute;
+		    z-index: 1;
+		    left: 10%;
+		    top: 35%;
+		    opacity: .5;
+		}
+		body .login_fields input[type='password'] {
+		  color: #DC6180 !important;
+		}
+		body .login_fields input[type='text'], body .login_fields input[type='password'] {
+		    color: #afb1be;
+		    width: 100%;
+		    background: #32364a;
+		    left: 0;
+		    padding: 0%;
+		    padding-top: 3%;
+		    padding-bottom: 3%;
+		    padding-left: 20%;
+		    border-top: 2px solid #393d52;
+		    border-bottom: 2px solid #393d52;
+		    border-right: none;
+		    border-left: none;
+		    outline: none;
+		    font-family: 'Gudea', sans-serif;
+		    font-size: 1.2vw;
+		    box-shadow: none;
+		}
+		body .login_fields__user, body .login_fields__password, body .login_fields__email,  body .login_fields__subject, body .login_fields__secretkey{
+		  position: relative;
+		  width: 83%;
+		}
+		body .login_fields__submit {
+		  position: relative;
+		  top: 20%;
+		  left: 0;
+		  width: 80%;
+		  right: 0;
+		  margin: auto;
+		}
+		body .login_fields__submit .forgot {
+		  float: right;
+		  font-size: 0.8em;
+		  margin-top: 2%;
+		  text-decoration: underline;
+		}
+		body .login_fields__submit .forgot a {
+		  color: #606479;
+		}
+
+		body .login_fields__submit input {
+		  border-radius: 50px;
+		  background: transparent;
+		  padding: 3% 15%;
+		  border: 2px solid #DC6180;
+		  color: #DC6180;
+		  text-transform: uppercase;
+		  font-size: 1em;
+		  transition-property: background,color;
+		  transition-duration: .2s;
+		}
+		body .login_fields__submit input:focus {
+		  box-shadow: none;
+		  outline: none;
+		}
+		body .login_fields__submit input:hover {
+		  color: white;
+		  background: #DC6180;
+		  cursor: pointer;
+		  transition-property: background,color;
+		  transition-duration: .2s;
+		}
+
+		.Edutech{
+		font-family: 'Gudea', sans-serif;
+		  color: #afb1be;
+		  height: 60px;
+		  text-align: left;
+		  font-size: 2vw;
+		  position: relative;
+}
+
+/*Class Checkbox*/
+
+
+		.ClassCheckBox{
+			border-top: 1vw solid darkred;
+			padding-top: 2%;
+			padding-left: 2%;
+			padding-right: 2%;
+			padding-bottom: 5%;
+			width: 22% ;
+			background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+			position: absolute;
+			display: inline-block;
+			left: 5%;
+			top: 18%;
+
+		}
+
+		.CheckBoxTitle{
+			display: inline-block;
+			position: relative;
+			width: 100%;
+			color: #afb1be;
+			font-family: 'Gudea';
+			font-size: 1em;
+		}
+
+		.GradeCont{
+			margin-top: 9%;
+			padding-bottom: 3%;
+			position: relative;
+			display: inline-block;
+			border-bottom: 0.1vw solid #afb1be;
+			width: 100%;
+		}
+
+		.CBOX_OL{
+			cursor: pointer;
+			width: 10%;
+			position: relative;
+			display: inline-block;
+			float: left;
+		}
+
+		.CBOX_AL{
+			cursor: pointer;
+			width: 10%;
+			position: relative;
+			display: inline-block;
+			float: left;
+		}
+
+		.CBOX_LABEL{
+			cursor: pointer;
+			color: #afb1be;
+			font-family: 'Gudea';
+			width: 80%;
+			position: relative;
+			display: inline-block;
+			float: left;
+		}
+
+		.SubjectCont{
+			margin-top: 5%;
+			padding-bottom: 1%;
+			position: relative;
+			display: inline-block;
+			width: 100%;
+		}
+
+/*Loading page*/
+
+		.LoadingContainer{
+			font-family: 'Cinzel';
+			display: inline-block;
+			z-index: 106;
+			position: fixed;
+			background-color: black;
+			width: 100%;
+			height: 100%;
+			top: 0%;
+		}
+
+		.LoadingText{
+			color: white;
+		    position: relative;
+		    top: 40%;
+		    text-align: center;
+		    width: 100%;
+		    display: inline-block;
+		}
+
+		.lds-ellipsis {
+		  display: inline-block;
+		  position: relative;
+		  width: 64px;
+		  height: 64px;
+		  left: 47%;
+		  top: 50%;
+		}
+		.lds-ellipsis div {
+		  position: absolute;
+		  top: 27px;
+		  width: 11px;
+		  height: 11px;
+		  border-radius: 50%;
+		  background: #fff;
+		  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+		}
+		.lds-ellipsis div:nth-child(1) {
+		  left: 6px;
+		  animation: lds-ellipsis1 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(2) {
+		  left: 6px;
+		  animation: lds-ellipsis2 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(3) {
+		  left: 26px;
+		  animation: lds-ellipsis2 0.6s infinite;
+		}
+		.lds-ellipsis div:nth-child(4) {
+		  left: 45px;
+		  animation: lds-ellipsis3 0.6s infinite;
+		}
+		@keyframes lds-ellipsis1 {
+		  0% {
+		    transform: scale(0);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
+		@keyframes lds-ellipsis3 {
+		  0% {
+		    transform: scale(1);
+		  }
+		  100% {
+		    transform: scale(0);
+		  }
+		}
+		@keyframes lds-ellipsis2 {
+		  0% {
+		    transform: translate(0, 0);
+		  }
+		  100% {
+		    transform: translate(19px, 0);
+		  }
+		}
+
+
+	</style>
+
+  
+</head>
+
+<body>
+
+    <div class="LoadingContainer">
+    	<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+    	<span class="LoadingText">Edutech - Please Wait a Moment..</span>
+    </div>
+
+
+    <div class="ClassCheckBox">
+    	<span class="CheckBoxTitle">Please tick the relevant fields</span>
+
+    	<div class="GradeCont">
+ 			<label class="CBOX_LABEL" for="olevel_ID">O LEVEL</label>
+    	</div>
+
+    	<div class="SubjectCont">
+ 			<input type="checkbox" class="CBOX_OL" id="Physics_ID_OL" name="Physics" value="Physics"  />
+ 			<label class="CBOX_LABEL" for="Physics_ID_OL">Physics</label>
+
+ 			<input type="checkbox" class="CBOX_OL" id="Chemistry_ID_OL" name="Chemistry" value="Chemistry"  />
+ 			<label class="CBOX_LABEL" for="Chemistry_ID_OL">Chemistry</label>
+
+  			<input type="checkbox" class="CBOX_OL" id="Biology_ID_OL" name="Biology" value="Biology"  />
+ 			<label class="CBOX_LABEL" for="Biology_ID_OL">Biology</label>
+
+  			<input type="checkbox" class="CBOX_OL" id="Economics_ID" name="Economics" value="Economics"  />
+ 			<label class="CBOX_LABEL" for="Economics_ID">Economics</label>
+
+  			<input type="checkbox" class="CBOX_OL" id="Accounting_ID" name="Accounting" value="Accounting"  />
+ 			<label class="CBOX_LABEL" for="Accounting_ID">Accounting</label>
+
+  			<input type="checkbox" class="CBOX_OL" id="MathematicsB_ID" name="MathematicsB" value="MathematicsB"  />
+ 			<label class="CBOX_LABEL" for="MathematicsB_ID">Mathematics B</label>
+
+  			<input type="checkbox" class="CBOX_OL" id="PureMathsID" name="PureMaths" value="PureMaths"  />
+ 			<label class="CBOX_LABEL" for="PureMathsID">Pure Maths</label>
+
+    	</div>
+
+    	<div class="GradeCont">
+
+ 			<label class="CBOX_LABEL" for="alevel_ID">A LEVEL</label>
+    	</div>
+
+    	<div class="SubjectCont">
+ 			<input type="checkbox" class="CBOX_AL" id="Physics_ID" name="Physics" value="Physics"  />
+ 			<label class="CBOX_LABEL" for="Physics_ID">Physics</label>
+
+ 			<input type="checkbox" class="CBOX_AL" id="Chemistry_ID" name="Chemistry" value="Chemistry"  />
+ 			<label class="CBOX_LABEL" for="Chemistry_ID">Chemistry</label>
+
+  			<input type="checkbox" class="CBOX_AL" id="Biology_ID" name="Biology" value="Biology"  />
+ 			<label class="CBOX_LABEL" for="Biology_ID">Biology</label>
+
+    		<input type="checkbox" class="CBOX_AL" id="C1C2_ID" name="C1C2" value="C1C2"  />
+ 			<label class="CBOX_LABEL" for="C1C2_ID">Math C1 C2</label>
+
+     		<input type="checkbox" class="CBOX_AL" id="C3C4_ID" name="C3C4" value="C3C4"  />
+ 			<label class="CBOX_LABEL" for="C3C4_ID">Math C3 C4</label>
+
+      		<input type="checkbox" class="CBOX_AL" id="FP1_ID" name="FP1" value="FP1"  />
+ 			<label class="CBOX_LABEL" for="FP1_ID">Further Pure Maths 1 FP1</label>
+
+       		<input type="checkbox" class="CBOX_AL" id="FP2_ID" name="FP2" value="FP2"  />
+ 			<label class="CBOX_LABEL" for="FP2_ID">Further Pure Maths 2 FP2</label>
+    	</div>
+
+    </div>
+
+
+<div class='login'>
+	<div class="Edutech"><span>Edutech - Teacher</span></div>
+  <div class='login_title'>
+    <span>Fill in the form below and you are good to go!</span>
+  </div>
+			  <div class='login_fields'>
+
+			    <div class='login_fields__user'>
+			      <div class='icon'>
+			        <img src='https://png.icons8.com/material/20/ffffff/person-male.png'>
+			      </div>
+
+			      	<input placeholder='First or Last Name' type='text' id="UserName_ID">
+			        	<div class='validation'>
+			          		<img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			       		 </div>
+			      	</input>
+			    </div>
+
+			    <div class='login_fields__email'>
+			      <div class='icon'>
+			        <img src='https://png.icons8.com/ios-glyphs/15/ffffff/new-post.png'>
+			      </div>
+
+			      	<input placeholder='Email' type='text' id="Email_ID">
+			        	<div class='validation'>
+			          		<img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			       		 </div>
+			      	</input>
+			    </div>
+
+			    <div class='login_fields__secretkey'>
+			      <div class='icon'>
+			        <img src='https://png.icons8.com/metro/15/ffffff/lock.png'>
+			      </div>
+
+			      <input placeholder='Unique Key' type='password' id="secretkey_ID">
+			      	<div class='validation'>
+			        	<img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			      	</div>
+			      </input>
+			    </div>
+
+			    <div class='login_fields__password'>
+			      <div class='icon'>
+			        <img src='https://png.icons8.com/metro/15/ffffff/lock.png'>
+			      </div>
+
+			      <input placeholder='Password' type='password' id="Password_ID">
+			      	<div class='validation'>
+			        	<img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+			      	</div>
+			      </input>
+			    </div>
+
+    <div class='login_fields__submit'>
+      <input type='submit' value='Sign Up'>
+      <div class='forgot'>
+        <a href='#'>Already a member? Log in</a>
+      </div>
+    </div>
+  </div>
+  <div class='success'>
+    <h2 id="Login_After_Title">Authentication Success</h2>
+    <p id="Login_After_Para">Welcome back. Redirecting to your profile..</p>
+  </div>
+  <div class='disclaimer'>
+    <p>&#169; 2018 EduTech. All rights reserved. Work in progress by Ekram</p>
+  </div>
+</div>
+<div class='authent'>
+  <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/puff.svg'>
+  <p>Authenticating...</p>
+</div>
+
+ <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+  
+
+    <script>
+
+
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyCBGF5jQfpK_yktdnUs8a80XPn0MLxSt9Y",
+		    authDomain: "edutech-2121.firebaseapp.com",
+		    databaseURL: "https://edutech-2121.firebaseio.com",
+		    projectId: "edutech-2121",
+		    storageBucket: "edutech-2121.appspot.com",
+		    messagingSenderId: "981500378332"
+		  };
+		  firebase.initializeApp(config);
+
+		//Add a realtime listener for state auth change
+		  firebase.auth().onAuthStateChanged( firebaseUser => {
+		  	if (firebaseUser){
+		  		console.log('Already logged in..');
+
+		  		//Now change the welcome sign to welcome this logged in dude
+		  		//Send to profile page
+		  		//window.location.href = 'http://www.edutechs.org/Profile';
+		  		$(".LoadingContainer").fadeOut('slow');
+		  	}
+		  	else{
+		  		console.log('Not logged in..');
+		  		$(".LoadingContainer").fadeOut('slow');
+		  	}
+		  });
+
+
+
+
+
+		$('input[type="submit"]').click(function(){
+
+			  $('.login').addClass('test')
+
+			  setTimeout(function(){
+			    $('.login').addClass('testtwo')
+			  },300);
+
+			  setTimeout(function(){
+			    $(".authent").show().animate({right:-320},{easing : 'easeOutQuint' ,duration: 600, queue: false });
+			    $(".authent").animate({opacity: 1},{duration: 200, queue: false }).addClass('visible');
+			  },500);
+
+			  setTimeout(function(){
+			    $(".authent").show().animate({right:90},{easing : 'easeOutQuint' ,duration: 600, queue: false });
+			    $(".authent").animate({opacity: 0},{duration: 200, queue: false }).addClass('visible');
+			    $('.login').removeClass('testtwo')
+			  },2500);
+
+			  setTimeout(function(){
+			    $('.login').removeClass('test')
+			    $('.login div').fadeOut(123);
+			  },2800);
+
+
+			  //first check to see if the secret key matches
+			  var secretkey = document.getElementById('secretkey_ID').value
+			  var database = firebase.database();
+			  var ref = database.ref('TeacherAuthKey/');
+
+			  var UnusedKeysArray = [];
+			  var IsAuthenticatedBoolean = ['FALSE'];
+
+			  ref.once('value', ReceivedData, errData);
+
+
+
+				//Functions for fetching data
+				function ReceivedData(data){
+
+					tableData = data.val();
+					var arr = $.map(tableData, function(el) { return el; });
+
+
+					for (var i = 0; i < arr.length; i++) {
+
+						if (secretkey==arr[i]){
+
+							console.log('Unique Key Matched');
+
+							ActualSignUp();
+						}
+						else {
+							console.log('Unique key does not match..');
+							UnusedKeysArray.push(arr[i]);
+						}
+
+					}
+
+					DeletekeyFromFireBaseDatabase();
+
+				}
+
+				function errData(err){
+					console.log('Error!');
+					console.log(err);
+				}
+
+				function DeletekeyFromFireBaseDatabase(){
+
+			  		var database = firebase.database();
+			  		var ref = database.ref('TeacherAuthKey/');
+			  		ref.remove();
+			  		console.log('the key has been removed');
+			  		console.log('Now updating the database array..');
+			  		JSONarray = {...UnusedKeysArray};
+
+					var database = firebase.database();
+					var ref = database.ref('TeacherAuthKey/');
+
+					ref.update(JSONarray);
+				}
+
+				function ActualSignUp(){
+					//KEY AUTHENTICATION COMPLETE
+					//NOW LETS GET ALL THE INPUT DATA IN A NICE FORMAT FROM THE USER
+					SignUpUsername = document.getElementById("UserName_ID").value;
+				  	SignUpEmail = document.getElementById("Email_ID").value;
+				  	SignUpPassword = document.getElementById("Password_ID").value;
+
+
+					var checkbox_OL = $('.CBOX_OL:checked').map(function() {
+	    				return $(this).val();
+					}).get();
+
+					console.log(checkbox_OL);
+
+					var checkbox_AL = $('.CBOX_AL:checked').map(function() {
+	    				return $(this).val();
+					}).get();
+
+					console.log(checkbox_AL);
+
+				  		//Authorize and sign up this dude..
+					  	const auth = firebase.auth();
+					  	//sign up
+					  	const promise = auth.createUserWithEmailAndPassword(SignUpEmail,SignUpPassword).then(function(user) {
+					  			console.log('Sign Up successful, am now going to make database');
+					  			var user = firebase.auth().currentUser;
+
+				  				//Create the empty database for this new USER
+						  		var NewUserName = document.getElementById("UserName_ID").value;
+								var database = firebase.database();
+
+								var ref = database.ref('USERS/'+user.uid);
+
+
+								var data = {
+									UserName: NewUserName,
+									UserEmail: SignUpEmail,
+									UserProffession: 'Teacher',
+									UserClass: {
+										OLEVEL:{
+										},
+										ALEVEL:{
+										}
+									}
+								}
+
+								console.log(data)
+
+								ref.update(data);
+
+								//now we gotta create the subject database based on checked alevel and olevel boxes
+
+								var database = firebase.database();
+
+								//OLEVEL
+								for (var i = 0; i < checkbox_OL.length; i++) {
+
+									var ref = database.ref('USERS/'+user.uid+'/UserClass/OLEVEL/' + String(checkbox_OL[i]) + '/');
+									var data = {
+										dummyData: 'dummyData'
+									}
+
+									ref.update(data);
+
+								}
+
+								//ALEVEL
+								for (var i = 0; i < checkbox_AL.length; i++) {
+
+									var ref = database.ref('USERS/'+user.uid+'/UserClass/ALEVEL/' + String(checkbox_AL[i]) + '/');
+									var data = {
+										dummyData: 'dummyData'
+									}
+
+									ref.update(data);
+
+								}
+
+
+								console.log('SignUp Sucess!');
+
+								document.getElementById("Login_After_Title").innerHTML = 'Authentication Success';
+								document.getElementById("Login_After_Para").innerHTML = 'Welcome to the team ' + NewUserName + '! You can now login!' ;
+
+
+								  setTimeout(function(){
+								    $('.success').fadeIn();
+								  },3200);
+
+								  console.log('SignUp Sucess after!');
+
+
+				  				// window.location.href = 'http://www.edutechs.org/Login';
+
+					  	}, function(err) {
+					  		console.log(err.code);
+
+					  		document.getElementById("Login_After_Title").innerHTML = 'Authentication Failed';
+
+					  		Error_String = err.code.substr(5);
+
+					  		document.getElementById("Login_After_Para").innerHTML = 'Error ID: ' + Error_String ;
+
+					  		  setTimeout(function(){
+							    $('.success').fadeIn();
+							 },3200);
+
+					  	});
+
+				}
+
+
+
+
+
+		});
+
+		$('input[type="text"],input[type="password"]').focus(function(){
+		  $(this).prev().animate({'opacity':'1'},200)
+		});
+		$('input[type="text"],input[type="password"]').blur(function(){
+		  $(this).prev().animate({'opacity':'.5'},200)
+		});
+
+		$('input[type="text"],input[type="password"]').keyup(function(){
+		  if(!$(this).val() == ''){
+		    $(this).next().animate({'opacity':'1','right' : '30'},200)
+		  } else {
+		    $(this).next().animate({'opacity':'0','right' : '20'},200)
+		  }
+		});
+
+		var open = 0;
+		$('.tab').click(function(){
+		  $(this).fadeOut(200,function(){
+		    $(this).parent().animate({'left':'0'})
+		  });
+		});
+
+
+
+    </script>
+
+</body>
+
+</html>

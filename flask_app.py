@@ -1,19 +1,29 @@
 
 # A very simple Flask Hello World app for you to get started with...
 
-from flask import Flask,render_template
+from flask import Flask,render_template, request
+import json
 
 app = Flask(__name__)
 
 
+
 @app.route('/')
-def home():
-    return render_template('home.html')
+def TeacherSignUp():
+    return render_template('TeacherSignUp.html')
 
-@app.route('/Login')
-def Login():
-    return render_template('Login.html')
 
-@app.route('/Profile')
-def Profile():
-    return render_template('Profile.html')
+@app.route('/signUpUser', methods=['POST'])
+def signUpUser():
+
+	FrontEndData =  request.form['walao']
+	#Making the above into an array
+
+	return json.dumps('lol')
+
+if __name__ == '__main__':
+
+	IP_Address = '127.0.0.1'
+	Port_Number = 7000
+
+	app.run(host=IP_Address,port=Port_Number, debug=True)

@@ -205,6 +205,15 @@
 		.SIGNUP_MASTER_CONTAINER .login_fields__submit .forgot a {
 		  color: #606479;
 		}
+
+		.SIGNUP_MASTER_CONTAINER .login_fields__submit .SwitchToTeacher{
+			cursor: pointer;
+			color: #afb1be;
+		  float: right;
+		  font-size: 0.8em;
+		  top: 280%;
+		  position: absolute;
+		}
 		.SIGNUP_MASTER_CONTAINER .login_fields__submit input {
 		  border-radius: 50px;
 		  background: transparent;
