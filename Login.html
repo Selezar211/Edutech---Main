@@ -327,7 +327,7 @@
 
 
 <div class='login'>
-	<div class="Edutech"><span>Edutech - Student</span></div>
+	<div class="Edutech"><span>Edutech</span></div>
   <div class='login_title'>
     <span>Login to your account</span>
   </div>
@@ -336,7 +336,7 @@
       <div class='icon'>
         <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
       </div>
-      <input placeholder='Username' type='text' id="UserName_ID">
+      <input placeholder='Email' type='text' id="UserName_ID">
         <div class='validation'>
           <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
         </div>
@@ -396,10 +396,45 @@
 		  	if (firebaseUser){
 		  		console.log('Already logged in..');
 
+		  		Current_UID = firebaseUser.uid;
+
+		  		//First check to see if this dude is a teacher or student by accesing the database
+
+		  		var database = firebase.database();
+		  		var ref = database.ref('USERS/' + Current_UID);
+				ref.once('value', ReceivedData, errData);
+
+
+				//Functions for fetching data
+				function ReceivedData(data){
+
+					tableData = data.val();
+					console.log(tableData);
+					//find if the user is a student or teacher
+
+					current_proffession = tableData['UserProffession'];
+
+					if (current_proffession=='Teacher'){
+						//redirect to teacher profile
+						window.location.href = 'file:///Users/ekram/Desktop/Edutech/TeacherProfile.html';
+					}
+					else if (current_proffession=='Student'){
+						//redirect to student profile
+						window.location.href = 'file:///Users/ekram/Desktop/Edutech/StudentProfile.html';
+					}
+
+					$(".LoadingContainer").fadeOut('slow');
+				}
+
+				function errData(err){
+					console.log('Error!');
+					console.log(err);
+				}
+
 		  		//Now change the welcome sign to welcome this logged in dude
 		  		//Send to profile page
 		  		//window.location.href = 'http://www.edutechs.org/Profile';
-		  		$(".LoadingContainer").fadeOut('slow');
+		  		
 		  	}
 		  	else{
 		  		console.log('Not logged in..');
