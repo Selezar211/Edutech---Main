@@ -46,8 +46,6 @@
 
    			for(var k in ALevel_Subjects_JSON) alevel_subject_array.push(k);
 
-
-
 			console.log(olevel_subject_array);
 			console.log(alevel_subject_array);
 
@@ -58,8 +56,10 @@
 
 			for (var i = 0; i < olevel_subject_array.length; i++) {
 
-				displayText = String(olevel_subject_array[i]) + ' (O Level)';
-				displayValue = 'O LEVEL/' + String(olevel_subject_array[i])
+				currentWorking_Subject = String(olevel_subject_array[i]);
+
+				displayText = currentWorking_Subject + ' (O Level)';
+				displayValue = 'O LEVEL/' + currentWorking_Subject
 
 				//var option = new Option(text, value);
 				option_subject = new Option(displayText, displayValue);
@@ -67,24 +67,32 @@
 
 				//insert it into current streams 
 				//create streambox element
-				var StreamBox = document.createElement("div");
-				StreamBox.setAttribute("class", "StreamBox");
+				ThisStreamBox = CreateStreamBox(currentWorking_Subject, 'O Level');
 
-				var ThisStreamSubject = document.createElement("div");
-				ThisStreamSubject.setAttribute("class", "ThisStreamSubject");
+				//Now get the stream timings to inject 
+				AllStreamsJSON_of_ThisSubject = tableData['UserClass']['O LEVEL'][currentWorking_Subject]['Streams']
 
-				var t = document.createTextNode(String(olevel_subject_array[i]) + ' | O Level');
-				ThisStreamSubject.append(t);
+				//now iterate over this json to find timings of each stream
+				var key;
+				for (key in AllStreamsJSON_of_ThisSubject) {
 
-				StreamBox.append(ThisStreamSubject);
-				document.getElementById('StreamConfigOptions_ID').append(StreamBox);
+					var SeatVacancy = 'Vacant Seats: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
+
+					var arr = AllStreamsJSON_of_ThisSubject[key]['Timings'];
+					ThisStreamTiming = $.map(arr, function(el) { return el; });
+					console.log(ThisStreamTiming);
+					//now this timing needs to be injected as an html
+					FillEachStreamBox(ThisStreamTiming, currentWorking_Subject, SeatVacancy, ThisStreamBox);
+				}
 
 			}
 
 			for (var i = 0; i < alevel_subject_array.length; i++) {
 
-				displayText = String(alevel_subject_array[i]) + ' (A Level)';
-				displayValue = 'A LEVEL/' + String(alevel_subject_array[i])
+				currentWorking_Subject = String(alevel_subject_array[i]);
+
+				displayText = currentWorking_Subject + ' (A Level)';
+				displayValue = 'A LEVEL/' + currentWorking_Subject
 
 				//var option = new Option(text, value);
 				option_subject = new Option(displayText, displayValue);
@@ -92,19 +100,27 @@
 
 				//insert it into current streams 
 				//create streambox element
-				var StreamBox = document.createElement("div");
-				StreamBox.setAttribute("class", "StreamBox");
+				ThisStreamBox = CreateStreamBox(currentWorking_Subject, 'A Level');
 
-				var ThisStreamSubject = document.createElement("div");
-				ThisStreamSubject.setAttribute("class", "ThisStreamSubject");
+				//Now get the stream timings to inject 
+				AllStreamsJSON_of_ThisSubject = tableData['UserClass']['A LEVEL'][currentWorking_Subject]['Streams']
 
-				var t = document.createTextNode(String(alevel_subject_array[i]) + ' | A Level');
-				ThisStreamSubject.append(t);
+				//now iterate over this json to find timings of each stream
+				var key;
+				for (key in AllStreamsJSON_of_ThisSubject) {
 
-				StreamBox.append(ThisStreamSubject);
-				document.getElementById('StreamConfigOptions_ID').append(StreamBox);
+					var SeatVacancy = 'Vacant Seats: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
+
+					var arr = AllStreamsJSON_of_ThisSubject[key]['Timings'];
+					ThisStreamTiming = $.map(arr, function(el) { return el; });
+					console.log(ThisStreamTiming);
+					//now this timing needs to be injected as an html
+					FillEachStreamBox(ThisStreamTiming, currentWorking_Subject, SeatVacancy, ThisStreamBox);
+				}
 
 			}
+
+
 
 
 			//Change the top name to user name
@@ -116,6 +132,85 @@
 			console.log('Error!');
 			console.log(err);
 		}
+
+		function CreateStreamBox(SubjectName, SubjectGrade){
+
+				//subjectName could be physics e.g
+				//SubjectGrade right now is o level or alevel
+
+				//create streambox element
+				var StreamBox = document.createElement("div");
+				StreamBox.setAttribute("class", "StreamBox");
+
+				var ThisStreamSubject = document.createElement("div");
+				ThisStreamSubject.setAttribute("class", "ThisStreamSubject");
+
+				var t = document.createTextNode(SubjectName + ' | ' + SubjectGrade);
+				ThisStreamSubject.append(t);
+
+				StreamBox.append(ThisStreamSubject);
+				document.getElementById('StreamConfigOptions_ID').append(StreamBox);
+
+				return StreamBox
+		}
+
+		function FillEachStreamBox(timingArray, streamName, streamVacancy, streambox_ref){
+
+			EachStreamBox = document.createElement("div");
+			EachStreamBox.setAttribute("class", "EachStreamBox");
+
+			//create the stream title which will display stream name
+			EachStreamTitle = document.createElement("div");
+			EachStreamTitle.setAttribute("class", "EachStreamTitle");
+
+			var t = document.createTextNode(streamName);
+			EachStreamTitle.append(t);
+
+			//create the stream seat vacancy display
+			SeatVacancyStream = document.createElement("span");
+			SeatVacancyStream.setAttribute("class", "SeatVacancyStream");
+
+			var t = document.createTextNode(streamVacancy);
+			SeatVacancyStream.append(t);
+
+			EachStreamTitle.append(SeatVacancyStream);
+
+			EachStreamBox.append(EachStreamTitle);
+
+			//now loop through given timings array and make a html element for each..	
+			for (var i = 0; i < timingArray.length; i++) {
+				EachStreamTiming = document.createElement("div");
+				EachStreamTiming.setAttribute("class", "EachStreamTiming");
+
+				StreamTimingSpan = document.createElement("span");
+				var t = document.createTextNode(timingArray[i]);
+				StreamTimingSpan.append(t);
+
+				EachStreamTiming.append(StreamTimingSpan);
+
+				//now make the delete icon and edit icon
+				DeleteIcon = document.createElement("i");
+				DeleteIcon.setAttribute("id", "DeleteStream");
+				DeleteIcon.setAttribute("class", "fas fa-trash-alt");
+
+				EachStreamTiming.append(DeleteIcon);
+
+				//now for the edit icon
+				EditIcon = document.createElement("i");
+				EditIcon.setAttribute("id", "EditStreamIcon");
+				EditIcon.setAttribute("class", "fas fa-edit");
+
+				EachStreamTiming.append(EditIcon);
+
+				//now we need to append it to the parent divs
+				EachStreamBox.append(EachStreamTiming);
+				//there we go all done, now lets hope to god it works :)
+			}
+
+			//now add it to the godfather permanent element
+			streambox_ref.append(EachStreamBox);
+		}
+
 	}
 
 	//Add a realtime listener for state auth change
