@@ -31,10 +31,84 @@
 		//Functions for fetching data
 		function ReceivedData(data){
 
+			var olevel_subject_array = [];
+			var alevel_subject_array = [];
+
 			tableData = data.val();
 			console.log(tableData);
+
+			//now break down table data into useful data starting with the classes
+
+			OLevel_Subjects_JSON = tableData['UserClass']['O LEVEL'];
+			ALevel_Subjects_JSON = tableData['UserClass']['A LEVEL'];
+
+   			for(var k in OLevel_Subjects_JSON) olevel_subject_array.push(k);
+
+   			for(var k in ALevel_Subjects_JSON) alevel_subject_array.push(k);
+
+
+
+			console.log(olevel_subject_array);
+			console.log(alevel_subject_array);
+
+			//now we need to inject these classes into the appropriate places throughout the page
+
+			var option_subject;
+			var select_subject = document.getElementById('StreamSubjectSelect_ID');
+
+			for (var i = 0; i < olevel_subject_array.length; i++) {
+
+				displayText = String(olevel_subject_array[i]) + ' (O Level)';
+				displayValue = 'O LEVEL/' + String(olevel_subject_array[i])
+
+				//var option = new Option(text, value);
+				option_subject = new Option(displayText, displayValue);
+				select_subject.appendChild( option_subject );
+
+				//insert it into current streams 
+				//create streambox element
+				var StreamBox = document.createElement("div");
+				StreamBox.setAttribute("class", "StreamBox");
+
+				var ThisStreamSubject = document.createElement("div");
+				ThisStreamSubject.setAttribute("class", "ThisStreamSubject");
+
+				var t = document.createTextNode(String(olevel_subject_array[i]) + ' | O Level');
+				ThisStreamSubject.append(t);
+
+				StreamBox.append(ThisStreamSubject);
+				document.getElementById('StreamConfigOptions_ID').append(StreamBox);
+
+			}
+
+			for (var i = 0; i < alevel_subject_array.length; i++) {
+
+				displayText = String(alevel_subject_array[i]) + ' (A Level)';
+				displayValue = 'A LEVEL/' + String(alevel_subject_array[i])
+
+				//var option = new Option(text, value);
+				option_subject = new Option(displayText, displayValue);
+				select_subject.appendChild( option_subject );
+
+				//insert it into current streams 
+				//create streambox element
+				var StreamBox = document.createElement("div");
+				StreamBox.setAttribute("class", "StreamBox");
+
+				var ThisStreamSubject = document.createElement("div");
+				ThisStreamSubject.setAttribute("class", "ThisStreamSubject");
+
+				var t = document.createTextNode(String(alevel_subject_array[i]) + ' | A Level');
+				ThisStreamSubject.append(t);
+
+				StreamBox.append(ThisStreamSubject);
+				document.getElementById('StreamConfigOptions_ID').append(StreamBox);
+
+			}
+
+
 			//Change the top name to user name
-			document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Student#34 ' + tableData['UserName'];
+			document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Teacher#34 ' + tableData['UserName'];
 			document.title = tableData['UserName'] + ' - Profile';
 		}
 

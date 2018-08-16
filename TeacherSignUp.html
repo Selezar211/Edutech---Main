@@ -694,9 +694,9 @@
 									UserEmail: SignUpEmail,
 									UserProffession: 'Teacher',
 									UserClass: {
-										OLEVEL:{
+										'O LEVEL':{
 										},
-										ALEVEL:{
+										'A LEVEL':{
 										}
 									}
 								}
@@ -712,7 +712,7 @@
 								//OLEVEL
 								for (var i = 0; i < checkbox_OL.length; i++) {
 
-									var ref = database.ref('USERS/'+user.uid+'/UserClass/OLEVEL/' + String(checkbox_OL[i]) + '/');
+									var ref = database.ref('USERS/'+user.uid+'/UserClass/O LEVEL/' + String(checkbox_OL[i]) + '/');
 									var data = {
 										dummyData: 'dummyData'
 									}
@@ -724,7 +724,7 @@
 								//ALEVEL
 								for (var i = 0; i < checkbox_AL.length; i++) {
 
-									var ref = database.ref('USERS/'+user.uid+'/UserClass/ALEVEL/' + String(checkbox_AL[i]) + '/');
+									var ref = database.ref('USERS/'+user.uid+'/UserClass/A LEVEL/' + String(checkbox_AL[i]) + '/');
 									var data = {
 										dummyData: 'dummyData'
 									}

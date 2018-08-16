@@ -26,7 +26,7 @@
 			}
 
 			.SetStreamsButton{
-				transition: 500ms;
+				transition: 200ms;
 				border-left: 0.0001em solid rgba(0,0,0,0);
 				cursor: pointer;
 				width: 22%;
@@ -41,9 +41,9 @@
 			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 			}
 
-			.SetStreamsButton:hover {
-				transition: 500ms;
-				border-left: 1em solid rgba(0,0,0,0);
+			.SetStreamsButton:hover #SetStreamIcon {
+				transition: 200ms;
+				color: white;
 			}
 
 
@@ -75,7 +75,7 @@
 				color: white;
 				background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 			    display: inline-block;
-			    position: absolute;
+			    position: relative;
 			    padding: 1%;
 			    top: 5%;
 			    font-size: 3em;
@@ -97,7 +97,7 @@
 
 			}
 
-			.StreamNameLabel,.StreamDayLabel,.StreamStartLabel,.StreamEndLabel,.StreamSeatLabel,.StreamSubjectLabel{
+			.StreamNameLabel,.StreamDayLabel,.StreamStartLabel,.StreamEndLabel,.StreamSeatLabel,.StreamSubjectLabel, .StreamColorLabel{
 				margin-top: 3%;
 				padding-right: 5%;
 			    display: inline-block;
@@ -152,7 +152,7 @@
 			    background-color: black;
 			    float: left;
 			    position: relative;
-			    color: #afb1be;
+			    color: white;
 			    margin-left:8%;
 			    padding-top: 2%;
 			    padding-bottom: 2%;
@@ -164,7 +164,7 @@
 
 		#AddStreamIcon{
 			position: relative;
-			left: 25%;
+			left: 20%;
 				transform: scale(1.4,1.4);
 				color: white;
 				display: inline-block;
@@ -189,40 +189,88 @@
 			    display: inline-block;
 			    position: absolute;
 			    padding: 1%;
-			    top: 70%;
+			    top: 75%;
 			    font-size: 1.5em;
 			    text-align: center;
 		}
 
 
 		.StreamBox{
-			border-radius: 0.4em;
-			    width: 80%;
-			    margin-left: 8%;
+			    width: 100%;
+			    margin-top: 2%;
 			    display: inline-block;
 			    overflow: auto;
-			    position: absolute;
-			    margin-bottom: 5%;
-			    background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
-			    padding-top: 1%;
-			    padding-bottom: 2%;
-			    top: 80%;
+			    position: relative;
+			    padding-top: 0%;
+			    top: 74%;
 
 		}
 
-		.StreamConfig{
+		.ThisStreamSubject{
+				text-align: center;
+				width: 100%;
 				color: white;
-				width: 90%;
+				display: inline-block;
+				font-size: 1.4em;
+				padding-top: 2%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background: black;
+				position: relative;
+				margin-top:0%;
+				padding-bottom: 2%;
+		}
+
+		.EachStreamBox{
+			background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+			margin-left: 16.5%;
+			margin-top: 2%;
+			width: 65%;
+			display: inline-block;
+			position: relative;
+		}
+
+		.EachStreamTitle{
+				width: 100%;
+				color: white;
+				display: inline-block;
+				font-size: 1.2em;
+				padding-top: 2%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background: black;
+				position: relative;
+				margin-top:0%;
+				padding-bottom: 1%;
+		}
+
+		.EachStreamTiming{
+			width: 45%;
+				color: white;
 				display: inline-block;
 				padding-top: 2%;
 				padding-left: 2%;
 				padding-right: 2%;
 				background: black;
 				position: relative;
-				margin-top:2%;
+				margin:2%;
 				padding-bottom: 2%;
-				left: 5%;
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		.TimingsStream{
 			float: left;
@@ -234,16 +282,28 @@
 
 		#DeleteStream{
 			float: right;
-			padding-left: 2%;
 			margin-top:0.3%;
 			transform: scale(1.3,1.3);
+			position: relative;
 			color: white;
 			display: inline-block;
 			cursor: pointer;
 			transition: 500ms;
 		}
 
-		#DeleteStream:hover{
+		#EditStreamIcon{
+			float: right;
+			margin-right: 5%;
+			margin-top:0.3%;
+			transform: scale(1.3,1.3);
+			position: relative;
+			color: white;
+			display: inline-block;
+			cursor: pointer;
+			transition: 500ms;
+		}
+
+		#DeleteStream:hover, #EditStreamIcon:hover{
 			transition: 500ms;
 			color: gray;
 		}

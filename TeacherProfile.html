@@ -531,7 +531,7 @@
     	<span class="LoadingText">Edutech - Please Wait a Moment..</span>
     </div>
 
-    <div class="StreamConfigOptions">
+    <div class="StreamConfigOptions" id="StreamConfigOptions_ID">
     		<div class="StreamConfigTitle"><span>Stream Configuration:</span><i id="StreamConfigCloseIcon" class="fas fa-times-circle"></i></div>
 
 			<div class="StreamAddBox">
@@ -540,9 +540,8 @@
 				<input type="text" class="StreamInput" name="StreamName">
 
 				<label class="StreamSubjectLabel">Subject: </label>
-				<select class="StreamSubjectSelect" name="subject">
-					<option value="s1">Physics</option>
-					<option value="s2">Chemistry</option>
+				<select id="StreamSubjectSelect_ID" class="StreamSubjectSelect" name="subject">
+					
 				</select>
 
 				<label class="StreamDayLabel">Stream Day: </label>
@@ -568,10 +567,13 @@
 					<option value="c2">6:00</option>
 				</select>
 
+				<label class="StreamColorLabel">Stream Color: </label>
+				<input type="text" class="StreamInput" name="StreamColor">
+
 				<label class="StreamSeatLabel">Stream Total Seats: </label>
 				<input type="number" min="0" class="StreamInput" name="StreamSeats">
 
-				<div class="AddNewStream"><span>Add New Stream</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
+				<div class="AddNewStream"><span>Add New Stream Timing</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
 
 
 			</div>
@@ -579,34 +581,19 @@
     		<div class="CurrentStreamsTitle"><span>Current Streams: </span></div>
 
     		<div class="StreamBox">
-    			
-				<div class="StreamConfig">
-					<span class="TimingsStream">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-					<i id="DeleteStream" class="fas fa-trash-alt"></i>
-					<span class="SeatVacancyStream">Vacant Seats: 5/40</span>
-					
-				</div>
 
-				<div class="StreamConfig">
-					<span class="TimingsStream">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-					<i id="DeleteStream" class="fas fa-trash-alt"></i>
-					<span class="SeatVacancyStream">Vacant Seats: 5/40</span>
-					
-				</div>
+    			<div class="ThisStreamSubject"><span>Physics | O Level</span></div>
 
-				<div class="StreamConfig">
-					<span class="TimingsStream">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-					<i id="DeleteStream" class="fas fa-trash-alt"></i>
-					<span class="SeatVacancyStream">Vacant Seats: 5/40</span>
-					
-				</div>
+    			<div class="EachStreamBox">
+    				<div class="EachStreamTitle"><span>AlphaOne</span><span class="SeatVacancyStream">Vacant Seats: 5/40</span></div>
 
-				<div class="StreamConfig">
-					<span class="TimingsStream">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-					<i id="DeleteStream" class="fas fa-trash-alt"></i>
-					<span class="SeatVacancyStream">Vacant Seats: 5/40</span>
-					
-				</div>
+    				<div class="EachStreamTiming"><span>Sunday 2:30PM - 4:30PM</span><i id="DeleteStream" class="fas fa-trash-alt"></i><i id="EditStreamIcon"class="fas fa-edit"></i></div>
+    				<div class="EachStreamTiming"><span>Monday 5:00PM - 7:00PM</span><i id="DeleteStream" class="fas fa-trash-alt"></i><i id="EditStreamIcon"class="fas fa-edit"></i></div>
+    				<div class="EachStreamTiming"><span>Thursday 8:00PM - 9:30PM</span><i id="DeleteStream" class="fas fa-trash-alt"></i><i id="EditStreamIcon"class="fas fa-edit"></i></div>
+
+
+    			</div>
+
 
     		</div>
 
