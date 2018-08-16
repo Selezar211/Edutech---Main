@@ -115,7 +115,7 @@
 					ThisStreamTiming = $.map(arr, function(el) { return el; });
 					console.log(ThisStreamTiming);
 					//now this timing needs to be injected as an html
-					FillEachStreamBox(ThisStreamTiming, currentWorking_Subject, SeatVacancy, ThisStreamBox);
+					FillEachStreamBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox);
 				}
 
 			}
