@@ -240,27 +240,9 @@
 							<div class="SetStreamsButton" id="SetStreamsButtonID"><i id="SetStreamIcon" class="fas fa-cogs"></i>Configure Streams</div>
 							<div class="cd-schedule loading">
 
-								<div class="timeline">
-									<ul>
-										<li><span>1:00 PM</span></li>
-										<li><span>1:30 PM</span></li>
-										<li><span>2:00 PM</span></li>
-										<li><span>2:30 PM</span></li>
-										<li><span>3:00 PM</span></li>
-										<li><span>3:30 PM</span></li>
-										<li><span>4:00 PM</span></li>
-										<li><span>4:30 PM</span></li>
-										<li><span>5:00 PM</span></li>
-										<li><span>5:30 PM</span></li>
-										<li><span>6:00 PM</span></li>
-										<li><span>6:30 PM</span></li>
-										<li><span>7:00 PM</span></li>
-										<li><span>7:30 PM</span></li>
-										<li><span>8:00 PM</span></li>
-										<li><span>8:30 PM</span></li>
-										<li><span>9:00 PM</span></li>
-										<li><span>9:30 PM</span></li>
-										<li><span>10:00 PM</span></li>
+								<div class="timeline" id="timeline_ID">
+									<ul id="timingArray_ul_ID">
+
 									</ul>
 								</div> <!-- .timeline -->
 
@@ -272,13 +254,13 @@
 											<div class="top-info"><span>Sunday</span></div>
 
 											<ul>
-												<li class="single-event" data-start="6:30 PM" data-end="7:30 PM" data-content="event-abs-circuit" data-event="event-1">
+												<li class="single-event" data-start="10:30" data-end="12:30" data-content="event-abs-circuit" data-event="event-1">
 													<a href="#0">
 														<em class="event-name">Physics - Sabbir Sir</em>
 													</a>
 												</li>
 
-												<li class="single-event" data-start="1:00 PM" data-end="3:00 PM" data-content="event-rowing-workout" data-event="event-2">
+												<li class="single-event" data-start="13:00" data-end="15:00" data-content="event-rowing-workout" data-event="event-2">
 													<a href="#0">
 														<em class="event-name">Chemistry - Qudrot Sir</em>
 													</a>
@@ -292,13 +274,13 @@
 											<div class="top-info"><span>Monday</span></div>
 
 											<ul>
-												<li class="single-event" data-start="3:30 PM" data-end="4:30 PM" data-content="event-abs-circuit" data-event="event-1">
+												<li class="single-event" data-start="15:30" data-end="16:30" data-content="event-abs-circuit" data-event="event-1">
 													<a href="#0">
 														<em class="event-name">Physics - Sabbir Sir</em>
 													</a>
 												</li>
 
-												<li class="single-event" data-start="2:00 PM" data-end="3:30 PM" data-content="event-rowing-workout" data-event="event-2">
+												<li class="single-event" data-start="18:00" data-end="20:30" data-content="event-rowing-workout" data-event="event-2">
 													<a href="#0">
 														<em class="event-name">Chemistry - Qudrot Sir</em>
 													</a>
@@ -313,7 +295,7 @@
 
 											<ul>
 
-												<li class="single-event" data-start="9:30 PM" data-end="10:00 PM" data-content="event-abs-circuit" data-event="event-1">
+												<li class="single-event" data-start="9:30" data-end="10:00" data-content="event-abs-circuit" data-event="event-1">
 													<a href="#0">
 														<em class="event-name">Abs Circuit</em>
 													</a>
@@ -346,13 +328,13 @@
 											<div class="top-info"><span>Friday</span></div>
 
 											<ul>
-												<li class="single-event" data-start="4:00 PM" data-end="4:30 PM"  data-content="event-rowing-workout" data-event="event-2">
+												<li class="single-event" data-start="16:00" data-end="18:30"  data-content="event-rowing-workout" data-event="event-2">
 													<a href="#0">
 														<em class="event-name">Rowing Workout</em>
 													</a>
 												</li>
 
-												<li class="single-event" data-start="6:30 PM" data-end="7:00 PM" data-content="event-abs-circuit" data-event="event-1">
+												<li class="single-event" data-start="22:30" data-end="23:00" data-content="event-abs-circuit" data-event="event-1">
 													<a href="#0">
 														<em class="event-name">Abs Circuit</em>
 													</a>
@@ -366,13 +348,13 @@
 											<div class="top-info"><span>Saturday</span></div>
 
 											<ul>
-												<li class="single-event" data-start="1:00 PM" data-end="1:30 PM"  data-content="event-rowing-workout" data-event="event-2">
+												<li class="single-event" data-start="11:00" data-end="12:30"  data-content="event-rowing-workout" data-event="event-2">
 													<a href="#0">
 														<em class="event-name">Rowing Workout</em>
 													</a>
 												</li>
 
-												<li class="single-event" data-start="2:30 PM" data-end="5:00 PM" data-content="event-abs-circuit" data-event="event-1">
+												<li class="single-event" data-start="17:30" data-end="18:30" data-content="event-abs-circuit" data-event="event-1">
 													<a href="#0">
 														<em class="event-name">Abs Circuit</em>
 													</a>
@@ -540,38 +522,34 @@
 				<select id="StreamSubjectSelect_ID" class="StreamSubjectSelect" name="subject"></select>
 
 				<label class="StreamNameLabel">Stream Name: </label>
-				<input type="text" class="StreamInput" name="StreamName">
+				<input type="text" class="StreamInput" id="StreamName_ID" name="StreamName">
 
 				<label class="StreamDayLabel">Stream Day: </label>
-				<select class="StreamDaySelect" name="days">
-					<option value="day1">Sunday</option>
-					<option value="day2">Monday</option>
-					<option value="day3">Tuesday</option>
-					<option value="day4">Wednesday</option>
-					<option value="day5">Thursday</option>
-					<option value="day6">Friday</option>
-					<option value="day7">Saturday</option>
+				<select class="StreamDaySelect" id="StreamDaySelect_ID" name="days">
+					<option value="Sunday">Sunday</option>
+					<option value="Monday">Monday</option>
+					<option value="Tuesday">Tuesday</option>
+					<option value="Wednesday">Wednesday</option>
+					<option value="Thursday">Thursday</option>
+					<option value="Friday">Friday</option>
+					<option value="Saturday">Saturday</option>
 				</select>
 
 				<label class="StreamStartLabel">Stream Start Time: </label>
-				<select class="StreamStartTime" name="StreamST">
-					<option value="v1">5:30</option>
-					<option value="v2">6:00</option>
+				<select class="StreamStartTime" id="StreamStartTime_ID" name="StreamST">
 				</select>
 
 				<label class="StreamEndLabel">Stream End Time: </label>
-				<select class="StreamEndTime" name="StreamET">
-					<option value="c1">5:30</option>
-					<option value="c2">6:00</option>
+				<select class="StreamEndTime" id="StreamEndTime_ID" name="StreamET">
 				</select>
 
 				<label class="StreamColorLabel">Stream Color: </label>
-				<input type="text" class="StreamInput" name="StreamColor">
+				<input type="text" class="StreamInput" id="StreamColor_ID" name="StreamColor">
 
 				<label class="StreamSeatLabel">Stream Total Seats: </label>
-				<input type="number" min="0" class="StreamInput" name="StreamSeats">
+				<input type="number" min="0" class="StreamInput" id="StreamTotalSeat_ID" name="StreamSeats">
 
-				<div class="AddNewStream"><span>Add New Stream Timing</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
+				<div class="AddNewStream" id="AddNewStream_ID"><span>Add New Stream Timing</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
 
 
 			</div>
