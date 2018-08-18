@@ -63,6 +63,14 @@ function InsertDataIntoTable(InputJSONdata, tableAddress){
 	ref.update(InputJSONdata);
 }
 
+function AlertIfEmptyInput(element_ID, alertText){
+	lol = document.getElementById('StreamName_ID').value;
+
+	if (!lol){
+		alert(alertText);
+	}
+}
+
 
 function ReturnAsArrayChildOfTable(InputTableJSON){
 	//this function will return as a child all the members of queried table as an array
@@ -74,6 +82,20 @@ function ReturnAsArrayChildOfTable(InputTableJSON){
 	return OutputArr
 }
 
+function CheckIfElementExistsInArray(element, InputArr){
+
+	var CheckBoolean = false;
+
+	for (var i = 0; i < InputArr.length; i++) {
+
+		if (element==InputArr[i]){
+			CheckBoolean = true;
+			break
+		}
+	}
+
+	return CheckBoolean
+}
 
 
 function CheckIfThisTableExists(tableAddress){

@@ -20,18 +20,18 @@
 
 	var database = firebase.database();
 	var Current_UID;
+	var global_database_json;
 
 //Fetch all relevant data for logged in user from our database using UID
 	function FetchAllDataFromDatabase(){
 		var ref = database.ref('USERS/' + Current_UID);
-		console.log('Fetching data from database with UID ' + Current_UID);
 		ref.once('value', ReceivedData, errData);
-
 
 		//Functions for fetching data
 		function ReceivedData(data){
 
 			tableData = data.val();
+			global_database_json = tableData;
 			console.log(tableData);
 
 			//Change the top name to user name
@@ -44,7 +44,6 @@
 			//now call the function to attach delete events to each delete icon in each one stream
 			SetupDeleteOneStreamEvent();
 			FadeOutLoadingFrame();
-
 		}
 
 		function errData(err){
@@ -59,9 +58,6 @@ function LoadAndPopulateStreamConfigOptions(tableData_JSON){
 
 	//first find out how many subject grades there are..
 	SubjectGrades = ReturnAsArrayChildOfTable(tableData_JSON['UserClass']);
-
-	console.log(SubjectGrades);
-
 
 	//now loop through the subject grades and use the names as the address prefix
 
@@ -113,7 +109,7 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade){
 			ThisStreamTiming = $.map(arr, function(el) { return el; });
 
 			//now this timing needs to be injected as an html
-			FillEachStreamBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, subjectGrade);
+			FillEachStreamBoxAndDropDownBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, subjectGrade);
 		}
 
 	}
@@ -141,7 +137,19 @@ function CreateStreamBox(SubjectName, SubjectGrade){
 		return StreamBox
 }
 
-function FillEachStreamBox(timingArray, streamName, streamVacancy, streambox_ref, subject, classGrade){
+function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy, streambox_ref, subject, classGrade){
+
+	//this will also fill the drop in box of add new stream timing stream name
+	StreamNameSelectADDBOX_ID = document.getElementById('StreamNameSelectADDBOX_ID');
+
+	OptText = streamName + ' | ' + subject + ' | ' + classGrade
+	OptValue = classGrade + '/' + subject + '/Streams/' + streamName + '/';
+
+	optionForAddBox = new Option(OptText, OptValue);
+	optionForAddBox.setAttribute("class", "ADDTimingDropDOWN");
+	StreamNameSelectADDBOX_ID.appendChild( optionForAddBox );
+
+	//now do the actual fill each stream box
 
 	EachStreamBox = document.createElement("div");
 	EachStreamBox.setAttribute("class", "EachStreamBox");
@@ -212,8 +220,8 @@ function FillEachStreamBox(timingArray, streamName, streamVacancy, streambox_ref
 
 
 
-//Clicking the add new stream buttom tab
-document.getElementById("AddNewStream_ID").addEventListener('click', e => {
+//Clicking the create new stream buttom tab
+document.getElementById("CreateNewStream_ID").addEventListener('click', e => {
 
 	FadeInLoadingFrame();
 
@@ -222,23 +230,14 @@ document.getElementById("AddNewStream_ID").addEventListener('click', e => {
 	//first get all the input values nicely
 
 	var e = document.getElementById("StreamSubjectSelect_ID");
-	var ChosenSubject = e.options[e.selectedIndex].value;
+	var ChosenSubject = e.options[e.selectedIndex].value; //e.g O LEVEL/Physics
 
 	var ChosenStreamName = document.getElementById('StreamName_ID').value;
-
-	var e = document.getElementById("StreamDaySelect_ID");
-	var ChosenDay = e.options[e.selectedIndex].value;
-
-	var e = document.getElementById("StreamStartTime_ID");
-	var ChosenStartTime = e.options[e.selectedIndex].value;
-
-	var e = document.getElementById("StreamEndTime_ID");
-	var ChosenEndTime = e.options[e.selectedIndex].value;
 
 	var ChosenStreamColor = document.getElementById('StreamColor_ID').value;
 	var ChosenStreamTotalSeats = document.getElementById('StreamTotalSeat_ID').value;
 
-	UpdateFireBaseStreamsTableOneStream(ChosenSubject, ChosenStreamName, ChosenDay, ChosenStartTime, ChosenEndTime, ChosenStreamColor, ChosenStreamTotalSeats);
+	CreateNewStream(ChosenSubject, ChosenStreamName, ChosenStreamColor, ChosenStreamTotalSeats);
 
 	//remove all inner streamboxes
 	//$('.StreamBox').remove();
@@ -251,9 +250,81 @@ document.getElementById("AddNewStream_ID").addEventListener('click', e => {
 
 });
 
-function UpdateFireBaseStreamsTableOneStream(subject, streamName, day, startTime, endTime, color, totalseats){
+//Clicking the add new stream timing buttom tab
+document.getElementById("AddNewTiming_ID").addEventListener('click', e => {
+
+	FadeInLoadingFrame();
+
+	console.log('Add new timing clicked!');
+
+	//first get all the input values nicely
+
+	var e = document.getElementById("StreamNameSelectADDBOX_ID");
+	var ChosenStreamAddress = e.options[e.selectedIndex].value; //e.g O LEVEL/Physics
+
+	var e = document.getElementById("StreamDaySelect_ID");
+	var ChosenDay = e.options[e.selectedIndex].value;
+
+	var e = document.getElementById("StreamStartTime_ID");
+	var ChosenStartTime = e.options[e.selectedIndex].value;
+
+	var e = document.getElementById("StreamEndTime_ID");
+	var ChosenEndTime = e.options[e.selectedIndex].value;
+
+	CreateNewTiming(ChosenStreamAddress, ChosenDay, ChosenStartTime, ChosenEndTime);
+
+});
+
+
+
+function CreateNewStream(subject, streamName, color, TotalSeats){
 	//IMPORTANT NOTE: HERE SUBJECT ACTUALLY HAS O LEVEL/PHYSICS IN IT OR LIKE THAT
-	var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/Timings/');
+	var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/');
+
+	ref.once('value', ReceivedData, errData);
+
+	function ReceivedData(data){
+
+		tableData = data.val();
+
+		//first need to check to see if the stream name already exists and if it does tell the user it does
+		existingStreamNameArray = ReturnAsArrayChildOfTable(tableData);
+
+		//this will return true if the stream name to be created already exists
+		CheckBoolean = CheckIfElementExistsInArray(streamName, existingStreamNameArray);
+
+		if (CheckBoolean==true){
+			alert('Stream Name chosen to create new stream already exists! Please choose a new one to stop from overwriting the old one..');
+		}
+
+		else {
+			//we are a go to create the new stream database table
+			var tableaddress = 'USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName;
+			var data = {
+				StreamColor: color,
+				TotalSeats: TotalSeats,
+				FilledSeats: 0
+			}
+
+			InsertDataIntoTable(data, tableaddress);
+
+			alert('New Stream has been created successfully!');
+
+		}
+
+	}
+
+	function errData(err){
+		console.log('Error!');
+		console.log(err);
+	}
+}
+
+function CreateNewTiming(StreamAddress, day, startTime, endTime){
+	//IMPORTANT NOTE: HERE SUBJECT ACTUALLY HAS O LEVEL/PHYSICS IN IT OR LIKE THAT
+	address = 'USERS/' + Current_UID + '/UserClass/' + StreamAddress + 'Timings/';
+	console.log(address);
+	var ref = database.ref(address);
 
 	ref.once('value', ReceivedData, errData);
 
@@ -262,28 +333,26 @@ function UpdateFireBaseStreamsTableOneStream(subject, streamName, day, startTime
 		tableData = data.val();
 		ThisStreamTiming = $.map(tableData, function(el) { return el; });
 
+		console.log(ThisStreamTiming);
+
 		var NumberOfTimingsCurrently = String(ThisStreamTiming.length);
+
+		console.log(NumberOfTimingsCurrently);
 
 		craftedTimings = day + ' ' + startTime + ' - ' + endTime
 
+		console.log(craftedTimings);
+
 		//now insert new data into it
-		var tableaddress = 'USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/Timings/';
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + StreamAddress + 'Timings/');
+
 		var data = {
 			[NumberOfTimingsCurrently]: craftedTimings
 		}
 
-		InsertDataIntoTable(data, tableaddress);
+		ref.update(data);
 
-		//now insert seat vacancy and stream color data
-		var address = 'USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/';
-		var data = {
-			StreamColor : color,
-			TotalSeats: totalseats
-		}
-
-		InsertDataIntoTable(data, address);
-
-		console.log('Successfully updated data..');
+		alert('Successfully created new stream timing!');
 
 	}
 
@@ -319,7 +388,6 @@ function SetupDeleteOneStreamEvent(){
 firebase.auth().onAuthStateChanged( firebaseUser => {
 	if (firebaseUser){
 		console.log('Logged In..')
-		console.log(firebaseUser);
 		Current_UID = firebaseUser.uid;
 		FetchAllDataFromDatabase();
 

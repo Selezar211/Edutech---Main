@@ -158,7 +158,7 @@
 			    background-color: beige;
 		}
 
-		.AddNewStream{
+		.CreateNewStream, .AddNewTiming{
 				margin-top: 3%;
 			    display: inline-block;
 			    cursor: pointer;
@@ -185,12 +185,12 @@
 				transition: 500ms;
 		}
 
-		.AddNewStream:hover{
+		.CreateNewStream:hover , .AddNewTiming:hover{
 			color: gray;
 			transition: 500ms;
 		}
 
-		.AddNewStream:hover #AddStreamIcon{
+		.CreateNewStream:hover #AddStreamIcon, .AddNewTiming:hover #AddStreamIcon{
 			color: gray;
 			transition: 500ms;
 		}
