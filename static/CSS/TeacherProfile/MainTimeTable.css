@@ -110,7 +110,7 @@
 
 			}
 
-			.StreamNameLabel,.StreamDayLabel,.StreamStartLabel,.StreamEndLabel,.StreamSeatLabel,.StreamSubjectLabel, .StreamColorLabel{
+			.StreamNameLabel,.StreamNameLabelADDBOX,.StreamDayLabel,.StreamStartLabel,.StreamEndLabel,.StreamSeatLabel,.StreamSubjectLabel, .StreamColorLabel{
 				margin-top: 3%;
 				padding-right: 5%;
 			    display: inline-block;
@@ -143,7 +143,7 @@
 			    box-shadow: none;
 		}
 
-		.StreamDaySelect, .StreamStartTime, .StreamEndTime, .StreamSubjectSelect{
+		.StreamDaySelect, .StreamStartTime, .StreamEndTime, .StreamSubjectSelect, .StreamNameSelectADDBOX{
 			width: 40%;
 			    display: inline-block;
 			    position: relative;
@@ -202,7 +202,7 @@
 			    display: inline-block;
 			    position: absolute;
 			    padding: 1%;
-			    top: 90%;
+			    top: 95%;
 			    font-size: 1.5em;
 			    text-align: center;
 		}

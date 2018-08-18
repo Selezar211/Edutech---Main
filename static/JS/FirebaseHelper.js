@@ -57,7 +57,7 @@ function DeleteTableEntryByKey(){
 }
 
 function InsertDataIntoTable(InputJSONdata, tableAddress){
-	//this will insert the JSOn data into the tableAddress
+	//this will insert the JSON data into the tableAddress
 	var ref = database.ref(tableAddress);
 
 	ref.update(InputJSONdata);
