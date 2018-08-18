@@ -31,9 +31,6 @@
 		//Functions for fetching data
 		function ReceivedData(data){
 
-			var olevel_subject_array = [];
-			var alevel_subject_array = [];
-
 			tableData = data.val();
 			console.log(tableData);
 
@@ -41,89 +38,25 @@
 			document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Teacher#34 ' + tableData['UserName'];
 			document.title = tableData['UserName'] + ' - Profile';
 
-			//now break down table data into useful data starting with the classes
+			//first find out how many subject grades there are..
+			SubjectGrades = ReturnAsArrayChildOfTable(tableData['UserClass']);
 
-			OLevel_Subjects_JSON = tableData['UserClass']['O LEVEL'];
-			ALevel_Subjects_JSON = tableData['UserClass']['A LEVEL'];
+			console.log(SubjectGrades);
 
-   			for(var k in OLevel_Subjects_JSON) olevel_subject_array.push(k);
 
-   			for(var k in ALevel_Subjects_JSON) alevel_subject_array.push(k);
+			//now loop through the subject grades and use the names as the address prefix
 
-			console.log(olevel_subject_array);
-			console.log(alevel_subject_array);
+			for (var x = 0; x < SubjectGrades.length; x++) {
 
-			//now we need to inject these classes into the appropriate places throughout the page
+				CurrentSubjectGrade = SubjectGrades[x];
 
-			var option_subject;
-			var select_subject = document.getElementById('StreamSubjectSelect_ID');
+				//this will return as a JSON all the childs of working subject grade
+				//convert it into working array of subjects e.g ['Physics', 'Chemistry', 'Biology']
+				CurrentGrade_SubjectArray = ReturnAsArrayChildOfTable(tableData['UserClass'][CurrentSubjectGrade]);
 
-			for (var i = 0; i < olevel_subject_array.length; i++) {
-
-				currentWorking_Subject = String(olevel_subject_array[i]);
-
-				displayText = currentWorking_Subject + ' (O Level)';
-				displayValue = 'O LEVEL/' + currentWorking_Subject
-
-				//var option = new Option(text, value);
-				option_subject = new Option(displayText, displayValue);
-				option_subject.setAttribute("class", "SubjectDropDOWN");
-				select_subject.appendChild( option_subject );
-
-				//insert it into current streams 
-				//create streambox element
-				ThisStreamBox = CreateStreamBox(currentWorking_Subject, 'O Level');
-
-				//Now get the stream timings to inject 
-				AllStreamsJSON_of_ThisSubject = tableData['UserClass']['O LEVEL'][currentWorking_Subject]['Streams']
-
-				//now iterate over this json to find timings of each stream
-				var key;
-				for (key in AllStreamsJSON_of_ThisSubject) {
-
-					var SeatVacancy = 'Vacant Seats: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
-
-					var arr = AllStreamsJSON_of_ThisSubject[key]['Timings'];
-					ThisStreamTiming = $.map(arr, function(el) { return el; });
-					console.log(ThisStreamTiming);
-					//now this timing needs to be injected as an html
-					FillEachStreamBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, 'O LEVEL');
-				}
-
+				LoopThroughSubjectsAndInjectThem(CurrentGrade_SubjectArray, CurrentSubjectGrade);
 			}
 
-			for (var i = 0; i < alevel_subject_array.length; i++) {
-
-				currentWorking_Subject = String(alevel_subject_array[i]);
-
-				displayText = currentWorking_Subject + ' (A Level)';
-				displayValue = 'A LEVEL/' + currentWorking_Subject
-
-				//var option = new Option(text, value);
-				option_subject = new Option(displayText, displayValue);
-				select_subject.appendChild( option_subject );
-
-				//insert it into current streams 
-				//create streambox element
-				ThisStreamBox = CreateStreamBox(currentWorking_Subject, 'A Level');
-
-				//Now get the stream timings to inject 
-				AllStreamsJSON_of_ThisSubject = tableData['UserClass']['A LEVEL'][currentWorking_Subject]['Streams']
-
-				//now iterate over this json to find timings of each stream
-				var key;
-				for (key in AllStreamsJSON_of_ThisSubject) {
-
-					var SeatVacancy = 'Vacant Seats: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
-
-					var arr = AllStreamsJSON_of_ThisSubject[key]['Timings'];
-					ThisStreamTiming = $.map(arr, function(el) { return el; });
-					console.log(ThisStreamTiming);
-					//now this timing needs to be injected as an html
-					FillEachStreamBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, 'A LEVEL');
-				}
-
-			}
 
 			//now call the function to attach delete events to each delete icon in each one stream
 			SetupDeleteOneStreamEvent();
@@ -497,22 +430,21 @@ function UpdateFireBaseStreamsTableOneStream(subject, streamName, day, startTime
 		craftedTimings = day + ' ' + startTime + ' - ' + endTime
 
 		//now insert new data into it
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/Timings/');
+		var tableaddress = 'USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/Timings/';
 		var data = {
-			[NumberOfTimingsCurrently]: craftedTimings,
-
+			[NumberOfTimingsCurrently]: craftedTimings
 		}
 
-		ref.update(data);
+		InsertDataIntoTable(data, tableaddress);
 
 		//now insert seat vacancy and stream color data
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/');
+		var address = 'USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/';
 		var data = {
 			StreamColor : color,
 			TotalSeats: totalseats
 		}
 
-		ref.update(data);
+		InsertDataIntoTable(data, address);
 
 		console.log('Successfully updated data..');
 
@@ -594,6 +526,48 @@ function SetupDeleteOneStreamEvent(){
 
     	return false;
     });
+}
+
+function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade){
+	//inputSubjectArray = ['Physics', 'Chemistry'] e.g
+	//subjectGrade = 'O LEVEL' e.g
+
+	var option_subject;
+	var select_subject = document.getElementById('StreamSubjectSelect_ID');
+
+	for (var i = 0; i < inputSubjectArray.length; i++) {
+
+		currentWorking_Subject = String(inputSubjectArray[i]);
+
+		displayText = currentWorking_Subject + ' (' + subjectGrade + ')';
+		displayValue = subjectGrade + '/' + currentWorking_Subject
+
+		//var option = new Option(text, value);
+		option_subject = new Option(displayText, displayValue);
+		option_subject.setAttribute("class", "SubjectDropDOWN");
+		select_subject.appendChild( option_subject );
+
+		//insert it into current streams 
+		//create streambox element
+		ThisStreamBox = CreateStreamBox(currentWorking_Subject, subjectGrade);
+
+		//Now get the stream timings to inject 
+		AllStreamsJSON_of_ThisSubject = tableData['UserClass'][subjectGrade][currentWorking_Subject]['Streams']
+
+		//now iterate over this json to find timings of each stream
+		var key;
+		for (key in AllStreamsJSON_of_ThisSubject) {
+
+			var SeatVacancy = 'Vacant Seats: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
+
+			var arr = AllStreamsJSON_of_ThisSubject[key]['Timings'];
+			ThisStreamTiming = $.map(arr, function(el) { return el; });
+
+			//now this timing needs to be injected as an html
+			FillEachStreamBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, subjectGrade);
+		}
+
+	}
 }
 
 

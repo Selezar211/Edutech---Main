@@ -52,39 +52,26 @@ function DeleteTableEntryByIndex(InputIndex, TableAddress){
 }
 
 
-
-
 function DeleteTableEntryByKey(){
 	//this function will delete a table entry by the key name itself
 }
 
+function InsertDataIntoTable(InputJSONdata, tableAddress){
+	//this will insert the JSOn data into the tableAddress
+	var ref = database.ref(tableAddress);
 
-function ReturnAsArrayChildOfTable(tableAddress){
-	//this function will return as a child all the members of queried table
+	ref.update(InputJSONdata);
+}
 
-	var OutputArr= [];
-	var ref = database.ref(TableAddress);
 
-	ref.once('value', ReceivedData, errData);
+function ReturnAsArrayChildOfTable(InputTableJSON){
+	//this function will return as a child all the members of queried table as an array
 
-	//Functions for fetching data
-	function ReceivedData(data){
-		tableData = data.val();
+	OutputArr = new Array();
 
-		var key;
-		for (key in tableData) {
-			OutputArr.push(key);
-		}
-
-	}
-
-	function errData(err){
-		console.log('Error!');
-		console.log(err);
-	}
+	for(var k in InputTableJSON) OutputArr.push(k);
 
 	return OutputArr
-
 }
 
 
@@ -94,7 +81,7 @@ function CheckIfThisTableExists(tableAddress){
 
 	var ExistsOrNot;
 
-	var ref = database.ref(TableAddress);
+	var ref = database.ref(tableAddress);
 
 	ref.once('value', ReceivedData, errData);
 
