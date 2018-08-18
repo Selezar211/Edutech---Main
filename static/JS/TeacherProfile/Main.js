@@ -67,6 +67,7 @@
 
 				//var option = new Option(text, value);
 				option_subject = new Option(displayText, displayValue);
+				option_subject.setAttribute("class", "SubjectDropDOWN");
 				select_subject.appendChild( option_subject );
 
 				//insert it into current streams 
@@ -135,89 +136,6 @@
 			console.log(err);
 		}
 
-		function CreateStreamBox(SubjectName, SubjectGrade){
-
-				//subjectName could be physics e.g
-				//SubjectGrade right now is o level or alevel
-
-				//create streambox element
-				var StreamBox = document.createElement("div");
-				StreamBox.setAttribute("class", "StreamBox");
-
-				var ThisStreamSubject = document.createElement("div");
-				ThisStreamSubject.setAttribute("class", "ThisStreamSubject");
-
-				var t = document.createTextNode(SubjectName + ' | ' + SubjectGrade);
-				ThisStreamSubject.append(t);
-
-				StreamBox.append(ThisStreamSubject);
-				document.getElementById('StreamConfigOptions_ID').append(StreamBox);
-
-				return StreamBox
-		}
-
-		function FillEachStreamBox(timingArray, streamName, streamVacancy, streambox_ref, subject, classGrade){
-
-			EachStreamBox = document.createElement("div");
-			EachStreamBox.setAttribute("class", "EachStreamBox");
-
-			//create the stream title which will display stream name
-			EachStreamTitle = document.createElement("div");
-			EachStreamTitle.setAttribute("class", "EachStreamTitle");
-
-			var t = document.createTextNode(streamName);
-			EachStreamTitle.append(t);
-
-			//create the stream seat vacancy display
-			SeatVacancyStream = document.createElement("span");
-			SeatVacancyStream.setAttribute("class", "SeatVacancyStream");
-
-			var t = document.createTextNode(streamVacancy);
-			SeatVacancyStream.append(t);
-
-			EachStreamTitle.append(SeatVacancyStream);
-
-			EachStreamBox.append(EachStreamTitle);
-
-			//now loop through given timings array and make a html element for each..	
-			for (var i = 0; i < timingArray.length; i++) {
-				EachStreamTiming = document.createElement("div");
-				EachStreamTiming.setAttribute("class", "EachStreamTiming");
-
-				StreamTimingSpan = document.createElement("span");
-				var t = document.createTextNode(timingArray[i]);
-				StreamTimingSpan.append(t);
-
-				EachStreamTiming.append(StreamTimingSpan);
-
-				//now make the delete icon and edit icon
-				DeleteIcon = document.createElement("i");
-				DeleteIcon.setAttribute("id", "DeleteStream");
-				DeleteIcon.setAttribute("class", "fas fa-trash-alt");
-				metaData = classGrade + '/' + subject + '/' + 'Streams/' + streamName + '/Timings/';
-				metaDataIndex = String(i);
-				DeleteIcon.setAttribute("data-main", metaData);
-				DeleteIcon.setAttribute("data-main2", metaDataIndex);
-
-
-				EachStreamTiming.append(DeleteIcon);
-
-				//now for the edit icon
-				EditIcon = document.createElement("i");
-				EditIcon.setAttribute("id", "EditStreamIcon");
-				EditIcon.setAttribute("class", "fas fa-edit");
-
-				EachStreamTiming.append(EditIcon);
-
-				//now we need to append it to the parent divs
-				EachStreamBox.append(EachStreamTiming);
-				//there we go all done, now lets hope to god it works :)
-			}
-
-			//now add it to the godfather permanent element
-			streambox_ref.append(EachStreamBox);
-		}
-
 	}
 
 	//Add a realtime listener for state auth change
@@ -227,7 +145,6 @@
 	  		console.log(firebaseUser);
 	  		Current_UID = firebaseUser.uid;
 	  		FetchAllDataFromDatabase();
-	  		FadeOutLoadingFrame();
 
 	  		$(".BlackBoard_MainInfo").fadeIn('slow');
 	  		$(".BlackBoardName_Date_Cont").fadeIn('slow');
@@ -319,6 +236,97 @@
 		$('.StreamConfigOptions').fadeOut('slow');
 	});
 
+
+
+function CreateStreamBox(SubjectName, SubjectGrade){
+
+		//subjectName could be physics e.g
+		//SubjectGrade right now is o level or alevel
+
+		//create streambox element
+		var StreamBox = document.createElement("div");
+		StreamBox.setAttribute("class", "StreamBox");
+
+		var ThisStreamSubject = document.createElement("div");
+		ThisStreamSubject.setAttribute("class", "ThisStreamSubject");
+
+		var t = document.createTextNode(SubjectName + ' | ' + SubjectGrade);
+		ThisStreamSubject.append(t);
+
+		StreamBox.append(ThisStreamSubject);
+		document.getElementById('StreamConfigOptions_ID').append(StreamBox);
+
+		return StreamBox
+}
+
+function FillEachStreamBox(timingArray, streamName, streamVacancy, streambox_ref, subject, classGrade){
+
+	EachStreamBox = document.createElement("div");
+	EachStreamBox.setAttribute("class", "EachStreamBox");
+
+	//create the stream title which will display stream name
+	EachStreamTitle = document.createElement("div");
+	EachStreamTitle.setAttribute("class", "EachStreamTitle");
+
+	var t = document.createTextNode(streamName);
+	EachStreamTitle.append(t);
+
+	//create the delete full stream
+	DeleteFullStreamIcon = document.createElement("i");
+	DeleteFullStreamIcon.setAttribute("id", "DeleteFullStream");
+	DeleteFullStreamIcon.setAttribute("class", "fas fa-trash");
+
+	EachStreamTitle.append(DeleteFullStreamIcon);
+
+	//create the stream seat vacancy display
+	SeatVacancyStream = document.createElement("span");
+	SeatVacancyStream.setAttribute("class", "SeatVacancyStream");
+
+	var t = document.createTextNode(streamVacancy);
+	SeatVacancyStream.append(t);
+
+	EachStreamTitle.append(SeatVacancyStream);
+
+	EachStreamBox.append(EachStreamTitle);
+
+	//now loop through given timings array and make a html element for each..	
+	for (var i = 0; i < timingArray.length; i++) {
+		EachStreamTiming = document.createElement("div");
+		EachStreamTiming.setAttribute("class", "EachStreamTiming");
+
+		StreamTimingSpan = document.createElement("span");
+		var t = document.createTextNode(timingArray[i]);
+		StreamTimingSpan.append(t);
+
+		EachStreamTiming.append(StreamTimingSpan);
+
+		//now make the delete icon and edit icon
+		DeleteIcon = document.createElement("i");
+		DeleteIcon.setAttribute("id", "DeleteStream");
+		DeleteIcon.setAttribute("class", "fas fa-trash-alt");
+		metaData = classGrade + '/' + subject + '/' + 'Streams/' + streamName + '/Timings/';
+		metaDataIndex = String(i);
+		DeleteIcon.setAttribute("data-main", metaData);
+		DeleteIcon.setAttribute("data-main2", metaDataIndex);
+
+
+		EachStreamTiming.append(DeleteIcon);
+
+		//now for the edit icon
+		EditIcon = document.createElement("i");
+		EditIcon.setAttribute("id", "EditStreamIcon");
+		EditIcon.setAttribute("class", "fas fa-edit");
+
+		EachStreamTiming.append(EditIcon);
+
+		//now we need to append it to the parent divs
+		EachStreamBox.append(EachStreamTiming);
+		//there we go all done, now lets hope to god it works :)
+	}
+
+	//now add it to the godfather permanent element
+	streambox_ref.append(EachStreamBox);
+}
 
 //Video icon click event
 	document.getElementById("VidIcon").addEventListener('click', e => {
@@ -430,8 +438,14 @@ function FadeOutLoadingFrame(){
 	$(".LoadingContainer").fadeOut('slow');
 }
 
+function FadeInLoadingFrame(){
+	$(".LoadingContainer").fadeIn('fast');
+}
+
 //Clicking the add new stream buttom tab
 document.getElementById("AddNewStream_ID").addEventListener('click', e => {
+
+	FadeInLoadingFrame();
 
 	console.log('Add new stream clicked!');
 
@@ -454,14 +468,20 @@ document.getElementById("AddNewStream_ID").addEventListener('click', e => {
 	var ChosenStreamColor = document.getElementById('StreamColor_ID').value;
 	var ChosenStreamTotalSeats = document.getElementById('StreamTotalSeat_ID').value;
 
-	UpdateFireBaseStreamsTableOneStream(ChosenSubject, ChosenStreamName, ChosenDay, ChosenStartTime, ChosenEndTime);
+	UpdateFireBaseStreamsTableOneStream(ChosenSubject, ChosenStreamName, ChosenDay, ChosenStartTime, ChosenEndTime, ChosenStreamColor, ChosenStreamTotalSeats);
 
-	//location.reload();
+	//remove all inner streamboxes
+	//$('.StreamBox').remove();
+	//$('.SubjectDropDOWN').remove();
 
+	//now recreate the streamboxes after fetching em all
+	//FetchAllDataFromDatabase();
+
+	FadeOutLoadingFrame();
 
 });
 
-function UpdateFireBaseStreamsTableOneStream(subject, streamName, day, startTime, endTime){
+function UpdateFireBaseStreamsTableOneStream(subject, streamName, day, startTime, endTime, color, totalseats){
 	//IMPORTANT NOTE: HERE SUBJECT ACTUALLY HAS O LEVEL/PHYSICS IN IT OR LIKE THAT
 	var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/Timings/');
 
@@ -479,7 +499,17 @@ function UpdateFireBaseStreamsTableOneStream(subject, streamName, day, startTime
 		//now insert new data into it
 		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/Timings/');
 		var data = {
-			[NumberOfTimingsCurrently]: craftedTimings
+			[NumberOfTimingsCurrently]: craftedTimings,
+
+		}
+
+		ref.update(data);
+
+		//now insert seat vacancy and stream color data
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName + '/');
+		var data = {
+			StreamColor : color,
+			TotalSeats: totalseats
 		}
 
 		ref.update(data);
@@ -551,64 +581,21 @@ function SetupDeleteOneStreamEvent(){
 	//attached delete events from the firebase database for each stream to be deleted when clicked
 	$(".fa-trash-alt").click(function() {
 
+		FadeInLoadingFrame();
     	dataMain = String($(this).attr("data-main"));
     	dataIndex = parseInt($(this).attr("data-main2"));
 
     	console.log(dataMain);
     	console.log(dataIndex);
 
-    	var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  dataMain);
+    	var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' +  dataMain;
 
-    	var nonDeletedStreams = [];
-
-    	ref.once('value', ReceivedData, errData);
-
-		//Functions for fetching data
-		function ReceivedData(data){
-
-			tableData = data.val();
-			var arr = $.map(tableData, function(el) { return el; });
-
-
-			for (var i = 0; i < arr.length; i++) {
-
-				if (i!=dataIndex){
-					console.log('copying non deleted streams..');
-					nonDeletedStreams.push(arr[i]);
-				}
-
-			}
-			console.log(nonDeletedStreams);
-			DeleteStreamFromDatabase();
-		}
-
-		function errData(err){
-			console.log('Error!');
-			console.log(err);
-		}
-
-		function DeleteStreamFromDatabase(){
-
-	  		var database = firebase.database();
-	  		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  dataMain);
-	  		ref.remove();
-	  		console.log('timing has been removed');
-
-	  		JSONarray = {...nonDeletedStreams};
-
-			var database = firebase.database();
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  dataMain);
-
-			ref.update(JSONarray);
-
-			//now need to refresh the page
-			location.reload();
-		}   	
-
+    	DeleteTableEntryByIndex(dataIndex, tableToDeleteFromAddress);
 
     	return false;
     });
 }
+
 
 //main jquery run time functions
 $(document).ready(function(){

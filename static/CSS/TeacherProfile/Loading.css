@@ -1,6 +1,7 @@
 /*Loading page*/
 
 		.LoadingContainer{
+			font-family: 'Quattrocento';
 			display: inline-block;
 			z-index: 106;
 			position: fixed;

@@ -27,7 +27,7 @@
 
 			.SetStreamsButton{
 				transition: 200ms;
-				border-left: 0.0001em solid rgba(0,0,0,0);
+				border: 0.1em solid rgba(0,0,0,0);
 				cursor: pointer;
 				width: 22%;
 			    margin-top: 5%;
@@ -41,11 +41,11 @@
 			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 			}
 
-			.SetStreamsButton:hover #SetStreamIcon {
-				transition: 200ms;
-				color: white;
-			}
 
+			.SetStreamsButton:hover  {
+				border: 0.1em solid rgba(0,0,0,1);
+				transition: 200ms;
+			}
 
 			#SetStreamIcon{
 				top: 6%;
@@ -82,6 +82,19 @@
 			    text-align: center;
 			}
 
+			.CreateNewStreamBox{
+				padding-top:1.5%;
+				padding-right: 2%;
+				padding-bottom: 2%;
+				border-radius: 0.4em;
+				width: 30%;
+				top: 20%;
+				left: 33%;
+				position: absolute;
+				display: inline-block;
+				background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+			}
+
 
 			.StreamAddBox{
 				padding-top:1.5%;
@@ -89,8 +102,8 @@
 				padding-bottom: 2%;
 				border-radius: 0.4em;
 				width: 30%;
-				top: 20%;
-				left: 35%;
+				top: 58%;
+				left: 33%;
 				position: absolute;
 				display: inline-block;
 				background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
@@ -189,7 +202,7 @@
 			    display: inline-block;
 			    position: absolute;
 			    padding: 1%;
-			    top: 75%;
+			    top: 90%;
 			    font-size: 1.5em;
 			    text-align: center;
 		}
@@ -201,8 +214,8 @@
 			    display: inline-block;
 			    overflow: auto;
 			    position: relative;
-			    padding-top: 0%;
-			    top: 74%;
+			    padding-bottom: 2%;
+			    top: 92%;
 
 		}
 
@@ -291,6 +304,18 @@
 			transition: 500ms;
 		}
 
+		#DeleteFullStream{
+			float: right;
+			margin-top:0.3%;
+			transform: scale(1.3,1.3);
+			position: relative;
+			margin-left: 2%;
+			color: white;
+			display: inline-block;
+			cursor: pointer;
+			transition: 500ms;
+		}
+
 		#EditStreamIcon{
 			float: right;
 			margin-right: 5%;
@@ -303,7 +328,7 @@
 			transition: 500ms;
 		}
 
-		#DeleteStream:hover, #EditStreamIcon:hover{
+		#DeleteStream:hover, #DeleteFullStream:hover, #EditStreamIcon:hover{
 			transition: 500ms;
 			color: gray;
 		}

@@ -516,13 +516,25 @@
     <div class="StreamConfigOptions" id="StreamConfigOptions_ID">
     		<div class="StreamConfigTitle"><span>Stream Configuration:</span><i id="StreamConfigCloseIcon" class="fas fa-times-circle"></i></div>
 
-			<div class="StreamAddBox">
+    		<div class="CreateNewStreamBox">
 
 				<label class="StreamSubjectLabel">Subject: </label>
 				<select id="StreamSubjectSelect_ID" class="StreamSubjectSelect" name="subject"></select>
 
 				<label class="StreamNameLabel">Stream Name: </label>
 				<input type="text" class="StreamInput" id="StreamName_ID" name="StreamName">
+
+				<label class="StreamColorLabel">Stream Color: </label>
+				<input type="text" class="StreamInput" id="StreamColor_ID" name="StreamColor">
+
+				<label class="StreamSeatLabel">Stream Total Seats: </label>
+				<input type="number" min="0" class="StreamInput" id="StreamTotalSeat_ID" name="StreamSeats">
+
+				<div class="AddNewStream" id="AddNewStream_ID"><span>Add New Stream</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
+
+    		</div>
+
+			<div class="StreamAddBox">
 
 				<label class="StreamDayLabel">Stream Day: </label>
 				<select class="StreamDaySelect" id="StreamDaySelect_ID" name="days">
@@ -543,13 +555,7 @@
 				<select class="StreamEndTime" id="StreamEndTime_ID" name="StreamET">
 				</select>
 
-				<label class="StreamColorLabel">Stream Color: </label>
-				<input type="text" class="StreamInput" id="StreamColor_ID" name="StreamColor">
-
-				<label class="StreamSeatLabel">Stream Total Seats: </label>
-				<input type="number" min="0" class="StreamInput" id="StreamTotalSeat_ID" name="StreamSeats">
-
-				<div class="AddNewStream" id="AddNewStream_ID"><span>Add New Stream Timing</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
+				<div class="AddNewStream" id="AddNewStream_ID"><span>Add New Timing</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
 
 
 			</div>
@@ -561,7 +567,7 @@
     			<div class="ThisStreamSubject"><span>Physics | O Level</span></div>
 
     			<div class="EachStreamBox">
-    				<div class="EachStreamTitle"><span>AlphaOne</span><span class="SeatVacancyStream">Vacant Seats: 5/40</span></div>
+    				<div class="EachStreamTitle"><span>AlphaOne</span><i id="DeleteFullStream" class="fas fa-trash"></i><span class="SeatVacancyStream">Vacant Seats: 5/40</span></div>
 
     				<div class="EachStreamTiming"><span>Sunday 2:30PM - 4:30PM</span><i id="DeleteStream" class="fas fa-trash-alt"></i><i id="EditStreamIcon"class="fas fa-edit"></i></div>
     				<div class="EachStreamTiming"><span>Monday 5:00PM - 7:00PM</span><i id="DeleteStream" class="fas fa-trash-alt"></i><i id="EditStreamIcon"class="fas fa-edit"></i></div>
@@ -586,7 +592,7 @@
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-functions.js"></script>
 
-
+<script src="static/JS/FirebaseHelper.js"></script> 
 <script src="static/JS/modernizr.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script>
