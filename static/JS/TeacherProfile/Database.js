@@ -1,8 +1,6 @@
 	
-
-
-
-
+//Author: Ekram
+//Whats the plan? The kind where we make it as we go along of course 8)
 
 
 
@@ -38,10 +36,11 @@
 			document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Teacher#34 ' + tableData['UserName'];
 			document.title = tableData['UserName'] + ' - Profile';
 
-			//how populate the stream config options section
+			//now populate the stream config options section
 			LoadAndPopulateStreamConfigOptions(tableData);
 
 			//now call the function to attach delete events to each delete icon in each one stream
+			SetupDeleteFullStreamEvent();
 			SetupDeleteOneStreamEvent();
 			FadeOutLoadingFrame();
 		}
@@ -103,7 +102,7 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade){
 		var key;
 		for (key in AllStreamsJSON_of_ThisSubject) {
 
-			var SeatVacancy = 'Vacant Seats: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
+			var SeatVacancy = 'Seats Filled: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
 
 			var arr = AllStreamsJSON_of_ThisSubject[key]['Timings'];
 			ThisStreamTiming = $.map(arr, function(el) { return el; });
@@ -165,6 +164,8 @@ function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy,
 	DeleteFullStreamIcon = document.createElement("i");
 	DeleteFullStreamIcon.setAttribute("id", "DeleteFullStream");
 	DeleteFullStreamIcon.setAttribute("class", "fas fa-trash");
+	metaData = classGrade + '/' + subject + '/' + 'Streams/' + streamName;
+	DeleteFullStreamIcon.setAttribute("data-main", metaData);
 
 	EachStreamTitle.append(DeleteFullStreamIcon);
 
@@ -294,7 +295,7 @@ function CreateNewStream(subject, streamName, color, TotalSeats){
 		CheckBoolean = CheckIfElementExistsInArray(streamName, existingStreamNameArray);
 
 		if (CheckBoolean==true){
-			alert('Stream Name chosen to create new stream already exists! Please choose a new one to stop from overwriting the old one..');
+			BoxAlert('Stream name exists already in database..');
 		}
 
 		else {
@@ -308,7 +309,7 @@ function CreateNewStream(subject, streamName, color, TotalSeats){
 
 			InsertDataIntoTable(data, tableaddress);
 
-			alert('New Stream has been created successfully!');
+			BoxAlert('New Stream has been created successfully!');
 
 		}
 
@@ -352,7 +353,7 @@ function CreateNewTiming(StreamAddress, day, startTime, endTime){
 
 		ref.update(data);
 
-		alert('Successfully created new stream timing!');
+		BoxAlert('New stream timing has been created successfully!');
 
 	}
 
@@ -364,6 +365,29 @@ function CreateNewTiming(StreamAddress, day, startTime, endTime){
 
 }
 
+//attached delete events from the firebase database for a full stream to be deleted when clicked
+function SetupDeleteFullStreamEvent(){
+	//attached delete events from the firebase database for a full stream to be deleted when clicked
+	$(".fa-trash").click(function() {
+
+		FadeInLoadingFrame();
+    	dataMain = String($(this).attr("data-main"));
+
+    	console.log(dataMain);
+
+    	var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' +  dataMain;
+
+    	var ref = database.ref(tableToDeleteFromAddress);
+
+    	ref.remove();
+
+		BoxAlert('Stream deleted successfully!');
+
+    	return false;
+    });
+}
+
+//attached delete events from the firebase database for each stream to be deleted when clicked
 function SetupDeleteOneStreamEvent(){
 	//attached delete events from the firebase database for each stream to be deleted when clicked
 	$(".fa-trash-alt").click(function() {
@@ -378,6 +402,8 @@ function SetupDeleteOneStreamEvent(){
     	var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' +  dataMain;
 
     	DeleteTableEntryByIndex(dataIndex, tableToDeleteFromAddress);
+
+    	BoxAlert('Timing deleted successfully!');
 
     	return false;
     });

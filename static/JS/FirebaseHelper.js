@@ -128,3 +128,15 @@ function CheckIfThisTableExists(tableAddress){
 	return ExistsOrNot
 
 }
+
+
+function BoxAlert(AlertText){
+	document.getElementById('AlertText_ID').innerHTML = AlertText;
+	$('.BoxAlert').fadeIn('fast');
+}
+
+
+
+
+
+

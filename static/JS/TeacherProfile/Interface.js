@@ -175,7 +175,10 @@ function FadeInLoadingFrame(){
 	$(".LoadingContainer").fadeIn('fast');
 }
 
-
+//Clicking the close alert icon
+document.getElementById("AlertCloseIcon").addEventListener('click', e => {
+	$('.BoxAlert').fadeOut('fast');
+});
 
 
 
