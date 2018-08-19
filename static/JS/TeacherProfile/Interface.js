@@ -55,7 +55,14 @@
 
 	//close config options tab
 	document.getElementById("StreamConfigCloseIcon").addEventListener('click', e => {
-		$('.StreamConfigOptions').fadeOut('slow');
+
+		if (HardRefreshBoolean){
+			location.reload();
+		}
+		else {
+			$('.StreamConfigOptions').fadeOut('slow');	
+		}
+
 	});
 
 

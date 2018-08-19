@@ -136,6 +136,13 @@ function BoxAlert(AlertText){
 }
 
 
+function getScheduleTimestamp(time) {
+	//accepts hh:mm format - convert hh:mm to timestamp
+	time = time.replace(/ /g,'');
+	var timeArray = time.split(':');
+	var timeStamp = parseInt(timeArray[0])*60 + parseInt(timeArray[1]);
+	return timeStamp;
+}
 
 
 

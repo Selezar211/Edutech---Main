@@ -43,7 +43,7 @@
 
 
 			.SetStreamsButton:hover  {
-				border: 0.1em solid rgba(0,0,0,1);
+				border-bottom: 0.1em solid rgba(0,0,0,1);
 				transition: 200ms;
 			}
 

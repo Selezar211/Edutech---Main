@@ -19,6 +19,7 @@
 	var database = firebase.database();
 	var Current_UID;
 	var global_database_json;
+	var HardRefreshBoolean = false;
 
 //Fetch all relevant data for logged in user from our database using UID
 	function FetchAllDataFromDatabase(){
@@ -38,6 +39,9 @@
 
 			//now populate the stream config options section
 			LoadAndPopulateStreamConfigOptions(tableData);
+
+			//now populate the timetable
+			PopulateTimeTable(tableData);
 
 			//now call the function to attach delete events to each delete icon in each one stream
 			SetupDeleteFullStreamEvent();
@@ -420,9 +424,12 @@ function ReloadBackEndData(){
 	$('.StreamBox').remove();
 	$('.SubjectDropDOWN').remove();
 	$('.ADDTimingDropDOWN').remove();
+	$('.single-event').remove();
 
 	//now recreate the streamboxes after fetching em all
 	FetchAllDataFromDatabase();
+
+	HardRefreshBoolean = true;
 }
 
 
@@ -465,16 +472,106 @@ document.getElementById("SignoutIcon2").addEventListener('click', e => {
 
 
 
+//timetable database stuff
+
+function PopulateTimeTable(inputTable){
+
+	//first find out how many subject grades there are..
+	SubjectGrades = ReturnAsArrayChildOfTable(inputTable['UserClass']);
+
+	//now loop through the subject grades and use the names as the address prefix
+
+	for (var x = 0; x < SubjectGrades.length; x++) {
+
+		CurrentSubjectGrade = SubjectGrades[x];
+
+		//this will return as a JSON all the childs of working subject grade
+		//convert it into working array of subjects e.g ['Physics', 'Chemistry', 'Biology']
+		CurrentGrade_SubjectArray = ReturnAsArrayChildOfTable(inputTable['UserClass'][CurrentSubjectGrade]);
+
+		for (var y = 0; y < CurrentGrade_SubjectArray.length; y++) {
+
+			ThisGrade = CurrentSubjectGrade;
+			ThisSubject = CurrentGrade_SubjectArray[y];
+
+			//now that we have the grade and subject we need to find the number of streams each subject has
+
+			StreamsArray = ReturnAsArrayChildOfTable(inputTable['UserClass'][ThisGrade][ThisSubject]['Streams']);
+
+			//now we can loop through each stream
+			for (var z = 0; z < StreamsArray.length; z++) { 
+
+				ThisLoopGrade = ThisGrade;
+				ThisLoopSubject = ThisSubject;
+				ThisLoopStreamName = StreamsArray[z];
+				ThisStreamColor = inputTable['UserClass'][ThisGrade][ThisSubject]['Streams'][ThisLoopStreamName]['StreamColor'];
 
 
+				TimingsJSON = inputTable['UserClass'][ThisGrade][ThisSubject]['Streams'][ThisLoopStreamName]['Timings'];
+
+				TimingsArray = $.map(TimingsJSON, function(el) { return el; });
+
+				for (var q = 0; q < TimingsArray.length; q++) { 
+
+					CraftAndInjectTimeTable(TimingsArray[q], ThisLoopGrade, ThisLoopSubject, ThisLoopStreamName, ThisStreamColor);
+				}
+			}
+		}
+	}
+
+	FormatTimeTable();
+
+}
+
+function CraftAndInjectTimeTable(TimingString, Grade, Subject, StreamName, color){
+
+	SplitArray = TimingString.split(' ');
+
+	Day = SplitArray[0];
+	StartTime = SplitArray[1];
+	EndTime = SplitArray[3];
+
+	DayULString = Day + 'UL';
+
+	//now we need to find the element in the page with this days name
+	DayUL = document.getElementById(DayULString);
+
+	//this is what the name and subject of the box in timetable will be
+	var thisEvent = document.createElement("em");
+	thisEvent.setAttribute("class", "event-name");
+
+	var t = document.createTextNode(Grade);
+	thisEvent.append(t);
+	thisEvent.appendChild(document.createElement("br"));
+	var t = document.createTextNode(Subject);
+	thisEvent.append(t);
+	thisEvent.appendChild(document.createElement("br"));
+	var t = document.createTextNode(StreamName);
+	thisEvent.append(t);
 
 
+	var thisLink = document.createElement("a");
+	thisLink.setAttribute("href", "");
+
+	thisLink.append(thisEvent);
+
+	//now make the LI class
+
+	var thisLI = document.createElement("li");
+	thisLI.setAttribute("class", "single-event");
+	thisLI.setAttribute("data-start", StartTime);
+	thisLI.setAttribute("data-end", EndTime);
+	thisLI.setAttribute("data-content", 'event-abs-circuit');
+	thisLI.setAttribute("data-event", StreamName);
+
+	thisLI.style.background = color;
+
+	thisLI.append(thisLink);
+
+	DayUL.append(thisLI);
 
 
-
-
-
-
+}
 
 
 
