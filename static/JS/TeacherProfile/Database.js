@@ -240,12 +240,7 @@ document.getElementById("CreateNewStream_ID").addEventListener('click', e => {
 
 	CreateNewStream(ChosenSubject, ChosenStreamName, ChosenStreamColor, ChosenStreamTotalSeats);
 
-	//remove all inner streamboxes
-	//$('.StreamBox').remove();
-	//$('.SubjectDropDOWN').remove();
-
-	//now recreate the streamboxes after fetching em all
-	//FetchAllDataFromDatabase();
+	ReloadBackEndData();
 
 	FadeOutLoadingFrame();
 
@@ -273,6 +268,10 @@ document.getElementById("AddNewTiming_ID").addEventListener('click', e => {
 	var ChosenEndTime = e.options[e.selectedIndex].value;
 
 	CreateNewTiming(ChosenStreamAddress, ChosenDay, ChosenStartTime, ChosenEndTime);
+
+	ReloadBackEndData();
+
+	FadeOutLoadingFrame();
 
 });
 
@@ -381,6 +380,8 @@ function SetupDeleteFullStreamEvent(){
 
     	ref.remove();
 
+    	ReloadBackEndData();
+
 		BoxAlert('Stream deleted successfully!');
 
     	return false;
@@ -403,10 +404,25 @@ function SetupDeleteOneStreamEvent(){
 
     	DeleteTableEntryByIndex(dataIndex, tableToDeleteFromAddress);
 
+    	ReloadBackEndData();
+
     	BoxAlert('Timing deleted successfully!');
 
     	return false;
     });
+}
+
+
+//this will remove all dependant data from the page and reload them from backend
+function ReloadBackEndData(){
+
+	//remove all inner streamboxes
+	$('.StreamBox').remove();
+	$('.SubjectDropDOWN').remove();
+	$('.ADDTimingDropDOWN').remove();
+
+	//now recreate the streamboxes after fetching em all
+	FetchAllDataFromDatabase();
 }
 
 
