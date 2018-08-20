@@ -43,9 +43,10 @@
 			//now populate the timetable
 			PopulateTimeTable(tableData);
 
-			//now call the function to attach delete events to each delete icon in each one stream
+			//now call the function to attach delete events to each delete and edit icon in each one stream
 			SetupDeleteFullStreamEvent();
 			SetupDeleteOneStreamEvent();
+			SetupEditOneStreamEvent()
 			FadeOutLoadingFrame();
 		}
 
@@ -211,6 +212,9 @@ function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy,
 		EditIcon = document.createElement("i");
 		EditIcon.setAttribute("id", "EditStreamIcon");
 		EditIcon.setAttribute("class", "fas fa-edit");
+		EditIcon.setAttribute("data-main", metaData);
+		EditIcon.setAttribute("data-main2", metaDataIndex);
+		EditIcon.setAttribute("data-itself", timingArray[i]);
 
 		EachStreamTiming.append(EditIcon);
 
@@ -427,6 +431,90 @@ function SetupDeleteOneStreamEvent(){
     });
 }
 
+//attached edit events for each one stream
+function SetupEditOneStreamEvent(){
+	//attached edit events from the firebase database for each stream to be edited when clicked
+	$(".fa-edit").click(function() {
+
+    	dataMain = String($(this).attr("data-main"));
+    	dataIndex = $(this).attr("data-main2");
+
+    	dataItself = $(this).attr("data-itself");
+
+    	arr = dataItself.split(' ');
+
+    	day = arr[0];
+    	sTime = arr[1];
+    	eTime = arr[3];
+
+    	//blur the background
+    	$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
+
+    	//show and create the edit tab with datamain and datamain2 data embedded
+		CraftEditOneStream(dataMain, dataIndex);
+
+		SetupRemoveEditOneStream();
+		SetupClickEditOneStream();
+
+		//set the default values to the ones chosen before
+		$('#InputChildDaySelect_ID').val(day);
+		$('#InputChildStartTimeSelect_ID').val(sTime);
+		$('#InputChildEndTimeSelect_ID').val(eTime);
+
+    	return false;
+    });
+}
+
+function SetupRemoveEditOneStream(){
+	$(".CancelEdit").click(function() {
+
+		//remove the editone stream window
+		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+		$('.EditOneStream').remove();
+
+    	return false;
+    });
+}
+
+function SetupClickEditOneStream(){
+	$(".YesEdit").click(function() {
+
+		FadeInLoadingFrame();
+
+		//first get the data
+    	dataMain = String($(this).attr("data-main"));
+    	dataIndex = $(this).attr("data-main2");
+
+		var e = document.getElementById("InputChildDaySelect_ID");
+		var ChosenDay = e.options[e.selectedIndex].value; 
+
+		var e = document.getElementById("InputChildStartTimeSelect_ID");
+		var ChosenStartTime = e.options[e.selectedIndex].value;
+
+		var e = document.getElementById("InputChildEndTimeSelect_ID");
+		var ChosenEndTime = e.options[e.selectedIndex].value;
+
+
+		//now lets access the firebase database and input the above data
+		newTiming = ChosenDay + ' ' + ChosenStartTime + ' - ' + ChosenEndTime;
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  dataMain);
+
+		var data = {
+			[dataIndex]: newTiming
+		}
+
+		const promise = ref.update(data);
+
+		promise.then(ReloadBackEndData).then(function(){
+			BoxAlert('Timing has been changed successfully!');
+			$('.EditOneStream').remove();
+			$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+			FadeOutLoadingFrame();
+		});
+
+    	return false;
+    });
+}
 
 //this will remove all dependant data from the page and reload them from backend
 function ReloadBackEndData(){
@@ -445,9 +533,11 @@ function ReloadBackEndData(){
 
 
 //this will craft the edit one stream
-function CraftEditOneStream(inputData){
+function CraftEditOneStream(address, index){
 
-	MainStreamElement = document.getElementById('StreamConfigOptions_ID');
+	timingArr = CraftTimingArray();
+
+	//MainStreamElement = document.getElementById('StreamConfigOptions_ID');
 
 	var EditOneStream = document.createElement("div");
 	EditOneStream.setAttribute("class", "EditOneStream");
@@ -498,9 +588,15 @@ function CraftEditOneStream(inputData){
 			var InputChild2 = document.createElement("div");
 			InputChild2.setAttribute("class", "InputChild");
 
-				var Input2ChildSelect = document.createElement("select");
+				var InputChild2Select = document.createElement("select");
 				InputChild2Select.setAttribute("class", "InputChildSelect");
 				InputChild2Select.setAttribute("id", "InputChildStartTimeSelect_ID");
+
+				//loop through and inject the timing array as options
+				for (var i = 0; i < timingArr.length; i++) {
+					var myoption = new Option(timingArr[i], timingArr[i]);
+					InputChild2Select.append(myoption);
+				}
 
 				InputChild2.append(InputChild2Select);
 
@@ -517,9 +613,15 @@ function CraftEditOneStream(inputData){
 			var InputChild3 = document.createElement("div");
 			InputChild3.setAttribute("class", "InputChild");
 
-				var Input3ChildSelect = document.createElement("select");
+				var InputChild3Select = document.createElement("select");
 				InputChild3Select.setAttribute("class", "InputChildSelect");
 				InputChild3Select.setAttribute("id", "InputChildEndTimeSelect_ID");
+
+				//loop through and inject the timing array as options
+				for (var i = 0; i < timingArr.length; i++) {
+					var myoption = new Option(timingArr[i], timingArr[i]);
+					InputChild3Select.append(myoption);
+				}
 
 				InputChild3.append(InputChild3Select);
 
@@ -535,6 +637,11 @@ function CraftEditOneStream(inputData){
 
 	var YesEdit = document.createElement("div");
 	YesEdit.setAttribute("class", "YesEdit");
+	metaData = address;
+	metaDataIndex = index;
+	YesEdit.setAttribute("data-main", metaData);
+	YesEdit.setAttribute("data-main2", metaDataIndex);
+
 	var t = document.createTextNode('Edit');
 	YesEdit.append(t);
 
@@ -551,22 +658,7 @@ function CraftEditOneStream(inputData){
 
 	EditOneStream.append(CancelEdit);
 
-	MainStreamElement.append(EditOneStream);
-
-	//now create the tiiming array and inject it into as options
-	timingArr = CraftTimingArray();
-	var startTime = document.getElementById(InputChildStartTimeSelect_ID);
-	var endTime = document.getElementById(InputChildEndTimeSelect_ID);
-
-	for (var i = 0; i < timingArr.length; i++) {
-
-		//now inject it into stream config add options
-		var myoption = new Option(timingArr[i], timingArr[i]);
-		startTime.append(myoption);
-
-		var myoption = new Option(timingArr[i], timingArr[i]);
-		endTime.append(myoption);
-	}
+	document.body.appendChild(EditOneStream);
 
 }
 
@@ -768,8 +860,5 @@ function InjectTimingsIntoHTML(){
 }
 
 
-
-
 //Calling the main function
 	InjectTimingsIntoHTML();
-	CraftEditOneStream('lol');
