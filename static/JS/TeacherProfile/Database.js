@@ -390,10 +390,35 @@ function SetupDeleteFullStreamEvent(){
 	//attached delete events from the firebase database for a full stream to be deleted when clicked
 	$(".fa-trash").click(function() {
 
-		FadeInLoadingFrame();
+		$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
+
     	dataMain = String($(this).attr("data-main"));
 
-    	console.log(dataMain);
+    	CraftPopUpCheckBox('Are you sure? This will delete the entire stream with its database of students and everything.', dataMain);
+
+    	AttachEventToOkPopUpBox();
+    	// var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' +  dataMain;
+
+    	// var ref = database.ref(tableToDeleteFromAddress);
+
+    	// const promise = ref.remove();
+
+    	// promise.then(ReloadBackEndData).then(function(){
+    	// 	BoxAlert('Batch deleted successfully!');
+    	// });
+
+    	return false;
+    });
+}
+
+function AttachEventToOkPopUpBox(){
+	$("#YesButton_ID").click(function() {
+
+		FadeInLoadingFrame();
+
+		$('#StreamConfigOptions_ID')
+
+    	dataMain = String($(this).attr("data-main"));
 
     	var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' +  dataMain;
 
@@ -403,7 +428,18 @@ function SetupDeleteFullStreamEvent(){
 
     	promise.then(ReloadBackEndData).then(function(){
     		BoxAlert('Batch deleted successfully!');
+    		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+    		$('.DoubleCheckBox').remove();
+    		FadeOutLoadingFrame();
     	});
+
+    	return false;
+    });
+
+   	$("#NoButton_ID").click(function() {
+
+   		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+   		$('.DoubleCheckBox').remove();
 
     	return false;
     });
@@ -662,6 +698,38 @@ function CraftEditOneStream(address, index){
 
 }
 
+//create the double check pop up box
+function CraftPopUpCheckBox(inputText, datamain1){
+
+	var DoubleCheckBox = document.createElement('div');
+	DoubleCheckBox.setAttribute("class", "DoubleCheckBox");
+
+	var MainText = document.createElement('div');
+	MainText.setAttribute("class", "MainText");
+
+	var t = document.createTextNode(inputText);
+	MainText.append(t);
+
+	var YesButton = document.createElement('div');
+	YesButton.setAttribute("class", "YesButton");
+	YesButton.setAttribute("id", "YesButton_ID");
+	YesButton.setAttribute("data-main", datamain1);
+	var t = document.createTextNode('Yes');
+	YesButton.append(t);
+
+	var NoButton = document.createElement('div');
+	NoButton.setAttribute("class", "NoButton");
+	NoButton.setAttribute("id", "NoButton_ID");
+	var t = document.createTextNode('No');
+	NoButton.append(t);
+
+	DoubleCheckBox.append(MainText);
+	DoubleCheckBox.append(YesButton);
+	DoubleCheckBox.append(NoButton);
+
+	document.body.appendChild(DoubleCheckBox);
+}
+
 
 //Add a realtime listener for state auth change
 firebase.auth().onAuthStateChanged( firebaseUser => {
@@ -699,6 +767,17 @@ document.getElementById("SignoutIcon2").addEventListener('click', e => {
 
 
 });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
