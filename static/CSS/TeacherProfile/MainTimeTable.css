@@ -77,7 +77,7 @@
 			    display: inline-block;
 			    position: relative;
 			    padding: 1%;
-			    top: 5%;
+			    margin-top: 4%;
 			    font-size: 3em;
 			    text-align: center;
 			}
@@ -88,9 +88,10 @@
 				padding-bottom: 2%;
 				border-radius: 0.4em;
 				width: 30%;
-				top: 20%;
-				left: 33%;
-				position: absolute;
+				margin-top: 2%;
+				margin-left: 33%;
+				margin-right: 33%;
+				position: relative;
 				display: inline-block;
 				background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 			}
@@ -102,9 +103,9 @@
 				padding-bottom: 2%;
 				border-radius: 0.4em;
 				width: 30%;
-				top: 58%;
-				left: 33%;
-				position: absolute;
+				margin-top: 2%;
+				margin-left: 33%;
+				position: relative;
 				display: inline-block;
 				background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 
@@ -200,9 +201,9 @@
 				color: white;
 				background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 			    display: inline-block;
-			    position: absolute;
+			    position: relative;
 			    padding: 1%;
-			    top: 95%;
+			    margin-top: 2%;
 			    font-size: 1.5em;
 			    text-align: center;
 		}
@@ -215,7 +216,6 @@
 			    overflow: auto;
 			    position: relative;
 			    padding-bottom: 2%;
-			    top: 92%;
 
 		}
 
