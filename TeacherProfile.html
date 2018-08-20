@@ -518,33 +518,79 @@
     </div>
 
     <div class="StreamConfigOptions" id="StreamConfigOptions_ID">
-    		<div class="StreamConfigTitle"><span>Stream Configuration:</span><i id="StreamConfigCloseIcon" class="fas fa-times-circle"></i></div>
+
+<!--     		<div class="EditOneStream">
+    			<div class="inputCont">
+
+    				<div class="InputChild">
+
+						<select class="InputChildSelect" id="InputChildDaySelect_ID" name="days">
+							<option value="Sunday">Sunday</option>
+							<option value="Monday">Monday</option>
+							<option value="Tuesday">Tuesday</option>
+							<option value="Wednesday">Wednesday</option>
+							<option value="Thursday">Thursday</option>
+							<option value="Friday">Friday</option>
+							<option value="Saturday">Saturday</option>
+						</select>
+
+						<label class="InputChildLabel">Day </label>
+
+    				</div>
+
+    				<div class="InputChild">
+						<select class="InputChildSelect" id="InputChildStartTimeSelect_ID" name="stime">
+							<option value="Sunday">5:30</option>
+						</select>
+
+						<label class="InputChildLabel">Start Time </label>
+
+
+    				</div>
+
+    				<div class="InputChild">
+						<select class="InputChildSelect" id="InputChildEndTimeSelect_ID" name="etime">
+							<option value="Sunday">5:30</option>
+						</select>
+
+						<label class="InputChildLabel">End Time </label>
+
+    				</div>
+    				
+    			</div>
+
+    			<div class="YesEdit">Edit</div>
+    			<div class="CancelEdit">Cancel</div>
+
+    		</div> -->
+
+    		<div class="StreamConfigTitle"><span>Batch Configuration:</span><i id="StreamConfigCloseIcon" class="fas fa-times-circle"></i></div>
 
     		<div class="CreateNewStreamBox">
 
 				<label class="StreamSubjectLabel">Subject: </label>
 				<select id="StreamSubjectSelect_ID" class="StreamSubjectSelect" name="subject"></select>
 
-				<label class="StreamNameLabel">Stream Name: </label>
+				<label class="StreamNameLabel">Batch Name: </label>
 				<input type="text" class="StreamInput" id="StreamName_ID" name="StreamName">
 
-				<label class="StreamColorLabel">Stream Color: </label>
+				<label class="StreamColorLabel">Batch Color: </label>
 				<input type="text" class="StreamInput" id="StreamColor_ID" name="StreamColor">
 
-				<label class="StreamSeatLabel">Stream Total Seats: </label>
+				<label class="StreamSeatLabel">Batch Total Seats: </label>
 				<input type="number" min="0" class="StreamInput" id="StreamTotalSeat_ID" name="StreamSeats">
 
-				<div class="CreateNewStream" id="CreateNewStream_ID"><span>Create New Stream</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
+				<div class="CreateNewStream" id="CreateNewStream_ID"><span>Create New Batch</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
 
     		</div>
 
 			<div class="StreamAddBox">
 
-				<label class="StreamNameLabelADDBOX">Stream Name: </label>
+				<label class="StreamNameLabelADDBOX">Batch Name: </label>
 				<select class="StreamNameSelectADDBOX" id="StreamNameSelectADDBOX_ID" name="StreamAddTimingSelect">
 				</select>
 
-				<label class="StreamDayLabel">Stream Day: </label>
+				<label class="StreamDayLabel">Batch Day: </label>
 				<select class="StreamDaySelect" id="StreamDaySelect_ID" name="days">
 					<option value="Sunday">Sunday</option>
 					<option value="Monday">Monday</option>
@@ -555,11 +601,11 @@
 					<option value="Saturday">Saturday</option>
 				</select>
 
-				<label class="StreamStartLabel">Stream Start Time: </label>
+				<label class="StreamStartLabel">Batch Start Time: </label>
 				<select class="StreamStartTime" id="StreamStartTime_ID" name="StreamST">
 				</select>
 
-				<label class="StreamEndLabel">Stream End Time: </label>
+				<label class="StreamEndLabel">Batch End Time: </label>
 				<select class="StreamEndTime" id="StreamEndTime_ID" name="StreamET">
 				</select>
 
@@ -568,7 +614,7 @@
 
 			</div>
 
-    		<div class="CurrentStreamsTitle"><span>Current Streams: </span></div>
+    		<div class="CurrentStreamsTitle"><span>Current Batches: </span></div>
 
 <!--     		<div class="StreamBox">
 

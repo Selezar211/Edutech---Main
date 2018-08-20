@@ -8,7 +8,7 @@ function DeleteTableEntryByIndex(InputIndex, TableAddress){
 
 	var nonDeletedStreams = [];
 
-	ref.once('value', ReceivedData, errData);
+	const promise = ref.once('value', ReceivedData, errData).then(DeleteStreamFromDatabase);
 
 	//Functions for fetching data
 	function ReceivedData(data){
@@ -26,7 +26,6 @@ function DeleteTableEntryByIndex(InputIndex, TableAddress){
 
 		}
 		console.log(nonDeletedStreams);
-		DeleteStreamFromDatabase();
 	}
 
 	function errData(err){
@@ -48,19 +47,19 @@ function DeleteTableEntryByIndex(InputIndex, TableAddress){
 
 		ref.update(JSONarray);
 
-	}   	
+	}  
+
+	return promise 	
 }
 
-
-function DeleteTableEntryByKey(){
-	//this function will delete a table entry by the key name itself
-}
 
 function InsertDataIntoTable(InputJSONdata, tableAddress){
 	//this will insert the JSON data into the tableAddress
 	var ref = database.ref(tableAddress);
 
-	ref.update(InputJSONdata);
+	const promise = ref.update(InputJSONdata);
+
+	return promise
 }
 
 function AlertIfEmptyInput(element_ID, alertText){

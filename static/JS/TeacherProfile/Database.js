@@ -244,10 +244,6 @@ document.getElementById("CreateNewStream_ID").addEventListener('click', e => {
 
 	CreateNewStream(ChosenSubject, ChosenStreamName, ChosenStreamColor, ChosenStreamTotalSeats);
 
-	ReloadBackEndData();
-
-	FadeOutLoadingFrame();
-
 });
 
 //Clicking the add new stream timing buttom tab
@@ -273,9 +269,6 @@ document.getElementById("AddNewTiming_ID").addEventListener('click', e => {
 
 	CreateNewTiming(ChosenStreamAddress, ChosenDay, ChosenStartTime, ChosenEndTime);
 
-	ReloadBackEndData();
-
-	FadeOutLoadingFrame();
 
 });
 
@@ -283,9 +276,29 @@ document.getElementById("AddNewTiming_ID").addEventListener('click', e => {
 
 function CreateNewStream(subject, streamName, color, TotalSeats){
 	//IMPORTANT NOTE: HERE SUBJECT ACTUALLY HAS O LEVEL/PHYSICS IN IT OR LIKE THAT
+	var CheckBoolean;
+
 	var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/');
 
-	ref.once('value', ReceivedData, errData);
+	ref.once('value', ReceivedData, errData).then(function(){
+
+		if (CheckBoolean==true){
+			BoxAlert('Batch name exists already in database..');
+		}
+
+		else if (CheckBoolean==false){
+			InjectNewStream().then(function(){
+				BoxAlert('New Batch has been created successfully!');
+				ReloadBackEndData();
+				FadeOutLoadingFrame();
+			});
+		}
+
+		else {
+			console.log('CHECK BOOLEAN IS UNDEFINED');
+		}
+
+	});
 
 	function ReceivedData(data){
 
@@ -297,24 +310,54 @@ function CreateNewStream(subject, streamName, color, TotalSeats){
 		//this will return true if the stream name to be created already exists
 		CheckBoolean = CheckIfElementExistsInArray(streamName, existingStreamNameArray);
 
-		if (CheckBoolean==true){
-			BoxAlert('Stream name exists already in database..');
+	}
+
+	function errData(err){
+		console.log('Error!');
+		console.log(err);
+	}
+
+	function InjectNewStream(){
+		//we are a go to create the new stream database table
+		var tableaddress = 'USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName;
+		var data = {
+			StreamColor: color,
+			TotalSeats: TotalSeats,
+			FilledSeats: 0
 		}
 
-		else {
-			//we are a go to create the new stream database table
-			var tableaddress = 'USERS/' + Current_UID + '/UserClass/' +  subject + '/Streams/' + streamName;
-			var data = {
-				StreamColor: color,
-				TotalSeats: TotalSeats,
-				FilledSeats: 0
-			}
+		const pr = InsertDataIntoTable(data, tableaddress);
 
-			InsertDataIntoTable(data, tableaddress);
+		return pr
+	}
+}
 
-			BoxAlert('New Stream has been created successfully!');
+function CreateNewTiming(StreamAddress, day, startTime, endTime){
+	//IMPORTANT NOTE: HERE SUBJECT ACTUALLY HAS O LEVEL/PHYSICS IN IT OR LIKE THAT
 
-		}
+	var craftedTimings;
+	var NumberOfTimingsCurrently;
+
+	address = 'USERS/' + Current_UID + '/UserClass/' + StreamAddress + 'Timings/';
+
+	var ref = database.ref(address);
+
+	const promise = ref.once('value', ReceivedData, errData).then(function(){
+		InsertNewTiming().then(function(){
+			BoxAlert('New Batch timing has been created successfully!');
+			ReloadBackEndData();
+			FadeOutLoadingFrame();
+		});
+	});
+
+	function ReceivedData(data){
+		//first find how many timings are there currently in this new stream timing update
+		tableData = data.val();
+		ThisStreamTiming = $.map(tableData, function(el) { return el; });
+
+		NumberOfTimingsCurrently = String(ThisStreamTiming.length);
+
+		craftedTimings = day + ' ' + startTime + ' - ' + endTime;
 
 	}
 
@@ -322,31 +365,8 @@ function CreateNewStream(subject, streamName, color, TotalSeats){
 		console.log('Error!');
 		console.log(err);
 	}
-}
 
-function CreateNewTiming(StreamAddress, day, startTime, endTime){
-	//IMPORTANT NOTE: HERE SUBJECT ACTUALLY HAS O LEVEL/PHYSICS IN IT OR LIKE THAT
-	address = 'USERS/' + Current_UID + '/UserClass/' + StreamAddress + 'Timings/';
-	console.log(address);
-	var ref = database.ref(address);
-
-	ref.once('value', ReceivedData, errData);
-
-	function ReceivedData(data){
-		//first find how many timings are there currently in this new stream timing update
-		tableData = data.val();
-		ThisStreamTiming = $.map(tableData, function(el) { return el; });
-
-		console.log(ThisStreamTiming);
-
-		var NumberOfTimingsCurrently = String(ThisStreamTiming.length);
-
-		console.log(NumberOfTimingsCurrently);
-
-		craftedTimings = day + ' ' + startTime + ' - ' + endTime
-
-		console.log(craftedTimings);
-
+	function InsertNewTiming(){
 		//now insert new data into it
 		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + StreamAddress + 'Timings/');
 
@@ -354,15 +374,8 @@ function CreateNewTiming(StreamAddress, day, startTime, endTime){
 			[NumberOfTimingsCurrently]: craftedTimings
 		}
 
-		ref.update(data);
-
-		BoxAlert('New stream timing has been created successfully!');
-
-	}
-
-	function errData(err){
-		console.log('Error!');
-		console.log(err);
+		const pr = ref.update(data);
+		return pr
 	}
 
 
@@ -382,11 +395,11 @@ function SetupDeleteFullStreamEvent(){
 
     	var ref = database.ref(tableToDeleteFromAddress);
 
-    	ref.remove();
+    	const promise = ref.remove();
 
-    	ReloadBackEndData();
-
-		BoxAlert('Stream deleted successfully!');
+    	promise.then(ReloadBackEndData).then(function(){
+    		BoxAlert('Batch deleted successfully!');
+    	});
 
     	return false;
     });
@@ -406,11 +419,9 @@ function SetupDeleteOneStreamEvent(){
 
     	var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' +  dataMain;
 
-    	DeleteTableEntryByIndex(dataIndex, tableToDeleteFromAddress);
-
-    	ReloadBackEndData();
-
-    	BoxAlert('Timing deleted successfully!');
+    	DeleteTableEntryByIndex(dataIndex, tableToDeleteFromAddress).then(ReloadBackEndData).then(function(){
+    		BoxAlert('Timing deleted successfully!');
+    	});
 
     	return false;
     });
@@ -430,6 +441,133 @@ function ReloadBackEndData(){
 	FetchAllDataFromDatabase();
 
 	HardRefreshBoolean = true;
+}
+
+
+//this will craft the edit one stream
+function CraftEditOneStream(inputData){
+
+	MainStreamElement = document.getElementById('StreamConfigOptions_ID');
+
+	var EditOneStream = document.createElement("div");
+	EditOneStream.setAttribute("class", "EditOneStream");
+
+		var inputCont = document.createElement("div");
+		inputCont.setAttribute("class", "inputCont");
+
+			var InputChild1 = document.createElement("div");
+			InputChild1.setAttribute("class", "InputChild");
+
+				var InputChildSelect = document.createElement("select");
+				InputChildSelect.setAttribute("class", "InputChildSelect");
+				InputChildSelect.setAttribute("id", "InputChildDaySelect_ID");
+
+				var option = new Option('Sunday', 'Sunday');
+				InputChildSelect.append(option);
+
+				var option = new Option('Monday', 'Monday');
+				InputChildSelect.append(option);
+
+				var option = new Option('Tuesday', 'Tuesday');
+				InputChildSelect.append(option);
+
+				var option = new Option('Wednesday', 'Wednesday');
+				InputChildSelect.append(option);
+
+				var option = new Option('Thursday', 'Thursday');
+				InputChildSelect.append(option);
+
+				var option = new Option('Friday', 'Friday');
+				InputChildSelect.append(option);
+
+				var option = new Option('Saturday', 'Saturday');
+				InputChildSelect.append(option);
+
+				InputChild1.append(InputChildSelect);
+
+				var dayLabel = document.createElement("label");
+				dayLabel.setAttribute("class", "InputChildLabel");
+
+				var t = document.createTextNode('Day');
+				dayLabel.append(t);
+
+				InputChild1.append(dayLabel);
+
+				inputCont.append(InputChild1);
+
+			var InputChild2 = document.createElement("div");
+			InputChild2.setAttribute("class", "InputChild");
+
+				var Input2ChildSelect = document.createElement("select");
+				InputChild2Select.setAttribute("class", "InputChildSelect");
+				InputChild2Select.setAttribute("id", "InputChildStartTimeSelect_ID");
+
+				InputChild2.append(InputChild2Select);
+
+				var sTimeLabel = document.createElement("label");
+				sTimeLabel.setAttribute("class", "InputChildLabel");
+
+				var t = document.createTextNode('Start Time');
+				sTimeLabel.append(t);
+
+				InputChild2.append(sTimeLabel);
+
+				inputCont.append(InputChild2);
+
+			var InputChild3 = document.createElement("div");
+			InputChild3.setAttribute("class", "InputChild");
+
+				var Input3ChildSelect = document.createElement("select");
+				InputChild3Select.setAttribute("class", "InputChildSelect");
+				InputChild3Select.setAttribute("id", "InputChildEndTimeSelect_ID");
+
+				InputChild3.append(InputChild3Select);
+
+				var eTimeLabel = document.createElement("label");
+				eTimeLabel.setAttribute("class", "InputChildLabel");
+
+				var t = document.createTextNode('End Time');
+				eTimeLabel.append(t);
+
+				InputChild3.append(eTimeLabel);		
+
+				inputCont.append(InputChild3);	
+
+	var YesEdit = document.createElement("div");
+	YesEdit.setAttribute("class", "YesEdit");
+	var t = document.createTextNode('Edit');
+	YesEdit.append(t);
+
+	var CancelEdit = document.createElement("div");
+	CancelEdit.setAttribute("class", "CancelEdit");
+	var t = document.createTextNode('Cancel');
+	CancelEdit.append(t);
+
+
+	//now append everything to the main editonestream
+	EditOneStream.append(inputCont);
+
+	EditOneStream.append(YesEdit);
+
+	EditOneStream.append(CancelEdit);
+
+	MainStreamElement.append(EditOneStream);
+
+	//now create the tiiming array and inject it into as options
+	timingArr = CraftTimingArray();
+	var startTime = document.getElementById(InputChildStartTimeSelect_ID);
+	var endTime = document.getElementById(InputChildEndTimeSelect_ID);
+
+	for (var i = 0; i < timingArr.length; i++) {
+
+		//now inject it into stream config add options
+		var myoption = new Option(timingArr[i], timingArr[i]);
+		startTime.append(myoption);
+
+		var myoption = new Option(timingArr[i], timingArr[i]);
+		endTime.append(myoption);
+	}
+
 }
 
 
@@ -577,6 +715,7 @@ function CraftAndInjectTimeTable(TimingString, Grade, Subject, StreamName, color
 
 
 
+
 //FIREBASE STUFF END
 function CraftTimingArray(){
 	//this function will return an array containing the timings from 7AM to 10PM in 30min intervals
@@ -632,5 +771,5 @@ function InjectTimingsIntoHTML(){
 
 
 //Calling the main function
-	InjectTimingsIntoHTML()
-	
+	InjectTimingsIntoHTML();
+	CraftEditOneStream('lol');
