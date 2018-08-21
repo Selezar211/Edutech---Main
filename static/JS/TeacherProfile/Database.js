@@ -24,7 +24,10 @@
 //Fetch all relevant data for logged in user from our database using UID
 	function FetchAllDataFromDatabase(){
 		var ref = database.ref('USERS/' + Current_UID);
-		ref.once('value', ReceivedData, errData);
+		ref.once('value', ReceivedData, errData).then(function(){
+			//var lol = FormatTimeTable();
+			FadeOutLoadingFrame();
+		});
 
 		//Functions for fetching data
 		function ReceivedData(data){
@@ -48,8 +51,6 @@
 			SetupDeleteOneStreamEvent();
 			SetupEditOneStreamEvent();
 			SetupEditFullStreamEvent();
-
-			FadeOutLoadingFrame();
 		}
 
 		function errData(err){
@@ -669,7 +670,7 @@ function ReloadBackEndData(){
 	//now recreate the streamboxes after fetching em all
 	FetchAllDataFromDatabase();
 
-	HardRefreshBoolean = true;
+	HardRefreshBoolean = false;
 }
 
 
@@ -996,8 +997,6 @@ function PopulateTimeTable(inputTable){
 			}
 		}
 	}
-
-	FormatTimeTable();
 
 }
 

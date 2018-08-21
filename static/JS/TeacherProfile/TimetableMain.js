@@ -43,6 +43,7 @@
 	};
 
 	SchedulePlan.prototype.scheduleReset = function() {
+		console.log('carrying out schedule reset');
 		var mq = this.mq();
 		if( mq == 'desktop' && !this.element.hasClass('js-full') ) {
 			//in this case you are on a desktop version (first load or resize from mobile)
@@ -338,10 +339,6 @@
 		windowResize = false;
 
 	function FormatTimeTable(){
-
-		var schedules = $('.cd-schedule');
-		var objSchedulesPlan = [],
-			windowResize = false;
 		
 		if( schedules.length > 0 ) {
 			schedules.each(function(){
@@ -349,6 +346,8 @@
 				objSchedulesPlan.push(new SchedulePlan($(this)));
 			});
 		}
+
+		return objSchedulesPlan
 
 	}
 
