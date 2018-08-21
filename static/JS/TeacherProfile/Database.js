@@ -46,7 +46,9 @@
 			//now call the function to attach delete events to each delete and edit icon in each one stream
 			SetupDeleteFullStreamEvent();
 			SetupDeleteOneStreamEvent();
-			SetupEditOneStreamEvent()
+			SetupEditOneStreamEvent();
+			SetupEditFullStreamEvent();
+
 			FadeOutLoadingFrame();
 		}
 
@@ -173,6 +175,16 @@ function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy,
 	DeleteFullStreamIcon.setAttribute("data-main", metaData);
 
 	EachStreamTitle.append(DeleteFullStreamIcon);
+
+	//create the edit icon
+	EditFullStreamIcon = document.createElement("i");
+	EditFullStreamIcon.setAttribute("id", "EditFullStreamIcon");
+	EditFullStreamIcon.setAttribute("class", "fas fa-pencil-alt");
+	metaData = classGrade + '/' + subject + '/' + 'Streams/';
+	EditFullStreamIcon.setAttribute("data-main", metaData);
+	EditFullStreamIcon.setAttribute("data-main2", streamName);
+
+	EachStreamTitle.append(EditFullStreamIcon);
 
 	//create the stream seat vacancy display
 	SeatVacancyStream = document.createElement("span");
@@ -501,12 +513,46 @@ function SetupEditOneStreamEvent(){
     });
 }
 
+//attached edit events for full stream
+function SetupEditFullStreamEvent(){
+	//attached edit events from the firebase database for each stream to be edited when clicked
+	$(".fa-pencil-alt").click(function() {
+
+		console.log('Edit button clicked!');
+
+    	address = String($(this).attr("data-main"));
+    	streamName = $(this).attr("data-main2");
+
+    	//blur the background
+    	$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
+
+    	//show and create the edit tab with datamain and datamain2 data embedded
+		CraftEditFullStream(address, streamName);
+
+		SetupRemoveEditFullStream();
+		SetupClickEditFullStream();
+
+    	return false;
+    });
+}
+
 function SetupRemoveEditOneStream(){
 	$(".CancelEdit").click(function() {
 
 		//remove the editone stream window
 		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
 		$('.EditOneStream').remove();
+
+    	return false;
+    });
+}
+
+function SetupRemoveEditFullStream(){
+	$(".NoFullEdit").click(function() {
+
+		//remove the editone stream window
+		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+		$('.EditFullStream').remove();
 
     	return false;
     });
@@ -547,6 +593,65 @@ function SetupClickEditOneStream(){
 			$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
 			FadeOutLoadingFrame();
 		});
+
+    	return false;
+    });
+}
+
+function SetupClickEditFullStream(){
+	$(".YesFullEdit").click(function() {
+
+		FadeInLoadingFrame();
+
+		var snapshotJSON;
+
+		//first get the data
+    	address = String($(this).attr("data-main"));
+    	streamName = $(this).attr("data-main2");
+
+		var newName = document.getElementById("NewName_ID").value;
+		var newColor = document.getElementById("NewColor_ID").value;
+		var newSeats = document.getElementById("NewSeats_ID").value;
+
+		//now lets first access the firebase database and keep a copy of the stream to be changed
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + streamName);
+
+		const promise = ref.once('value', ReceivedData, errData).then(function(){
+
+			//now we will delete this stream
+			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + streamName);
+			ref.remove().then(function(){
+				//now we need to reload the address with the new stream
+				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + newName);
+
+				ref.update(snapshotJSON).then(ReloadBackEndData).then(function(){
+					BoxAlert('Stream has been edited successfully!');
+					$('.EditFullStream').remove();
+					$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+					FadeOutLoadingFrame();
+				});
+			});
+
+		});
+
+
+		function ReceivedData(data){
+
+			tableData = data.val();
+
+			//we need to change the color of the stream and seat cacpacity of tableData here
+
+			tableData['TotalSeats'] = newSeats;
+			tableData['StreamColor'] = newColor;
+
+			snapshotJSON = tableData;
+
+		}
+
+		function errData(err){
+			console.log('Error!');
+			console.log(err);
+		}
 
     	return false;
     });
@@ -695,6 +800,70 @@ function CraftEditOneStream(address, index){
 	EditOneStream.append(CancelEdit);
 
 	document.body.appendChild(EditOneStream);
+
+}
+
+//this will craft the edit full stream pop up box
+function CraftEditFullStream(address, _streamName){
+
+	var EditFullStream = document.createElement("div");
+	EditFullStream.setAttribute("class", "EditFullStream");
+
+		var YesFullEdit = document.createElement("div");
+		YesFullEdit.setAttribute("class", "YesFullEdit");
+		YesFullEdit.setAttribute("data-main", address);
+		YesFullEdit.setAttribute("data-main2", _streamName);
+
+		var t = document.createTextNode('Edit');
+		YesFullEdit.append(t);
+
+
+		var NoFullEdit = document.createElement("div");
+		NoFullEdit.setAttribute("class", "NoFullEdit");
+
+		var t = document.createTextNode('Cancel');
+		NoFullEdit.append(t);
+
+
+		var InputContFullStream = document.createElement("div");
+		InputContFullStream.setAttribute("class", "InputContFullStream");
+
+			//create the new batch name input
+			var EditFullStreamInput = document.createElement("input");
+			EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
+			EditFullStreamInput.setAttribute("id", "NewName_ID");
+			EditFullStreamInput.setAttribute("type", "text");
+			EditFullStreamInput.setAttribute("placeholder", "New Batch Name..");
+			EditFullStreamInput.setAttribute("name", "NewName_ID");
+
+			InputContFullStream.append(EditFullStreamInput);
+
+			//create the batch color input
+			var EditFullStreamInput = document.createElement("input");
+			EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
+			EditFullStreamInput.setAttribute("id", "NewColor_ID");
+			EditFullStreamInput.setAttribute("type", "text");
+			EditFullStreamInput.setAttribute("placeholder", "New Batch Color..");
+			EditFullStreamInput.setAttribute("name", "NewColor_ID");
+
+			InputContFullStream.append(EditFullStreamInput);
+
+			//create the new batch total seats input
+			var EditFullStreamInput = document.createElement("input");
+			EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
+			EditFullStreamInput.setAttribute("id", "NewSeats_ID");
+			EditFullStreamInput.setAttribute("type", "text");
+			EditFullStreamInput.setAttribute("placeholder", "New Total Seats..");
+			EditFullStreamInput.setAttribute("name", "NewSeats_ID");
+
+			InputContFullStream.append(EditFullStreamInput);
+
+			EditFullStream.append(InputContFullStream);
+			EditFullStream.append(YesFullEdit);
+			EditFullStream.append(NoFullEdit);
+
+			//now enter it into the dom document
+			document.body.appendChild(EditFullStream);
 
 }
 

@@ -237,7 +237,7 @@
 
 						<div class="MainTimeTableCont">
 							<div class="TimeTableHeading">Timetable</div>
-							<div class="SetStreamsButton" id="SetStreamsButtonID"><i id="SetStreamIcon" class="fas fa-cogs"></i>Configure Streams</div>
+							<div class="SetStreamsButton" id="SetStreamsButtonID"><i id="SetStreamIcon" class="fas fa-cogs"></i>Configure Batch</div>
 							<div class="cd-schedule loading">
 
 								<div class="timeline" id="timeline_ID">
@@ -571,6 +571,21 @@
 
     		<div class="CurrentStreamsTitle"><span>Current Batches: </span></div>
 
+<!--     		<div class="StreamBox">
+    			<div class="ThisStreamSubject"><span>Example | O Level</span></div>
+    			<div class="EachStreamBox">
+    				<div class="EachStreamTitle">
+    					<span>AlphaOne</span>
+    					<i id="DeleteFullStream" class="fas fa-trash"></i><i id="EditFullStreamIcon" class="fas fa-pencil-alt"></i><span class="SeatVacancyStream">Vacant Seats: 5/40</span>
+    				</div>
+
+    				<div class="EachStreamTiming"><span>Sunday 2:30PM - 4:30PM</span><i id="DeleteStream" class="fas fa-trash-alt"></i><i id="EditStreamIcon"class="fas fa-edit"></i></div>
+    				<div class="EachStreamTiming"><span>Monday 5:00PM - 7:00PM</span><i id="DeleteStream" class="fas fa-trash-alt"></i><i id="EditStreamIcon"class="fas fa-edit"></i></div>
+    				<div class="EachStreamTiming"><span>Thursday 8:00PM - 9:30PM</span><i id="DeleteStream" class="fas fa-trash-alt"></i><i id="EditStreamIcon"class="fas fa-edit"></i></div>
+    			</div>
+    		</div> -->
+
+
     </div>
 
     <div class="PDF_VIEWER">
@@ -585,6 +600,18 @@
     	<div class="AlertClose"><i id="AlertCloseIcon" class="fas fa-times"></i></div>
 
     </div>
+
+<!--     <div class="EditFullStream">
+
+    	<div class="InputContFullStream">
+    		<input class="EditFullStreamInput" id="NewName_ID" type="text" name="NewBatchName" placeholder="New Name..">
+    		<input class="EditFullStreamInput" id="NewColor_ID" type="text" name="NewBatchColor" placeholder="New Color..">
+    		<input class="EditFullStreamInput" id="NewSeats_ID" type="number" min="0" name="NewTotalSeats" placeholder="New Total Seats..">	
+    	</div>
+
+    	<div class="YesFullEdit">Edit</div>
+    	<div class="NoFullEdit">Cancel</div>
+    </div> -->
 
 	<!-- Firebase App is always required and must be first -->
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
