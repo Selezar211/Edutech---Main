@@ -120,12 +120,13 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade){
 		for (key in AllStreamsJSON_of_ThisSubject) {
 
 			var SeatVacancy = 'Seats Filled: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
+			var streamColor = AllStreamsJSON_of_ThisSubject[key]['StreamColor'];
 
 			var arr = AllStreamsJSON_of_ThisSubject[key]['Timings'];
 			ThisStreamTiming = $.map(arr, function(el) { return el; });
 
 			//now this timing needs to be injected as an html
-			FillEachStreamBoxAndDropDownBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, subjectGrade);
+			FillEachStreamBoxAndDropDownBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, subjectGrade, streamColor);
 		}
 
 	}
@@ -153,7 +154,7 @@ function CreateStreamBox(SubjectName, SubjectGrade){
 		return StreamBox
 }
 
-function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy, streambox_ref, subject, classGrade){
+function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy, streambox_ref, subject, classGrade, batchcolor){
 
 	//this will also fill the drop in box of add new stream timing stream name
 	StreamNameSelectADDBOX_ID = document.getElementById('StreamNameSelectADDBOX_ID');
@@ -193,6 +194,8 @@ function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy,
 	metaData = classGrade + '/' + subject + '/' + 'Streams/';
 	EditFullStreamIcon.setAttribute("data-main", metaData);
 	EditFullStreamIcon.setAttribute("data-main2", streamName);
+	EditFullStreamIcon.setAttribute("data-main3", streamVacancy);
+	EditFullStreamIcon.setAttribute("data-main4", batchcolor);
 
 	EachStreamTitle.append(EditFullStreamIcon);
 
@@ -532,12 +535,14 @@ function SetupEditFullStreamEvent(){
 
     	address = String($(this).attr("data-main"));
     	streamName = $(this).attr("data-main2");
+    	streamVacancy = $(this).attr("data-main3").split('/')[1];
+    	streamColor = $(this).attr("data-main4");
 
     	//blur the background
     	$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
 
     	//show and create the edit tab with datamain and datamain2 data embedded
-		CraftEditFullStream(address, streamName);
+		CraftEditFullStream(address, streamName, streamColor, streamVacancy);
 
 		SetupRemoveEditFullStream();
 		SetupClickEditFullStream();
@@ -623,6 +628,10 @@ function SetupClickEditFullStream(){
 		var newColor = document.getElementById("NewColor_ID").value;
 		var newSeats = document.getElementById("NewSeats_ID").value;
 
+		if (newName==''){
+			newName = streamName;
+		}
+
 		//now lets first access the firebase database and keep a copy of the stream to be changed
 		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + streamName);
 
@@ -650,10 +659,14 @@ function SetupClickEditFullStream(){
 			tableData = data.val();
 
 			//we need to change the color of the stream and seat cacpacity of tableData here
-
-			tableData['TotalSeats'] = newSeats;
-			tableData['StreamColor'] = newColor;
-
+			if (newSeats!=''){
+				tableData['TotalSeats'] = newSeats;
+			}
+			
+			if (newColor!=''){
+				tableData['StreamColor'] = newColor;
+			}
+			
 			snapshotJSON = tableData;
 
 		}
@@ -812,7 +825,7 @@ function CraftEditOneStream(address, index){
 }
 
 //this will craft the edit full stream pop up box
-function CraftEditFullStream(address, _streamName){
+function CraftEditFullStream(address, previousName, previousColor, previousSeats){
 
 	var EditFullStream = document.createElement("div");
 	EditFullStream.setAttribute("class", "EditFullStream");
@@ -820,7 +833,7 @@ function CraftEditFullStream(address, _streamName){
 		var YesFullEdit = document.createElement("div");
 		YesFullEdit.setAttribute("class", "YesFullEdit");
 		YesFullEdit.setAttribute("data-main", address);
-		YesFullEdit.setAttribute("data-main2", _streamName);
+		YesFullEdit.setAttribute("data-main2", previousName);
 
 		var t = document.createTextNode('Edit');
 		YesFullEdit.append(t);
@@ -841,7 +854,7 @@ function CraftEditFullStream(address, _streamName){
 			EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
 			EditFullStreamInput.setAttribute("id", "NewName_ID");
 			EditFullStreamInput.setAttribute("type", "text");
-			EditFullStreamInput.setAttribute("placeholder", "New Batch Name..");
+			EditFullStreamInput.setAttribute("placeholder", "Current Name: " + previousName);
 			EditFullStreamInput.setAttribute("name", "NewName_ID");
 
 			InputContFullStream.append(EditFullStreamInput);
@@ -851,7 +864,7 @@ function CraftEditFullStream(address, _streamName){
 			EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
 			EditFullStreamInput.setAttribute("id", "NewColor_ID");
 			EditFullStreamInput.setAttribute("type", "text");
-			EditFullStreamInput.setAttribute("placeholder", "New Batch Color..");
+			EditFullStreamInput.setAttribute("placeholder", "Current Color: " + previousColor);
 			EditFullStreamInput.setAttribute("name", "NewColor_ID");
 
 			InputContFullStream.append(EditFullStreamInput);
@@ -861,7 +874,7 @@ function CraftEditFullStream(address, _streamName){
 			EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
 			EditFullStreamInput.setAttribute("id", "NewSeats_ID");
 			EditFullStreamInput.setAttribute("type", "text");
-			EditFullStreamInput.setAttribute("placeholder", "New Total Seats..");
+			EditFullStreamInput.setAttribute("placeholder", "Current Total Seats: " + previousSeats);
 			EditFullStreamInput.setAttribute("name", "NewSeats_ID");
 
 			InputContFullStream.append(EditFullStreamInput);
