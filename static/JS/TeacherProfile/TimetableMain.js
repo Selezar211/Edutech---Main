@@ -38,6 +38,7 @@
 	}
 
 	SchedulePlan.prototype.initSchedule = function() {
+		console.log('carrying out schedule init');
 		this.scheduleReset();
 		this.initEvents();
 	};
@@ -339,6 +340,12 @@
 		windowResize = false;
 
 	function FormatTimeTable(){
+
+		var schedules = $('.cd-schedule');
+		var objSchedulesPlan = [],
+			windowResize = false;
+
+		console.log('Initiating format timetable!');
 		
 		if( schedules.length > 0 ) {
 			schedules.each(function(){

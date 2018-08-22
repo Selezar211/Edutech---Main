@@ -19,18 +19,23 @@
 	var database = firebase.database();
 	var Current_UID;
 	var global_database_json;
-	var HardRefreshBoolean = false;
 
 //Fetch all relevant data for logged in user from our database using UID
 	function FetchAllDataFromDatabase(){
 		var ref = database.ref('USERS/' + Current_UID);
 		ref.once('value', ReceivedData, errData).then(function(){
-			//var lol = FormatTimeTable();
-			FadeOutLoadingFrame();
+			FormatTimeTable();
 		});
 
 		//Functions for fetching data
 		function ReceivedData(data){
+
+			//first remove the timetable if it exists and create it afresh
+			if (document.getElementById('cdscheduleloading_ID')){
+				$('#cdscheduleloading_ID').remove();
+			}
+
+			CreateTimeTableHTML();
 
 			tableData = data.val();
 			global_database_json = tableData;
@@ -43,6 +48,8 @@
 			//now populate the stream config options section
 			LoadAndPopulateStreamConfigOptions(tableData);
 
+			InjectTimingsIntoHTML();
+
 			//now populate the timetable
 			PopulateTimeTable(tableData);
 
@@ -51,6 +58,8 @@
 			SetupDeleteOneStreamEvent();
 			SetupEditOneStreamEvent();
 			SetupEditFullStreamEvent();
+
+			FadeOutLoadingFrame();
 		}
 
 		function errData(err){
@@ -669,8 +678,6 @@ function ReloadBackEndData(){
 
 	//now recreate the streamboxes after fetching em all
 	FetchAllDataFromDatabase();
-
-	HardRefreshBoolean = false;
 }
 
 
@@ -1106,6 +1113,3 @@ function InjectTimingsIntoHTML(){
 
 }
 
-
-//Calling the main function
-	InjectTimingsIntoHTML();

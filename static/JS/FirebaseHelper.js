@@ -416,6 +416,8 @@ function CreateTimeTableHTML(){
 
 	cdscheduleloading.append(coverlayer);
 
+	document.getElementById('MainTimeTableCont_ID').appendChild(cdscheduleloading);
+
 }
 
 

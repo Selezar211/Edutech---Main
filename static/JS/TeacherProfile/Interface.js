@@ -57,13 +57,7 @@
 	document.getElementById("StreamConfigCloseIcon").addEventListener('click', e => {
 
 		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-
-		if (HardRefreshBoolean){
-			location.reload();
-		}
-		else {
-			$('.StreamConfigOptions').fadeOut('slow');	
-		}
+		$('.StreamConfigOptions').fadeOut('slow');	
 
 	});
 
