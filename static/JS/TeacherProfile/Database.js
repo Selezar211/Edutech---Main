@@ -25,6 +25,7 @@
 		var ref = database.ref('USERS/' + Current_UID);
 		ref.once('value', ReceivedData, errData).then(function(){
 			FormatTimeTable();
+			AttachEventToEachStudentClick();
 		});
 
 		//Functions for fetching data
@@ -873,7 +874,8 @@ function CraftEditFullStream(address, previousName, previousColor, previousSeats
 			var EditFullStreamInput = document.createElement("input");
 			EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
 			EditFullStreamInput.setAttribute("id", "NewSeats_ID");
-			EditFullStreamInput.setAttribute("type", "text");
+			EditFullStreamInput.setAttribute("type", "number");
+			EditFullStreamInput.setAttribute("min", "0");
 			EditFullStreamInput.setAttribute("placeholder", "Current Total Seats: " + previousSeats);
 			EditFullStreamInput.setAttribute("name", "NewSeats_ID");
 

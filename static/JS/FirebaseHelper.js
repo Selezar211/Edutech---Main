@@ -421,10 +421,54 @@ function CreateTimeTableHTML(){
 }
 
 
+function CreateSendMessageBox(){
+	//this will create the message send box through javascript
+
+	var MessageBatchBox = document.createElement('div');
+	MessageBatchBox.setAttribute('class', 'MessageBatchBox');
+	MessageBatchBox.setAttribute('id', 'MessageBatchBox_ID');
 
 
+	var SendMessageInput = 	document.createElement('textarea');
+	SendMessageInput.setAttribute('class', 'SendMessageInput');
+	SendMessageInput.setAttribute('id', 'SendMessageInput_ID');
+	SendMessageInput.setAttribute('name', 'SendMessageInput');
+	SendMessageInput.setAttribute('placeholder', 'Please enter your message. The text window can be resized for longer messages..');
+
+	var SendMessage = document.createElement('div');
+	SendMessage.setAttribute('class', 'SendMessage');
+	SendMessage.setAttribute('id', 'SendMessage_ID');
+
+	var CancelMessage = document.createElement('div');
+	CancelMessage.setAttribute('class', 'CancelMessage');
+	CancelMessage.setAttribute('id', 'CancelMessage_ID');
+
+	MessageBatchBox.append(SendMessageInput);
+	MessageBatchBox.append(SendMessage);
+	MessageBatchBox.append(CancelMessage);
+
+	document.body.appendChild(MessageBatchBox);
+
+}
 
 
+//attach event to clicking on each student in student tab
+function AttachEventToEachStudentClick(){
+
+	$(".OneStudentLine").click(function() {
+		console.log('clicked whole student!');
+
+    	return false;
+    });
+
+   	$(".fa-user-times").click(function() {
+		console.log('clicked user delete!');
+
+    	return false;
+    }); 
+
+
+}
 
 
 

@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/MainTimeTable.css">
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/timetable_reset.css"> 
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/timetable_style.css">
-		<link rel="stylesheet" href="static/CSS/TeacherProfile/Teacher.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Student.css"> 
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/Loading.css"> 
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/Footer.css"> 
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/Lecture.css"> 
@@ -176,60 +176,66 @@
 
 						</div>
 
-						<div class="MainTeacherTab_Cont">
-							<div class="TeacherHeadingMain"><span>Teachers:</span></div>
+						<div class="MainStudentTab_Cont">
+							<div class="StudentHeadingMain"><span>Students:</span></div>
 
 							<div class="BoxesContainer">
 								
-								<div class="TeacherBox">
-									<div class="TeacherBoxHeading">
-										<span class="TeacherName">Sabbir Sir -</span>
-										<span class="TeacherAddress">&nbsp Dhanmondi Road 15/A</span>
-										<span class="TeacherGrade">&nbsp A Level</span>
-										<span class="TeacherSubject">Physics |</span>
+								<div class="BatchBox">
+									<div class="BatchBoxHeading">
+										<span class="BatchName">BatchOne -</span>
+										<span class="BatchFillRate">5/45</span>
+
+										<span class="BatchGrade">&nbsp A Level</span>
+										<span class="BatchSubject">Physics |</span>
 									</div>
 
-									<div class="Stream">
-										<span class="Timings">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 0 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-times"></i></span>
+									<div class="AcceptedBox">
+										<div class="AcceptedBoxHeading"><span>Accepted</span><span class="RollCallIcon">Roll Call</span><span class="MessageIcon">Message</span></div>
+
+										<div class="OneStudentLine">
+											<span class="StudentName">Kakashi</span>
+											<i id="BanIcon" class="fas fa-user-times"></i>
+										</div>
+
+										<div class="OneStudentLine">
+											<span class="StudentName">Boruto</span>
+											<i id="BanIcon" class="fas fa-user-times"></i>
+										</div>
+
+										<div class="OneStudentLine">
+											<span class="StudentName">Dorito</span>
+											<i id="BanIcon" class="fas fa-user-times"></i>
+										</div>
+
+
 									</div>
 
-									<div class="Stream">
-										<span class="Timings">Tuesday 1:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Saturday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 2 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-plus"></i></span>
-									</div>
+									<div class="PendingBox">
+										<div class="PendingBoxHeading"><span>Pending</span><span class="DismissAll">Dismiss All</span></div>
 
-									<div class="Stream">
-										<span class="Timings">Friday 6:30PM - 7:30PM | Wednesday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 10 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-plus"></i></span>
+										<div class="OneStudentLine">
+											<span class="StudentName">Dorito</span>
+											<i id="BanIcon" class="fas fa-user-times"></i>
+											<i id="BanIcon" class="fas fa-user-plus"></i>
+										</div>
+
+										<div class="OneStudentLine">
+											<span class="StudentName">Jiraiya</span>
+											<i id="BanIcon" class="fas fa-user-times"></i>
+											<i id="Addicon" class="fas fa-user-plus"></i>
+										</div>
+
+										<div class="OneStudentLine">
+											<span class="StudentName">Minato</span>
+											<i id="BanIcon" class="fas fa-user-times"></i>
+											<i id="Addicon" class="fas fa-user-plus"></i>
+										</div>
 									</div>
 
 								</div>
 
-								<div class="TeacherBox">
-									<div class="TeacherBoxHeading">
-										<span class="TeacherName">Shakib Sir -</span>
-										<span class="TeacherAddress">&nbsp Dhanmondi Road 27</span>
-										<span class="TeacherGrade">&nbsp O Level, A Level</span>
-										<span class="TeacherSubject">Mathematics |</span>
-									</div>
 
-									<div class="Stream">
-										<span class="Timings">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 0 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-times"></i></span>
-									</div>
-
-									<div class="Stream">
-										<span class="Timings">Tuesday 1:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Saturday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 2 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-plus"></i></span>
-									</div>
-
-									<div class="Stream">
-										<span class="Timings">Friday 6:30PM - 7:30PM | Wednesday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 10 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-plus"></i></span>
-									</div>
-
-								</div>
 								
 							</div>
 							
@@ -551,6 +557,30 @@
     	<div class="AlertClose"><i id="AlertCloseIcon" class="fas fa-times"></i></div>
 
     </div>
+
+<!-- 	<div class="RollCallCont">
+		<div class="RollCallHeading"><span>Roll Call</span><span class="CancelRollCall">Cancel</span><span class="SubmitRollCall">Submit</span></div>
+
+ 			<label class="CBOX_LABEL" for="Kakashi_ID">Kakashi</label>
+ 			<input type="checkbox" class="RollCall_CBOX" id="Kakashi_ID" name="Kakashi" value="Kakashi"  />
+
+ 			<label class="CBOX_LABEL" for="Boruto_ID">Boruto</label>
+ 			<input type="checkbox" class="RollCall_CBOX" id="Boruto_ID" name="Boruto" value="Boruto"  />
+
+ 			<label class="CBOX_LABEL" for="Minato_ID">Minato</label>
+  			<input type="checkbox" class="RollCall_CBOX" id="Minato_ID" name="Minato" value="Minato"  />
+
+	</div> -->
+
+
+
+<!--     <div class="MessageBatchBox" id="MessageBatchBox_ID">
+
+    	<textarea placeholder="Please enter your message. The text window can be resized for longer messages.." name="SendMessageInput" class="SendMessageInput" id="SendMessageInput_ID"></textarea> 	
+
+    	<div class="SendMessage" id="SendMessage_ID">Send</div>
+    	<div class="CancelMessage" id="CancelMessage_ID">Cancel</div>
+    </div> -->
 
 	<!-- Firebase App is always required and must be first -->
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>

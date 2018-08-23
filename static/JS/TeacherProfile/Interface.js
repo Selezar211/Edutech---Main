@@ -4,7 +4,7 @@
 		console.log('Home clicked!');
 
 		//fadeout all current stuff
-		$(".MainTeacherTab_Cont").fadeOut('fast');
+		$(".MainStudentTab_Cont").fadeOut('fast');
 		$(".MainTimeTableCont").fadeOut('fast');
 		$(".MainVideoPlayer_Cont").fadeOut('fast');
 		$(".MainLectureTab_Cont").fadeOut('fast');
@@ -27,7 +27,7 @@
 
 		console.log('Timetable clicked!');
 
-		$(".MainTeacherTab_Cont").fadeOut('fast');
+		$(".MainStudentTab_Cont").fadeOut('fast');
 		$(".MainVideoPlayer_Cont").fadeOut('fast');
 		$(".MainLectureTab_Cont").fadeOut('fast');
 
@@ -69,7 +69,7 @@
 
 		console.log('Video icon clicked!');
 
-		$(".MainTeacherTab_Cont").fadeOut('fast');
+		$(".MainStudentTab_Cont").fadeOut('fast');
 		$(".MainTimeTableCont").fadeOut('fast');
 		$(".MainTimeTableCont").fadeOut('fast');
 		$(".MainLectureTab_Cont").fadeOut('fast');
@@ -96,7 +96,7 @@
 		$(".BlackBoard_MainInfo").fadeOut('fast');
 		$(".BlackBoardName_Date_Cont").fadeOut('fast');
 		$(".MainVideoPlayer_Cont").fadeOut('fast');
-		$(".MainTeacherTab_Cont").fadeOut('fast');
+		$(".MainStudentTab_Cont").fadeOut('fast');
 
 		$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
 		$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
@@ -128,7 +128,7 @@
 		$("#ExclaimIcon").css('color', 'black');
 		$("#SignoutIcon2").css('color', 'black');
 
-		$(".MainTeacherTab_Cont").fadeIn('slow');
+		$(".MainStudentTab_Cont").fadeIn('slow');
 
 
 	  });
