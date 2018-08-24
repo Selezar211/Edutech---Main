@@ -464,6 +464,7 @@ function AttachEventToEachStudentClick(){
 	//for accepting pending students
     $(".fa-user-check").click(function() {
 		console.log('clicked user pending accept!');
+
 		FadeInLoadingFrame();
 
 		//delete this entry from the table
@@ -473,25 +474,51 @@ function AttachEventToEachStudentClick(){
 
 		studentName_ = String($(this).attr("data-name"));
 
-		//access the firebase database and remove this entry
+		TotalSeats = parseInt($(this).attr("data-totalseats"));
 
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'PendingStudents/' + UID);
+		FilledSeats = parseInt($(this).attr("data-fillseats"));
 
-		ref.remove().then(function(){
+		//now first check to see if the batch is filled, if it is then do nothing, otherwise add in this dude
+		if (FilledSeats<TotalSeats) {
+			//add in this dude
+			//access the firebase database and remove this entry
 
-			//now need to put this in the accepted box
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/'+ UID);
+			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'PendingStudents/' + UID);
 
-			var data = {
-				StudentName: studentName_
-			}
+			ref.remove().then(function(){
 
-			ref.update(data).then(ReloadBackEndData).then(function(){
-    			BoxAlert('User accepted successfully!');
-    			FadeOutLoadingFrame();
+				//now need to put this in the accepted box
+				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/'+ UID);
+
+				var data = {
+					StudentName: studentName_
+				}
+
+				ref.update(data).then(function(){
+					//now need to increment the seat filled by 1
+					var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address);
+
+					newFilledSeats = FilledSeats + 1;
+
+					var data = {
+						FilledSeats: newFilledSeats
+					}
+
+					ref.update(data).then(ReloadBackEndData).then(function(){
+						BoxAlert('User accepted successfully!');
+	    				FadeOutLoadingFrame();
+					});
+
+				});
+
 			});
+		}
 
-		});
+		else {
+
+			BoxAlert('Cannot add to full Batch!');
+
+		}
 
     	return false;
     }); 
@@ -515,6 +542,46 @@ function AttachEventToEachStudentClick(){
     		BoxAlert('User dismissed successfully!');
     		FadeOutLoadingFrame();
     	});
+
+    	return false;
+    }); 
+
+    //for deleting accepted students
+   	$(".fa-user-minus").click(function() {
+		console.log('clicked user delete!');
+		FadeInLoadingFrame();
+
+		//delete this entry from the table
+		UID = String($(this).attr("data-UID"));
+
+		Address = String($(this).attr("data-address"));
+
+		studentName_ = String($(this).attr("data-name"));
+
+		TotalSeats = parseInt($(this).attr("data-totalseats"));
+
+		FilledSeats = parseInt($(this).attr("data-fillseats"));
+
+		//access the firebase database and remove this entry
+
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID);
+
+		ref.remove().then(function(){
+			//now need to decrease filled seats by 1
+			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address);
+
+			newFilledSeats = FilledSeats - 1;
+
+			var data = {
+				FilledSeats: newFilledSeats
+			}
+
+			ref.update(data).then(ReloadBackEndData).then(function(){
+				BoxAlert('User deleted successfully!');
+				FadeOutLoadingFrame();
+			});
+
+		});
 
     	return false;
     }); 
@@ -627,7 +694,7 @@ function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
 }
 
 //create one student line for batchbox for accepted
-function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName){
+function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName, totSeats, fillSeats){
 
 	address = grade + '/' + subject + '/Streams/' + streamName + '/'; 
 
@@ -649,6 +716,9 @@ function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName){
 		_delete.setAttribute('id', 'BanIcon');
 		_delete.setAttribute('data-UID', UID);
 		_delete.setAttribute('data-address', address);
+		_delete.setAttribute('data-name', studentName_);
+		_delete.setAttribute('data-totalseats', totSeats);
+		_delete.setAttribute('data-fillseats', fillSeats);
 
 		OneStudentLine.append(_delete);
 
@@ -657,7 +727,7 @@ function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName){
 
 
 //create one student line for batchbox for pending
-function OneStudentLinePending(studentName_, UID, grade, subject, streamName){
+function OneStudentLinePending(studentName_, UID, grade, subject, streamName, totSeats, fillSeats){
 
 	address = grade + '/' + subject + '/Streams/' + streamName + '/'; 
 
@@ -688,6 +758,9 @@ function OneStudentLinePending(studentName_, UID, grade, subject, streamName){
 		_add.setAttribute('data-UID', UID);
 		_add.setAttribute('data-address', address);
 		_add.setAttribute('data-name', studentName_);
+		_add.setAttribute('data-totalseats', totSeats);
+		_add.setAttribute('data-fillseats', fillSeats);
+
 
 		OneStudentLine.append(_add);
 

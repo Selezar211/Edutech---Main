@@ -120,7 +120,10 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade){
 		var key;	//key is the stream name
 		for (key in AllStreamsJSON_of_ThisSubject) {
 
-			var SeatVacancy = 'Seats Filled: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
+			var TotalSeats = AllStreamsJSON_of_ThisSubject[key]['TotalSeats'];
+			var FilledSeats = AllStreamsJSON_of_ThisSubject[key]['FilledSeats'];
+
+			var SeatVacancy = 'Seats Filled: ' + String(FilledSeats) + '/' + String(TotalSeats);
 			var streamColor = AllStreamsJSON_of_ThisSubject[key]['StreamColor'];
 
 			var arr = AllStreamsJSON_of_ThisSubject[key]['Timings'];
@@ -134,8 +137,8 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade){
 			var PendingStudentJSON = AllStreamsJSON_of_ThisSubject[key]['PendingStudents'];
 
 			CreateStudentBatchBox(key, currentWorking_Subject, subjectGrade, SeatVacancy);
-			CreateAcceptedStudentBatchBox(AcceptedStudentJSON, subjectGrade, currentWorking_Subject, key);
-			CreatePendingStudentBatchBox(PendingStudentJSON, subjectGrade, currentWorking_Subject, key);
+			CreateAcceptedStudentBatchBox(AcceptedStudentJSON, subjectGrade, currentWorking_Subject, key, TotalSeats, FilledSeats);
+			CreatePendingStudentBatchBox(PendingStudentJSON, subjectGrade, currentWorking_Subject, key, TotalSeats, FilledSeats);
 		}
 
 	}
@@ -421,7 +424,7 @@ function CreateNewTiming(StreamAddress, day, startTime, endTime){
 
 
 //create the accepted students batch block to inject into it
-function CreateAcceptedStudentBatchBox(inputStudentJSON, grade, subject, streamName){
+function CreateAcceptedStudentBatchBox(inputStudentJSON, grade, subject, streamName, totSeats, fillSeats){
 
 	//AcceptedStudents -> UID -> StudentName, RollCall, Tution
 	//first loop through the UID
@@ -432,13 +435,13 @@ function CreateAcceptedStudentBatchBox(inputStudentJSON, grade, subject, streamN
 		CurrentStudentName = inputStudentJSON[CurrentStudent_UID]['StudentName'];
 
 		//now create the html elements themselves
-		OneStudentLineAccepted(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName);
+		OneStudentLineAccepted(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName, totSeats, fillSeats);
 
 	}
 }
 
 //create the pending students batch block to inject into it
-function CreatePendingStudentBatchBox(inputStudentJSON, grade, subject, streamName){
+function CreatePendingStudentBatchBox(inputStudentJSON, grade, subject, streamName, totSeats, fillSeats){
 
 	//AcceptedStudents -> UID -> StudentName, RollCall, Tution
 	//first loop through the UID
@@ -449,7 +452,7 @@ function CreatePendingStudentBatchBox(inputStudentJSON, grade, subject, streamNa
 		CurrentStudentName = inputStudentJSON[CurrentStudent_UID]['StudentName'];
 
 		//now create the html elements themselves
-		OneStudentLinePending(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName);
+		OneStudentLinePending(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName, totSeats, fillSeats);
 
 	}
 }
