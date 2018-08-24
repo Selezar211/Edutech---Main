@@ -66,10 +66,13 @@
 		}
 
 		.BatchSubject{
+			border-right: 0.1vw solid white;
+			padding-right: 1%;
 			float: right;
 		}
 
 		.BatchGrade{
+			padding-left: 1%;
 			float: right;
 		}
 

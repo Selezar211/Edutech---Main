@@ -461,8 +461,60 @@ function AttachEventToEachStudentClick(){
     	return false;
     });
 
+	//for accepting pending students
+    $(".fa-user-check").click(function() {
+		console.log('clicked user pending accept!');
+		FadeInLoadingFrame();
+
+		//delete this entry from the table
+		UID = String($(this).attr("data-UID"));
+
+		Address = String($(this).attr("data-address"));
+
+		studentName_ = String($(this).attr("data-name"));
+
+		//access the firebase database and remove this entry
+
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'PendingStudents/' + UID);
+
+		ref.remove().then(function(){
+
+			//now need to put this in the accepted box
+			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/'+ UID);
+
+			var data = {
+				StudentName: studentName_
+			}
+
+			ref.update(data).then(ReloadBackEndData).then(function(){
+    			BoxAlert('User accepted successfully!');
+    			FadeOutLoadingFrame();
+			});
+
+		});
+
+    	return false;
+    }); 
+
+
+    //for dismissing pending students
    	$(".fa-user-times").click(function() {
-		console.log('clicked user delete!');
+		console.log('clicked user dismiss!');
+		FadeInLoadingFrame();
+
+		//delete this entry from the table
+		UID = String($(this).attr("data-UID"));
+
+		Address = String($(this).attr("data-address"));
+
+		//access the firebase database and remove this entry
+
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'PendingStudents/' + UID);
+
+		ref.remove().then(ReloadBackEndData).then(function(){
+    		BoxAlert('User dismissed successfully!');
+    		FadeOutLoadingFrame();
+    	});
 
     	return false;
     }); 
@@ -470,9 +522,177 @@ function AttachEventToEachStudentClick(){
 
 }
 
+//create the batchbox
+function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
+
+	var BatchBox = document.createElement('div');
+	BatchBox.setAttribute('class', 'BatchBox');
+	BatchBox.setAttribute('id', 'BatchBox_ID');
+
+		//the heading part
+
+		var BatchBoxHeading = document.createElement('div');
+		BatchBoxHeading.setAttribute('class', 'BatchBoxHeading');
+
+			var BatchName = document.createElement('span');
+			BatchName.setAttribute('class', 'BatchName');
+
+			var t = document.createTextNode(streamName + ' |');
+			BatchName.append(t);
+
+			var BatchFillRate = document.createElement('span');
+			BatchFillRate.setAttribute('class', 'BatchFillRate');
+
+			var t = document.createTextNode(SeatsFilled);
+			BatchFillRate.append(t);
+
+			var BatchGrade = document.createElement('span');
+			BatchGrade.setAttribute('class', 'BatchGrade');
+
+			var t = document.createTextNode(grade);
+			BatchGrade.append(t);
+
+			var BatchSubject = document.createElement('span');
+			BatchSubject.setAttribute('class', 'BatchSubject');
+
+			var t = document.createTextNode(subject);
+			BatchSubject.append(t);
+
+			BatchBoxHeading.append(BatchName);
+			BatchBoxHeading.append(BatchFillRate);
+			BatchBoxHeading.append(BatchGrade);
+			BatchBoxHeading.append(BatchSubject);
+
+			BatchBox.append(BatchBoxHeading);
+
+		//the accepted box
+
+		var AcceptedBox = document.createElement('div');
+		AcceptedBox.setAttribute('class', 'AcceptedBox');
+		AcceptedBox.setAttribute('id', grade.split(' ').join('') + subject + 'AcceptedBox_ID');
+
+		var AcceptedBoxHeading = document.createElement('div');
+		AcceptedBoxHeading.setAttribute('class', 'AcceptedBoxHeading');
+
+		var s = document.createElement('span');
+		var t = document.createTextNode('Accepted');
+		s.append(t);
+
+		AcceptedBoxHeading.append(s);
+
+		var RollCallIcon = document.createElement('span');
+		RollCallIcon.setAttribute('class', 'RollCallIcon');
+		var t = document.createTextNode('Roll Call');
+		RollCallIcon.append(t);
+
+		AcceptedBoxHeading.append(RollCallIcon);
+
+		var MessageIcon = document.createElement('span');
+		MessageIcon.setAttribute('class', 'MessageIcon');
+		var t = document.createTextNode('Message');
+		MessageIcon.append(t);
+
+		AcceptedBoxHeading.append(MessageIcon);	
+
+		AcceptedBox.append(AcceptedBoxHeading);
+
+		BatchBox.append(AcceptedBox);
+
+		//create the pending box
+		var PendingBox = document.createElement('div');
+		PendingBox.setAttribute('class', 'PendingBox');
+		PendingBox.setAttribute('id', grade.split(' ').join('') + subject + 'PendingBox_ID');
+
+		var PendingBoxHeading = document.createElement('div');
+		PendingBoxHeading.setAttribute('class', 'PendingBoxHeading');
+
+		var s = document.createElement('span');
+		var t = document.createTextNode('Pending');
+		s.append(t);
+
+		PendingBoxHeading.append(s);
+
+		var DismissAll = document.createElement('span');
+		DismissAll.setAttribute('class', 'DismissAll');
+		var t = document.createTextNode('Dismiss All');
+		DismissAll.append(t);
+
+		PendingBoxHeading.append(DismissAll);
+
+		PendingBox.append(PendingBoxHeading);
+
+		BatchBox.append(PendingBox);
+
+		document.getElementById('BoxesContainer_ID').appendChild(BatchBox);
+}
+
+//create one student line for batchbox for accepted
+function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName){
+
+	address = grade + '/' + subject + '/Streams/' + streamName + '/'; 
+
+	var OneStudentLine = document.createElement('div');
+	OneStudentLine.setAttribute('class', 'OneStudentLine');
+	OneStudentLine.setAttribute('data-UID', UID);
+	OneStudentLine.setAttribute('data-address', address);
+
+		var StudentName = document.createElement('span');
+		StudentName.setAttribute('class', 'StudentName');
+
+		var t = document.createTextNode(studentName_);
+		StudentName.append(t);
+
+		OneStudentLine.append(StudentName);
+
+		var _delete = document.createElement('i');
+		_delete.setAttribute('class', 'fas fa-user-minus');
+		_delete.setAttribute('id', 'BanIcon');
+		_delete.setAttribute('data-UID', UID);
+		_delete.setAttribute('data-address', address);
+
+		OneStudentLine.append(_delete);
+
+		document.getElementById(grade.split(' ').join('') + subject + 'AcceptedBox_ID').appendChild(OneStudentLine);
+}
 
 
+//create one student line for batchbox for pending
+function OneStudentLinePending(studentName_, UID, grade, subject, streamName){
 
+	address = grade + '/' + subject + '/Streams/' + streamName + '/'; 
+
+	var OneStudentLine = document.createElement('div');
+	OneStudentLine.setAttribute('class', 'OneStudentLine');
+	OneStudentLine.setAttribute('data-UID', UID);
+	OneStudentLine.setAttribute('data-address', address);
+
+		var StudentName = document.createElement('span');
+		StudentName.setAttribute('class', 'StudentName');
+
+		var t = document.createTextNode(studentName_);
+		StudentName.append(t);
+
+		OneStudentLine.append(StudentName);
+
+		var _delete = document.createElement('i');
+		_delete.setAttribute('class', 'fas fa-user-times');
+		_delete.setAttribute('id', 'BanIcon');
+		_delete.setAttribute('data-UID', UID);
+		_delete.setAttribute('data-address', address);
+
+		OneStudentLine.append(_delete);
+
+		var _add = document.createElement('i');
+		_add.setAttribute('class', 'fas fa-user-check');
+		_add.setAttribute('id', 'Addicon');
+		_add.setAttribute('data-UID', UID);
+		_add.setAttribute('data-address', address);
+		_add.setAttribute('data-name', studentName_);
+
+		OneStudentLine.append(_add);
+
+		document.getElementById(grade.split(' ').join('') + subject + 'PendingBox_ID').appendChild(OneStudentLine);
+}
 
 
 

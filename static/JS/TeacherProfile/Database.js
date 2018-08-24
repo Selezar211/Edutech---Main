@@ -117,7 +117,7 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade){
 		AllStreamsJSON_of_ThisSubject = tableData['UserClass'][subjectGrade][currentWorking_Subject]['Streams']
 
 		//now iterate over this json to find timings of each stream
-		var key;
+		var key;	//key is the stream name
 		for (key in AllStreamsJSON_of_ThisSubject) {
 
 			var SeatVacancy = 'Seats Filled: ' + String(AllStreamsJSON_of_ThisSubject[key]['FilledSeats']) + '/' + String(AllStreamsJSON_of_ThisSubject[key]['TotalSeats']);
@@ -128,6 +128,14 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade){
 
 			//now this timing needs to be injected as an html
 			FillEachStreamBoxAndDropDownBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, subjectGrade, streamColor);
+
+			//need to create the student tab batch boxes
+			var AcceptedStudentJSON = AllStreamsJSON_of_ThisSubject[key]['AcceptedStudents'];
+			var PendingStudentJSON = AllStreamsJSON_of_ThisSubject[key]['PendingStudents'];
+
+			CreateStudentBatchBox(key, currentWorking_Subject, subjectGrade, SeatVacancy);
+			CreateAcceptedStudentBatchBox(AcceptedStudentJSON, subjectGrade, currentWorking_Subject, key);
+			CreatePendingStudentBatchBox(PendingStudentJSON, subjectGrade, currentWorking_Subject, key);
 		}
 
 	}
@@ -411,6 +419,41 @@ function CreateNewTiming(StreamAddress, day, startTime, endTime){
 
 }
 
+
+//create the accepted students batch block to inject into it
+function CreateAcceptedStudentBatchBox(inputStudentJSON, grade, subject, streamName){
+
+	//AcceptedStudents -> UID -> StudentName, RollCall, Tution
+	//first loop through the UID
+	var key;	//key is the UID
+	for (key in inputStudentJSON) {
+		CurrentStudent_UID = key;
+
+		CurrentStudentName = inputStudentJSON[CurrentStudent_UID]['StudentName'];
+
+		//now create the html elements themselves
+		OneStudentLineAccepted(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName);
+
+	}
+}
+
+//create the pending students batch block to inject into it
+function CreatePendingStudentBatchBox(inputStudentJSON, grade, subject, streamName){
+
+	//AcceptedStudents -> UID -> StudentName, RollCall, Tution
+	//first loop through the UID
+	var key;	//key is the UID
+	for (key in inputStudentJSON) {
+		CurrentStudent_UID = key;
+
+		CurrentStudentName = inputStudentJSON[CurrentStudent_UID]['StudentName'];
+
+		//now create the html elements themselves
+		OneStudentLinePending(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName);
+
+	}
+}
+
 //attached delete events from the firebase database for a full stream to be deleted when clicked
 function SetupDeleteFullStreamEvent(){
 	//attached delete events from the firebase database for a full stream to be deleted when clicked
@@ -689,6 +732,7 @@ function ReloadBackEndData(){
 	$('.SubjectDropDOWN').remove();
 	$('.ADDTimingDropDOWN').remove();
 	$('.single-event').remove();
+	$('.BatchBox').remove();
 
 	//now recreate the streamboxes after fetching em all
 	FetchAllDataFromDatabase();
