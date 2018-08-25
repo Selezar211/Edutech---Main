@@ -1,7 +1,7 @@
 	
 //Author: Ekram
-//Whats the plan? The kind where we make it as we go along of course 8)
-
+//Whats the plan? The kind where we make it as we go along of course - the best kind 8)
+//If I had any idea how difficult and the wild ride this would eventually turn out to be I would honestly never have started. Good thing I didnt, buckle up for the spaghetti code ahead 8)
 
 
 // Initialize Firebase

@@ -753,6 +753,71 @@ function AttachEventToEachStudentClick(){
     	return false;
     }); 
 
+    //for clicking on each student in accepted row
+   	$(".OneStudentLine").click(function() {
+		console.log('clicked user dismiss!');
+		FadeInLoadingFrame();
+
+		UID = String($(this).attr("data-uid"));
+
+		Address = String($(this).attr("data-address"));
+		streamName = String($(this).attr("data-streamName"));
+		grade = String($(this).attr("data-grade"));
+		subject = String($(this).attr("data-subject"));
+		studentname = String($(this).attr("data-studentName"));
+
+		rollCallDateArray_ = [];
+		rollCallAttendanceArr_ = [];
+
+		//access the firebase database and extract all the necessary info
+		//first we gotta get the roll call arrays from the firebase database
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/ClassAttendance/');
+
+		ref.once('value', ReceivedData, errData).then(function(){
+
+			//now that we have the roll call arrays lets start making the html elements
+
+			CreateStudentInfoBox(rollCallDateArray_, rollCallAttendanceArr_, studentname, UID, streamName, subject, grade);
+
+			FadeOutLoadingFrame();
+
+			//now attach click events to this newly made student info box
+		   	$("#StudentInfoContCloseIcon").click(function() {
+				$('.StudentInfoCont').remove();
+				$('.MainContent').css('-webkit-filter', 'blur(0px');
+		    	return false;
+		    }); 
+
+		});
+
+		function ReceivedData(data){
+			tableData = data.val();
+
+			$('.MainContent').css('-webkit-filter', 'blur(30px');
+
+			//now we can loop through them and fill the roll call date and attendance arrays
+			var key;	//where key is each data in the table
+			for (key in tableData) {
+				CurrentDate = key;
+
+				CurrentAttendance = tableData[key];
+
+				rollCallDateArray_.push(CurrentDate);
+				rollCallAttendanceArr_.push(CurrentAttendance);
+			}
+
+		}
+
+		function errData(err){
+			console.log('Error!');
+			console.log(err);
+		}
+
+
+
+    	return false;
+    }); 
+
 
 }
 
@@ -877,7 +942,11 @@ function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName, t
 	var OneStudentLine = document.createElement('div');
 	OneStudentLine.setAttribute('class', 'OneStudentLine');
 	OneStudentLine.setAttribute('data-UID', UID);
+	OneStudentLine.setAttribute('data-studentName', studentName_);
 	OneStudentLine.setAttribute('data-address', address);
+	OneStudentLine.setAttribute('data-streamName', streamName);
+	OneStudentLine.setAttribute('data-grade', grade);
+	OneStudentLine.setAttribute('data-subject', subject);
 
 		var StudentName = document.createElement('span');
 		StudentName.setAttribute('class', 'StudentName');
@@ -908,7 +977,7 @@ function OneStudentLinePending(studentName_, UID, grade, subject, streamName, to
 	address = grade + '/' + subject + '/Streams/' + streamName + '/'; 
 
 	var OneStudentLine = document.createElement('div');
-	OneStudentLine.setAttribute('class', 'OneStudentLine');
+	OneStudentLine.setAttribute('class', 'OneStudentLinePending');
 	OneStudentLine.setAttribute('data-UID', UID);
 	OneStudentLine.setAttribute('data-address', address);
 
@@ -1055,6 +1124,112 @@ function CreateRollCallBox(studentNameArr, studentUIDArr, streamName, subject, g
 }
 
 
+//create the student Info box
+function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentName, studentUID, streamName, subject, grade){
+
+	address = grade + '/' + subject + '/Streams/' + streamName + '/';
+
+	var StudentInfoCont = document.createElement('div');
+	StudentInfoCont.setAttribute('class', 'StudentInfoCont');
+
+		//close icon part
+		var StudentInfoContCloseIcon = document.createElement('div');
+		StudentInfoContCloseIcon.setAttribute('class', 'far fa-times-circle');
+		StudentInfoContCloseIcon.setAttribute('id', 'StudentInfoContCloseIcon');
+
+		StudentInfoCont.append(StudentInfoContCloseIcon);
+
+		//the heading part
+		var StudentInfoTopBox = document.createElement('div');
+		StudentInfoTopBox.setAttribute('class', 'StudentInfoTopBox');
+
+			//student name
+			var StudentNameRollCall = document.createElement('div');
+			StudentNameRollCall.setAttribute('class', 'StudentNameRollCall');
+
+			var t = document.createTextNode(_studentName);
+			StudentNameRollCall.append(t);
+
+			StudentInfoTopBox.append(StudentNameRollCall);
+
+			//student UID
+			var StudentIDRollCall = document.createElement('div');
+			StudentIDRollCall.setAttribute('class', 'StudentIDRollCall');
+
+			var t = document.createTextNode('#' + studentUID);
+			StudentIDRollCall.append(t);
+
+			StudentInfoTopBox.append(StudentIDRollCall);
+
+			//Message box
+			var StudentMessageRollCall = document.createElement('div');
+			StudentMessageRollCall.setAttribute('class', 'StudentMessageRollCall');
+			StudentMessageRollCall.setAttribute('data-address', address);
+			StudentMessageRollCall.setAttribute('data-studentname', _studentName);
+			StudentMessageRollCall.setAttribute('data-studentuid', studentUID);
+
+			var t = document.createTextNode('Message');
+			StudentMessageRollCall.append(t);
+
+			StudentInfoTopBox.append(StudentMessageRollCall);
+
+			StudentInfoCont.append(StudentInfoTopBox);
+
+
+			//now work on the roll call column
+			var StudentInfoRollCallCont = document.createElement('div');
+			StudentInfoRollCallCont.setAttribute('class', 'StudentInfoRollCallCont');
+
+				//the roll call heading
+				var StudentInfoRollCallHeading = document.createElement('div');
+				StudentInfoRollCallHeading.setAttribute('class', 'StudentInfoRollCallHeading');	
+
+				var t = document.createTextNode('Roll Call - Attendance');
+				StudentInfoRollCallHeading.append(t);
+
+				StudentInfoRollCallCont.append(StudentInfoRollCallHeading);
+
+				//now loop through and make each attendance entry
+				for (var i = 0; i < rollCallDateArr.length; i++) {
+
+					currentDate = rollCallDateArr[i];
+					currentAttendance = rollCallAttendanceArr[i];
+
+					var OneAttendanceEntry = document.createElement('div');
+					OneAttendanceEntry.setAttribute('class', 'OneAttendanceEntry');
+
+						//the date
+						var RollCallDate = document.createElement('span');
+						RollCallDate.setAttribute('class', 'RollCallDate');
+
+						var t = document.createTextNode(currentDate);
+						RollCallDate.append(t);
+
+						//the attendance
+						var RollCallResult = document.createElement('span');
+						RollCallResult.setAttribute('class', 'RollCallResult');
+
+						var t = document.createTextNode(currentAttendance);
+						RollCallResult.append(t);
+
+						//the flip icon
+						var exchange = document.createElement('i');
+						exchange.setAttribute('class', 'fas fa-exchange-alt');	
+						exchange.setAttribute('data-address', address);
+						exchange.setAttribute('data-UID', studentUID);
+						exchange.setAttribute('data-current', currentAttendance);				
+
+						OneAttendanceEntry.append(RollCallDate);
+						OneAttendanceEntry.append(RollCallResult);
+						OneAttendanceEntry.append(exchange);
+
+						StudentInfoRollCallCont.append(OneAttendanceEntry);
+				}
+
+				StudentInfoCont.append(StudentInfoRollCallCont);
+
+	document.body.appendChild(StudentInfoCont);
+}
 
 
 
