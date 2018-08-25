@@ -421,37 +421,6 @@ function CreateTimeTableHTML(){
 }
 
 
-function CreateSendMessageBox(){
-	//this will create the message send box through javascript
-
-	var MessageBatchBox = document.createElement('div');
-	MessageBatchBox.setAttribute('class', 'MessageBatchBox');
-	MessageBatchBox.setAttribute('id', 'MessageBatchBox_ID');
-
-
-	var SendMessageInput = 	document.createElement('textarea');
-	SendMessageInput.setAttribute('class', 'SendMessageInput');
-	SendMessageInput.setAttribute('id', 'SendMessageInput_ID');
-	SendMessageInput.setAttribute('name', 'SendMessageInput');
-	SendMessageInput.setAttribute('placeholder', 'Please enter your message. The text window can be resized for longer messages..');
-
-	var SendMessage = document.createElement('div');
-	SendMessage.setAttribute('class', 'SendMessage');
-	SendMessage.setAttribute('id', 'SendMessage_ID');
-
-	var CancelMessage = document.createElement('div');
-	CancelMessage.setAttribute('class', 'CancelMessage');
-	CancelMessage.setAttribute('id', 'CancelMessage_ID');
-
-	MessageBatchBox.append(SendMessageInput);
-	MessageBatchBox.append(SendMessage);
-	MessageBatchBox.append(CancelMessage);
-
-	document.body.appendChild(MessageBatchBox);
-
-}
-
-
 //attach event to clicking on each student in student tab
 function AttachEventToEachStudentClick(){
 
@@ -546,6 +515,28 @@ function AttachEventToEachStudentClick(){
     	return false;
     }); 
 
+    //for dismissing pending students in bulk
+   	$(".DismissAll").click(function() {
+		console.log('clicked user dismiss in bulk!');
+		FadeInLoadingFrame();
+
+		//delete this entry from the table
+		UID = String($(this).attr("data-UID"));
+
+		Address = String($(this).attr("data-address"));
+
+		//access the firebase database and remove this entry
+
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'PendingStudents/');
+
+		ref.remove().then(ReloadBackEndData).then(function(){
+    		BoxAlert('All pending dismissed successfully!');
+    		FadeOutLoadingFrame();
+    	});
+
+    	return false;
+    }); 
+
     //for deleting accepted students
    	$(".fa-user-minus").click(function() {
 		console.log('clicked user delete!');
@@ -587,10 +578,64 @@ function AttachEventToEachStudentClick(){
     }); 
 
 
+    //for clicking on the send message button in accpeted heading
+   	$(".MessageIcon").click(function() {
+		console.log('MessageIcon Clicked');
+
+		streamName = String($(this).attr("data-streamName"));
+		subject = String($(this).attr("data-subject"));
+		grade = String($(this).attr("data-grade"));
+
+		//now need to create the message batch box
+		CreateMessageBox(streamName, subject, grade);
+
+		//now need to attach click events to send message and cancel message buttons
+	    //for clicking cancel message
+	   	$(".CancelMessage").click(function() {
+			console.log('clicked message cancel!');
+			$('.MessageBatchBox').remove();
+	    	return false;
+	    }); 
+
+	    //for clicking send message
+	   	$(".SendMessage").click(function() {
+			console.log('clicked message send!');
+			
+			Address = String($(this).attr("data-address"));
+
+			ActualMessage = document.getElementById('SendMessageInput_ID').value;
+
+			//now insert this into firebase database
+			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'GlobalMessage/');
+
+			var d = new Date();
+			d.toUTCString();
+
+			var data = {
+				[d]: ActualMessage
+			}
+
+			ref.update(data).then(function(){
+				$('.MessageBatchBox').remove();
+				BoxAlert('Successfully sent message')
+
+			});
+
+	    	return false;
+	    }); 
+
+
+    	return false;
+    }); 
+
+
+
 }
 
 //create the batchbox
 function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
+
+	address = grade + '/' + subject + '/Streams/' + streamName + '/';
 
 	var BatchBox = document.createElement('div');
 	BatchBox.setAttribute('class', 'BatchBox');
@@ -656,6 +701,9 @@ function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
 
 		var MessageIcon = document.createElement('span');
 		MessageIcon.setAttribute('class', 'MessageIcon');
+		MessageIcon.setAttribute('data-streamName', streamName);
+		MessageIcon.setAttribute('data-subject', subject);
+		MessageIcon.setAttribute('data-grade', grade);
 		var t = document.createTextNode('Message');
 		MessageIcon.append(t);
 
@@ -681,6 +729,7 @@ function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
 
 		var DismissAll = document.createElement('span');
 		DismissAll.setAttribute('class', 'DismissAll');
+		DismissAll.setAttribute('data-address', address);
 		var t = document.createTextNode('Dismiss All');
 		DismissAll.append(t);
 
@@ -768,6 +817,51 @@ function OneStudentLinePending(studentName_, UID, grade, subject, streamName, to
 }
 
 
+//create the message box for student tab
+function CreateMessageBox(streamName, subject, grade){
+
+	address = grade + '/' + subject + '/Streams/' + streamName + '/';
+
+	var MessageBatchBox = document.createElement('div');
+	MessageBatchBox.setAttribute('class', 'MessageBatchBox');
+	MessageBatchBox.setAttribute('id', 'MessageBatchBox_ID');
+
+	var MessageBoxHeading = document.createElement('div');
+	MessageBoxHeading.setAttribute('class', 'MessageBoxHeading');
+
+	var t = document.createTextNode('Message To: ' + streamName + ' | ' + subject + ' | ' + grade)
+	MessageBoxHeading.append(t);
+
+	MessageBatchBox.append(MessageBoxHeading);
+
+	var SendMessageInput = 	document.createElement('textarea');
+	SendMessageInput.setAttribute('class', 'SendMessageInput');
+	SendMessageInput.setAttribute('id', 'SendMessageInput_ID');
+	SendMessageInput.setAttribute('name', 'SendMessageInput');
+	SendMessageInput.setAttribute('placeholder', 'Please enter your message. The text window can be resized for longer messages..');
+
+	var SendMessage = document.createElement('div');
+	SendMessage.setAttribute('class', 'SendMessage');
+	SendMessage.setAttribute('id', 'SendMessage_ID');
+	SendMessage.setAttribute('data-address', address);
+
+	var t = document.createTextNode('Send');
+	SendMessage.append(t);
+
+	var CancelMessage = document.createElement('div');
+	CancelMessage.setAttribute('class', 'CancelMessage');
+	CancelMessage.setAttribute('id', 'CancelMessage_ID');
+
+	var t = document.createTextNode('Cancel');
+	CancelMessage.append(t);
+
+	MessageBatchBox.append(SendMessageInput);
+	MessageBatchBox.append(SendMessage);
+	MessageBatchBox.append(CancelMessage);
+
+	document.body.appendChild(MessageBatchBox);
+
+}
 
 
 

@@ -201,12 +201,9 @@
 /*SEND MESSAGE BOX*/
 
 .MessageBatchBox{
-	border-radius: 0.7vw;
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 	font-family: 'Quattrocento';
-	padding-top: 1.5%;
 	padding-bottom: 1%;
-	padding-left: 1%;
-	padding-right: 1%;
 	z-index: 107;
 	position: fixed;
 	display: inline-block;
@@ -216,7 +213,18 @@
 	background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 }
 
+.MessageBoxHeading{
+	color: white;
+	width: 100%;
+	background-color: black;
+	display: inline-block;
+	position: relative;
+	padding: 3%;
+}
+
 .SendMessageInput{
+	min-height: 230px;
+	margin-top: 2.5%;
 	background: black;
 	color: white;
 	word-break: break-word;
@@ -224,9 +232,8 @@
 	display: inline-block;
 	margin-bottom: 1%;
 	width: 96%;
-	height: 75%;
 	margin-left: 2%;
-	padding: 3%;
+	padding: 2%;
 }
 
 .SendMessage{
