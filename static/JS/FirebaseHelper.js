@@ -658,11 +658,68 @@ function AttachEventToEachStudentClick(){
 			CreateRollCallBox(studentNamesArr, studentUIDArr, streamName, subject, grade);
 
 			//now need to attach click events to submit and cancel roll calls
-		    //for clicking cancel message
+		    //for clicking cancel roll call
 		   	$(".CancelRollCall").click(function() {
 
 				$('.RollCallCont').remove();
 				$('.MainContent').css('-webkit-filter', 'blur(0px');
+		    	return false;
+		    }); 
+
+		    //for clicking submit roll call
+		   	$(".SubmitRollCall").click(function() {
+
+		   		FadeInLoadingFrame();
+
+		   		console.log('Submit roll call clicked!');
+
+		   		address = String($(this).attr("data-address"));
+
+		   		//first get all the checked boxes
+		   		var CheckBox_CHECKED = $('.RollCall_CBOX:checked').map(function() {
+	    				return $(this).val();
+				}).get();
+
+		   		//then get all the unchecked box
+		   		var CheckBox_UNCHECKED = $('.RollCall_CBOX:not(:checked)').map(function() {
+	    				return $(this).val();
+				}).get();
+
+				console.log(CheckBox_CHECKED);
+				console.log(CheckBox_UNCHECKED);
+
+		   		//now insert this into class attendance tab
+		   		today = new Date().toISOString().slice(0, 10)
+
+		   		for (var i = 0; i < CheckBox_CHECKED.length ; i++) {
+		   			//loop through and update each students roll call for present
+		   			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + 'AcceptedStudents/' + String(CheckBox_CHECKED[i]) + '/ClassAttendance/');
+
+		   			var data = {
+		   				[today]: 'Present'
+		   			}
+
+		   			ref.update(data).then(function(){
+				   		for (var i = 0; i < CheckBox_UNCHECKED.length ; i++) {
+				   			//loop through and update each students roll call for present
+				   			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + 'AcceptedStudents/' + String(CheckBox_UNCHECKED[i]) + '/ClassAttendance/');
+
+				   			var data = {
+				   				[today]: 'Absent'
+				   			}
+
+				   			ref.update(data).then(function(){
+								$('.RollCallCont').remove();
+								$('.MainContent').css('-webkit-filter', 'blur(0px');
+				   				FadeOutLoadingFrame();
+				   				BoxAlert('Roll calls updated: ' + String(today) );
+				   			});
+				   		}
+
+		   			});
+		   		}
+
+		   		
 		    	return false;
 		    }); 
 
@@ -959,6 +1016,7 @@ function CreateRollCallBox(studentNameArr, studentUIDArr, streamName, subject, g
 
 		var SubmitRollCall = document.createElement('span');
 		SubmitRollCall.setAttribute('class', 'SubmitRollCall');
+		SubmitRollCall.setAttribute('data-address', address);
 
 		var t = document.createTextNode('Submit');
 		SubmitRollCall.append(t);
@@ -985,8 +1043,8 @@ function CreateRollCallBox(studentNameArr, studentUIDArr, streamName, subject, g
 			RollCall_CBOX.setAttribute('type', 'checkbox');
 			RollCall_CBOX.setAttribute('id', studentNameArr[i].split(' ').join('') + '_ID');
 			RollCall_CBOX.setAttribute('name', studentNameArr[i]);
-			RollCall_CBOX.setAttribute('value', studentNameArr[i]);
-			RollCall_CBOX.setAttribute('data-address', address);
+			RollCall_CBOX.setAttribute('value', studentUIDArr[i]);
+			
 
 			RollCallCont.append(CBOX_LABEL);
 			RollCallCont.append(RollCall_CBOX);
