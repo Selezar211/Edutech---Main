@@ -272,14 +272,16 @@
 
 /*ROLL CALL BOX*/
 .RollCallCont{
+	overflow: auto;
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 	font-family: 'Quattrocento';
 	padding-bottom: 0.5%;
 	z-index: 107;
 	position: fixed;
 	display: inline-block;
-	width: 30%;
-	top: 17%;
-	left: 39%;
+	width: 50%;
+	top: 10%;
+	left: 28%;
 	background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
 }
 
@@ -289,10 +291,10 @@
 		color: white;
 		width: 100%;
 		display: inline-block;
-		padding-top: 3%;
-		padding-bottom: 3%;
-		padding-left: 3%;
-		padding-right: 3%;
+		padding-top: 2%;
+		padding-bottom: 2%;
+		padding-left: 2%;
+		padding-right: 2%;
 		background-color: rgb(20,24,27);
 		position: relative;
 		top: 0%;
@@ -333,7 +335,7 @@
 
 .RollCall_CBOX{
 	margin-top: 0.5%;
-	margin-left: 10%;
+	margin-left: 8%;
 		cursor: pointer;
 		color: white;
 		font-family: 'Quattrocento';

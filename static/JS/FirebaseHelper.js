@@ -587,12 +587,14 @@ function AttachEventToEachStudentClick(){
 		grade = String($(this).attr("data-grade"));
 
 		//now need to create the message batch box
+		$('.MainContent').css('-webkit-filter', 'blur(30px');
 		CreateMessageBox(streamName, subject, grade);
 
 		//now need to attach click events to send message and cancel message buttons
 	    //for clicking cancel message
 	   	$(".CancelMessage").click(function() {
 			console.log('clicked message cancel!');
+			$('.MainContent').css('-webkit-filter', 'blur(0px');
 			$('.MessageBatchBox').remove();
 	    	return false;
 	    }); 
@@ -617,7 +619,8 @@ function AttachEventToEachStudentClick(){
 
 			ref.update(data).then(function(){
 				$('.MessageBatchBox').remove();
-				BoxAlert('Successfully sent message')
+				$('.MainContent').css('-webkit-filter', 'blur(0px');
+				BoxAlert('Message Sent')
 
 			});
 
@@ -628,6 +631,70 @@ function AttachEventToEachStudentClick(){
     	return false;
     }); 
 
+    //for clicking on roll call
+   	$(".RollCallIcon").click(function() {
+		console.log('clicked roll call icon!');
+
+		FadeInLoadingFrame();
+
+		streamName = String($(this).attr("data-streamName"));
+
+		subject = String($(this).attr("data-subject"));
+
+		grade = String($(this).attr("data-grade"));
+
+		address = grade + '/' + subject + '/Streams/' + streamName + '/';
+
+		studentNamesArr = [];
+		studentUIDArr = [];
+
+		//first we need to access the database and pull the names of accepted students and UID
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + 'AcceptedStudents/');
+
+		ref.once('value', ReceivedData, errData).then(function(){
+
+			//now that we have have the student names and UID array we can craft the roll call box..
+
+			CreateRollCallBox(studentNamesArr, studentUIDArr, streamName, subject, grade);
+
+			//now need to attach click events to submit and cancel roll calls
+		    //for clicking cancel message
+		   	$(".CancelRollCall").click(function() {
+
+				$('.RollCallCont').remove();
+				$('.MainContent').css('-webkit-filter', 'blur(0px');
+		    	return false;
+		    }); 
+
+			FadeOutLoadingFrame();
+		});
+
+		function ReceivedData(data){
+			tableData = data.val();
+
+			$('.MainContent').css('-webkit-filter', 'blur(30px');
+
+			//now we can loop through them and fill the student name and UID arrays
+			var key;
+			for (key in tableData) {
+				CurrentStudentUID = key;
+
+				CurrentStudentName = tableData[key]['StudentName'];
+
+				studentNamesArr.push(CurrentStudentName);
+				studentUIDArr.push(CurrentStudentUID);
+			}
+
+		}
+
+		function errData(err){
+			console.log('Error!');
+			console.log(err);
+		}
+
+
+    	return false;
+    }); 
 
 
 }
@@ -694,6 +761,9 @@ function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
 
 		var RollCallIcon = document.createElement('span');
 		RollCallIcon.setAttribute('class', 'RollCallIcon');
+		RollCallIcon.setAttribute('data-streamName', streamName);
+		RollCallIcon.setAttribute('data-subject', subject);
+		RollCallIcon.setAttribute('data-grade', grade);
 		var t = document.createTextNode('Roll Call');
 		RollCallIcon.append(t);
 
@@ -864,7 +934,67 @@ function CreateMessageBox(streamName, subject, grade){
 }
 
 
+//create the roll cal box for student tab
+function CreateRollCallBox(studentNameArr, studentUIDArr, streamName, subject, grade){
 
+	address = grade + '/' + subject + '/Streams/' + streamName + '/';
+
+	var RollCallCont = document.createElement('div');
+	RollCallCont.setAttribute('class', 'RollCallCont');
+
+		var RollCallHeading = document.createElement('div');
+		RollCallHeading.setAttribute('class', 'RollCallHeading');
+
+		var heading1 = document.createElement('span');
+		var t = document.createTextNode('Roll Call: ' + streamName + ' | ' + subject + ' | ' + grade);
+		heading1.append(t);
+
+		RollCallHeading.append(heading1);
+
+		var CancelRollCall = document.createElement('span');
+		CancelRollCall.setAttribute('class', 'CancelRollCall');
+
+		var t = document.createTextNode('Cancel');
+		CancelRollCall.append(t);
+
+		var SubmitRollCall = document.createElement('span');
+		SubmitRollCall.setAttribute('class', 'SubmitRollCall');
+
+		var t = document.createTextNode('Submit');
+		SubmitRollCall.append(t);
+
+		RollCallHeading.append(CancelRollCall);
+		RollCallHeading.append(SubmitRollCall);
+
+		RollCallCont.append(RollCallHeading);
+
+		for (var i = 0; i < studentNameArr.length; i++) {
+			//loop through and create elements for each studentName
+
+			//CBOX LABEL
+			var CBOX_LABEL = document.createElement('label');
+			CBOX_LABEL.setAttribute('class', 'CBOX_LABEL');
+			CBOX_LABEL.setAttribute('for', studentNameArr[i].split(' ').join('') + '_ID');
+
+			var t = document.createTextNode(studentNameArr[i]);
+			CBOX_LABEL.append(t);
+
+			//checkbox
+			var RollCall_CBOX = document.createElement('input');
+			RollCall_CBOX.setAttribute('class', 'RollCall_CBOX');
+			RollCall_CBOX.setAttribute('type', 'checkbox');
+			RollCall_CBOX.setAttribute('id', studentNameArr[i].split(' ').join('') + '_ID');
+			RollCall_CBOX.setAttribute('name', studentNameArr[i]);
+			RollCall_CBOX.setAttribute('value', studentNameArr[i]);
+			RollCall_CBOX.setAttribute('data-address', address);
+
+			RollCallCont.append(CBOX_LABEL);
+			RollCallCont.append(RollCall_CBOX);
+		}
+
+		document.body.appendChild(RollCallCont);
+
+}
 
 
 

@@ -6,13 +6,17 @@
     display: none;
     z-index: 107;
     position: fixed;
-    background-color: black;
     width: 28%;
     top: 3%;
     right: 2%;
     background-color: white;
     border-radius: 1em;
    	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.BoxAlert: hover{
+	transition: 500ms;
+	background-color: lightgray;
 }
 
 .AlertText{

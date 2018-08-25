@@ -1010,16 +1010,6 @@ document.getElementById("SignoutIcon2").addEventListener('click', e => {
 
 
 
-
-
-
-
-
-
-
-
-
-
 //timetable database stuff
 
 function PopulateTimeTable(inputTable){
