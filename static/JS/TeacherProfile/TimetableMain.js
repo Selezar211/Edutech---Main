@@ -38,13 +38,11 @@
 	}
 
 	SchedulePlan.prototype.initSchedule = function() {
-		console.log('carrying out schedule init');
 		this.scheduleReset();
 		this.initEvents();
 	};
 
 	SchedulePlan.prototype.scheduleReset = function() {
-		console.log('carrying out schedule reset');
 		var mq = this.mq();
 		if( mq == 'desktop' && !this.element.hasClass('js-full') ) {
 			//in this case you are on a desktop version (first load or resize from mobile)
@@ -344,8 +342,6 @@
 		var schedules = $('.cd-schedule');
 		var objSchedulesPlan = [],
 			windowResize = false;
-
-		console.log('Initiating format timetable!');
 		
 		if( schedules.length > 0 ) {
 			schedules.each(function(){

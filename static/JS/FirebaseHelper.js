@@ -767,18 +767,49 @@ function AttachEventToEachStudentClick(){
 		subject = String($(this).attr("data-subject"));
 		studentname = String($(this).attr("data-studentName"));
 
+		today = new Date().toISOString().slice(0, 10);
+		currentYear = today.split('-')[0];
+		MonthsArr = ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
 		rollCallDateArray_ = [];
 		rollCallAttendanceArr_ = [];
 
+		TutionMothYearArray = [];
+		TutionPaidDayArray = [];
+
 		//access the firebase database and extract all the necessary info
 		//first we gotta get the roll call arrays from the firebase database
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/ClassAttendance/');
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/');
 
 		ref.once('value', ReceivedData, errData).then(function(){
 
-			//now that we have the roll call arrays lets start making the html elements
+			//now that we have the roll call arrays  and tutions stuff lets start making the html elements
 
-			CreateStudentInfoBox(rollCallDateArray_, rollCallAttendanceArr_, studentname, UID, streamName, subject, grade);
+			//now lets start with the tution call time manipulations
+			console.log('TutionMothYearArray');
+			console.log(TutionMothYearArray);
+
+			console.log('TutionPaidDayArray');
+			console.log(TutionPaidDayArray);
+
+			//first we need to find the pending month based on the last paid month and add 1 to it
+			LastPaidMonth = TutionMothYearArray[0].split(' ')[0];
+			monthArrIndex = MatchAndFindIndex(MonthsArr, LastPaidMonth);
+
+			//but make sure to reset it back to 0 if we get 11 i.e december
+			if (monthArrIndex==11){
+				PendingMonth = MonthsArr[0];
+			}
+			else{
+				PendingMonth = MonthsArr[monthArrIndex+1];
+			}
+
+			PendingMonthYear = PendingMonth + ' ' + currentYear;
+
+			console.log('Pending: ' + String(PendingMonthYear));
+
+
+			CreateStudentInfoBox(rollCallDateArray_, rollCallAttendanceArr_, studentname, UID, streamName, subject, grade, PendingMonthYear, TutionMothYearArray, TutionPaidDayArray);
 
 			FadeOutLoadingFrame();
 
@@ -794,18 +825,34 @@ function AttachEventToEachStudentClick(){
 		function ReceivedData(data){
 			tableData = data.val();
 
+			ClassAttendanceJSON = tableData['ClassAttendance'];
+
 			$('.MainContent').css('-webkit-filter', 'blur(30px');
 
 			//now we can loop through them and fill the roll call date and attendance arrays
 			var key;	//where key is each data in the table
-			for (key in tableData) {
+			for (key in ClassAttendanceJSON) {
 				CurrentDate = key;
 
-				CurrentAttendance = tableData[key];
+				CurrentAttendance = ClassAttendanceJSON[key];
 
 				rollCallDateArray_.push(CurrentDate);
 				rollCallAttendanceArr_.push(CurrentAttendance);
 			}
+
+			TutionPaidJSON = tableData['TutionPaid'];
+			//now we can loop through the dates of tution paid and insert them into the respective arrays
+			var key;	//where key is each date in the table e.g Aug 2018
+			for (key in TutionPaidJSON) {
+				MonthYear = key;
+
+				Day_ = TutionPaidJSON[key];
+
+				TutionMothYearArray.push(MonthYear);
+				TutionPaidDayArray.push(Day_);
+			}
+
+
 
 		}
 
@@ -1131,7 +1178,7 @@ function CreateRollCallBox(studentNameArr, studentUIDArr, streamName, subject, g
 
 
 //create the student Info box
-function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentName, studentUID, streamName, subject, grade){
+function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentName, studentUID, streamName, subject, grade, currentTutionPendingMonth, TutionMothYearArray, TutionPaidDayArray){
 
 	address = grade + '/' + subject + '/Streams/' + streamName + '/';
 
@@ -1234,8 +1281,139 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 
 				StudentInfoCont.append(StudentInfoRollCallCont);
 
+			//now work on the tution column
+			var StudentInfoTutionCont = document.createElement('div');
+			StudentInfoTutionCont.setAttribute('class', 'StudentInfoTutionCont');
+
+				//the tution heading
+				var StudentInfoTutionHeading = document.createElement('div');
+				StudentInfoTutionHeading.setAttribute('class', 'StudentInfoTutionHeading');	
+
+				var t = document.createTextNode('Tution');
+				StudentInfoTutionHeading.append(t);
+
+				StudentInfoTutionCont.append(StudentInfoTutionHeading);	
+
+				//the tution action tab
+				var StudentInfoTutionAction = document.createElement('div');
+				StudentInfoTutionAction.setAttribute('class', 'StudentInfoTutionAction');
+
+					var PendingHeading = document.createElement('span');
+					PendingHeading.setAttribute('class', 'PendingHeading');	
+
+					var t = document.createTextNode('Pending:');
+					PendingHeading.append(t);
+
+					var PendingMonth = document.createElement('span');
+					PendingMonth.setAttribute('class', 'PendingMonth');	
+
+					var t = document.createTextNode(currentTutionPendingMonth);
+					PendingMonth.append(t);
+
+					var TutionAcceptButton = document.createElement('span');
+					TutionAcceptButton.setAttribute('class', 'TutionAcceptButton');	
+
+					var t = document.createTextNode('Accept');
+					TutionAcceptButton.append(t);
+
+					StudentInfoTutionAction.append(PendingHeading);
+					StudentInfoTutionAction.append(PendingMonth);	
+					StudentInfoTutionAction.append(TutionAcceptButton);	
+
+					StudentInfoTutionCont.append(StudentInfoTutionAction);
+
+				//now we need to loop through and make each entry inside the tution column for paid stuff
+				for (var i = 0; i < TutionMothYearArray.length; i++) {
+
+					var OneTutionEntry = document.createElement('div');
+					OneTutionEntry.setAttribute('class', 'OneTutionEntry');
+
+						var TutionDate = document.createElement('span');
+						TutionDate.setAttribute('class', 'TutionDate');	
+
+						var t = document.createTextNode(TutionMothYearArray[i]);
+						TutionDate.append(t);	
+
+						var TutionResult = document.createElement('span');
+						TutionResult.setAttribute('class', 'TutionResult');	
+
+						var t = document.createTextNode('PAID');
+						TutionResult.append(t);
+
+						var PaidDate = document.createElement('span');
+						PaidDate.setAttribute('class', 'PaidDate');	
+
+						var t = document.createTextNode(TutionPaidDayArray[i]);
+						PaidDate.append(t);
+
+						OneTutionEntry.append(TutionDate);
+						OneTutionEntry.append(TutionResult);
+						OneTutionEntry.append(PaidDate);
+
+
+						if (i==0){
+							//make the delete eraser icon for this element
+							var DeleteLastPaidEntry = document.createElement('span');
+							DeleteLastPaidEntry.setAttribute('class', 'fas fa-eraser');	
+							DeleteLastPaidEntry.setAttribute('id', 'DeleteLastPaidEntry');	
+
+							OneTutionEntry.append(DeleteLastPaidEntry);
+						}
+
+						StudentInfoTutionCont.append(OneTutionEntry);
+
+				}
+
+				StudentInfoCont.append(StudentInfoTutionCont);
+
+
 	document.body.appendChild(StudentInfoCont);
 }
+
+
+function MatchAndFindIndex(inputArr, inputToMatch){
+
+	index_ = null;
+
+	for (var i = 0; i < inputArr.length; i++) {
+
+		if (inputArr[i]==inputToMatch){
+
+			index_ = i;
+			break;
+		}
+
+	}
+
+	return index_
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

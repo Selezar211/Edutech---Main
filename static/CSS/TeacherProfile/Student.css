@@ -427,7 +427,7 @@
     transition: 400ms;
 }
 
-.StudentMessageRollCall:hover{
+.StudentMessageRollCall:hover, .TutionAcceptButton:hover{
 	transition: 400ms;
 	color: black;
 	background-color: beige;
@@ -528,6 +528,124 @@
 }
 
 
+/*Tution part*/
+.StudentInfoTutionCont{
+	overflow: auto;
+	border-right: 0.1vw solid black;
+	margin-top: 2%;
+	width: 33%;
+	height: 83%;
+	position: relative;
+	display: inline-block;
+	padding-right: 2%;
+	padding-left: 2%;
+	float: left;
+}
+
+.fa-eraser{
+	cursor: pointer;
+	transition: 400ms;
+	cursor: pointer;
+	color: black;
+	position: relative;
+	transform: scale(1,1);
+	float: right;
+	padding-top: 2%;
+	margin-right: 2%;
+}
+
+.fa-eraser:hover{
+	transition: 400ms;
+	color: white;
+}
+
+
+.StudentInfoTutionHeading{
+	font-weight: bolder;
+	margin-top: 2%;
+	margin-bottom: 3%;
+	width: 100%;
+	font-size: 1.4em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	float: left;
+	color: black;
+}
+
+.StudentInfoTutionAction{
+	border-bottom: 0.1vw solid black;
+	padding-bottom: 8%;
+	margin-bottom: 2%;
+	width: 100%;
+	font-size: 1em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	float: left;
+	color: black;
+}
+
+.PendingHeading{
+	padding-top: 3%;
+}
+
+.PendingMonth{
+	font-weight: bolder;
+	margin-left: 2%;
+	border: 0.1vw solid black;
+	padding: 3%;
+	padding-left: 4%;
+	padding-right: 4%;
+	color: black;
+}
+
+.TutionAcceptButton{
+	margin-left: 3%;
+	transition: 400ms;
+	padding: 3%;
+	padding-left: 4%;
+	padding-right: 4%;
+	cursor: pointer;
+	background-color: black;
+	color: white;
+}
+
+
+.OneTutionEntry{
+	padding-left:2%;
+	padding-right:2%;
+	cursor: pointer;
+	margin-top: 2%;
+	width: 100%;
+	font-size: 1em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	transition: 400ms;
+	float: left;
+	color: black;
+}
+
+.OneTutionEntry:hover {
+	background-color: silver;
+	transition: 400ms;
+}
+
+.TutionDate{
+	float: left;
+}
+
+.TutionResult{
+	font-weight: bolder;
+	float: left;
+	margin-left: 4%;
+}
+
+.PaidDate{
+	float: left;
+	margin-left: 4%;
+}
 
 
 
