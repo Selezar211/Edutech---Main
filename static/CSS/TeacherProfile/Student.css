@@ -287,7 +287,7 @@
 }
 
 .RollCallHeading{
-	margin-bottom: 1%;
+	margin-bottom: 1.5%;
 	font-size: 1.1em;
 		color: white;
 		width: 100%;
@@ -320,6 +320,13 @@
 	transition: 400ms;
 }
 
+.LineCont{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	margin-top: -1.5%;
+}
+
 .CBOX_LABEL{
 	transition: 400ms;
 	font-size: 1.2em;
@@ -327,6 +334,7 @@
 		color: black;
 		font-family: 'Quattrocento';
 		padding-left: 2%;
+		padding-top: 1%;
 		margin-left: 3%;
 		width: 80%;
 		position: relative;
@@ -334,7 +342,7 @@
 		float: left;
 }
 
-.CBOX_LABEL:hover{
+.LineCont:hover{
 	transition: 400ms;
 	background-color: silver;
 }
@@ -342,7 +350,7 @@
 
 
 .RollCall_CBOX{
-	margin-top: 1%;
+	margin-top: 1.5%;
 	margin-left: 4%;
 		cursor: pointer;
 		color: black;

@@ -689,7 +689,7 @@ function AttachEventToEachStudentClick(){
 				console.log(CheckBox_UNCHECKED);
 
 		   		//now insert this into class attendance tab
-		   		today = new Date().toISOString().slice(0, 10)
+		   		today = new Date().toISOString().slice(0, 10);
 
 		   		for (var i = 0; i < CheckBox_CHECKED.length ; i++) {
 		   			//loop through and update each students roll call for present
@@ -699,32 +699,33 @@ function AttachEventToEachStudentClick(){
 		   				[today]: 'Present'
 		   			}
 
-		   			ref.update(data).then(function(){
-				   		for (var i = 0; i < CheckBox_UNCHECKED.length ; i++) {
-				   			//loop through and update each students roll call for present
-				   			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + 'AcceptedStudents/' + String(CheckBox_UNCHECKED[i]) + '/ClassAttendance/');
+		   			ref.update(data);
 
-				   			var data = {
-				   				[today]: 'Absent'
-				   			}
-
-				   			ref.update(data).then(function(){
-								$('.RollCallCont').remove();
-								$('.MainContent').css('-webkit-filter', 'blur(0px');
-				   				FadeOutLoadingFrame();
-				   				BoxAlert('Roll calls updated: ' + String(today) );
-				   			});
-				   		}
-
-		   			});
 		   		}
 
-		   		
+
+		   		for (var i = 0; i < CheckBox_UNCHECKED.length ; i++) {
+		   			//loop through and update each students roll call for present
+		   			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  address + 'AcceptedStudents/' + String(CheckBox_UNCHECKED[i]) + '/ClassAttendance/');
+
+		   			var data = {
+		   				[today]: 'Absent'
+		   			}
+
+		   			ref.update(data);
+		   		}
+
+				$('.RollCallCont').remove();
+				$('.MainContent').css('-webkit-filter', 'blur(0px');
+   				FadeOutLoadingFrame();
+   				BoxAlert('Roll calls updated: ' + String(today) );
+
 		    	return false;
 		    }); 
 
 			FadeOutLoadingFrame();
 		});
+
 
 		function ReceivedData(data){
 			tableData = data.val();
@@ -1098,6 +1099,9 @@ function CreateRollCallBox(studentNameArr, studentUIDArr, streamName, subject, g
 		for (var i = 0; i < studentNameArr.length; i++) {
 			//loop through and create elements for each studentName
 
+			var LineCont = document.createElement('div');
+			LineCont.setAttribute('class', 'LineCont');
+
 			//CBOX LABEL
 			var CBOX_LABEL = document.createElement('label');
 			CBOX_LABEL.setAttribute('class', 'CBOX_LABEL');
@@ -1115,8 +1119,10 @@ function CreateRollCallBox(studentNameArr, studentUIDArr, streamName, subject, g
 			RollCall_CBOX.setAttribute('value', studentUIDArr[i]);
 			
 
-			RollCallCont.append(CBOX_LABEL);
-			RollCallCont.append(RollCall_CBOX);
+			LineCont.append(CBOX_LABEL);
+			LineCont.append(RollCall_CBOX);
+
+			RollCallCont.append(LineCont);
 		}
 
 		document.body.appendChild(RollCallCont);
