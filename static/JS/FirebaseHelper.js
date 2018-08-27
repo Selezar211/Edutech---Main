@@ -862,6 +862,7 @@ function AttachEventToEachStudentClick(){
 				$('.MainContent').css('-webkit-filter', 'blur(0px');
 		    	return false;
 		    }); 
+
 		   	$(".TutionAcceptButton").click(function() {
 		   		//accept the tution and update the database
 		   		FadeInLoadingFrame();
@@ -897,6 +898,28 @@ function AttachEventToEachStudentClick(){
 					BoxAlert('Payment Month: ' + innerValue + ' accepted');
 					FadeOutLoadingFrame();
 				})
+
+		    	return false;
+		    }); 
+
+		   	//attach events to deleting last paid entry
+		   	$(".fa-eraser").click(function() {
+
+		   		FadeInLoadingFrame();
+
+				UID = String($(this).attr("data-uid"));
+
+				Address = String($(this).attr("data-address"));
+
+				key_ = String($(this).attr("data-value"));
+
+				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/TutionPaid/' + String(key_) + '/');
+
+				ref.remove().then(ReloadBackEndData).then(function(){
+					$('.MainContent').css('-webkit-filter', 'blur(0px');
+					BoxAlert('Last Paid Month deleted..');
+					FadeOutLoadingFrame();
+				});
 
 		    	return false;
 		    }); 
@@ -1445,7 +1468,10 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 						if (i==0){
 							//make the delete eraser icon for this element
 							var DeleteLastPaidEntry = document.createElement('span');
-							DeleteLastPaidEntry.setAttribute('class', 'fas fa-eraser');	
+							DeleteLastPaidEntry.setAttribute('class', 'fas fa-eraser');
+							DeleteLastPaidEntry.setAttribute('data-address', address);
+							DeleteLastPaidEntry.setAttribute('data-UID', studentUID);	
+							DeleteLastPaidEntry.setAttribute('data-value', TutionMothYearArray[i]);
 							DeleteLastPaidEntry.setAttribute('id', 'DeleteLastPaidEntry');	
 
 							OneTutionEntry.append(DeleteLastPaidEntry);
@@ -1456,6 +1482,23 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 				}
 
 				StudentInfoCont.append(StudentInfoTutionCont);
+
+		//now work on the exam tab
+		var StudentInfoExamCont = document.createElement('div');
+		StudentInfoExamCont.setAttribute('class', 'StudentInfoExamCont');	
+
+			var StudentInfoExamHeading = document.createElement('div');
+			StudentInfoExamHeading.setAttribute('class', 'StudentInfoExamHeading');		
+
+			var t = document.createTextNode('Exam');
+			StudentInfoExamHeading.append(t);
+
+			StudentInfoExamCont.append(StudentInfoExamHeading);
+
+
+
+
+			StudentInfoCont.append(StudentInfoExamCont);
 
 
 	document.body.appendChild(StudentInfoCont);
