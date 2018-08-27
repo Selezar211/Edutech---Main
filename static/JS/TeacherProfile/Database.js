@@ -736,6 +736,7 @@ function ReloadBackEndData(){
 	$('.ADDTimingDropDOWN').remove();
 	$('.single-event').remove();
 	$('.BatchBox').remove();
+	$('.StudentInfoCont').remove();
 
 	//now recreate the streamboxes after fetching em all
 	FetchAllDataFromDatabase();

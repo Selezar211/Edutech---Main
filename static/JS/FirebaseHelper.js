@@ -771,61 +771,25 @@ function AttachEventToEachStudentClick(){
 		currentYear = today.split('-')[0];
 		MonthsArr = ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-		rollCallDateArray_ = [];
-		rollCallAttendanceArr_ = [];
-
-		TutionMothYearArray = [];
-		TutionPaidDayArray = [];
 
 		//access the firebase database and extract all the necessary info
 		//first we gotta get the roll call arrays from the firebase database
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/');
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/').once('value').then(function(snapshot) {
+  			var myData = snapshot.val();
 
-		ref.once('value', ReceivedData, errData).then(function(){
+  			console.log(myData);
 
-			//now that we have the roll call arrays  and tutions stuff lets start making the html elements
+			rollCallDateArray_ = [];
+			rollCallAttendanceArr_ = [];
 
-			//now lets start with the tution call time manipulations
-			console.log('TutionMothYearArray');
-			console.log(TutionMothYearArray);
+			TutionMothYearArray = [];
+			TutionPaidDayArray = [];
 
-			console.log('TutionPaidDayArray');
-			console.log(TutionPaidDayArray);
+  			//separate the obtained json into the three parts - rollcall, tution, exam
 
-			//first we need to find the pending month based on the last paid month and add 1 to it
-			LastPaidMonth = TutionMothYearArray[0].split(' ')[0];
-			monthArrIndex = MatchAndFindIndex(MonthsArr, LastPaidMonth);
+  			//get the roll call stuff
+			ClassAttendanceJSON = myData['ClassAttendance'];
 
-			//but make sure to reset it back to 0 if we get 11 i.e december
-			if (monthArrIndex==11){
-				PendingMonth = MonthsArr[0];
-			}
-			else{
-				PendingMonth = MonthsArr[monthArrIndex+1];
-			}
-
-			PendingMonthYear = PendingMonth + ' ' + currentYear;
-
-			console.log('Pending: ' + String(PendingMonthYear));
-
-
-			CreateStudentInfoBox(rollCallDateArray_, rollCallAttendanceArr_, studentname, UID, streamName, subject, grade, PendingMonthYear, TutionMothYearArray, TutionPaidDayArray);
-
-			FadeOutLoadingFrame();
-
-			//now attach click events to this newly made student info box
-		   	$("#StudentInfoContCloseIcon").click(function() {
-				$('.StudentInfoCont').remove();
-				$('.MainContent').css('-webkit-filter', 'blur(0px');
-		    	return false;
-		    }); 
-
-		});
-
-		function ReceivedData(data){
-			tableData = data.val();
-
-			ClassAttendanceJSON = tableData['ClassAttendance'];
 
 			$('.MainContent').css('-webkit-filter', 'blur(30px');
 
@@ -840,9 +804,11 @@ function AttachEventToEachStudentClick(){
 				rollCallAttendanceArr_.push(CurrentAttendance);
 			}
 
-			TutionPaidJSON = tableData['TutionPaid'];
+			//get the tution paid stuff
+			TutionPaidJSON = myData['TutionPaid'];
+
 			//now we can loop through the dates of tution paid and insert them into the respective arrays
-			var key;	//where key is each date in the table e.g Aug 2018
+			var key;	//where key is each year.month in the table 201805 and value is day
 			for (key in TutionPaidJSON) {
 				MonthYear = key;
 
@@ -852,22 +818,97 @@ function AttachEventToEachStudentClick(){
 				TutionPaidDayArray.push(Day_);
 			}
 
+			//if needed to reverse the date and month arrays
+			newTutionMothYearArray = TutionMothYearArray.reverse();
+			newTutionPaidDayArray = TutionPaidDayArray.reverse();
 
 
-		}
+			//now that we have our all input arrays we can call the function to craft them
+			//first we need to find the pending month based on the last paid month and add 1 to it
+			//if a last paid month exists then make the current one the next one of last paid
+			if (newTutionMothYearArray[0]) {
+				LastPaidMonthIndex = parseInt(newTutionMothYearArray[0].substring(4, 6));
+				monthArrIndex = LastPaidMonthIndex-1;
 
-		function errData(err){
-			console.log('Error!');
-			console.log(err);
-		}
+				//but make sure to reset it back to 0 if we get 11 i.e december and also increase year by 1
+				if (monthArrIndex==11){
+					PendingMonth = MonthsArr[0];
+					currentYear = parseInt(currentYear) + 1;
+
+				}
+				else{
+					PendingMonth = MonthsArr[monthArrIndex+1];
+				}
+
+				PendingMonthYear = PendingMonth + ' ' + currentYear;
+			}
+			//otherwise just set the pending month to the actual current month
+			else {
+				//set pending month to current month
+				now_ = new Date().toISOString().slice(0, 10);
+				thisYear = now_.split('-')[0];
+				thisMonth = MonthsArr[parseInt(now_.split('-')[1]) - 1];
+				PendingMonthYear = thisMonth + ' ' + thisYear;
+			}
 
 
+			CreateStudentInfoBox(rollCallDateArray_, rollCallAttendanceArr_, studentname, UID, streamName, subject, grade, PendingMonthYear, newTutionMothYearArray, newTutionPaidDayArray);
+
+			FadeOutLoadingFrame();
+
+			//now attach click events to this newly made student info box
+		   	$("#StudentInfoContCloseIcon").click(function() {
+				$('.StudentInfoCont').remove();
+				$('.MainContent').css('-webkit-filter', 'blur(0px');
+		    	return false;
+		    }); 
+		   	$(".TutionAcceptButton").click(function() {
+		   		//accept the tution and update the database
+		   		FadeInLoadingFrame();
+
+		   		now_ = new Date().toISOString().slice(0, 10);
+
+				UID = String($(this).attr("data-uid"));
+
+				Address = String($(this).attr("data-address"));
+
+				//crafted value needs to be of the form 201809 or year.month without the dot
+
+				innerValue = String($(this).attr("data-value"));
+
+				//inner value is of the form Jul 2018 e.g
+
+				year_ = innerValue.split(' ')[1];
+
+				findIndexMonth = parseInt(MatchAndFindIndex(MonthsArr, innerValue.split(' ')[0])) + 1;
+
+				formattedFindIndexMonth = (findIndexMonth).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+
+				craftedValue = String(year_) + String(formattedFindIndexMonth);
+
+				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/TutionPaid/');
+
+				var data = {
+					[craftedValue]:now_
+				};
+
+				ref.update(data).then(ReloadBackEndData).then(function(){
+					$('.MainContent').css('-webkit-filter', 'blur(0px');
+					BoxAlert('Payment Month: ' + innerValue + ' accepted');
+					FadeOutLoadingFrame();
+				})
+
+		    	return false;
+		    }); 
+  
+		});
 
     	return false;
-    }); 
-
+   	}); 
 
 }
+
+
 
 //create the batchbox
 function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
@@ -1180,7 +1221,9 @@ function CreateRollCallBox(studentNameArr, studentUIDArr, streamName, subject, g
 //create the student Info box
 function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentName, studentUID, streamName, subject, grade, currentTutionPendingMonth, TutionMothYearArray, TutionPaidDayArray){
 
+
 	address = grade + '/' + subject + '/Streams/' + streamName + '/';
+	MonthsArr = ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 	var StudentInfoCont = document.createElement('div');
 	StudentInfoCont.setAttribute('class', 'StudentInfoCont');
@@ -1237,7 +1280,7 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 				var StudentInfoRollCallHeading = document.createElement('div');
 				StudentInfoRollCallHeading.setAttribute('class', 'StudentInfoRollCallHeading');	
 
-				var t = document.createTextNode('Roll Call - Attendance');
+				var t = document.createTextNode('Roll Call');
 				StudentInfoRollCallHeading.append(t);
 
 				StudentInfoRollCallCont.append(StudentInfoRollCallHeading);
@@ -1312,6 +1355,9 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 
 					var TutionAcceptButton = document.createElement('span');
 					TutionAcceptButton.setAttribute('class', 'TutionAcceptButton');	
+					TutionAcceptButton.setAttribute('data-value', currentTutionPendingMonth);
+					TutionAcceptButton.setAttribute('data-address', address);
+					TutionAcceptButton.setAttribute('data-uid', studentUID);
 
 					var t = document.createTextNode('Accept');
 					TutionAcceptButton.append(t);
@@ -1331,7 +1377,7 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 						var TutionDate = document.createElement('span');
 						TutionDate.setAttribute('class', 'TutionDate');	
 
-						var t = document.createTextNode(TutionMothYearArray[i]);
+						var t = document.createTextNode(String(MonthsArr[parseInt(TutionMothYearArray[i].substr(4,6))-1]) + ' ' + String(TutionMothYearArray[i].substr(0,4)));
 						TutionDate.append(t);	
 
 						var TutionResult = document.createElement('span');
