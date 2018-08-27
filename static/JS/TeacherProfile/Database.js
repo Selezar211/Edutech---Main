@@ -424,7 +424,7 @@ function CreateNewTiming(StreamAddress, day, startTime, endTime){
 
 
 //create the accepted students batch block to inject into it
-function CreateAcceptedStudentBatchBox(inputStudentJSON, grade, subject, streamName, totSeats, fillSeats){
+function CreateAcceptedStudentBatchBox(inputStudentJSON, grade, subject, streamName, totSeats, fillSeats, lastPendingMonthData){
 
 	//AcceptedStudents -> UID -> StudentName, RollCall, Tution
 	//first loop through the UID
@@ -434,8 +434,62 @@ function CreateAcceptedStudentBatchBox(inputStudentJSON, grade, subject, streamN
 
 		CurrentStudentName = inputStudentJSON[CurrentStudent_UID]['StudentName'];
 
+		//need to find the last pending month payment
+		TutionPaidJSON = inputStudentJSON[CurrentStudent_UID]['TutionPaid'];
+
+		today = new Date().toISOString().slice(0, 10);
+		currentYear = today.split('-')[0];
+		MonthsArr = ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+		//now we can loop through the dates of tution paid and insert them into the respective arrays
+		TutionMothYearArray = [];
+		TutionPaidDayArray = [];
+
+		var key;	//where key is each year.month in the table 201805 and value is day
+		for (key in TutionPaidJSON) {
+			MonthYear = key;
+
+			Day_ = TutionPaidJSON[key];
+
+			TutionMothYearArray.push(MonthYear);
+			TutionPaidDayArray.push(Day_);
+		}
+
+		//if needed to reverse the date and month arrays
+		newTutionMothYearArray = TutionMothYearArray.reverse();
+		newTutionPaidDayArray = TutionPaidDayArray.reverse();
+
+
+		//now that we have our all input arrays we can call the function to craft them
+		//first we need to find the pending month based on the last paid month and add 1 to it
+		//if a last paid month exists then make the current one the next one of last paid
+		if (newTutionMothYearArray[0]) {
+			LastPaidMonthIndex = parseInt(newTutionMothYearArray[0].substring(4, 6));
+			monthArrIndex = LastPaidMonthIndex-1;
+
+			//but make sure to reset it back to 0 if we get 11 i.e december and also increase year by 1
+			if (monthArrIndex==11){
+				PendingMonth = MonthsArr[0];
+				currentYear = parseInt(currentYear) + 1;
+
+			}
+			else{
+				PendingMonth = MonthsArr[monthArrIndex+1];
+			}
+
+			PendingMonthYear = PendingMonth + ' ' + currentYear;
+		}
+		//otherwise just set the pending month to the actual current month
+		else {
+			//set pending month to current month
+			now_ = new Date().toISOString().slice(0, 10);
+			thisYear = now_.split('-')[0];
+			thisMonth = MonthsArr[parseInt(now_.split('-')[1]) - 1];
+			PendingMonthYear = thisMonth + ' ' + thisYear;
+		}
+
 		//now create the html elements themselves
-		OneStudentLineAccepted(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName, totSeats, fillSeats);
+		OneStudentLineAccepted(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName, totSeats, fillSeats, PendingMonthYear);
 
 	}
 }

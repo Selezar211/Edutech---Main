@@ -98,7 +98,7 @@
 
 		.MessageIcon{
 			cursor: pointer;
-			padding-right: 2%;
+			padding-right: 4%;
 			border-right: 0.1vw solid white;
 			float: right;
 			transition: 400ms;
@@ -106,7 +106,8 @@
 
 		.RollCallIcon{
 			cursor: pointer;
-			padding-left: 2%;
+			padding-left: 4%;
+			padding-right: 2%;
 			float: right;
 			transition: 400ms;
 		}
@@ -134,6 +135,30 @@
 			padding-top: 2%;
 			padding-left: 2%;
 		}
+
+		.ShortcutTutionAccept{
+			float: right;
+			font-size: 0.8em;
+			cursor: pointer;
+			display: inline-block;
+			transition: 500ms;
+			position: relative;
+			color: white;
+			background-color: black;
+			padding-top: 1%;
+			padding-bottom: 1%;
+			padding-left: 2%;	
+			padding-right: 2%;
+			margin-top: -1%;
+			margin-right: 2%;
+		}
+
+		.ShortcutTutionAccept:hover{
+			background-color: beige;
+			color: black;
+			transition: 500ms;
+		}
+
 
 		.OneStudentLine:hover, .OneStudentLinePending:hover{
 			transition: 500ms;
@@ -181,6 +206,7 @@
 
 		#BanIcon, #Addicon{
 			transform: scale(1,1);
+			margin-top: 1%;
 			margin-left: 1%;
 			margin-right: 1%;
 			color: black;
@@ -191,7 +217,7 @@
 		}
 
 		#BanIcon:hover , #Addicon:hover {
-			transform: scale(1.5,1.5);
+			transform: scale(1.3,1.3);
 			color: white;
 			transition: 200ms;
 		}

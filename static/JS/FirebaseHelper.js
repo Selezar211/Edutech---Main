@@ -424,12 +424,6 @@ function CreateTimeTableHTML(){
 //attach event to clicking on each student in student tab
 function AttachEventToEachStudentClick(){
 
-	$(".OneStudentLine").click(function() {
-		console.log('clicked whole student!');
-
-    	return false;
-    });
-
 	//for accepting pending students
     $(".fa-user-check").click(function() {
 		console.log('clicked user pending accept!');
@@ -755,8 +749,8 @@ function AttachEventToEachStudentClick(){
     }); 
 
     //for clicking on each student in accepted row
-   	$(".OneStudentLine").click(function() {
-		console.log('clicked user dismiss!');
+   	$(".OneStudentLine").click(function(e) {
+		console.log('clicked user one student line!');
 		FadeInLoadingFrame();
 
 		UID = String($(this).attr("data-uid"));
@@ -894,9 +888,9 @@ function AttachEventToEachStudentClick(){
 				};
 
 				ref.update(data).then(ReloadBackEndData).then(function(){
-					$('.MainContent').css('-webkit-filter', 'blur(0px');
 					BoxAlert('Payment Month: ' + innerValue + ' accepted');
 					FadeOutLoadingFrame();
+					$('.MainContent').css('-webkit-filter', 'blur(0px');
 				})
 
 		    	return false;
@@ -916,9 +910,9 @@ function AttachEventToEachStudentClick(){
 				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/TutionPaid/' + String(key_) + '/');
 
 				ref.remove().then(ReloadBackEndData).then(function(){
-					$('.MainContent').css('-webkit-filter', 'blur(0px');
 					BoxAlert('Last Paid Month deleted..');
 					FadeOutLoadingFrame();
+					$('.MainContent').css('-webkit-filter', 'blur(0px');
 				});
 
 		    	return false;
@@ -959,9 +953,9 @@ function AttachEventToEachStudentClick(){
 				};
 
 				ref.update(data).then(ReloadBackEndData).then(function(){
-					$('.MainContent').css('-webkit-filter', 'blur(0px');
 					BoxAlert('Date: ' + key_ + ' flipped to ' + finalVal + ' for ' + studentName);
 					FadeOutLoadingFrame();
+					$('.MainContent').css('-webkit-filter', 'blur(0px');
 				});
 
 		    	return false;
@@ -971,6 +965,47 @@ function AttachEventToEachStudentClick(){
 
     	return false;
    	}); 
+
+    //shortcut tution accept button
+   	$(".ShortcutTutionAccept").click(function() {
+   		console.log('Shortcut button clicked!');
+   		//accept the tution and update the database
+   		FadeInLoadingFrame();
+
+   		now_ = new Date().toISOString().slice(0, 10);
+
+		UID = String($(this).attr("data-uid"));
+
+		Address = String($(this).attr("data-address"));
+
+		//crafted value needs to be of the form 201809 or year.month without the dot
+
+		innerValue = String($(this).attr("data-value"));
+
+		//inner value is of the form Jul 2018 e.g
+
+		year_ = innerValue.split(' ')[1];
+
+		findIndexMonth = parseInt(MatchAndFindIndex(MonthsArr, innerValue.split(' ')[0])) + 1;
+
+		formattedFindIndexMonth = (findIndexMonth).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false});
+
+		craftedValue = String(year_) + String(formattedFindIndexMonth);
+
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/TutionPaid/');
+
+		var data = {
+			[craftedValue]:now_
+		};
+
+		ref.update(data).then(ReloadBackEndData).then(function(){
+			BoxAlert('Payment Month: ' + innerValue + ' accepted');
+			FadeOutLoadingFrame();
+			$('.MainContent').css('-webkit-filter', 'blur(0px');
+		})
+
+    	return false;
+    }); 
 
 }
 
@@ -1090,7 +1125,7 @@ function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
 }
 
 //create one student line for batchbox for accepted
-function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName, totSeats, fillSeats){
+function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName, totSeats, fillSeats, pendingMonthYEAR){
 
 	address = grade + '/' + subject + '/Streams/' + streamName + '/'; 
 
@@ -1111,6 +1146,16 @@ function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName, t
 
 		OneStudentLine.append(StudentName);
 
+		var ShortcutTutionAccept = document.createElement('div');
+		ShortcutTutionAccept.setAttribute('class', 'ShortcutTutionAccept');
+		ShortcutTutionAccept.setAttribute('id', 'ShortcutTutionAccept_ID');
+		ShortcutTutionAccept.setAttribute('data-UID', UID);
+		ShortcutTutionAccept.setAttribute('data-address', address);
+		ShortcutTutionAccept.setAttribute('data-value', pendingMonthYEAR);
+
+		var t = document.createTextNode('Pending Pay: ' + String(pendingMonthYEAR));
+		ShortcutTutionAccept.append(t);
+
 		var _delete = document.createElement('i');
 		_delete.setAttribute('class', 'fas fa-user-minus');
 		_delete.setAttribute('id', 'BanIcon');
@@ -1121,6 +1166,7 @@ function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName, t
 		_delete.setAttribute('data-fillseats', fillSeats);
 
 		OneStudentLine.append(_delete);
+		OneStudentLine.append(ShortcutTutionAccept);
 
 		document.getElementById(grade.split(' ').join('') + subject + 'AcceptedBox_ID').appendChild(OneStudentLine);
 }
