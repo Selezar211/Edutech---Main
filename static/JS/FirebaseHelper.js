@@ -900,6 +900,49 @@ function AttachEventToEachStudentClick(){
 
 		    	return false;
 		    }); 
+
+		   	//attach event to flip the attendance of clicked on entry
+		   	$(".fa-exchange-alt").click(function() {
+
+		   		FadeInLoadingFrame();
+
+				UID = String($(this).attr("data-uid"));
+
+				Address = String($(this).attr("data-address"));
+
+				key_ = String($(this).attr("data-key"));
+
+				studentName = String($(this).attr("data-studentname"));
+
+				currentAttendance = String($(this).attr("data-current"));
+
+				finalVal = '';
+
+				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/ClassAttendance/');
+
+				if (currentAttendance=='Present'){
+
+					finalVal = 'Absent'; 
+				}
+				else if (currentAttendance=='Absent'){
+					finalVal = 'Present';
+				}
+				else {
+					console.log('Problem in flipping present or absent!')
+				}
+
+				var data = {
+					[key_]:finalVal
+				};
+
+				ref.update(data).then(ReloadBackEndData).then(function(){
+					$('.MainContent').css('-webkit-filter', 'blur(0px');
+					BoxAlert('Date: ' + key_ + ' flipped to ' + finalVal + ' for ' + studentName);
+					FadeOutLoadingFrame();
+				});
+
+		    	return false;
+		    }); 
   
 		});
 
@@ -1313,7 +1356,9 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 						exchange.setAttribute('class', 'fas fa-exchange-alt');	
 						exchange.setAttribute('data-address', address);
 						exchange.setAttribute('data-UID', studentUID);
-						exchange.setAttribute('data-current', currentAttendance);				
+						exchange.setAttribute('data-key', currentDate);
+						exchange.setAttribute('data-current', currentAttendance);
+						exchange.setAttribute('data-studentname', _studentName);			
 
 						OneAttendanceEntry.append(RollCallDate);
 						OneAttendanceEntry.append(RollCallResult);
