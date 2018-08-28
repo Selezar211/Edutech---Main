@@ -581,14 +581,16 @@ function AttachEventToEachStudentClick(){
 		grade = String($(this).attr("data-grade"));
 
 		//now need to create the message batch box
-		$('.MainContent').css('-webkit-filter', 'blur(30px');
+		BlurAnimate('.MainContent');
+		//$('.MainContent').css('-webkit-filter', 'blur(30px');
 		CreateMessageBox(streamName, subject, grade);
 
 		//now need to attach click events to send message and cancel message buttons
 	    //for clicking cancel message
 	   	$(".CancelMessage").click(function() {
 			console.log('clicked message cancel!');
-			$('.MainContent').css('-webkit-filter', 'blur(0px');
+			UnBlurAnimate('.MainContent');
+			//$('.MainContent').css('-webkit-filter', 'blur(0px');
 			$('.MessageBatchBox').remove();
 	    	return false;
 	    }); 
@@ -613,7 +615,8 @@ function AttachEventToEachStudentClick(){
 
 			ref.update(data).then(function(){
 				$('.MessageBatchBox').remove();
-				$('.MainContent').css('-webkit-filter', 'blur(0px');
+				UnBlurAnimate('.MainContent');
+				//$('.MainContent').css('-webkit-filter', 'blur(0px');
 				BoxAlert('Message Sent')
 
 			});
@@ -656,7 +659,8 @@ function AttachEventToEachStudentClick(){
 		   	$(".CancelRollCall").click(function() {
 
 				$('.RollCallCont').remove();
-				$('.MainContent').css('-webkit-filter', 'blur(0px');
+				UnBlurAnimate('.MainContent');
+				//$('.MainContent').css('-webkit-filter', 'blur(0px');
 		    	return false;
 		    }); 
 
@@ -710,7 +714,8 @@ function AttachEventToEachStudentClick(){
 		   		}
 
 				$('.RollCallCont').remove();
-				$('.MainContent').css('-webkit-filter', 'blur(0px');
+				UnBlurAnimate('.MainContent');
+				//$('.MainContent').css('-webkit-filter', 'blur(0px');
    				FadeOutLoadingFrame();
    				BoxAlert('Roll calls updated: ' + String(today) );
 
@@ -724,7 +729,8 @@ function AttachEventToEachStudentClick(){
 		function ReceivedData(data){
 			tableData = data.val();
 
-			$('.MainContent').css('-webkit-filter', 'blur(30px');
+			BlurAnimate('.MainContent');
+			//$('.MainContent').css('-webkit-filter', 'blur(30px');
 
 			//now we can loop through them and fill the student name and UID arrays
 			var key;
@@ -784,9 +790,6 @@ function AttachEventToEachStudentClick(){
   			//get the roll call stuff
 			ClassAttendanceJSON = myData['ClassAttendance'];
 
-
-			$('.MainContent').css('-webkit-filter', 'blur(30px');
-
 			//now we can loop through them and fill the roll call date and attendance arrays
 			var key;	//where key is each data in the table
 			for (key in ClassAttendanceJSON) {
@@ -845,15 +848,16 @@ function AttachEventToEachStudentClick(){
 				PendingMonthYear = thisMonth + ' ' + thisYear;
 			}
 
+			FadeOutLoadingFrame();
+			BlurAnimate('.MainContent');
 
 			CreateStudentInfoBox(rollCallDateArray_, rollCallAttendanceArr_, studentname, UID, streamName, subject, grade, PendingMonthYear, newTutionMothYearArray, newTutionPaidDayArray);
 
-			FadeOutLoadingFrame();
-
 			//now attach click events to this newly made student info box
 		   	$("#StudentInfoContCloseIcon").click(function() {
+		   		$('.StudentInfoCont').fadeOut('slow');
 				$('.StudentInfoCont').remove();
-				$('.MainContent').css('-webkit-filter', 'blur(0px');
+				UnBlurAnimate('.MainContent');
 		    	return false;
 		    }); 
 
@@ -866,6 +870,8 @@ function AttachEventToEachStudentClick(){
 				UID = String($(this).attr("data-uid"));
 
 				Address = String($(this).attr("data-address"));
+
+				studentName = String($(this).attr("data-studentname"));
 
 				//crafted value needs to be of the form 201809 or year.month without the dot
 
@@ -888,9 +894,9 @@ function AttachEventToEachStudentClick(){
 				};
 
 				ref.update(data).then(ReloadBackEndData).then(function(){
-					BoxAlert('Payment Month: ' + innerValue + ' accepted');
+					BoxAlert('Payment Month: ' + innerValue + ' accepted for ' + String(studentName));
 					FadeOutLoadingFrame();
-					$('.MainContent').css('-webkit-filter', 'blur(0px');
+					UnBlurAnimate('.MainContent');
 				})
 
 		    	return false;
@@ -905,14 +911,16 @@ function AttachEventToEachStudentClick(){
 
 				Address = String($(this).attr("data-address"));
 
+				studentName = String($(this).attr("data-studentname"));
+
 				key_ = String($(this).attr("data-value"));
 
 				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' +  Address + 'AcceptedStudents/' + UID + '/TutionPaid/' + String(key_) + '/');
 
 				ref.remove().then(ReloadBackEndData).then(function(){
-					BoxAlert('Last Paid Month deleted..');
+					BoxAlert('Last Paid Month deleted for ' + String(studentName));
 					FadeOutLoadingFrame();
-					$('.MainContent').css('-webkit-filter', 'blur(0px');
+					UnBlurAnimate('.MainContent');
 				});
 
 		    	return false;
@@ -955,7 +963,7 @@ function AttachEventToEachStudentClick(){
 				ref.update(data).then(ReloadBackEndData).then(function(){
 					BoxAlert('Date: ' + key_ + ' flipped to ' + finalVal + ' for ' + studentName);
 					FadeOutLoadingFrame();
-					$('.MainContent').css('-webkit-filter', 'blur(0px');
+					UnBlurAnimate('.MainContent');
 				});
 
 		    	return false;
@@ -978,6 +986,8 @@ function AttachEventToEachStudentClick(){
 
 		Address = String($(this).attr("data-address"));
 
+		studentName = String($(this).attr("data-studentname"));
+
 		//crafted value needs to be of the form 201809 or year.month without the dot
 
 		innerValue = String($(this).attr("data-value"));
@@ -999,9 +1009,9 @@ function AttachEventToEachStudentClick(){
 		};
 
 		ref.update(data).then(ReloadBackEndData).then(function(){
-			BoxAlert('Payment Month: ' + innerValue + ' accepted');
+			BoxAlert('Payment Month: ' + innerValue + ' accepted for ' + String(studentName));
 			FadeOutLoadingFrame();
-			$('.MainContent').css('-webkit-filter', 'blur(0px');
+			UnBlurAnimate('.MainContent');
 		})
 
     	return false;
@@ -1104,7 +1114,7 @@ function CreateStudentBatchBox(streamName, subject, grade, SeatsFilled){
 		PendingBoxHeading.setAttribute('class', 'PendingBoxHeading');
 
 		var s = document.createElement('span');
-		var t = document.createTextNode('Pending');
+		var t = document.createTextNode('Requested');
 		s.append(t);
 
 		PendingBoxHeading.append(s);
@@ -1150,6 +1160,7 @@ function OneStudentLineAccepted(studentName_, UID, grade, subject, streamName, t
 		ShortcutTutionAccept.setAttribute('class', 'ShortcutTutionAccept');
 		ShortcutTutionAccept.setAttribute('id', 'ShortcutTutionAccept_ID');
 		ShortcutTutionAccept.setAttribute('data-UID', UID);
+		ShortcutTutionAccept.setAttribute('data-studentname', studentName_);
 		ShortcutTutionAccept.setAttribute('data-address', address);
 		ShortcutTutionAccept.setAttribute('data-value', pendingMonthYEAR);
 
@@ -1397,6 +1408,38 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 
 				StudentInfoRollCallCont.append(StudentInfoRollCallHeading);
 
+				//the roll call action tab
+				var StudentInfoRollCallAction = document.createElement('div');
+				StudentInfoRollCallAction.setAttribute('class', 'StudentInfoRollCallAction');
+
+					var RollCallGraphHeading = document.createElement('span');
+					RollCallGraphHeading.setAttribute('class', 'RollCallGraphHeading');	
+
+					var t = document.createTextNode('Visualise:');
+					RollCallGraphHeading.append(t);
+
+					var PlotRollCallHistogram = document.createElement('span');
+					PlotRollCallHistogram.setAttribute('class', 'PlotRollCallHistogram');	
+					PlotRollCallHistogram.setAttribute('data-address', address);
+					PlotRollCallHistogram.setAttribute('data-uid', studentUID);
+
+					var t = document.createTextNode('Histogram');
+					PlotRollCallHistogram.append(t);
+
+					var PlotRollCallGraph = document.createElement('span');
+					PlotRollCallGraph.setAttribute('class', 'PlotRollCallGraph');	
+					PlotRollCallGraph.setAttribute('data-address', address);
+					PlotRollCallGraph.setAttribute('data-uid', studentUID);
+
+					var t = document.createTextNode('Line Plot');
+					PlotRollCallGraph.append(t);
+
+					StudentInfoRollCallAction.append(RollCallGraphHeading);
+					StudentInfoRollCallAction.append(PlotRollCallHistogram);
+					StudentInfoRollCallAction.append(PlotRollCallGraph);	
+
+					StudentInfoRollCallCont.append(StudentInfoRollCallAction);
+
 				//now loop through and make each attendance entry
 				for (var i = 0; i < rollCallDateArr.length; i++) {
 
@@ -1469,6 +1512,7 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 
 					var TutionAcceptButton = document.createElement('span');
 					TutionAcceptButton.setAttribute('class', 'TutionAcceptButton');	
+					TutionAcceptButton.setAttribute('data-studentname', _studentName);
 					TutionAcceptButton.setAttribute('data-value', currentTutionPendingMonth);
 					TutionAcceptButton.setAttribute('data-address', address);
 					TutionAcceptButton.setAttribute('data-uid', studentUID);
@@ -1516,7 +1560,8 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 							var DeleteLastPaidEntry = document.createElement('span');
 							DeleteLastPaidEntry.setAttribute('class', 'fas fa-eraser');
 							DeleteLastPaidEntry.setAttribute('data-address', address);
-							DeleteLastPaidEntry.setAttribute('data-UID', studentUID);	
+							DeleteLastPaidEntry.setAttribute('data-UID', studentUID);
+							DeleteLastPaidEntry.setAttribute('data-studentname', _studentName);	
 							DeleteLastPaidEntry.setAttribute('data-value', TutionMothYearArray[i]);
 							DeleteLastPaidEntry.setAttribute('id', 'DeleteLastPaidEntry');	
 
@@ -1548,6 +1593,8 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 
 
 	document.body.appendChild(StudentInfoCont);
+
+	$('.StudentInfoCont').fadeIn('slow');
 }
 
 
@@ -1568,11 +1615,66 @@ function MatchAndFindIndex(inputArr, inputToMatch){
 	return index_
 }
 
+function BlurAnimate(blurElement){
+
+	tweenBlur(blurElement, 0, 30);
+}
+
+function UnBlurAnimate(unblurElement){
+	tweenUnBlur(unblurElement, 30, 0);
+
+}
 
 
 
+// Generic function to tween blur radius
+function tweenBlur(ele, startRadius, endRadius) {
+
+    $({blurRadius: startRadius}).animate({blurRadius: endRadius}, {
+        duration: 500,
+        easing: 'swing', // or "linear"
+                         // use jQuery UI or Easing plugin for more options
+        step: function() {
+            setBlur(ele, this.blurRadius);
+        },
+        complete: function() {
+            // Final callback to set the target blur radius
+            // jQuery might not reach the end value
+            setBlur(ele, endRadius);
+       }
+   });
+}
+
+// Generic function to tween blur radius
+function tweenUnBlur(ele, startRadius, endRadius) {
+
+    $({blurRadius: startRadius}).animate({blurRadius: endRadius}, {
+        duration: 500,
+        easing: 'swing', // or "linear"
+                         // use jQuery UI or Easing plugin for more options
+        step: function() {
+            setBlur(ele, this.blurRadius);
+        },
+        complete: function() {
+            // Final callback to set the target blur radius
+            // jQuery might not reach the end value
+            setBlur(ele, endRadius);
+
+			$(ele).css({
+			  "-webkit-filter": "blur(0)",
+			  "filter": "blur(0)"
+			});	
+       }
+   });
+}
 
 
+function setBlur(ele, radius) {
+    $(ele).css({
+       "-webkit-filter": "blur("+radius+"px)",
+        "filter": "blur("+radius+"px)"
+   });
+}
 
 
 

@@ -516,7 +516,8 @@ function SetupDeleteFullStreamEvent(){
 	//attached delete events from the firebase database for a full stream to be deleted when clicked
 	$(".fa-trash").click(function() {
 
-		$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
+		BlurAnimate('.StreamConfigOptions');
+		//$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
 
     	dataMain = String($(this).attr("data-main"));
 
@@ -554,7 +555,8 @@ function AttachEventToOkPopUpBox(){
 
     	promise.then(ReloadBackEndData).then(function(){
     		BoxAlert('Batch deleted successfully!');
-    		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+    		UnBlurAnimate('.StreamConfigOptions');
+    		//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
     		$('.DoubleCheckBox').remove();
     		FadeOutLoadingFrame();
     	});
@@ -563,8 +565,8 @@ function AttachEventToOkPopUpBox(){
     });
 
    	$("#NoButton_ID").click(function() {
-
-   		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+   		UnBlurAnimate('.StreamConfigOptions');
+   		//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
    		$('.DoubleCheckBox').remove();
 
     	return false;
@@ -610,7 +612,8 @@ function SetupEditOneStreamEvent(){
     	eTime = arr[3];
 
     	//blur the background
-    	$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
+    	BlurAnimate('.StreamConfigOptions');
+    	//$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
 
     	//show and create the edit tab with datamain and datamain2 data embedded
 		CraftEditOneStream(dataMain, dataIndex);
@@ -640,7 +643,8 @@ function SetupEditFullStreamEvent(){
     	streamColor = $(this).attr("data-main4");
 
     	//blur the background
-    	$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
+    	BlurAnimate('.StreamConfigOptions');
+    	//$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
 
     	//show and create the edit tab with datamain and datamain2 data embedded
 		CraftEditFullStream(address, streamName, streamColor, streamVacancy);
@@ -656,7 +660,8 @@ function SetupRemoveEditOneStream(){
 	$(".CancelEdit").click(function() {
 
 		//remove the editone stream window
-		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+		UnBlurAnimate('.StreamConfigOptions');
+		//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
 		$('.EditOneStream').remove();
 
     	return false;
@@ -667,7 +672,8 @@ function SetupRemoveEditFullStream(){
 	$(".NoFullEdit").click(function() {
 
 		//remove the editone stream window
-		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+		UnBlurAnimate('.StreamConfigOptions');
+		//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
 		$('.EditFullStream').remove();
 
     	return false;
@@ -706,7 +712,8 @@ function SetupClickEditOneStream(){
 		promise.then(ReloadBackEndData).then(function(){
 			BoxAlert('Timing has been changed successfully!');
 			$('.EditOneStream').remove();
-			$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+			UnBlurAnimate('.StreamConfigOptions');
+			//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
 			FadeOutLoadingFrame();
 		});
 
@@ -747,7 +754,8 @@ function SetupClickEditFullStream(){
 				ref.update(snapshotJSON).then(ReloadBackEndData).then(function(){
 					BoxAlert('Stream has been edited successfully!');
 					$('.EditFullStream').remove();
-					$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+					UnBlurAnimate('.StreamConfigOptions');
+					//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
 					FadeOutLoadingFrame();
 				});
 			});

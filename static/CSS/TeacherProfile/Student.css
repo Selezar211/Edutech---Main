@@ -124,9 +124,20 @@
 			transition: 400ms;
 		}
 
-		.OneStudentLine, .OneStudentLinePending{
+		.OneStudentLine{
 			font-size: 0.9em;
 			cursor: pointer;
+			width: 100%;
+			display: inline-block;
+			transition: 500ms;
+			position: relative;
+			padding: 1%;
+			padding-top: 2%;
+			padding-left: 2%;
+		}
+
+		.OneStudentLinePending{
+			font-size: 0.9em;
 			width: 100%;
 			display: inline-block;
 			transition: 500ms;
@@ -160,7 +171,7 @@
 		}
 
 
-		.OneStudentLine:hover, .OneStudentLinePending:hover{
+		.OneStudentLine:hover{
 			transition: 500ms;
 			background-color: silver;
 		}
@@ -206,7 +217,7 @@
 
 		#BanIcon, #Addicon{
 			transform: scale(1,1);
-			margin-top: 1%;
+			margin-top: 0.5%;
 			margin-left: 1%;
 			margin-right: 1%;
 			color: black;
@@ -395,7 +406,7 @@
 	font-family: 'Quattrocento';
 	z-index: 107;
 	position: fixed;
-	display: inline-block;
+	display: none;
 	width: 64%;
 	height: 80%;
 	top: 10%;
@@ -453,7 +464,7 @@
     transition: 400ms;
 }
 
-.StudentMessageRollCall:hover, .TutionAcceptButton:hover{
+.StudentMessageRollCall:hover, .TutionAcceptButton:hover, .PlotRollCallGraph:hover, .PlotRollCallHistogram:hover{
 	transition: 400ms;
 	color: black;
 	background-color: beige;
@@ -512,7 +523,7 @@
 .StudentInfoRollCallHeading{
 	font-weight: bolder;
 	margin-top: 2%;
-	margin-bottom: 2%;
+	margin-bottom: 3%;
 	width: 100%;
 	font-size: 1.4em;
 	text-align: left;
@@ -520,6 +531,45 @@
 	display: inline-block;
 	float: left;
 	color: black;
+}
+
+.StudentInfoRollCallAction{
+	border-bottom: 0.1vw solid black;
+	padding-bottom: 8%;
+	margin-bottom: 2%;
+	width: 100%;
+	font-size: 1em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	float: left;
+	color: black;
+}
+
+.RollCallGraphHeading{
+	padding-top: 3%;
+}
+
+.PlotRollCallGraph{
+	margin-left: 3%;
+	transition: 400ms;
+	padding: 3%;
+	padding-left: 4%;
+	padding-right: 4%;
+	cursor: pointer;
+	background-color: black;
+	color: white;
+}
+
+.PlotRollCallHistogram{
+	margin-left: 3%;
+	transition: 400ms;
+	padding: 3%;
+	padding-left: 4%;
+	padding-right: 4%;
+	cursor: pointer;
+	background-color: black;
+	color: white;
 }
 
 
