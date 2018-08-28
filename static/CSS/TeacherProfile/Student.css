@@ -404,7 +404,7 @@
 .StudentInfoCont{
 	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 	font-family: 'Quattrocento';
-	z-index: 107;
+	z-index: 106;
 	position: fixed;
 	display: none;
 	width: 64%;
@@ -523,7 +523,7 @@
 .StudentInfoRollCallHeading{
 	font-weight: bolder;
 	margin-top: 2%;
-	margin-bottom: 3%;
+	margin-bottom: 5%;
 	width: 100%;
 	font-size: 1.4em;
 	text-align: left;
@@ -639,7 +639,7 @@
 .StudentInfoTutionHeading{
 	font-weight: bolder;
 	margin-top: 2%;
-	margin-bottom: 3%;
+	margin-bottom: 6%;
 	width: 100%;
 	font-size: 1.4em;
 	text-align: left;

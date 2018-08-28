@@ -591,7 +591,9 @@ function AttachEventToEachStudentClick(){
 			console.log('clicked message cancel!');
 			UnBlurAnimate('.MainContent');
 			//$('.MainContent').css('-webkit-filter', 'blur(0px');
-			$('.MessageBatchBox').remove();
+			$('.MessageBatchBox').fadeOut('fast', function(){
+				$('.MessageBatchBox').remove();
+			})
 	    	return false;
 	    }); 
 
@@ -614,11 +616,12 @@ function AttachEventToEachStudentClick(){
 			}
 
 			ref.update(data).then(function(){
-				$('.MessageBatchBox').remove();
 				UnBlurAnimate('.MainContent');
 				//$('.MainContent').css('-webkit-filter', 'blur(0px');
-				BoxAlert('Message Sent')
-
+				BoxAlert('Message Sent');
+				$('.MessageBatchBox').fadeOut('fast', function(){
+					$('.MessageBatchBox').remove();
+				})
 			});
 
 	    	return false;
@@ -658,7 +661,7 @@ function AttachEventToEachStudentClick(){
 		    //for clicking cancel roll call
 		   	$(".CancelRollCall").click(function() {
 
-				$('.RollCallCont').remove();
+		   		FadeOutANDRemove('fast', '.RollCallCont');
 				UnBlurAnimate('.MainContent');
 				//$('.MainContent').css('-webkit-filter', 'blur(0px');
 		    	return false;
@@ -713,7 +716,7 @@ function AttachEventToEachStudentClick(){
 		   			ref.update(data);
 		   		}
 
-				$('.RollCallCont').remove();
+		   		FadeOutANDRemove('fast', '.RollCallCont');
 				UnBlurAnimate('.MainContent');
 				//$('.MainContent').css('-webkit-filter', 'blur(0px');
    				FadeOutLoadingFrame();
@@ -855,8 +858,7 @@ function AttachEventToEachStudentClick(){
 
 			//now attach click events to this newly made student info box
 		   	$("#StudentInfoContCloseIcon").click(function() {
-		   		$('.StudentInfoCont').fadeOut('slow');
-				$('.StudentInfoCont').remove();
+		   		FadeOutANDRemove('fast', '.StudentInfoCont');
 				UnBlurAnimate('.MainContent');
 		    	return false;
 		    }); 
@@ -965,6 +967,23 @@ function AttachEventToEachStudentClick(){
 					FadeOutLoadingFrame();
 					UnBlurAnimate('.MainContent');
 				});
+
+		    	return false;
+		    }); 
+
+		   	//clicking on plot bar chart of roll calls
+		   	$(".PlotRollCallHistogram").click(function() {
+
+		   		createCanvasChartJS();
+		   		BarChartRollCallJS('.OneAttendanceEntryCont', '.OneAttendanceEntry');
+
+		   		//attach close event for this
+			   	$("#CloseChart").click(function() {
+			   		$('.MegaCanvasCont').fadeOut('slow', function(){
+			   			$('.MegaCanvasCont').remove();
+			   		});
+			    	return false;
+			    }); 
 
 		    	return false;
 		    }); 
@@ -1423,7 +1442,7 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 					PlotRollCallHistogram.setAttribute('data-address', address);
 					PlotRollCallHistogram.setAttribute('data-uid', studentUID);
 
-					var t = document.createTextNode('Histogram');
+					var t = document.createTextNode('Bar Chart');
 					PlotRollCallHistogram.append(t);
 
 					var PlotRollCallGraph = document.createElement('span');
@@ -1431,7 +1450,7 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 					PlotRollCallGraph.setAttribute('data-address', address);
 					PlotRollCallGraph.setAttribute('data-uid', studentUID);
 
-					var t = document.createTextNode('Line Plot');
+					var t = document.createTextNode('Line Chart');
 					PlotRollCallGraph.append(t);
 
 					StudentInfoRollCallAction.append(RollCallGraphHeading);
@@ -1439,6 +1458,10 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 					StudentInfoRollCallAction.append(PlotRollCallGraph);	
 
 					StudentInfoRollCallCont.append(StudentInfoRollCallAction);
+
+
+				var OneAttendanceEntryCont = document.createElement('div');
+				OneAttendanceEntryCont.setAttribute('class', 'OneAttendanceEntryCont');
 
 				//now loop through and make each attendance entry
 				for (var i = 0; i < rollCallDateArr.length; i++) {
@@ -1448,6 +1471,7 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 
 					var OneAttendanceEntry = document.createElement('div');
 					OneAttendanceEntry.setAttribute('class', 'OneAttendanceEntry');
+					OneAttendanceEntry.setAttribute('data-current', currentAttendance);
 
 						//the date
 						var RollCallDate = document.createElement('span');
@@ -1476,8 +1500,10 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 						OneAttendanceEntry.append(RollCallResult);
 						OneAttendanceEntry.append(exchange);
 
-						StudentInfoRollCallCont.append(OneAttendanceEntry);
+						OneAttendanceEntryCont.append(OneAttendanceEntry);
 				}
+
+				StudentInfoRollCallCont.append(OneAttendanceEntryCont);
 
 				StudentInfoCont.append(StudentInfoRollCallCont);
 
@@ -1620,9 +1646,10 @@ function BlurAnimate(blurElement){
 	tweenBlur(blurElement, 0, 30);
 }
 
+
+
 function UnBlurAnimate(unblurElement){
 	tweenUnBlur(unblurElement, 30, 0);
-
 }
 
 
@@ -1676,11 +1703,102 @@ function setBlur(ele, radius) {
    });
 }
 
+//create the canvas for barchart roll call js
+function createCanvasChartJS(){
+
+	var MegaCanvasCont = document.createElement('div');
+	MegaCanvasCont.setAttribute('class', 'MegaCanvasCont');
+
+		var ChartTopInfoCont = document.createElement('div');
+		ChartTopInfoCont.setAttribute('class', 'ChartTopInfoCont');
+
+			var CloseChart = document.createElement('i');
+			CloseChart.setAttribute('class', 'fas fa-backspace');
+			CloseChart.setAttribute('id', 'CloseChart');
+
+			ChartTopInfoCont.append(CloseChart);
+
+			MegaCanvasCont.append(ChartTopInfoCont);
+
+		//now make the actual canvas
+		var CanvasCont = document.createElement('div');
+		CanvasCont.setAttribute('class', 'CanvasCont');
+
+			var myChart = document.createElement('canvas');
+			myChart.setAttribute('id', 'myChart');
+
+			CanvasCont.append(myChart);
+
+			MegaCanvasCont.append(CanvasCont);
+
+		var ChartBotInfoCont = document.createElement('div');
+		ChartBotInfoCont.setAttribute('class', 'ChartBotInfoCont');
+
+		MegaCanvasCont.append(ChartBotInfoCont);
+
+		document.body.appendChild(MegaCanvasCont);
+
+		$('.MegaCanvasCont').fadeIn('slow');
+}
+
+//chart js function
+function BarChartRollCallJS(ParentElement, ChildElement1){
+
+	PresentArr = [];
+	AbsentArr = [];
+
+	$(ParentElement).children(ChildElement1).each(function () {
+		attendance = String($(this).attr("data-current"));
+
+		if (attendance=='Present'){
+			PresentArr.push(attendance);
+		}
+		else{
+			AbsentArr.push(attendance);
+		}
+	});
 
 
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: ["Classes Taken", "Present", "Absent"],
+	        datasets: [{
+	            label: 'Number of Classes',
+	            data: [PresentArr.length+AbsentArr.length, PresentArr.length, AbsentArr.length],
+	            backgroundColor: [
+	                'rgba(255, 99, 132, 0.2)',
+	                'rgba(54, 162, 235, 0.2)',
+	                'rgba(255, 206, 86, 0.2)'
+	            ],
+	            borderColor: [
+	                'rgba(255,99,132,1)',
+	                'rgba(54, 162, 235, 1)',
+	                'rgba(255, 206, 86, 1)'
+	            ],
+	            borderWidth: 1
+	        }]
+	    },
+	    options: {
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+}
 
 
+function FadeOutANDRemove(speed, element_){
 
+	$(element_).fadeOut(speed, function(){
+		$(element_).remove();
+	})
+}
 
 
 
