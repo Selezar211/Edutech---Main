@@ -987,6 +987,23 @@ function AttachEventToEachStudentClick(){
 
 		    	return false;
 		    }); 
+
+		   	//clicking on plot line chart of roll calls
+		   	$(".PlotRollCallGraph").click(function() {
+
+		   		createCanvasChartJS();
+		   		LineChartRollCallJS('.OneAttendanceEntryCont', '.OneAttendanceEntry');
+
+		   		//attach close event for this
+			   	$("#CloseChart").click(function() {
+			   		$('.MegaCanvasCont').fadeOut('slow', function(){
+			   			$('.MegaCanvasCont').remove();
+			   		});
+			    	return false;
+			    }); 
+
+		    	return false;
+		    }); 
   
 		});
 
@@ -1472,6 +1489,8 @@ function CreateStudentInfoBox(rollCallDateArr, rollCallAttendanceArr, _studentNa
 					var OneAttendanceEntry = document.createElement('div');
 					OneAttendanceEntry.setAttribute('class', 'OneAttendanceEntry');
 					OneAttendanceEntry.setAttribute('data-current', currentAttendance);
+					OneAttendanceEntry.setAttribute('data-date', currentDate);
+					OneAttendanceEntry.setAttribute('data-studentname', _studentName);
 
 						//the date
 						var RollCallDate = document.createElement('span');
@@ -1741,11 +1760,12 @@ function createCanvasChartJS(){
 		$('.MegaCanvasCont').fadeIn('slow');
 }
 
-//chart js function
+//chart js function for bar chart
 function BarChartRollCallJS(ParentElement, ChildElement1){
 
 	PresentArr = [];
 	AbsentArr = [];
+	studentName = '';
 
 	$(ParentElement).children(ChildElement1).each(function () {
 		attendance = String($(this).attr("data-current"));
@@ -1756,6 +1776,8 @@ function BarChartRollCallJS(ParentElement, ChildElement1){
 		else{
 			AbsentArr.push(attendance);
 		}
+
+		studentName = String($(this).attr("data-studentname"));
 	});
 
 
@@ -1781,6 +1803,10 @@ function BarChartRollCallJS(ParentElement, ChildElement1){
 	        }]
 	    },
 	    options: {
+	        title: {
+            	display: true,
+            	text: studentName + ' has been present on ' + String(((PresentArr.length/(PresentArr.length+AbsentArr.length))*100).toFixed(2)) + '% of classes'
+        	},
 	        scales: {
 	            yAxes: [{
 	                ticks: {
@@ -1790,6 +1816,54 @@ function BarChartRollCallJS(ParentElement, ChildElement1){
 	        }
 	    }
 	});
+}
+
+//chart js function for line chart for rollc all
+function LineChartRollCallJS(ParentElement, ChildElement1){
+
+	ActualDateArray = [];
+	DataSetARRAY = [];
+
+	$(ParentElement).children(ChildElement1).each(function () {
+		attendance = String($(this).attr("data-current"));
+
+		if (attendance=='Present'){
+			DataSetARRAY.push(1);
+		}
+		else{
+			DataSetARRAY.push(0);
+		}
+
+		dateOfAttendance = String($(this).attr("data-date"));
+		ActualDateArray.push(dateOfAttendance);
+	});
+
+
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myLineChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	        labels: ActualDateArray,
+	        datasets: [{
+	            label: 'Attendance Boolean',
+	            data: DataSetARRAY,
+	        }]
+	    },
+	    options: {
+	        title: {
+            	display: true,
+            	text: '1 = Present | 0 = Absent'
+        	},
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero:true
+	                }
+	            }]
+	        }
+	    }
+	});
+
 }
 
 
