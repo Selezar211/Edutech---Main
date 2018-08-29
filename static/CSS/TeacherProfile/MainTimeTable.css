@@ -26,8 +26,7 @@
 			}
 
 			.SetStreamsButton{
-				transition: 200ms;
-				border: 0.1em solid rgba(0,0,0,0);
+				transition: 400ms;
 				cursor: pointer;
 				width: 22%;
 			    margin-top: 5%;
@@ -43,8 +42,8 @@
 
 
 			.SetStreamsButton:hover  {
-				border-bottom: 0.1em solid rgba(0,0,0,1);
-				transition: 200ms;
+				background-color: beige;
+				transition: 400ms;
 			}
 
 			#SetStreamIcon{
@@ -54,7 +53,7 @@
 				color: black;
 				display: inline-block;
 				cursor: pointer;
-				transition: 200ms;
+				transition: 400ms;
 			}
 
 

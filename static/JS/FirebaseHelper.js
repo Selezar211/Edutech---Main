@@ -1801,6 +1801,7 @@ function LineChartRollCallJS(ParentElement, ChildElement1) {
 
 	ActualDateArray = [];
 	DataSetARRAY = [];
+	studentName = '';
 
 	$(ParentElement).children(ChildElement1).each(function() {
 		attendance = String($(this).attr("data-current"));
@@ -1813,6 +1814,7 @@ function LineChartRollCallJS(ParentElement, ChildElement1) {
 
 		dateOfAttendance = String($(this).attr("data-date"));
 		ActualDateArray.push(dateOfAttendance);
+		studentName = String($(this).attr("data-studentname"));
 	});
 
 
@@ -1829,7 +1831,7 @@ function LineChartRollCallJS(ParentElement, ChildElement1) {
 		options: {
 			title: {
 				display: true,
-				text: '1 = Present | 0 = Absent || (Dips represent absent days)'
+				text: '1 = Present | 0 = Absent || Attendance For ' + studentName + ' (Dips represent absent days)'
 			},
 			scales: {
 				yAxes: [{
@@ -1849,4 +1851,85 @@ function FadeOutANDRemove(speed, element_) {
 	$(element_).fadeOut(speed, function() {
 		$(element_).remove();
 	})
+}
+
+
+
+function CreateResourceAddBox(streamName, subject, grade) {
+
+	var ResourceAddBox = document.createElement('div');
+	ResourceAddBox.setAttribute('class', 'ResourceAddBox');
+
+	//make the heading
+	var ResourceAddBoxHeading = document.createElement('div');
+	ResourceAddBoxHeading.setAttribute('class', 'ResourceAddBoxHeading');
+
+	var t = document.createTextNode(streamName + '  |  ' + subject + '  |  ' + grade);
+	ResourceAddBoxHeading.append(t);
+
+	//add the heading to main
+	ResourceAddBox.append(ResourceAddBoxHeading);
+
+	//now make the info box
+	var ResourceAddBoxInfo = document.createElement('div');
+	ResourceAddBoxInfo.setAttribute('class', 'ResourceAddBoxInfo');
+
+	var t = document.createTextNode('Resource Name is the name that is shown to your students while the Resource URL is the PDF link to map to it. It is recommended to upload the PDF file to Google Drive and then paste the shareable link here. Other similar PDF hosting sites may be used as well although Google Drive is highly recommended.');
+	ResourceAddBoxInfo.append(t);
+
+	ResourceAddBox.append(ResourceAddBoxInfo);
+
+
+	//now make the inputs
+	var ResourceName = document.createElement('input');
+	ResourceName.setAttribute('class', 'ResourceName');
+	ResourceName.setAttribute('name', 'ResourceName');
+	ResourceName.setAttribute('id', 'ResourceName_ID');
+	ResourceName.setAttribute('type', 'text');
+	ResourceName.setAttribute('placeholder', 'Resource Name');
+
+	ResourceAddBox.append(ResourceName);
+
+
+	var ResourceURL = document.createElement('input');
+	ResourceURL.setAttribute('class', 'ResourceURL');
+	ResourceURL.setAttribute('name', 'ResourceURL');
+	ResourceURL.setAttribute('id', 'ResourceURL_ID');
+	ResourceURL.setAttribute('type', 'text');
+	ResourceURL.setAttribute('placeholder', 'Resource URL');
+
+	ResourceAddBox.append(ResourceURL);
+
+	var ResourceURL = document.createElement('input');
+	ResourceURL.setAttribute('class', 'ResourceURL');
+	ResourceURL.setAttribute('name', 'ResourceURL');
+	ResourceURL.setAttribute('id', 'ResourceURL_ID');
+	ResourceURL.setAttribute('type', 'text');
+	ResourceURL.setAttribute('placeholder', 'Resource URL');
+
+	ResourceAddBox.append(ResourceURL);
+
+	var ResourceOrder = document.createElement('input');
+	ResourceOrder.setAttribute('class', 'ResourceOrder');
+	ResourceOrder.setAttribute('name', 'ResourceOrder');
+	ResourceOrder.setAttribute('id', 'ResourceOrder_ID');
+	ResourceOrder.setAttribute('type', 'number');
+	ResourceOrder.setAttribute('min', '0');
+	ResourceOrder.setAttribute('placeholder', '(Optional Order Number) Resources are ordered by ascending.');
+
+	ResourceAddBox.append(ResourceOrder);
+
+	//add box
+	var AddResourceSubmit = document.createElement('div');
+	AddResourceSubmit.setAttribute('class', 'AddResourceSubmit');
+
+	ResourceAddBox.append(AddResourceSubmit);
+
+	var AddResourceCancel = document.createElement('div');
+	AddResourceCancel.setAttribute('class', 'AddResourceCancel');
+
+	ResourceAddBox.append(AddResourceCancel);
+
+	document.body.appendChild(ResourceAddBox);
+
 }

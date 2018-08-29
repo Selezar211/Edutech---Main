@@ -1,3 +1,6 @@
+
+
+
 /*		Lecture notes stuff*/
 		.MainLectureTab_Cont{
 				color: black;
@@ -9,6 +12,7 @@
 		}
 
 		.LectureHeadingMain{
+			margin-bottom: 6%;
 				margin-top: 3%;
 			    padding-left: 2%;
 			    padding-right: 2%;
@@ -22,46 +26,51 @@
 		}
 
 		.LectureLinksContainer{
-			    width: 98%;
+			font-size: 1em;
+			float: left;
+			    width: 45%;
 			    display: inline-block;
 			    position: relative;
-			    margin-top: 5%;
-			    margin-left: 2%;
+			    margin-top: 2%;
+			    margin-left: 3%;
 			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 		}
 
-		.LectureTeacherName{
+		.LectureBoxHeading{
 				color: white;
 				width: 100%;
 				display: inline-block;
-				padding-top: 1%;
-				padding-bottom: 1%;
-				padding-left: 2%;
-				padding-right: 2%;
+				padding: 3%;
 				background-color: rgb(20,24,27);
 				position: relative;
 				top: 0%;
+		}
+
+		.AddResource{
+			float: right;
+			cursor: pointer;
+			transition: 400ms;
+		}
+
+		.AddResource:hover{
+			color: gray;
+			transition: 400ms;
 		}
 
 		.LectureLink{
 				cursor: pointer;
 			    display: inline-block;
 			    position: relative;
-			    margin-right: 2%;
-			    margin-left: 2%;
-			    margin-top: 2%;
-			    margin-bottom: 2%;
-			    padding: 2%;
-			    font-size: 1em;
-			    text-align: center;
-			    transition: 500ms;
-			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+			    width: 100%;
+			    padding: 1%;
+			    padding-left: 3%;
+			    text-align: left;
+			    transition: 400ms;
 		}
 
 		.LectureLink:hover{
-			background: black;
-			color:white;
-			transition: 500ms;
+			background: silver;
+			transition: 400ms;
 		}
 
 		.PDF_VIEWER{
@@ -93,3 +102,140 @@
 			color: gray;
 			transition: 500ms;
 		}
+
+
+
+.ResourceAddBox{
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+	font-family: 'Quattrocento';
+	padding-bottom: 1%;
+	z-index: 107;
+	position: fixed;
+	display: inline-block;
+	width: 40%;
+	top: 20%;
+	left: 33%;
+	background: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+}
+
+.ResourceAddBoxHeading{
+	color: white;
+	width: 100%;
+	background-color: black;
+	display: inline-block;
+	position: relative;
+	padding: 3%;
+}
+
+.ResourceAddBoxInfo{
+	position: relative;
+	color: black;
+	display: inline-block;
+	text-align: left;
+	padding: 2%;
+	font-size: 1em;
+}
+
+.ResourceName{
+	margin-left: 2.5%;
+	margin-top: 1%;
+	width: 95%;
+	font-size: 1em;
+	position: relative;
+	color: black;
+	background-color: white;
+	display: inline-block;
+	text-align: left;
+	padding: 2%;
+}
+
+.ResourceURL{
+	margin-left: 2.5%;
+	background-color: white;
+	margin-top: 1%;
+	width: 95%;
+	font-size: 1em;
+	position: relative;
+	color: black;
+	display: inline-block;
+	text-align: left;
+	padding: 2%;	
+}
+
+.ResourceOrder{
+	margin-left: 2.5%;
+	background-color: white;
+	margin-top: 1%;
+	width: 95%;
+	font-size: 1em;
+	position: relative;
+	color: black;
+	display: inline-block;
+	text-align: left;
+	padding: 2%;	
+}
+
+.AddResourceSubmit{
+	border-width:0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+	outline: none;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	margin-left: 28%;
+	margin-top: 2%;
+	width: 20%;
+	color: white;
+	display: inline-block;
+	position: relative;
+	background: black;
+	padding: 2%;
+	 float: left;
+	 transition: 500ms;
+}
+
+.AddResourceCancel{
+	border-width:0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+	outline: none;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	transition: 500ms;
+	margin-left: 5%;
+	margin-top: 2%;
+	width: 20%;
+	color: white;
+	display: inline-block;
+	position: relative;
+	background: black;
+	padding: 2%;
+	 float: left;
+}
+
+.AddResourceSubmit:hover, .AddResourceCancel:hover{
+	color: black;
+	background: beige;
+	transition: 500ms;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
