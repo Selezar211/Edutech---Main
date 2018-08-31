@@ -46,7 +46,7 @@
 			document.title = tableData['UserName'] + ' - Profile';
 
 			//now populate the stream config options section
-			LoadAndPopulateStreamConfigOptions(tableData);
+			LoadAndPopulateEverything(tableData);
 
 			InjectTimingsIntoHTML();
 
@@ -70,7 +70,7 @@
 	}
 
 
-	function LoadAndPopulateStreamConfigOptions(tableData_JSON) {
+	function LoadAndPopulateEverything(tableData_JSON) {
 
 		//first find out how many subject grades there are..
 		SubjectGrades = ReturnAsArrayChildOfTable(tableData_JSON['UserClass']);

@@ -40,7 +40,7 @@
 				color: white;
 				width: 100%;
 				display: inline-block;
-				padding: 3%;
+				padding: 2%;
 				background-color: rgb(20,24,27);
 				position: relative;
 				top: 0%;
@@ -63,7 +63,7 @@
 			    position: relative;
 			    width: 100%;
 			    padding: 1%;
-			    padding-left: 3%;
+			    padding-left: 2%;
 			    text-align: left;
 			    transition: 400ms;
 		}
@@ -71,6 +71,24 @@
 		.LectureLink:hover{
 			background: silver;
 			transition: 400ms;
+		}
+
+		#penSquare, #minusSquare{
+			transform: scale(1.5,1.5);
+			margin-top: 0.5%;
+			margin-left: 1.5%;
+			margin-right: 1%;
+			color: black;
+			float: right;
+			display: inline-block;
+			cursor: pointer;
+			transition: 200ms;
+		}
+
+		#penSquare:hover, #minusSquare:hover{
+			transform: scale(1.6,1.6);
+			color: white;
+			transition: 200ms;
 		}
 
 		.PDF_VIEWER{

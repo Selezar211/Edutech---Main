@@ -1,137 +1,137 @@
 //Home icon click event
-	document.getElementById("HomeIcon").addEventListener('click', e => {
+document.getElementById("HomeIcon").addEventListener('click', e => {
 
-		console.log('Home clicked!');
+	console.log('Home clicked!');
 
-		//fadeout all current stuff
-		$(".MainStudentTab_Cont").fadeOut('fast');
-		$(".MainTimeTableCont").fadeOut('fast');
-		$(".MainVideoPlayer_Cont").fadeOut('fast');
-		$(".MainLectureTab_Cont").fadeOut('fast');
+	//fadeout all current stuff
+	$(".MainStudentTab_Cont").fadeOut('fast');
+	$(".MainTimeTableCont").fadeOut('fast');
+	$(".MainVideoPlayer_Cont").fadeOut('fast');
+	$(".MainLectureTab_Cont").fadeOut('fast');
 
-		$(".Blackboard_container").css('background-color', 'rgb(10,14,17)');
-		$(".BlackBoard").css('background-color', 'rgb(10,14,17)');
-		$(".NotificationOpenButton").css('background-color', 'rgb(10,14,17)');
+	$(".Blackboard_container").css('background-color', 'rgb(10,14,17)');
+	$(".BlackBoard").css('background-color', 'rgb(10,14,17)');
+	$(".NotificationOpenButton").css('background-color', 'rgb(10,14,17)');
 
-		$("#ExclaimIcon").css('color', 'white');
-		$("#SignoutIcon2").css('color', 'white');
+	$("#ExclaimIcon").css('color', 'white');
+	$("#SignoutIcon2").css('color', 'white');
 
-		
-		$(".BlackBoard_MainInfo").delay(200).fadeIn('slow');
-		$(".BlackBoardName_Date_Cont").delay(200).fadeIn('slow');
 
-	  });
+	$(".BlackBoard_MainInfo").delay(200).fadeIn('slow');
+	$(".BlackBoardName_Date_Cont").delay(200).fadeIn('slow');
+
+});
 
 //Timetable icon click event
-	document.getElementById("TableIcon").addEventListener('click', e => {
+document.getElementById("TableIcon").addEventListener('click', e => {
 
-		console.log('Timetable clicked!');
+	console.log('Timetable clicked!');
 
-		$(".MainStudentTab_Cont").fadeOut('fast');
-		$(".MainVideoPlayer_Cont").fadeOut('fast');
-		$(".MainLectureTab_Cont").fadeOut('fast');
+	$(".MainStudentTab_Cont").fadeOut('fast');
+	$(".MainVideoPlayer_Cont").fadeOut('fast');
+	$(".MainLectureTab_Cont").fadeOut('fast');
 
-		//fadeout all current stuff
-		$(".BlackBoard_MainInfo").fadeOut('fast');
-		$(".BlackBoardName_Date_Cont").fadeOut('fast');
+	//fadeout all current stuff
+	$(".BlackBoard_MainInfo").fadeOut('fast');
+	$(".BlackBoardName_Date_Cont").fadeOut('fast');
 
-		$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
-		$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
-		$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
+	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
+	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
+	$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
 
-		$("#ExclaimIcon").css('color', 'black');
-		$("#SignoutIcon2").css('color', 'black');
+	$("#ExclaimIcon").css('color', 'black');
+	$("#SignoutIcon2").css('color', 'black');
 
-		$(".MainTimeTableCont").fadeIn('slow');
-
-
-	  });
-
-	//open config options tab
-	document.getElementById("SetStreamsButtonID").addEventListener('click', e => {
-		$('.StreamConfigOptions').fadeIn('slow');
-	});
+	$(".MainTimeTableCont").fadeIn('slow');
 
 
-	//close config options tab
-	document.getElementById("StreamConfigCloseIcon").addEventListener('click', e => {
+});
 
-		$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-		$('.StreamConfigOptions').fadeOut('slow');	
+//open config options tab
+document.getElementById("SetStreamsButtonID").addEventListener('click', e => {
+	$('.StreamConfigOptions').fadeIn('slow');
+});
 
-	});
+
+//close config options tab
+document.getElementById("StreamConfigCloseIcon").addEventListener('click', e => {
+
+	$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+	$('.StreamConfigOptions').fadeOut('slow');
+
+});
 
 
 
 
 //Video icon click event
-	document.getElementById("VidIcon").addEventListener('click', e => {
+document.getElementById("VidIcon").addEventListener('click', e => {
 
-		console.log('Video icon clicked!');
+	console.log('Video icon clicked!');
 
-		$(".MainStudentTab_Cont").fadeOut('fast');
-		$(".MainTimeTableCont").fadeOut('fast');
-		$(".MainTimeTableCont").fadeOut('fast');
-		$(".MainLectureTab_Cont").fadeOut('fast');
+	$(".MainStudentTab_Cont").fadeOut('fast');
+	$(".MainTimeTableCont").fadeOut('fast');
+	$(".MainTimeTableCont").fadeOut('fast');
+	$(".MainLectureTab_Cont").fadeOut('fast');
 
-		$(".Blackboard_container").css('background-color', 'rgb(0,0,0)');
-		$(".BlackBoard").css('background-color', 'rgb(10,14,17)');
-		$(".NotificationOpenButton").css('background-color', 'rgb(0,0,0)');
+	$(".Blackboard_container").css('background-color', 'rgb(0,0,0)');
+	$(".BlackBoard").css('background-color', 'rgb(10,14,17)');
+	$(".NotificationOpenButton").css('background-color', 'rgb(0,0,0)');
 
-		//fadeout all current stuff
-		$(".BlackBoard_MainInfo").fadeOut('fast');
-		$(".BlackBoardName_Date_Cont").fadeOut('fast');
+	//fadeout all current stuff
+	$(".BlackBoard_MainInfo").fadeOut('fast');
+	$(".BlackBoardName_Date_Cont").fadeOut('fast');
 
-		$(".MainVideoPlayer_Cont").fadeIn('slow');
+	$(".MainVideoPlayer_Cont").fadeIn('slow');
 
 
-	  });
+});
 
 //Lecture icon click event
-	document.getElementById("Lecticn").addEventListener('click', e => {
+document.getElementById("Lecticn").addEventListener('click', e => {
 
-		console.log('lecture clicked!');
+	console.log('lecture clicked!');
 
-		//fadeout all current stuff
-		$(".BlackBoard_MainInfo").fadeOut('fast');
-		$(".BlackBoardName_Date_Cont").fadeOut('fast');
-		$(".MainVideoPlayer_Cont").fadeOut('fast');
-		$(".MainStudentTab_Cont").fadeOut('fast');
+	//fadeout all current stuff
+	$(".BlackBoard_MainInfo").fadeOut('fast');
+	$(".BlackBoardName_Date_Cont").fadeOut('fast');
+	$(".MainVideoPlayer_Cont").fadeOut('fast');
+	$(".MainStudentTab_Cont").fadeOut('fast');
 
-		$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
-		$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
-		$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
+	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
+	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
+	$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
 
-		$("#ExclaimIcon").css('color', 'black');
-		$("#SignoutIcon2").css('color', 'black');
+	$("#ExclaimIcon").css('color', 'black');
+	$("#SignoutIcon2").css('color', 'black');
 
-		$(".MainLectureTab_Cont").fadeIn('slow');
+	$(".MainLectureTab_Cont").fadeIn('slow');
 
 
-	  });
+});
 
 //Teacher icon click event
-	document.getElementById("TeacherIcon").addEventListener('click', e => {
+document.getElementById("TeacherIcon").addEventListener('click', e => {
 
-		console.log('teacher clicked!');
+	console.log('teacher clicked!');
 
-		//fadeout all current stuff
-		$(".BlackBoard_MainInfo").fadeOut('fast');
-		$(".BlackBoardName_Date_Cont").fadeOut('fast');
-		$(".MainVideoPlayer_Cont").fadeOut('fast');
-		$(".MainLectureTab_Cont").fadeOut('fast');
+	//fadeout all current stuff
+	$(".BlackBoard_MainInfo").fadeOut('fast');
+	$(".BlackBoardName_Date_Cont").fadeOut('fast');
+	$(".MainVideoPlayer_Cont").fadeOut('fast');
+	$(".MainLectureTab_Cont").fadeOut('fast');
 
-		$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
-		$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
-		$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
+	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
+	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
+	$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
 
-		$("#ExclaimIcon").css('color', 'black');
-		$("#SignoutIcon2").css('color', 'black');
+	$("#ExclaimIcon").css('color', 'black');
+	$("#SignoutIcon2").css('color', 'black');
 
-		$(".MainStudentTab_Cont").fadeIn('slow');
+	$(".MainStudentTab_Cont").fadeIn('slow');
 
 
-	  });
+});
 
 
 var IsNotificationTabOpen = false;
@@ -139,13 +139,13 @@ var IsNotificationTabOpen = false;
 document.getElementById("ExclaimIcon").addEventListener('click', e => {
 	console.log('Notif cliked!');
 
-	if (IsNotificationTabOpen){
+	if (IsNotificationTabOpen) {
 		CloseNotificationTab();
-	}
-	else{
+	} else {
 		OpenNotificationTab();
 	}
 });
+
 
 //Clicking the close notif tab
 document.getElementById("CloseNotif").addEventListener('click', e => {
@@ -153,7 +153,7 @@ document.getElementById("CloseNotif").addEventListener('click', e => {
 });
 
 
-function OpenNotificationTab(){
+function OpenNotificationTab() {
 	$(".Blackboard_container").css('width', '65%');
 	$(".NotificationMainCont").css('width', '33%');
 	$(".InnerNotifMain").fadeIn('fast');
@@ -161,7 +161,7 @@ function OpenNotificationTab(){
 	IsNotificationTabOpen = true;
 }
 
-function CloseNotificationTab(){
+function CloseNotificationTab() {
 	$(".NotificationBox_Cont").fadeOut('fast');
 	$(".InnerNotifMain").fadeOut('fast');
 	$(".Blackboard_container").css('width', '98%');
@@ -170,11 +170,11 @@ function CloseNotificationTab(){
 }
 
 
-function FadeOutLoadingFrame(){
+function FadeOutLoadingFrame() {
 	$(".LoadingContainer").fadeOut('slow');
 }
 
-function FadeInLoadingFrame(){
+function FadeInLoadingFrame() {
 	$(".LoadingContainer").fadeIn('fast');
 }
 
@@ -188,40 +188,40 @@ document.getElementById("AlertCloseIcon").addEventListener('click', e => {
 
 
 //main jquery run time functions
-$(document).ready(function(){
+$(document).ready(function() {
 
-    $("#SignoutIcon2").hover(function(){
-        $(".SignOutText").css("display", "block");
-        }, function(){
-        $(".SignOutText").css("display", "none");
-    });
+	$("#SignoutIcon2").hover(function() {
+		$(".SignOutText").css("display", "block");
+	}, function() {
+		$(".SignOutText").css("display", "none");
+	});
 
-    $("#ExclaimIcon").hover(function(){
-        $(".NotificationText").css("display", "block");
-        }, function(){
-        $(".NotificationText").css("display", "none");
-    });
+	$("#ExclaimIcon").hover(function() {
+		$(".NotificationText").css("display", "block");
+	}, function() {
+		$(".NotificationText").css("display", "none");
+	});
 
 	$(".LectureLink").click(function() {
 
-    	PDF_LINK = String($(this).attr("data-main")) + '#zoom=100';
+		PDF_LINK = String($(this).attr("data-main")) + '#zoom=100';
 
-    	$("#Iframe_PDF").attr('src', PDF_LINK);
+		$("#Iframe_PDF").attr('src', PDF_LINK);
 
-    	console.log(PDF_LINK);
+		console.log(PDF_LINK);
 
-    	$(".LoadingContainer").fadeIn('slow');
-    	$(".PDF_VIEWER").fadeIn("slow");
-    	$("#PDFCLOSE_ICON").fadeIn("slow");
+		$(".LoadingContainer").fadeIn('slow');
+		$(".PDF_VIEWER").fadeIn("slow");
+		$("#PDFCLOSE_ICON").fadeIn("slow");
 
-    });
+	});
 
 	$("#PDFCLOSE_ICON").click(function() {
 
 		$("#PDFCLOSE_ICON").fadeOut("fast");
-    	$(".PDF_VIEWER").fadeOut("fast");
-    	$(".LoadingContainer").fadeOut('slow');
+		$(".PDF_VIEWER").fadeOut("fast");
+		$(".LoadingContainer").fadeOut('slow');
 
-    });
+	});
 
 });
