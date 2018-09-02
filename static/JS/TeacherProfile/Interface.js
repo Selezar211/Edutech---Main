@@ -202,26 +202,4 @@ $(document).ready(function() {
 		$(".NotificationText").css("display", "none");
 	});
 
-	$(".LectureLink").click(function() {
-
-		PDF_LINK = String($(this).attr("data-main")) + '#zoom=100';
-
-		$("#Iframe_PDF").attr('src', PDF_LINK);
-
-		console.log(PDF_LINK);
-
-		$(".LoadingContainer").fadeIn('slow');
-		$(".PDF_VIEWER").fadeIn("slow");
-		$("#PDFCLOSE_ICON").fadeIn("slow");
-
-	});
-
-	$("#PDFCLOSE_ICON").click(function() {
-
-		$("#PDFCLOSE_ICON").fadeOut("fast");
-		$(".PDF_VIEWER").fadeOut("fast");
-		$(".LoadingContainer").fadeOut('slow');
-
-	});
-
 });

@@ -636,8 +636,18 @@ function AttachEventToEachStudentClick() {
 //attach event to lecture clicks()
 function AttachEventToLectureClick() {
 
+	$(".LectureLink").click(function() {
+
+		PDF_LINK = String($(this).attr("data-main"));
+
+		window.open(PDF_LINK);
+
+		return false
+
+	});
+
 	//click on edit lecture link
-	$('.fa-pen-square').click(function() {
+	$('.fa-pencil-ruler').click(function() {
 		console.log('Edit lecture link clicked!');
 
 		BlurAnimate('.MainContent');
@@ -717,7 +727,7 @@ function AttachEventToLectureClick() {
 		return false;
 	});
 
-	$('.fa-minus-square').click(function() {
+	$('.fa-calendar-times').click(function() {
 		console.log('delete lecture link clciked!');
 
 		FadeInLoadingFrame();
@@ -1840,6 +1850,7 @@ function CreateLectureLinkBox(subject, grade, streamName, ResourceJSON) {
 		//now make the boxes
 		var LectureLink = document.createElement('div');
 		LectureLink.setAttribute('class', 'LectureLink');
+		LectureLink.setAttribute('data-main', currentLectureURL);
 
 		var LectureName = document.createElement('span');
 		var t = document.createTextNode(currentLectureName);
@@ -1848,7 +1859,7 @@ function CreateLectureLinkBox(subject, grade, streamName, ResourceJSON) {
 		LectureLink.append(LectureName);
 
 		var penSquare = document.createElement('i');
-		penSquare.setAttribute('class', 'fas fa-pen-square');
+		penSquare.setAttribute('class', 'fas fa-pencil-ruler');
 		penSquare.setAttribute('id', 'penSquare');
 		penSquare.setAttribute('data-index', lectureIndexNumbers[i]);
 		penSquare.setAttribute('data-address', address);
@@ -1860,7 +1871,7 @@ function CreateLectureLinkBox(subject, grade, streamName, ResourceJSON) {
 		LectureLink.append(penSquare);
 
 		var minusSquare = document.createElement('i');
-		minusSquare.setAttribute('class', 'fas fa-minus-square');
+		minusSquare.setAttribute('class', 'far fa-calendar-times');
 		minusSquare.setAttribute('id', 'minusSquare');
 		minusSquare.setAttribute('data-index', lectureIndexNumbers[i]);
 		minusSquare.setAttribute('data-address', address);
