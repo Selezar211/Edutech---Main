@@ -129,7 +129,7 @@
 	padding-bottom: 1%;
 	z-index: 107;
 	position: fixed;
-	display: inline-block;
+	display: none;
 	width: 40%;
 	top: 20%;
 	left: 33%;
@@ -233,11 +233,109 @@
 	 float: left;
 }
 
-.AddResourceSubmit:hover, .AddResourceCancel:hover{
+.AddResourceSubmit:hover, .AddResourceCancel:hover, .EditResourceSubmit:hover, .EditResourceCancel:hover{
 	color: black;
 	background: beige;
 	transition: 500ms;
 }
+
+
+
+
+
+
+.EditSingleResource{
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+	font-family: 'Quattrocento';
+	padding-bottom: 1%;
+	z-index: 107;
+	position: fixed;
+	display: none; 
+	width: 40%;
+	top: 30%;
+	left: 33%;
+	background: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);	
+}
+
+.EditSingleResourceHeading{
+	color: white;
+	width: 100%;
+	background-color: black;
+	display: inline-block;
+	position: relative;
+	padding: 2%;
+	margin-bottom: 1%;
+}
+
+.NewResourceNameEdit{
+	margin-left: 2.5%;
+	margin-top: 1%;
+	width: 95%;
+	font-size: 1em;
+	position: relative;
+	color: black;
+	background-color: white;
+	display: inline-block;
+	text-align: left;
+	padding: 2%;
+}
+
+.NewResourceURLEdit{
+	margin-left: 2.5%;
+	background-color: white;
+	margin-top: 1%;
+	width: 95%;
+	font-size: 1em;
+	position: relative;
+	color: black;
+	display: inline-block;
+	text-align: left;
+	padding: 2%;	
+}
+
+
+.EditResourceSubmit{
+	border-width:0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+	outline: none;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	margin-left: 28%;
+	margin-top: 2%;
+	width: 20%;
+	color: white;
+	display: inline-block;
+	position: relative;
+	background: black;
+	padding: 2%;
+	 float: left;
+	 transition: 500ms;
+}
+
+.EditResourceCancel{
+	border-width:0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+	outline: none;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	transition: 500ms;
+	margin-left: 5%;
+	margin-top: 2%;
+	width: 20%;
+	color: white;
+	display: inline-block;
+	position: relative;
+	background: black;
+	padding: 2%;
+	float: left;
+}
+
+
+
 
 
 

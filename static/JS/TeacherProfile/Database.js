@@ -25,6 +25,7 @@
 		ref.once('value', ReceivedData, errData).then(function() {
 			FormatTimeTable();
 			AttachEventToEachStudentClick();
+			AttachEventToLectureClick();
 		});
 
 		//Functions for fetching data
@@ -130,6 +131,11 @@
 					return el;
 				});
 
+				//get the lecture resource json
+				var ResourceJSON = AllStreamsJSON_of_ThisSubject[key]['Resources'];
+
+				//need to loop through the resource json and get lecturename array and lecture links array
+
 				//now this timing needs to be injected as an html
 				FillEachStreamBoxAndDropDownBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, subjectGrade, streamColor);
 
@@ -140,6 +146,9 @@
 				CreateStudentBatchBox(key, currentWorking_Subject, subjectGrade, SeatVacancy);
 				CreateAcceptedStudentBatchBox(AcceptedStudentJSON, subjectGrade, currentWorking_Subject, key, TotalSeats, FilledSeats);
 				CreatePendingStudentBatchBox(PendingStudentJSON, subjectGrade, currentWorking_Subject, key, TotalSeats, FilledSeats);
+
+				//create the lecturetab stuff
+				CreateLectureLinkBox(currentWorking_Subject, subjectGrade, key, ResourceJSON);
 			}
 
 		}
@@ -797,6 +806,7 @@
 		$('.single-event').remove();
 		$('.BatchBox').remove();
 		$('.StudentInfoCont').remove();
+		$('.LectureLinksContainer').remove();
 
 		//now recreate the streamboxes after fetching em all
 		FetchAllDataFromDatabase();

@@ -31,7 +31,7 @@ function AttachEventToEachStudentClick() {
 				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID);
 
 				var data = {
-					StudentName: studentName_
+					StudentName: EncodeString(studentName_)
 				}
 
 				ref.update(data).then(function() {
@@ -187,7 +187,7 @@ function AttachEventToEachStudentClick() {
 			d.toUTCString();
 
 			var data = {
-				[d]: ActualMessage
+				[d]: EncodeString(ActualMessage)
 			}
 
 			ref.update(data).then(function() {
@@ -630,6 +630,175 @@ function AttachEventToEachStudentClick() {
 
 		return false;
 	});
+
+}
+
+//attach event to lecture clicks()
+function AttachEventToLectureClick() {
+
+	//click on edit lecture link
+	$('.fa-pen-square').click(function() {
+		console.log('Edit lecture link clicked!');
+
+		BlurAnimate('.MainContent');
+
+		IndexNum = String($(this).attr("data-index"));
+		Address = String($(this).attr("data-address"));
+
+		subject = String($(this).attr("data-subject"));
+		grade = String($(this).attr("data-grade"));
+
+		LectureName = String($(this).attr("data-name"));
+		LectureURL = String($(this).attr("data-url"));
+
+		CreateResourceEditBox(subject, grade, Address, LectureName, LectureURL, IndexNum);
+
+		$('.EditResourceCancel').click(function() {
+			FadeOutANDRemove('fast', '.EditSingleResource');
+			UnBlurAnimate('.MainContent');
+
+		});
+
+		$('.EditResourceSubmit').click(function() {
+			console.log('Submit new resource!');
+
+			FadeInLoadingFrame();
+
+			Address = String($(this).attr("data-address"));
+
+			IndexNum = String($(this).attr("data-index"));
+
+			prevName = String($(this).attr("data-name"));
+
+			prevURL = String($(this).attr("data-url"));
+
+			//first get the inputs
+			newResourceName = document.getElementById('NewResourceNameEdit_ID').value;
+			newResourceURL = document.getElementById('NewResourceURLEdit_ID').value;
+
+			if (newResourceName == '') {
+				console.log('reset to prevname');
+				newResourceName = prevName;
+			}
+
+			if (newResourceURL == '') {
+				console.log('reset to prevurl');
+				newResourceURL = prevURL;
+			}
+
+
+			//get into firebase and update it with this new data
+			encodedname = EncodeString(newResourceName)
+			encodedURL = EncodeString(newResourceURL);
+
+			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum));
+
+			//delete the previous entry
+			ref.remove().then(function() {
+
+				//now enter this data
+				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum));
+
+				data = {
+					[encodedname]: encodedURL
+				}
+
+				ref.update(data).then(ReloadBackEndData).then(function() {
+					FadeOutLoadingFrame();
+					FadeOutANDRemove('fast', '.EditSingleResource');
+					UnBlurAnimate('.MainContent');
+					BoxAlert('Resource ' + String(newResourceName) + ' Edited');
+				})
+
+			})
+
+		});
+
+		return false;
+	});
+
+	$('.fa-minus-square').click(function() {
+		console.log('delete lecture link clciked!');
+
+		FadeInLoadingFrame();
+		BlurAnimate('.MainContent');
+
+		IndexNum = String($(this).attr("data-index"));
+		Address = String($(this).attr("data-address"));
+
+		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum) + '/');
+
+		ref.remove().then(ReloadBackEndData).then(function() {
+			FadeOutLoadingFrame();
+			UnBlurAnimate('.MainContent');
+			BoxAlert('Lecture resource deleted');
+		})
+
+		return false;
+	});
+
+
+	//for clicking add new resource
+	$(".AddResource").click(function() {
+		console.log('add resource clicked!');
+
+		subject_ = String($(this).attr("data-subject"));
+
+		grade_ = String($(this).attr("data-grade"));
+
+		address_ = String($(this).attr("data-address"));
+
+		maxindex_ = String($(this).attr("data-maxindex"));
+
+		CreateResourceAddBox(subject_, grade_, address_, maxindex_);
+		BlurAnimate('.MainContent');
+
+		//now bind the inner elements events here of add resource box
+		$('.AddResourceCancel').click(function() {
+			FadeOutANDRemove('fast', '.ResourceAddBox');
+			UnBlurAnimate('.MainContent');
+
+		});
+		$('.AddResourceSubmit').click(function() {
+			console.log('Submit new resource!');
+
+			FadeInLoadingFrame();
+
+			Address = String($(this).attr("data-address"));
+
+			MaxIndex = parseInt($(this).attr("data-maxindex"));
+
+			//first get the inputs
+			newResourceName = document.getElementById('ResourceName_ID').value;
+			newResourceURL = document.getElementById('ResourceURL_ID').value;
+
+			if ((newResourceName == '') || (newResourceURL == '')) {
+				BoxAlert('Empty fields cannot be accepted..');
+			} else {
+
+				//get into firebase and update it with this new data
+				encodedname = EncodeString(newResourceName)
+				encodedURL = EncodeString(newResourceURL);
+
+				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(MaxIndex + 1));
+
+				data = {
+					[encodedname]: encodedURL
+				}
+
+				ref.update(data).then(ReloadBackEndData).then(function() {
+					FadeOutLoadingFrame();
+					FadeOutANDRemove('fast', '.ResourceAddBox');
+					UnBlurAnimate('.MainContent');
+					BoxAlert('New Resource ' + String(newResourceName) + ' Added');
+				})
+
+			}
+
+		});
+		return false;
+	});
+
 
 }
 
@@ -1609,9 +1778,104 @@ function LineChartRollCallJS(ParentElement, ChildElement1) {
 
 }
 
+function CreateLectureLinkBox(subject, grade, streamName, ResourceJSON) {
+
+	address = grade + '/' + subject + '/Streams/' + streamName + '/';
+
+	//first get the lecturename and lecture url arrays
+	lectureNameArr = [];
+	lectureURLArr = [];
+	lectureIndexNumbers = [];
+	MaxIndexNumber = 1000;
+
+	var key;
+	for (key in ResourceJSON) {
+
+		ActualJSON = ResourceJSON[key];
+
+		var key2;
+		for (key2 in ActualJSON) {
+			lectureNameArr.push(DecodeString(key2));
+			lectureURLArr.push(DecodeString(ActualJSON[key2]));
+		}
+
+		lectureIndexNumbers.push(key);
+		MaxIndexNumber = key;
+	}
 
 
-function CreateResourceAddBox(subject, grade) {
+
+	var LectureLinksContainer = document.createElement('div');
+	LectureLinksContainer.setAttribute('class', 'LectureLinksContainer');
+
+	var LectureBoxHeading = document.createElement('div');
+	LectureBoxHeading.setAttribute('class', 'LectureBoxHeading');
+
+	var BoxHeadingText = document.createElement('span');
+
+	var t = document.createTextNode(subject + ' | ' + grade);
+	BoxHeadingText.append(t);
+
+	var AddResource = document.createElement('span');
+	AddResource.setAttribute('class', 'AddResource');
+	AddResource.setAttribute('data-subject', subject);
+	AddResource.setAttribute('data-grade', grade);
+	AddResource.setAttribute('data-address', address);
+	AddResource.setAttribute('data-maxindex', MaxIndexNumber);
+
+	var t = document.createTextNode('Add New Resource');
+	AddResource.append(t);
+
+	LectureBoxHeading.append(BoxHeadingText);
+	LectureBoxHeading.append(AddResource);
+
+	LectureLinksContainer.append(LectureBoxHeading);
+
+	//now loop through and make each lecture links
+	for (i = 0; i < lectureNameArr.length; i++) {
+
+		currentLectureName = lectureNameArr[i];
+		currentLectureURL = DecodeString(lectureURLArr[i]);
+
+		//now make the boxes
+		var LectureLink = document.createElement('div');
+		LectureLink.setAttribute('class', 'LectureLink');
+
+		var LectureName = document.createElement('span');
+		var t = document.createTextNode(currentLectureName);
+		LectureName.append(t);
+
+		LectureLink.append(LectureName);
+
+		var penSquare = document.createElement('i');
+		penSquare.setAttribute('class', 'fas fa-pen-square');
+		penSquare.setAttribute('id', 'penSquare');
+		penSquare.setAttribute('data-index', lectureIndexNumbers[i]);
+		penSquare.setAttribute('data-address', address);
+		penSquare.setAttribute('data-name', currentLectureName);
+		penSquare.setAttribute('data-url', currentLectureURL);
+		penSquare.setAttribute('data-subject', subject);
+		penSquare.setAttribute('data-grade', grade);
+
+		LectureLink.append(penSquare);
+
+		var minusSquare = document.createElement('i');
+		minusSquare.setAttribute('class', 'fas fa-minus-square');
+		minusSquare.setAttribute('id', 'minusSquare');
+		minusSquare.setAttribute('data-index', lectureIndexNumbers[i]);
+		minusSquare.setAttribute('data-address', address);
+
+		LectureLink.append(minusSquare);
+
+		LectureLinksContainer.append(LectureLink);
+	}
+
+	document.getElementById('MainLectureTab_Cont_ID').appendChild(LectureLinksContainer);
+
+}
+
+
+function CreateResourceAddBox(subject, grade, address, maxindex) {
 
 	var ResourceAddBox = document.createElement('div');
 	ResourceAddBox.setAttribute('class', 'ResourceAddBox');
@@ -1646,7 +1910,6 @@ function CreateResourceAddBox(subject, grade) {
 
 	ResourceAddBox.append(ResourceName);
 
-
 	var ResourceURL = document.createElement('input');
 	ResourceURL.setAttribute('class', 'ResourceURL');
 	ResourceURL.setAttribute('name', 'ResourceURL');
@@ -1656,92 +1919,96 @@ function CreateResourceAddBox(subject, grade) {
 
 	ResourceAddBox.append(ResourceURL);
 
-	var ResourceURL = document.createElement('input');
-	ResourceURL.setAttribute('class', 'ResourceURL');
-	ResourceURL.setAttribute('name', 'ResourceURL');
-	ResourceURL.setAttribute('id', 'ResourceURL_ID');
-	ResourceURL.setAttribute('type', 'text');
-	ResourceURL.setAttribute('placeholder', 'Resource URL');
+	// var ResourceOrder = document.createElement('input');
+	// ResourceOrder.setAttribute('class', 'ResourceOrder');
+	// ResourceOrder.setAttribute('name', 'ResourceOrder');
+	// ResourceOrder.setAttribute('id', 'ResourceOrder_ID');
+	// ResourceOrder.setAttribute('type', 'number');
+	// ResourceOrder.setAttribute('min', '0');
+	// ResourceOrder.setAttribute('placeholder', '(Optional Order Number) Resources are ordered by ascending.');
 
-	ResourceAddBox.append(ResourceURL);
-
-	var ResourceOrder = document.createElement('input');
-	ResourceOrder.setAttribute('class', 'ResourceOrder');
-	ResourceOrder.setAttribute('name', 'ResourceOrder');
-	ResourceOrder.setAttribute('id', 'ResourceOrder_ID');
-	ResourceOrder.setAttribute('type', 'number');
-	ResourceOrder.setAttribute('min', '0');
-	ResourceOrder.setAttribute('placeholder', '(Optional Order Number) Resources are ordered by ascending.');
-
-	ResourceAddBox.append(ResourceOrder);
+	// ResourceAddBox.append(ResourceOrder);
 
 	//add box
 	var AddResourceSubmit = document.createElement('div');
 	AddResourceSubmit.setAttribute('class', 'AddResourceSubmit');
+	AddResourceSubmit.setAttribute('data-address', address);
+	AddResourceSubmit.setAttribute('data-maxindex', maxindex);
+
+	var t = document.createTextNode('Add');
+	AddResourceSubmit.append(t);
 
 	ResourceAddBox.append(AddResourceSubmit);
 
 	var AddResourceCancel = document.createElement('div');
 	AddResourceCancel.setAttribute('class', 'AddResourceCancel');
 
+	var t = document.createTextNode('Cancel');
+	AddResourceCancel.append(t);
+
 	ResourceAddBox.append(AddResourceCancel);
 
 	document.body.appendChild(ResourceAddBox);
 
+	$('.ResourceAddBox').fadeIn('slow');
+
 }
 
-function CreateLectureLinkBox(subject, grade, lectureNameArr, lectureURLArr) {
+function CreateResourceEditBox(subject, grade, address, lecturename, lectureurl, indexNum) {
 
-	var LectureLinksContainer = document.createElement('div');
-	LectureLinksContainer.setAttribute('class', 'LectureLinksContainer');
+	var EditSingleResource = document.createElement('div');
+	EditSingleResource.setAttribute('class', 'EditSingleResource');
 
-	var LectureBoxHeading = document.createElement('div');
-	LectureBoxHeading.setAttribute('class', 'LectureBoxHeading');
+	var EditSingleResourceHeading = document.createElement('span');
+	EditSingleResourceHeading.setAttribute('class', 'EditSingleResourceHeading');
 
-	var BoxHeadingText = document.createElement('span');
+	var t = document.createTextNode('Editing for: ' + subject + ' | ' + grade);
+	EditSingleResourceHeading.append(t);
 
-	var t = document.createTextNode(subject + ' | ' + grade);
-	BoxHeadingText.append(t);
+	EditSingleResource.append(EditSingleResourceHeading);
 
-	var AddResource = document.createElement('span');
-	AddResource.setAttribute('class', 'AddResource');
+	var NewResourceNameEdit = document.createElement('input');
+	NewResourceNameEdit.setAttribute('class', 'NewResourceNameEdit');
+	NewResourceNameEdit.setAttribute('name', 'NewResourceNameEdit');
+	NewResourceNameEdit.setAttribute('id', 'NewResourceNameEdit_ID');
+	NewResourceNameEdit.setAttribute('type', 'text');
+	NewResourceNameEdit.setAttribute('placeholder', lecturename + ' (Leave empty to keep old)');
 
-	LectureBoxHeading.append(BoxHeadingText);
-	LectureBoxHeading.append(AddResource);
+	EditSingleResource.append(NewResourceNameEdit);
 
-	LectureLinksContainer.append(LectureBoxHeading);
+	var NewResourceURLEdit = document.createElement('input');
+	NewResourceURLEdit.setAttribute('class', 'NewResourceURLEdit');
+	NewResourceURLEdit.setAttribute('name', 'NewResourceURLEdit');
+	NewResourceURLEdit.setAttribute('id', 'NewResourceURLEdit_ID');
+	NewResourceURLEdit.setAttribute('type', 'text');
+	NewResourceURLEdit.setAttribute('placeholder', lectureurl + ' (Leave empty to keep old)');
 
-	//now loop through and make each lecture links
-	for (i = 0; i < lectureNameArr.length; i++) {
+	EditSingleResource.append(NewResourceURLEdit);
 
-		currentLectureName = lectureNameArr[i];
-		currentLectureURL = DecodeString(lectureURLArr[i]);
+	var EditResourceSubmit = document.createElement('div');
+	EditResourceSubmit.setAttribute('class', 'EditResourceSubmit');
+	EditResourceSubmit.setAttribute('id', 'EditResourceSubmit_ID');
+	EditResourceSubmit.setAttribute('data-address', address);
+	EditResourceSubmit.setAttribute('data-index', indexNum);
+	EditResourceSubmit.setAttribute('data-name', lecturename);
+	EditResourceSubmit.setAttribute('data-url', lectureurl);
 
-		//now make the boxes
-		var LectureLink = document.createElement('div');
-		LectureLink.setAttribute('class', 'LectureLink');
+	var t = document.createTextNode('Edit');
+	EditResourceSubmit.append(t);
 
-		var LectureName = document.createElement('span');
-		var t = document.createTextNode(currentLectureName);
-		LectureName.append(t);
+	EditSingleResource.append(EditResourceSubmit);
 
-		LectureLink.append(LectureName);
+	var EditResourceCancel = document.createElement('div');
+	EditResourceCancel.setAttribute('class', 'EditResourceCancel');
+	EditResourceCancel.setAttribute('id', 'EditResourceCancel_ID');
 
-		var penSquare = document.createElement('i');
-		penSquare.setAttribute('class', 'fas fa-pen-square');
-		penSquare.setAttribute('id', 'penSquare');
+	var t = document.createTextNode('Cancel');
+	EditResourceCancel.append(t);
 
-		LectureLink.append(penSquare);
+	EditSingleResource.append(EditResourceCancel);
 
-		var minusSquare = document.createElement('i');
-		minusSquare.setAttribute('class', 'fas fa-minus-square');
-		minusSquare.setAttribute('id', 'minusSquare');
+	document.body.appendChild(EditSingleResource);
 
-		LectureLink.append(minusSquare);
-
-		LectureLinksContainer.append(LectureLink);
-	}
-
-	document.getElementById('MainLectureTab_Cont_ID').appendChild(LectureLinksContainer);
+	$('.EditSingleResource').fadeIn('slow');
 
 }
