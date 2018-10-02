@@ -20,16 +20,10 @@
 	var global_database_json;
 
 	//Fetch all relevant data for logged in user from our database using UID
+	//this is the main function which will fetch the data from backend and then call the functions to craft the data into various places
 	function FetchAllDataFromDatabase() {
-		var ref = database.ref('USERS/' + Current_UID);
-		ref.once('value', ReceivedData, errData).then(function() {
-			FormatTimeTable();
-			AttachEventToEachStudentClick();
-			AttachEventToLectureClick();
-		});
 
-		//Functions for fetching data
-		function ReceivedData(data) {
+		var ref = database.ref('USERS/' + Current_UID).once('value').then(function(snapshot) {
 
 			//first remove the timetable if it exists and create it afresh
 			if (document.getElementById('cdscheduleloading_ID')) {
@@ -38,7 +32,7 @@
 
 			CreateTimeTableHTML();
 
-			tableData = data.val();
+			tableData = snapshot.val();
 			global_database_json = tableData;
 			console.log(tableData);
 
@@ -47,29 +41,37 @@
 			document.title = tableData['UserName'] + ' - Profile';
 
 			//now populate the stream config options section
+			//so here we are going to have multi level FOR loops to propagate through our JSON structure
+			//we need to loop through table data to find subjects/grades/ and batches in each one of them
+			//this LoadandPopulateverything function will have multi level for loops with each loop finding things such as subject - grade - batches and so on
 			LoadAndPopulateEverything(tableData);
 
+			//this will craft the 24 hour clock timings for new batch timings add option box
 			InjectTimingsIntoHTML();
 
-			//now populate the timetable
+			//now populate the timetable - this populates the timetable
 			PopulateTimeTable(tableData);
 
-			//now call the function to attach delete events to each delete and edit icon in each one stream
-			SetupDeleteFullStreamEvent();
-			SetupDeleteOneStreamEvent();
-			SetupEditOneStreamEvent();
-			SetupEditFullStreamEvent();
+			
 
 			FadeOutLoadingFrame();
-		}
 
-		function errData(err) {
-			console.log('Error!');
-			console.log(err);
-		}
+		}).then(function() {
+			FormatTimeTable();
+			//now call the function to attach events to all buttons
+			AttachEventToAddStreamOptions();
+			AttachEventToEachStudentClick();
+			AttachEventToLectureClick();
+		});
 
 	}
 
+
+
+
+
+
+	//Functions
 
 	function LoadAndPopulateEverything(tableData_JSON) {
 
@@ -154,27 +156,6 @@
 		}
 	}
 
-
-	function CreateStreamBox(SubjectName, SubjectGrade) {
-
-		//subjectName could be physics e.g
-		//SubjectGrade right now is o level or alevel
-
-		//create streambox element
-		var StreamBox = document.createElement("div");
-		StreamBox.setAttribute("class", "StreamBox");
-
-		var ThisStreamSubject = document.createElement("div");
-		ThisStreamSubject.setAttribute("class", "ThisStreamSubject");
-
-		var t = document.createTextNode(SubjectName + ' | ' + SubjectGrade);
-		ThisStreamSubject.append(t);
-
-		StreamBox.append(ThisStreamSubject);
-		document.getElementById('StreamConfigOptions_ID').append(StreamBox);
-
-		return StreamBox
-	}
 
 	function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy, streambox_ref, subject, classGrade, batchcolor) {
 
@@ -276,312 +257,58 @@
 
 
 
-	//Clicking the create new stream buttom tab
-	document.getElementById("CreateNewStream_ID").addEventListener('click', e => {
 
-		FadeInLoadingFrame();
 
-		console.log('Add new stream clicked!');
+	function AttachEventToAddStreamOptions(){
 
-		//first get all the input values nicely
-
-		var e = document.getElementById("StreamSubjectSelect_ID");
-		var ChosenSubject = e.options[e.selectedIndex].value; //e.g O LEVEL/Physics
-
-		var ChosenStreamName = document.getElementById('StreamName_ID').value;
-
-		var ChosenStreamColor = document.getElementById('StreamColor_ID').value;
-		var ChosenStreamTotalSeats = document.getElementById('StreamTotalSeat_ID').value;
-
-		CreateNewStream(ChosenSubject, ChosenStreamName, ChosenStreamColor, ChosenStreamTotalSeats);
-
-	});
-
-	//Clicking the add new stream timing buttom tab
-	document.getElementById("AddNewTiming_ID").addEventListener('click', e => {
-
-		FadeInLoadingFrame();
-
-		console.log('Add new timing clicked!');
-
-		//first get all the input values nicely
-
-		var e = document.getElementById("StreamNameSelectADDBOX_ID");
-		var ChosenStreamAddress = e.options[e.selectedIndex].value; //e.g O LEVEL/Physics
-
-		var e = document.getElementById("StreamDaySelect_ID");
-		var ChosenDay = e.options[e.selectedIndex].value;
-
-		var e = document.getElementById("StreamStartTime_ID");
-		var ChosenStartTime = e.options[e.selectedIndex].value;
-
-		var e = document.getElementById("StreamEndTime_ID");
-		var ChosenEndTime = e.options[e.selectedIndex].value;
-
-		CreateNewTiming(ChosenStreamAddress, ChosenDay, ChosenStartTime, ChosenEndTime);
-
-
-	});
-
-
-
-	function CreateNewStream(subject, streamName, color, TotalSeats) {
-		//IMPORTANT NOTE: HERE SUBJECT ACTUALLY HAS O LEVEL/PHYSICS IN IT OR LIKE THAT
-		var CheckBoolean;
-
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + subject + '/Streams/');
-
-		ref.once('value', ReceivedData, errData).then(function() {
-
-			if (CheckBoolean == true) {
-				BoxAlert('Batch name exists already in database..');
-			} else if (CheckBoolean == false) {
-				InjectNewStream().then(function() {
-					BoxAlert('New Batch has been created successfully!');
-					ReloadBackEndData();
-					FadeOutLoadingFrame();
-				});
-			} else {
-				console.log('CHECK BOOLEAN IS UNDEFINED');
-			}
-
-		});
-
-		function ReceivedData(data) {
-
-			tableData = data.val();
-
-			//first need to check to see if the stream name already exists and if it does tell the user it does
-			existingStreamNameArray = ReturnAsArrayChildOfTable(tableData);
-
-			//this will return true if the stream name to be created already exists
-			CheckBoolean = CheckIfElementExistsInArray(streamName, existingStreamNameArray);
-
-		}
-
-		function errData(err) {
-			console.log('Error!');
-			console.log(err);
-		}
-
-		function InjectNewStream() {
-			//we are a go to create the new stream database table
-			var tableaddress = 'USERS/' + Current_UID + '/UserClass/' + subject + '/Streams/' + streamName;
-			var data = {
-				StreamColor: color,
-				TotalSeats: TotalSeats,
-				FilledSeats: 0
-			}
-
-			const pr = InsertDataIntoTable(data, tableaddress);
-
-			return pr
-		}
-	}
-
-	function CreateNewTiming(StreamAddress, day, startTime, endTime) {
-		//IMPORTANT NOTE: HERE SUBJECT ACTUALLY HAS O LEVEL/PHYSICS IN IT OR LIKE THAT
-
-		var craftedTimings;
-		var NumberOfTimingsCurrently;
-
-		address = 'USERS/' + Current_UID + '/UserClass/' + StreamAddress + 'Timings/';
-
-		var ref = database.ref(address);
-
-		const promise = ref.once('value', ReceivedData, errData).then(function() {
-			InsertNewTiming().then(function() {
-				BoxAlert('New Batch timing has been created successfully!');
-				ReloadBackEndData();
-				FadeOutLoadingFrame();
-			});
-		});
-
-		function ReceivedData(data) {
-			//first find how many timings are there currently in this new stream timing update
-			tableData = data.val();
-			ThisStreamTiming = $.map(tableData, function(el) {
-				return el;
-			});
-
-			NumberOfTimingsCurrently = String(ThisStreamTiming.length);
-
-			craftedTimings = day + ' ' + startTime + ' - ' + endTime;
-
-		}
-
-		function errData(err) {
-			console.log('Error!');
-			console.log(err);
-		}
-
-		function InsertNewTiming() {
-			//now insert new data into it
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + StreamAddress + 'Timings/');
-
-			var data = {
-				[NumberOfTimingsCurrently]: craftedTimings
-			}
-
-			const pr = ref.update(data);
-			return pr
-		}
-
-
-	}
-
-
-	//create the accepted students batch block to inject into it
-	function CreateAcceptedStudentBatchBox(inputStudentJSON, grade, subject, streamName, totSeats, fillSeats, lastPendingMonthData) {
-
-		//AcceptedStudents -> UID -> StudentName, RollCall, Tution
-		//first loop through the UID
-		var key; //key is the UID
-		for (key in inputStudentJSON) {
-			CurrentStudent_UID = key;
-
-			CurrentStudentName = inputStudentJSON[CurrentStudent_UID]['StudentName'];
-
-			//need to find the last pending month payment
-			TutionPaidJSON = inputStudentJSON[CurrentStudent_UID]['TutionPaid'];
-
-			today = new Date().toISOString().slice(0, 10);
-			currentYear = today.split('-')[0];
-			MonthsArr = ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-			//now we can loop through the dates of tution paid and insert them into the respective arrays
-			TutionMothYearArray = [];
-			TutionPaidDayArray = [];
-
-			var key; //where key is each year.month in the table 201805 and value is day
-			for (key in TutionPaidJSON) {
-				MonthYear = key;
-
-				Day_ = TutionPaidJSON[key];
-
-				TutionMothYearArray.push(MonthYear);
-				TutionPaidDayArray.push(Day_);
-			}
-
-			//if needed to reverse the date and month arrays
-			newTutionMothYearArray = TutionMothYearArray.reverse();
-			newTutionPaidDayArray = TutionPaidDayArray.reverse();
-
-
-			//now that we have our all input arrays we can call the function to craft them
-			//first we need to find the pending month based on the last paid month and add 1 to it
-			//if a last paid month exists then make the current one the next one of last paid
-			if (newTutionMothYearArray[0]) {
-				LastPaidMonthIndex = parseInt(newTutionMothYearArray[0].substring(4, 6));
-				monthArrIndex = LastPaidMonthIndex - 1;
-
-				//but make sure to reset it back to 0 if we get 11 i.e december and also increase year by 1
-				if (monthArrIndex == 11) {
-					PendingMonth = MonthsArr[0];
-					currentYear = parseInt(currentYear) + 1;
-
-				} else {
-					PendingMonth = MonthsArr[monthArrIndex + 1];
-				}
-
-				PendingMonthYear = PendingMonth + ' ' + currentYear;
-			}
-			//otherwise just set the pending month to the actual current month
-			else {
-				//set pending month to current month
-				now_ = new Date().toISOString().slice(0, 10);
-				thisYear = now_.split('-')[0];
-				thisMonth = MonthsArr[parseInt(now_.split('-')[1]) - 1];
-				PendingMonthYear = thisMonth + ' ' + thisYear;
-			}
-
-			//now create the html elements themselves
-			OneStudentLineAccepted(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName, totSeats, fillSeats, PendingMonthYear);
-
-		}
-	}
-
-	//create the pending students batch block to inject into it
-	function CreatePendingStudentBatchBox(inputStudentJSON, grade, subject, streamName, totSeats, fillSeats) {
-
-		//AcceptedStudents -> UID -> StudentName, RollCall, Tution
-		//first loop through the UID
-		var key; //key is the UID
-		for (key in inputStudentJSON) {
-			CurrentStudent_UID = key;
-
-			CurrentStudentName = inputStudentJSON[CurrentStudent_UID]['StudentName'];
-
-			//now create the html elements themselves
-			OneStudentLinePending(CurrentStudentName, CurrentStudent_UID, grade, subject, streamName, totSeats, fillSeats);
-
-		}
-	}
-
-	//attached delete events from the firebase database for a full stream to be deleted when clicked
-	function SetupDeleteFullStreamEvent() {
-		//attached delete events from the firebase database for a full stream to be deleted when clicked
-		$(".fa-trash").click(function() {
-
-			BlurAnimate('.StreamConfigOptions');
-			//$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
-
-			dataMain = String($(this).attr("data-main"));
-
-			CraftPopUpCheckBox('Are you sure? This will delete the entire stream with its database of students and everything.', dataMain);
-
-			AttachEventToOkPopUpBox();
-			// var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' +  dataMain;
-
-			// var ref = database.ref(tableToDeleteFromAddress);
-
-			// const promise = ref.remove();
-
-			// promise.then(ReloadBackEndData).then(function(){
-			// 	BoxAlert('Batch deleted successfully!');
-			// });
-
-			return false;
-		});
-	}
-
-	function AttachEventToOkPopUpBox() {
-		$("#YesButton_ID").click(function() {
+		//Clicking the create new stream buttom tab
+		$("#CreateNewStream_ID").click(function() {
 
 			FadeInLoadingFrame();
 
-			$('#StreamConfigOptions_ID')
-
-			dataMain = String($(this).attr("data-main"));
-
-			var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' + dataMain;
-
-			var ref = database.ref(tableToDeleteFromAddress);
-
-			const promise = ref.remove();
-
-			promise.then(ReloadBackEndData).then(function() {
-				BoxAlert('Batch deleted successfully!');
-				UnBlurAnimate('.StreamConfigOptions');
-				//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-				$('.DoubleCheckBox').remove();
-				FadeOutLoadingFrame();
-			});
+			console.log('Add new stream clicked!');
+	
+			//first get all the input values nicely
+	
+			var e = document.getElementById("StreamSubjectSelect_ID");
+			var ChosenSubject = e.options[e.selectedIndex].value; //e.g O LEVEL/Physics
+	
+			var ChosenStreamName = document.getElementById('StreamName_ID').value;
+	
+			var ChosenStreamColor = document.getElementById('StreamColor_ID').value;
+			var ChosenStreamTotalSeats = document.getElementById('StreamTotalSeat_ID').value;
+	
+			CreateNewStream(ChosenSubject, ChosenStreamName, ChosenStreamColor, ChosenStreamTotalSeats);
 
 			return false;
 		});
 
-		$("#NoButton_ID").click(function() {
-			UnBlurAnimate('.StreamConfigOptions');
-			//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-			$('.DoubleCheckBox').remove();
+		//Clicking the add new stream timing buttom tab
+		$("#AddNewTiming_ID").click(function() {
+
+			FadeInLoadingFrame();
+
+			console.log('Add new timing clicked!');
+	
+			//first get all the input values nicely
+	
+			var e = document.getElementById("StreamNameSelectADDBOX_ID");
+			var ChosenStreamAddress = e.options[e.selectedIndex].value; //e.g O LEVEL/Physics
+	
+			var e = document.getElementById("StreamDaySelect_ID");
+			var ChosenDay = e.options[e.selectedIndex].value;
+	
+			var e = document.getElementById("StreamStartTime_ID");
+			var ChosenStartTime = e.options[e.selectedIndex].value;
+	
+			var e = document.getElementById("StreamEndTime_ID");
+			var ChosenEndTime = e.options[e.selectedIndex].value;
+	
+			CreateNewTiming(ChosenStreamAddress, ChosenDay, ChosenStartTime, ChosenEndTime);
 
 			return false;
 		});
-	}
 
-	//attached delete events from the firebase database for each stream to be deleted when clicked
-	function SetupDeleteOneStreamEvent() {
 		//attached delete events from the firebase database for each stream to be deleted when clicked
 		$(".fa-trash-alt").click(function() {
 
@@ -600,10 +327,53 @@
 
 			return false;
 		});
-	}
 
-	//attached edit events for each one stream
-	function SetupEditOneStreamEvent() {
+		//attached delete events from the firebase database for a full stream to be deleted when clicked
+		$(".fa-trash").click(function() {
+
+			BlurAnimate('.StreamConfigOptions');
+			//$('.StreamConfigOptions').css('-webkit-filter', 'blur(5px)');
+
+			dataMain = String($(this).attr("data-main"));
+
+			CraftPopUpCheckBox('Are you sure? This will delete the entire stream with its database of students and everything.', dataMain);
+
+			//click events for yes and no
+			$("#YesButton_ID").click(function() {
+
+				FadeInLoadingFrame();
+	
+				$('#StreamConfigOptions_ID')
+	
+				dataMain = String($(this).attr("data-main"));
+	
+				var tableToDeleteFromAddress = 'USERS/' + Current_UID + '/UserClass/' + dataMain;
+	
+				var ref = database.ref(tableToDeleteFromAddress);
+	
+				const promise = ref.remove();
+	
+				promise.then(ReloadBackEndData).then(function() {
+					BoxAlert('Batch deleted successfully!');
+					UnBlurAnimate('.StreamConfigOptions');
+					//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+					$('.DoubleCheckBox').remove();
+					FadeOutLoadingFrame();
+				});
+	
+				return false;
+			});
+	
+			$("#NoButton_ID").click(function() {
+				UnBlurAnimate('.StreamConfigOptions');
+				$('.DoubleCheckBox').remove();
+	
+				return false;
+			});
+
+			return false;
+		});
+
 		//attached edit events from the firebase database for each stream to be edited when clicked
 		$(".fa-edit").click(function() {
 
@@ -625,20 +395,64 @@
 			//show and create the edit tab with datamain and datamain2 data embedded
 			CraftEditOneStream(dataMain, dataIndex);
 
-			SetupRemoveEditOneStream();
-			SetupClickEditOneStream();
-
 			//set the default values to the ones chosen before
 			$('#InputChildDaySelect_ID').val(day);
 			$('#InputChildStartTimeSelect_ID').val(sTime);
 			$('#InputChildEndTimeSelect_ID').val(eTime);
 
+			//click events for cancel and yes edit
+			$(".CancelEdit").click(function() {
+				//remove the editone stream window
+				UnBlurAnimate('.StreamConfigOptions');
+				//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+				$('.EditOneStream').remove();
+	
+				return false;
+			});
+
+	
+			$(".YesEdit").click(function() {
+				//edit one stream
+				FadeInLoadingFrame();
+	
+				//first get the data
+				dataMain = String($(this).attr("data-main"));
+				dataIndex = $(this).attr("data-main2");
+	
+				var e = document.getElementById("InputChildDaySelect_ID");
+				var ChosenDay = e.options[e.selectedIndex].value;
+	
+				var e = document.getElementById("InputChildStartTimeSelect_ID");
+				var ChosenStartTime = e.options[e.selectedIndex].value;
+	
+				var e = document.getElementById("InputChildEndTimeSelect_ID");
+				var ChosenEndTime = e.options[e.selectedIndex].value;
+	
+	
+				//now lets access the firebase database and input the above data
+				newTiming = ChosenDay + ' ' + ChosenStartTime + ' - ' + ChosenEndTime;
+				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + dataMain);
+	
+				var data = {
+					[dataIndex]: newTiming
+				}
+	
+				const promise = ref.update(data);
+	
+				promise.then(ReloadBackEndData).then(function() {
+					BoxAlert('Timing has been changed successfully!');
+					$('.EditOneStream').remove();
+					UnBlurAnimate('.StreamConfigOptions');
+					//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+					FadeOutLoadingFrame();
+				});
+	
+				return false;
+			});
+
 			return false;
 		});
-	}
 
-	//attached edit events for full stream
-	function SetupEditFullStreamEvent() {
 		//attached edit events from the firebase database for each stream to be edited when clicked
 		$(".fa-pencil-alt").click(function() {
 
@@ -656,145 +470,90 @@
 			//show and create the edit tab with datamain and datamain2 data embedded
 			CraftEditFullStream(address, streamName, streamColor, streamVacancy);
 
-			SetupRemoveEditFullStream();
-			SetupClickEditFullStream();
-
-			return false;
-		});
-	}
-
-	function SetupRemoveEditOneStream() {
-		$(".CancelEdit").click(function() {
-
-			//remove the editone stream window
-			UnBlurAnimate('.StreamConfigOptions');
-			//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-			$('.EditOneStream').remove();
-
-			return false;
-		});
-	}
-
-	function SetupRemoveEditFullStream() {
-		$(".NoFullEdit").click(function() {
-
-			//remove the editone stream window
-			UnBlurAnimate('.StreamConfigOptions');
-			//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-			$('.EditFullStream').remove();
-
-			return false;
-		});
-	}
-
-	function SetupClickEditOneStream() {
-		$(".YesEdit").click(function() {
-
-			FadeInLoadingFrame();
-
-			//first get the data
-			dataMain = String($(this).attr("data-main"));
-			dataIndex = $(this).attr("data-main2");
-
-			var e = document.getElementById("InputChildDaySelect_ID");
-			var ChosenDay = e.options[e.selectedIndex].value;
-
-			var e = document.getElementById("InputChildStartTimeSelect_ID");
-			var ChosenStartTime = e.options[e.selectedIndex].value;
-
-			var e = document.getElementById("InputChildEndTimeSelect_ID");
-			var ChosenEndTime = e.options[e.selectedIndex].value;
-
-
-			//now lets access the firebase database and input the above data
-			newTiming = ChosenDay + ' ' + ChosenStartTime + ' - ' + ChosenEndTime;
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + dataMain);
-
-			var data = {
-				[dataIndex]: newTiming
-			}
-
-			const promise = ref.update(data);
-
-			promise.then(ReloadBackEndData).then(function() {
-				BoxAlert('Timing has been changed successfully!');
-				$('.EditOneStream').remove();
+			//setup click event if cancel is clicked
+			$(".NoFullEdit").click(function() {
+				//remove the editone stream window
 				UnBlurAnimate('.StreamConfigOptions');
 				//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-				FadeOutLoadingFrame();
+				$('.EditFullStream').remove();
+	
+				return false;
 			});
 
-			return false;
-		});
-	}
-
-	function SetupClickEditFullStream() {
-		$(".YesFullEdit").click(function() {
-
-			FadeInLoadingFrame();
-
-			var snapshotJSON;
-
-			//first get the data
-			address = String($(this).attr("data-main"));
-			streamName = $(this).attr("data-main2");
-
-			var newName = document.getElementById("NewName_ID").value;
-			var newColor = document.getElementById("NewColor_ID").value;
-			var newSeats = document.getElementById("NewSeats_ID").value;
-
-			if (newName == '') {
-				newName = streamName;
-			}
-
-			//now lets first access the firebase database and keep a copy of the stream to be changed
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + address + streamName);
-
-			const promise = ref.once('value', ReceivedData, errData).then(function() {
-
-				//now we will delete this stream
+			//setup click eevnt if clicked yes on editing this full stream
+			$(".YesFullEdit").click(function() {
+				//edit full stream
+				FadeInLoadingFrame();
+	
+				var snapshotJSON;
+	
+				//first get the data
+				address = String($(this).attr("data-main"));
+				streamName = $(this).attr("data-main2");
+	
+				var newName = document.getElementById("NewName_ID").value;
+				var newColor = document.getElementById("NewColor_ID").value;
+				var newSeats = document.getElementById("NewSeats_ID").value;
+	
+				if (newName == '') {
+					newName = streamName;
+				}
+	
+				//now lets first access the firebase database and keep a copy of the stream to be changed
 				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + address + streamName);
-				ref.remove().then(function() {
-					//now we need to reload the address with the new stream
-					var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + address + newName);
-
-					ref.update(snapshotJSON).then(ReloadBackEndData).then(function() {
-						BoxAlert('Stream has been edited successfully!');
-						$('.EditFullStream').remove();
-						UnBlurAnimate('.StreamConfigOptions');
-						//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-						FadeOutLoadingFrame();
+	
+				const promise = ref.once('value', ReceivedData, errData).then(function() {
+	
+					//now we will delete this stream
+					var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + address + streamName);
+					ref.remove().then(function() {
+						//now we need to reload the address with the new stream
+						var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + address + newName);
+	
+						ref.update(snapshotJSON).then(ReloadBackEndData).then(function() {
+							BoxAlert('Stream has been edited successfully!');
+							$('.EditFullStream').remove();
+							UnBlurAnimate('.StreamConfigOptions');
+							//$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
+							FadeOutLoadingFrame();
+						});
 					});
+	
 				});
-
+	
+	
+				function ReceivedData(data) {
+	
+					tableData = data.val();
+	
+					//we need to change the color of the stream and seat cacpacity of tableData here
+					if (newSeats != '') {
+						tableData['TotalSeats'] = newSeats;
+					}
+	
+					if (newColor != '') {
+						tableData['StreamColor'] = newColor;
+					}
+	
+					snapshotJSON = tableData;
+	
+				}
+	
+				function errData(err) {
+					console.log('Error!');
+					console.log(err);
+				}
+	
+				return false;
 			});
-
-
-			function ReceivedData(data) {
-
-				tableData = data.val();
-
-				//we need to change the color of the stream and seat cacpacity of tableData here
-				if (newSeats != '') {
-					tableData['TotalSeats'] = newSeats;
-				}
-
-				if (newColor != '') {
-					tableData['StreamColor'] = newColor;
-				}
-
-				snapshotJSON = tableData;
-
-			}
-
-			function errData(err) {
-				console.log('Error!');
-				console.log(err);
-			}
 
 			return false;
 		});
+
+
 	}
+
+
 
 	//this will remove all dependant data from the page and reload them from backend
 	function ReloadBackEndData() {
@@ -812,270 +571,6 @@
 		FetchAllDataFromDatabase();
 	}
 
-
-	//this will craft the edit one stream
-	function CraftEditOneStream(address, index) {
-
-		timingArr = CraftTimingArray();
-
-		//MainStreamElement = document.getElementById('StreamConfigOptions_ID');
-
-		var EditOneStream = document.createElement("div");
-		EditOneStream.setAttribute("class", "EditOneStream");
-
-		var inputCont = document.createElement("div");
-		inputCont.setAttribute("class", "inputCont");
-
-		var InputChild1 = document.createElement("div");
-		InputChild1.setAttribute("class", "InputChild");
-
-		var InputChildSelect = document.createElement("select");
-		InputChildSelect.setAttribute("class", "InputChildSelect");
-		InputChildSelect.setAttribute("id", "InputChildDaySelect_ID");
-
-		var option = new Option('Sunday', 'Sunday');
-		InputChildSelect.append(option);
-
-		var option = new Option('Monday', 'Monday');
-		InputChildSelect.append(option);
-
-		var option = new Option('Tuesday', 'Tuesday');
-		InputChildSelect.append(option);
-
-		var option = new Option('Wednesday', 'Wednesday');
-		InputChildSelect.append(option);
-
-		var option = new Option('Thursday', 'Thursday');
-		InputChildSelect.append(option);
-
-		var option = new Option('Friday', 'Friday');
-		InputChildSelect.append(option);
-
-		var option = new Option('Saturday', 'Saturday');
-		InputChildSelect.append(option);
-
-		InputChild1.append(InputChildSelect);
-
-		var dayLabel = document.createElement("label");
-		dayLabel.setAttribute("class", "InputChildLabel");
-
-		var t = document.createTextNode('Day');
-		dayLabel.append(t);
-
-		InputChild1.append(dayLabel);
-
-		inputCont.append(InputChild1);
-
-		var InputChild2 = document.createElement("div");
-		InputChild2.setAttribute("class", "InputChild");
-
-		var InputChild2Select = document.createElement("select");
-		InputChild2Select.setAttribute("class", "InputChildSelect");
-		InputChild2Select.setAttribute("id", "InputChildStartTimeSelect_ID");
-
-		//loop through and inject the timing array as options
-		for (var i = 0; i < timingArr.length; i++) {
-			var myoption = new Option(timingArr[i], timingArr[i]);
-			InputChild2Select.append(myoption);
-		}
-
-		InputChild2.append(InputChild2Select);
-
-		var sTimeLabel = document.createElement("label");
-		sTimeLabel.setAttribute("class", "InputChildLabel");
-
-		var t = document.createTextNode('Start Time');
-		sTimeLabel.append(t);
-
-		InputChild2.append(sTimeLabel);
-
-		inputCont.append(InputChild2);
-
-		var InputChild3 = document.createElement("div");
-		InputChild3.setAttribute("class", "InputChild");
-
-		var InputChild3Select = document.createElement("select");
-		InputChild3Select.setAttribute("class", "InputChildSelect");
-		InputChild3Select.setAttribute("id", "InputChildEndTimeSelect_ID");
-
-		//loop through and inject the timing array as options
-		for (var i = 0; i < timingArr.length; i++) {
-			var myoption = new Option(timingArr[i], timingArr[i]);
-			InputChild3Select.append(myoption);
-		}
-
-		InputChild3.append(InputChild3Select);
-
-		var eTimeLabel = document.createElement("label");
-		eTimeLabel.setAttribute("class", "InputChildLabel");
-
-		var t = document.createTextNode('End Time');
-		eTimeLabel.append(t);
-
-		InputChild3.append(eTimeLabel);
-
-		inputCont.append(InputChild3);
-
-		var YesEdit = document.createElement("div");
-		YesEdit.setAttribute("class", "YesEdit");
-		metaData = address;
-		metaDataIndex = index;
-		YesEdit.setAttribute("data-main", metaData);
-		YesEdit.setAttribute("data-main2", metaDataIndex);
-
-		var t = document.createTextNode('Edit');
-		YesEdit.append(t);
-
-		var CancelEdit = document.createElement("div");
-		CancelEdit.setAttribute("class", "CancelEdit");
-		var t = document.createTextNode('Cancel');
-		CancelEdit.append(t);
-
-
-		//now append everything to the main editonestream
-		EditOneStream.append(inputCont);
-
-		EditOneStream.append(YesEdit);
-
-		EditOneStream.append(CancelEdit);
-
-		document.body.appendChild(EditOneStream);
-
-	}
-
-	//this will craft the edit full stream pop up box
-	function CraftEditFullStream(address, previousName, previousColor, previousSeats) {
-
-		var EditFullStream = document.createElement("div");
-		EditFullStream.setAttribute("class", "EditFullStream");
-
-		var YesFullEdit = document.createElement("div");
-		YesFullEdit.setAttribute("class", "YesFullEdit");
-		YesFullEdit.setAttribute("data-main", address);
-		YesFullEdit.setAttribute("data-main2", previousName);
-
-		var t = document.createTextNode('Edit');
-		YesFullEdit.append(t);
-
-
-		var NoFullEdit = document.createElement("div");
-		NoFullEdit.setAttribute("class", "NoFullEdit");
-
-		var t = document.createTextNode('Cancel');
-		NoFullEdit.append(t);
-
-
-		var InputContFullStream = document.createElement("div");
-		InputContFullStream.setAttribute("class", "InputContFullStream");
-
-		//create the new batch name input
-		var EditFullStreamInput = document.createElement("input");
-		EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
-		EditFullStreamInput.setAttribute("id", "NewName_ID");
-		EditFullStreamInput.setAttribute("type", "text");
-		EditFullStreamInput.setAttribute("placeholder", "Current Name: " + previousName);
-		EditFullStreamInput.setAttribute("name", "NewName_ID");
-
-		InputContFullStream.append(EditFullStreamInput);
-
-		//create the batch color input
-		var EditFullStreamInput = document.createElement("input");
-		EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
-		EditFullStreamInput.setAttribute("id", "NewColor_ID");
-		EditFullStreamInput.setAttribute("type", "text");
-		EditFullStreamInput.setAttribute("placeholder", "Current Color: " + previousColor);
-		EditFullStreamInput.setAttribute("name", "NewColor_ID");
-
-		InputContFullStream.append(EditFullStreamInput);
-
-		//create the new batch total seats input
-		var EditFullStreamInput = document.createElement("input");
-		EditFullStreamInput.setAttribute("class", "EditFullStreamInput");
-		EditFullStreamInput.setAttribute("id", "NewSeats_ID");
-		EditFullStreamInput.setAttribute("type", "number");
-		EditFullStreamInput.setAttribute("min", "0");
-		EditFullStreamInput.setAttribute("placeholder", "Current Total Seats: " + previousSeats);
-		EditFullStreamInput.setAttribute("name", "NewSeats_ID");
-
-		InputContFullStream.append(EditFullStreamInput);
-
-		EditFullStream.append(InputContFullStream);
-		EditFullStream.append(YesFullEdit);
-		EditFullStream.append(NoFullEdit);
-
-		//now enter it into the dom document
-		document.body.appendChild(EditFullStream);
-
-	}
-
-	//create the double check pop up box
-	function CraftPopUpCheckBox(inputText, datamain1) {
-
-		var DoubleCheckBox = document.createElement('div');
-		DoubleCheckBox.setAttribute("class", "DoubleCheckBox");
-
-		var MainText = document.createElement('div');
-		MainText.setAttribute("class", "MainText");
-
-		var t = document.createTextNode(inputText);
-		MainText.append(t);
-
-		var YesButton = document.createElement('div');
-		YesButton.setAttribute("class", "YesButton");
-		YesButton.setAttribute("id", "YesButton_ID");
-		YesButton.setAttribute("data-main", datamain1);
-		var t = document.createTextNode('Yes');
-		YesButton.append(t);
-
-		var NoButton = document.createElement('div');
-		NoButton.setAttribute("class", "NoButton");
-		NoButton.setAttribute("id", "NoButton_ID");
-		var t = document.createTextNode('No');
-		NoButton.append(t);
-
-		DoubleCheckBox.append(MainText);
-		DoubleCheckBox.append(YesButton);
-		DoubleCheckBox.append(NoButton);
-
-		document.body.appendChild(DoubleCheckBox);
-	}
-
-
-	//Add a realtime listener for state auth change
-	firebase.auth().onAuthStateChanged(firebaseUser => {
-		if (firebaseUser) {
-			console.log('Logged In..')
-			Current_UID = firebaseUser.uid;
-			FetchAllDataFromDatabase();
-
-			$(".BlackBoard_MainInfo").fadeIn('slow');
-			$(".BlackBoardName_Date_Cont").fadeIn('slow');
-
-		} else {
-			console.log('Not logged in..');
-			//window.location.href = "http://www.edutechs.org";
-			$(".BlackBoard_MainInfo").fadeIn('slow');
-			$(".BlackBoardName_Date_Cont").fadeIn('slow');
-		}
-	});
-
-	//Log out event trigger
-	document.getElementById("SignoutIcon2").addEventListener('click', e => {
-
-		console.log('Logout cliked!');
-		const auth = firebase.auth();
-
-		//logout
-		const promise = auth.signOut().then(function() {
-			//send to front page
-			console.log('Successfully logged out..');
-
-		}, function(err) {
-			console.log(err.code);
-		});
-
-
-	});
 
 
 
@@ -1183,7 +678,42 @@
 
 
 
+	//Add a realtime listener for state auth change
+	firebase.auth().onAuthStateChanged(firebaseUser => {
+		if (firebaseUser) {
+			console.log('Logged In..')
+			Current_UID = firebaseUser.uid;
+			FetchAllDataFromDatabase();
 
+			$(".BlackBoard_MainInfo").fadeIn('slow');
+			$(".BlackBoardName_Date_Cont").fadeIn('slow');
+
+		} else {
+			console.log('Not logged in..');
+			//window.location.href = "http://www.edutechs.org";
+			$(".BlackBoard_MainInfo").fadeIn('slow');
+			$(".BlackBoardName_Date_Cont").fadeIn('slow');
+		}
+	});
+
+
+	//Log out event trigger
+	document.getElementById("SignoutIcon2").addEventListener('click', e => {
+
+		console.log('Logout cliked!');
+		const auth = firebase.auth();
+
+		//logout
+		const promise = auth.signOut().then(function() {
+			//send to front page
+			console.log('Successfully logged out..');
+
+		}, function(err) {
+			console.log(err.code);
+		});
+
+
+	});
 
 
 	//FIREBASE STUFF END
