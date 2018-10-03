@@ -1,0 +1,85 @@
+html {
+    margin: 0;
+    height: 100%;
+    padding: 0 !important;
+  }
+   
+
+body {
+    margin: 0;
+    height: 100%;
+    background-color: beige;
+    overflow: hidden;
+    font-family: 'Quattrocento';
+}
+
+.MainCont {
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+	font-family: 'Quattrocento';
+    width: 70%;
+    height: 96%;
+    margin-left: 20%;
+    margin-top: 1%;
+	background:  linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+}
+
+.topContQuestions{
+    width: 100%;
+    margin-bottom: 2%;
+}
+
+.mainHeading{
+    background-color: black;
+    color: white;
+    font-size: 1.2em;
+    padding: 2%;
+}
+
+.submitNewExam{
+    float: right;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.cancelNewExam{
+    margin-left: 2%;
+    border-left: 1px solid white;
+    padding-left: 2%;
+    float: right;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.submitNewExam:hover, .cancelNewExam:hover{
+    color: gray;
+    transition: 400ms;
+}
+
+.MainEditorCont{
+    width: 100%;
+}
+
+.QuestionEditorCont{
+    margin-left: 1%;
+    margin-right: 1%;
+    float: left;
+    width: 48%;
+}
+.titleQuestioneditor{
+    background-color: black;
+    color: white;
+    font-size: 1.2em;
+    padding: 2%;
+}
+
+.generalEditorCont{
+    width: 48%;
+    float: left;
+}
+
+.titleGeneraleditor{
+    background-color: black;
+    color: white;
+    font-size: 1.2em;
+    padding: 2%;
+}

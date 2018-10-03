@@ -1,0 +1,78 @@
+html {
+    margin: 0;
+    height: 100%;
+    padding: 0 !important;
+  }
+   
+
+body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Cinzel';
+}
+
+.MainCont {
+    border: 1px solid black;
+    height: 98%;
+    width: 97%;
+    margin-top: 1%;
+    margin-left: 1%;
+    display: inline-block;
+    position: relative;
+}
+
+.Title{
+    font-weight: bold;
+    font-size: 3em;
+    width: 100%;
+    text-align: center;
+}
+
+.DayNameCont{
+    margin-top: 3%;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.DayNameFirstBlock{
+    border: 1px solid black;
+    width: 12.1%;
+    float: left;
+    font-size: 1.5em;
+    text-align: center; 
+}
+
+.DayName{
+    border: 1px solid black;
+    width: 12.4%;
+    float: left;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.RowInfo{
+    width: 100%;
+    display: inline-block;
+    position: relative;
+}
+
+.Timing{
+    border: 1px solid black;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 12.1%;
+    float: left;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.BoxSchedule{
+    border: 1px solid black;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    width: 12.4%;
+    float: left;
+    font-size: 1.2em;
+    text-align: center;
+}
