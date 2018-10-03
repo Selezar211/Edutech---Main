@@ -29,16 +29,48 @@
                 <div class="QuestionEditorCont">
                     <div class="titleQuestioneditor">Question Editor</div>
 
+                    <div style="margin-top: 1%; width: 100%; float: left;">
+                        <span style="color: black; width: 30%;display: inline-block;">Question Number:</span>
+                        <input class="optionInput" style="padding: 1.5%; background: black; color:white; width: 69%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;" type="number" min="0">
+                    </div>
+
+                    <textarea style="float: left; width: 60%; height: 18.35%; background: black;color:white;padding:2%;"></textarea>
+
+                    <div class="OptionsContainer">
+
+                        
+
+                    </div>
+
                 </div>
 
                 <div class="generalEditorCont">
                     <div class="titleGeneraleditor">General Editor</div>
 
                     <div class="generalStuffCont">
-                        <input type="text" placeholder="Exam Name..">
-                        <input type="text" placeholder="Date in dd/mm/yyy">
-                        <input type="text" placeholder="Starting time in 24:00 clock format">
-                        <input type="text" placeholder="Time limit in minutes..">
+                        <div style="margin-top: 1%; width: 100%; float: left;">
+                            <span style="color: black; width: 25%;display: inline-block;">Exam Name:</span>
+                            <input class="generalInput" type="text">
+                        </div>
+
+                        <div style="margin-top: 1%; width: 100%; float: left;">
+                            <span style="color: black; width: 25%;display: inline-block;">Exam Date:</span>
+                            <input class="generalInput" type="text" placeholder="dd/mm/yy">
+                        </div>
+                       
+                        <div style="width: 100%; margin-top: 1%; display: inline-block;">
+                            <span style="color: black; width: 25%;display: inline-block;">Starting Time: </span>
+                            <select class="generalInputSelect">
+                                <option value="12:30">12:30</option>
+                                <option value="1:30">1:30</option>
+                                <option value="2:30">2:30</option>
+                            </select>                            
+                        </div>
+                        
+                        <div style="margin-top: 1%; width: 100%; float: left;">
+                            <span style="color: black; width: 25%;display: inline-block;">Time Limit:</span>
+                            <input class="generalInput" type="text" placeholder="in Minutes">
+                        </div>
                     </div>
                 </div>
 

@@ -62,6 +62,8 @@ body {
 .QuestionEditorCont{
     margin-left: 1%;
     margin-right: 1%;
+    border-bottom: 1px solid black;
+    padding-bottom: 1%;
     float: left;
     width: 48%;
 }
@@ -70,6 +72,7 @@ body {
     color: white;
     font-size: 1.2em;
     padding: 2%;
+    margin-bottom: 1%;
 }
 
 .generalEditorCont{
@@ -82,4 +85,27 @@ body {
     color: white;
     font-size: 1.2em;
     padding: 2%;
+}
+
+.generalStuffCont{
+    padding: 2%;
+    padding-bottom: 3%;
+    border-bottom: 1px solid black;
+    display: inline-block;
+}
+
+.generalInput{
+    width: 74%;
+    background-color: black;
+    color: white;
+    padding: 2%;
+    border: 1px solid rgba(0,0,0,0);
+}
+
+.generalInputSelect{
+    width: 74%;
+    background-color: black;
+    color: white;
+    padding: 2%;
+    border: 1px solid rgba(0,0,0,0);
 }
