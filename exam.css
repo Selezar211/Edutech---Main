@@ -9,7 +9,6 @@ body {
     margin: 0;
     height: 100%;
     background-color: beige;
-    overflow: hidden;
     font-family: 'Quattrocento';
 }
 
@@ -17,7 +16,6 @@ body {
 	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
 	font-family: 'Quattrocento';
     width: 70%;
-    height: 96%;
     margin-left: 20%;
     margin-top: 1%;
 	background:  linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
@@ -25,7 +23,7 @@ body {
 
 .topContQuestions{
     width: 100%;
-    margin-bottom: 2%;
+    margin-bottom: 0%;
 }
 
 .mainHeading{
@@ -55,17 +53,27 @@ body {
     transition: 400ms;
 }
 
-.MainEditorCont{
+.editorCont{
     width: 100%;
+    display: inline-block;
+}
+
+.MainEditorCont{
+    width: 50%;
+    height: 100%;
+    padding: 2%;
+    padding-top: 1.5%;
+    overflow-y: auto;
+    float: left;
 }
 
 .QuestionEditorCont{
     margin-left: 1%;
     margin-right: 1%;
     border-bottom: 1px solid black;
-    padding-bottom: 1%;
+    padding-bottom: 4%;
     float: left;
-    width: 48%;
+    width: 100%;
 }
 .titleQuestioneditor{
     background-color: black;
@@ -76,8 +84,9 @@ body {
 }
 
 .generalEditorCont{
-    width: 48%;
+    width: 100%;
     float: left;
+    margin-bottom: 5%;
 }
 
 .titleGeneraleditor{
@@ -89,7 +98,8 @@ body {
 
 .generalStuffCont{
     padding: 2%;
-    padding-bottom: 3%;
+    padding-bottom: 5%;
+    padding-right: 0%;
     border-bottom: 1px solid black;
     display: inline-block;
 }
@@ -108,4 +118,38 @@ body {
     color: white;
     padding: 2%;
     border: 1px solid rgba(0,0,0,0);
+}
+
+.addQuestionButton {
+    float: right;
+    padding: 2%; 
+    margin-right: 4%;
+    background-color: black;
+    color: white; width: 25%; 
+    text-align: center; 
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.addQuestionButton:hover {
+    color: black;
+    background-color: beige;
+    transition: 400ms;
+}
+
+
+.QuestionsCont{
+    width: 40%;
+    height: 100%;
+    padding: 2%;
+    padding-top: 1.5%;
+    overflow-y: auto;
+}
+
+.OneQuestionBox{
+    display: inline-block; 
+    width: 100%; 
+    margin-bottom: 4%;
+    padding-bottom: 4%; 
+    border-bottom: 1px solid black;
 }
