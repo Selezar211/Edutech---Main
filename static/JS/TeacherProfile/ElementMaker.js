@@ -1900,3 +1900,58 @@ function InjectTimingsIntoHTML() {
     }
 
 }
+
+
+//exam tab element creation stuff
+function CreateOneQuestion(qNum, qName, qContent, qOpt1, qOpt2, qOpt3, qOpt4, correctIndex){
+
+	OneQuestionBox = document.createElement('div');
+	OneQuestionBox.setAttribute('class', 'OneQuestionBox');
+
+	//Question heading e.g Question 1: Astrophysics
+	questionHeading = document.createElement('span');
+	questionHeading.setAttribute('style', 'margin-bottom:2%;width:100%; font-weight: bold; font-size: 1.3em; float: left;');
+
+	t = document.createTextNode(`Question ${qNum}: ${qName}`);
+	questionHeading.append(t);
+
+	OneQuestionBox.append(questionHeading);
+
+	//actual question
+	questionContent = document.createElement('span');
+	t = document.createTextNode(qContent);
+	questionContent.append(t);
+
+	OneQuestionBox.append(questionContent);
+
+	//each of the options
+	opt1 = document.createElement('span');
+	opt1.setAttribute('style', 'width: 100%; float: left; font-weight: 600; margin-top: 2%;');
+	innerText = (correctIndex == 1) ? qOpt1 + String(' (correct)') : qOpt1;
+	t = document.createTextNode(innerText);
+	opt1.append(t);
+	OneQuestionBox.append(opt1);
+
+	opt2 = document.createElement('span');
+	opt2.setAttribute('style', 'width: 100%; float: left; font-weight: 600;');
+	innerText = (correctIndex == 2) ? qOpt2 + String(' (correct)') : qOpt2;
+	t = document.createTextNode(innerText)
+	opt2.append(t);
+	OneQuestionBox.append(opt2);
+
+	opt3 = document.createElement('span');
+	opt3.setAttribute('style', 'width: 100%; float: left; font-weight: 600;');
+	innerText = (correctIndex == 3) ? qOpt3 + String(' (correct)') : qOpt3;
+	t = document.createTextNode(innerText)
+	opt3.append(t);
+	OneQuestionBox.append(opt3);
+
+	opt4 = document.createElement('span');
+	opt4.setAttribute('style', 'width: 100%; float: left; font-weight: 600;');
+	innerText = (correctIndex == 4) ? qOpt4 + String(' (correct)') : qOpt4;
+	t = document.createTextNode(innerText)
+	opt4.append(t);
+	OneQuestionBox.append(opt4);
+
+	document.getElementById('QuestionCont_ID').appendChild(OneQuestionBox);
+}
