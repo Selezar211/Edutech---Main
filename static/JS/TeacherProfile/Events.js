@@ -809,10 +809,9 @@ function AttachEventToLectureClick() {
         return false;
     });
 
-
 }
 
-
+//attach event to new batch options page on timetable tab
 function AttachEventToAddStreamOptions() {
 
     //Clicking the create new stream buttom tab

@@ -17,7 +17,6 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 var Current_UID;
-var global_database_json;
 
 //Fetch all relevant data for logged in user from our database using UID
 //this is the main function which will fetch the data from backend and then call the functions to craft the data into various places
@@ -32,15 +31,14 @@ function FetchAllDataFromDatabase() {
 
         CreateTimeTableHTML();
 
-        tableData = snapshot.val();
-        global_database_json = tableData;
+        tableData = snapshot.val();         //this is the full JSON from firebase database for this user
         console.log(tableData);
 
-        //Change the top name to user name
+        //Change the top name to user name and change some stuff on the page to reflect the user
         document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Teacher#34 ' + tableData['UserName'];
         document.title = tableData['UserName'] + ' - Profile';
 
-        //now populate the stream config options section
+        //now populate everything by looping through the obtained JSON and injecting it where it is needed
         //so here we are going to have multi level FOR loops to propagate through our JSON structure
         //we need to loop through table data to find subjects/grades/ and batches in each one of them
         //this LoadandPopulateverything function will have multi level for loops with each loop finding things such as subject - grade - batches and so on
@@ -52,13 +50,11 @@ function FetchAllDataFromDatabase() {
         //now populate the timetable - this populates the timetable
         PopulateTimeTable(tableData);
 
-        
-
-        FadeOutLoadingFrame();
+        FadeOutLoadingFrame();  //loading frame was ON by default and hence make it fadeout after everything is loaded
 
     }).then(function() {
         FormatTimeTable();
-        //now call the function to attach events to all buttons
+        //now call the functions to attach events to all buttons in all tabs
         AttachEventToAddStreamOptions();
         AttachEventToEachStudentClick();
         AttachEventToLectureClick();
@@ -151,6 +147,9 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade) {
 
             //create the lecturetab stuff
             CreateLectureLinkBox(currentWorking_Subject, subjectGrade, key, ResourceJSON);
+
+            //create the exam tab stuff
+            
         }
 
     }
