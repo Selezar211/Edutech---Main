@@ -184,6 +184,24 @@ document.getElementById("AlertCloseIcon").addEventListener('click', e => {
 });
 
 
+//Log out event trigger
+document.getElementById("SignoutIcon2").addEventListener('click', e => {
+
+    console.log('Logout cliked!');
+    const auth = firebase.auth();
+
+    //logout
+    const promise = auth.signOut().then(function () {
+        //send to front page
+        console.log('Successfully logged out..');
+
+    }, function (err) {
+        console.log(err.code);
+    });
+
+
+});
+
 
 
 

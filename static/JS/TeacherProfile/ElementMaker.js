@@ -1,817 +1,151 @@
-//attach event to clicking on each student in student tab
-function AttachEventToEachStudentClick() {
+function FillEachStreamBoxAndDropDownBox(timingArray, streamName, streamVacancy, streambox_ref, subject, classGrade, batchcolor) {
 
-	//for accepting pending students
-	$(".fa-user-check").click(function() {
-		console.log('clicked user pending accept!');
+    //this will also fill the drop in box of add new stream timing stream name
+    StreamNameSelectADDBOX_ID = document.getElementById('StreamNameSelectADDBOX_ID');
 
-		FadeInLoadingFrame();
+    OptText = streamName + ' | ' + subject + ' | ' + classGrade
+    OptValue = classGrade + '/' + subject + '/Streams/' + streamName + '/';
 
-		//delete this entry from the table
-		UID = String($(this).attr("data-UID"));
+    optionForAddBox = new Option(OptText, OptValue);
+    optionForAddBox.setAttribute("class", "ADDTimingDropDOWN");
+    StreamNameSelectADDBOX_ID.appendChild(optionForAddBox);
 
-		Address = String($(this).attr("data-address"));
+    //now do the actual fill each stream box
 
-		studentName_ = String($(this).attr("data-name"));
+    EachStreamBox = document.createElement("div");
+    EachStreamBox.setAttribute("class", "EachStreamBox");
 
-		TotalSeats = parseInt($(this).attr("data-totalseats"));
+    //create the stream title which will display stream name
+    EachStreamTitle = document.createElement("div");
+    EachStreamTitle.setAttribute("class", "EachStreamTitle");
 
-		FilledSeats = parseInt($(this).attr("data-fillseats"));
+    var t = document.createTextNode(streamName);
+    EachStreamTitle.append(t);
 
-		//now first check to see if the batch is filled, if it is then do nothing, otherwise add in this dude
-		if (FilledSeats < TotalSeats) {
-			//add in this dude
-			//access the firebase database and remove this entry
+    //create the delete full stream
+    DeleteFullStreamIcon = document.createElement("i");
+    DeleteFullStreamIcon.setAttribute("id", "DeleteFullStream");
+    DeleteFullStreamIcon.setAttribute("class", "fas fa-trash");
+    metaData = classGrade + '/' + subject + '/' + 'Streams/' + streamName;
+    DeleteFullStreamIcon.setAttribute("data-main", metaData);
 
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'PendingStudents/' + UID);
+    EachStreamTitle.append(DeleteFullStreamIcon);
 
-			ref.remove().then(function() {
+    //create the edit icon
+    EditFullStreamIcon = document.createElement("i");
+    EditFullStreamIcon.setAttribute("id", "EditFullStreamIcon");
+    EditFullStreamIcon.setAttribute("class", "fas fa-pencil-alt");
+    metaData = classGrade + '/' + subject + '/' + 'Streams/';
+    EditFullStreamIcon.setAttribute("data-main", metaData);
+    EditFullStreamIcon.setAttribute("data-main2", streamName);
+    EditFullStreamIcon.setAttribute("data-main3", streamVacancy);
+    EditFullStreamIcon.setAttribute("data-main4", batchcolor);
 
-				//now need to put this in the accepted box
-				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID);
+    EachStreamTitle.append(EditFullStreamIcon);
 
-				var data = {
-					StudentName: EncodeString(studentName_)
-				}
+    //create the stream seat vacancy display
+    SeatVacancyStream = document.createElement("span");
+    SeatVacancyStream.setAttribute("class", "SeatVacancyStream");
 
-				ref.update(data).then(function() {
-					//now need to increment the seat filled by 1
-					var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address);
+    var t = document.createTextNode(streamVacancy);
+    SeatVacancyStream.append(t);
 
-					newFilledSeats = FilledSeats + 1;
+    EachStreamTitle.append(SeatVacancyStream);
 
-					var data = {
-						FilledSeats: newFilledSeats
-					}
+    EachStreamBox.append(EachStreamTitle);
 
-					ref.update(data).then(ReloadBackEndData).then(function() {
-						BoxAlert('User accepted successfully!');
-						FadeOutLoadingFrame();
-					});
+    //now loop through given timings array and make a html element for each..	
+    for (var i = 0; i < timingArray.length; i++) {
+        EachStreamTiming = document.createElement("div");
+        EachStreamTiming.setAttribute("class", "EachStreamTiming");
 
-				});
+        StreamTimingSpan = document.createElement("span");
+        var t = document.createTextNode(timingArray[i]);
+        StreamTimingSpan.append(t);
 
-			});
-		} else {
+        EachStreamTiming.append(StreamTimingSpan);
 
-			BoxAlert('Cannot add to full Batch!');
+        //now make the delete icon and edit icon
+        DeleteIcon = document.createElement("i");
+        DeleteIcon.setAttribute("id", "DeleteStream");
+        DeleteIcon.setAttribute("class", "fas fa-trash-alt");
+        metaData = classGrade + '/' + subject + '/' + 'Streams/' + streamName + '/Timings/';
+        metaDataIndex = String(i);
+        DeleteIcon.setAttribute("data-main", metaData);
+        DeleteIcon.setAttribute("data-main2", metaDataIndex);
 
-		}
 
-		return false;
-	});
+        EachStreamTiming.append(DeleteIcon);
 
+        //now for the edit icon
+        EditIcon = document.createElement("i");
+        EditIcon.setAttribute("id", "EditStreamIcon");
+        EditIcon.setAttribute("class", "fas fa-edit");
+        EditIcon.setAttribute("data-main", metaData);
+        EditIcon.setAttribute("data-main2", metaDataIndex);
+        EditIcon.setAttribute("data-itself", timingArray[i]);
 
-	//for dismissing pending students
-	$(".fa-user-times").click(function() {
-		console.log('clicked user dismiss!');
-		FadeInLoadingFrame();
+        EachStreamTiming.append(EditIcon);
 
-		//delete this entry from the table
-		UID = String($(this).attr("data-UID"));
+        //now we need to append it to the parent divs
+        EachStreamBox.append(EachStreamTiming);
+        //there we go all done, now lets hope to god it works :)
+    }
 
-		Address = String($(this).attr("data-address"));
-
-		//access the firebase database and remove this entry
-
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'PendingStudents/' + UID);
-
-		ref.remove().then(ReloadBackEndData).then(function() {
-			BoxAlert('User dismissed successfully!');
-			FadeOutLoadingFrame();
-		});
-
-		return false;
-	});
-
-	//for dismissing pending students in bulk
-	$(".DismissAll").click(function() {
-		console.log('clicked user dismiss in bulk!');
-		FadeInLoadingFrame();
-
-		//delete this entry from the table
-		UID = String($(this).attr("data-UID"));
-
-		Address = String($(this).attr("data-address"));
-
-		//access the firebase database and remove this entry
-
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'PendingStudents/');
-
-		ref.remove().then(ReloadBackEndData).then(function() {
-			BoxAlert('All pending dismissed successfully!');
-			FadeOutLoadingFrame();
-		});
-
-		return false;
-	});
-
-	//for deleting accepted students
-	$(".fa-user-minus").click(function() {
-		console.log('clicked user delete!');
-		FadeInLoadingFrame();
-
-		//delete this entry from the table
-		UID = String($(this).attr("data-UID"));
-
-		Address = String($(this).attr("data-address"));
-
-		studentName_ = String($(this).attr("data-name"));
-
-		TotalSeats = parseInt($(this).attr("data-totalseats"));
-
-		FilledSeats = parseInt($(this).attr("data-fillseats"));
-
-		//access the firebase database and remove this entry
-
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID);
-
-		ref.remove().then(function() {
-			//now need to decrease filled seats by 1
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address);
-
-			newFilledSeats = FilledSeats - 1;
-
-			var data = {
-				FilledSeats: newFilledSeats
-			}
-
-			ref.update(data).then(ReloadBackEndData).then(function() {
-				BoxAlert('User deleted successfully!');
-				FadeOutLoadingFrame();
-			});
-
-		});
-
-		return false;
-	});
-
-
-	//for clicking on the send message button in accpeted heading
-	$(".MessageIcon").click(function() {
-		console.log('MessageIcon Clicked');
-
-		streamName = String($(this).attr("data-streamName"));
-		subject = String($(this).attr("data-subject"));
-		grade = String($(this).attr("data-grade"));
-
-		//now need to create the message batch box
-		BlurAnimate('.MainContent');
-		//$('.MainContent').css('-webkit-filter', 'blur(30px');
-		CreateMessageBox(streamName, subject, grade);
-
-		//now need to attach click events to send message and cancel message buttons
-		//for clicking cancel message
-		$(".CancelMessage").click(function() {
-			console.log('clicked message cancel!');
-			UnBlurAnimate('.MainContent');
-			//$('.MainContent').css('-webkit-filter', 'blur(0px');
-			$('.MessageBatchBox').fadeOut('fast', function() {
-				$('.MessageBatchBox').remove();
-			})
-			return false;
-		});
-
-		//for clicking send message
-		$(".SendMessage").click(function() {
-			console.log('clicked message send!');
-
-			Address = String($(this).attr("data-address"));
-
-			ActualMessage = document.getElementById('SendMessageInput_ID').value;
-
-			//now insert this into firebase database
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'GlobalMessage/');
-
-			var d = new Date();
-			d.toUTCString();
-
-			var data = {
-				[d]: EncodeString(ActualMessage)
-			}
-
-			ref.update(data).then(function() {
-				UnBlurAnimate('.MainContent');
-				//$('.MainContent').css('-webkit-filter', 'blur(0px');
-				BoxAlert('Message Sent');
-				$('.MessageBatchBox').fadeOut('fast', function() {
-					$('.MessageBatchBox').remove();
-				})
-			});
-
-			return false;
-		});
-
-
-		return false;
-	});
-
-	//for clicking on roll call
-	$(".RollCallIcon").click(function() {
-		console.log('clicked roll call icon!');
-
-		FadeInLoadingFrame();
-
-		streamName = String($(this).attr("data-streamName"));
-
-		subject = String($(this).attr("data-subject"));
-
-		grade = String($(this).attr("data-grade"));
-
-		address = grade + '/' + subject + '/Streams/' + streamName + '/';
-
-		studentNamesArr = [];
-		studentUIDArr = [];
-
-		//first we need to access the database and pull the names of accepted students and UID
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + address + 'AcceptedStudents/');
-
-		ref.once('value', ReceivedData, errData).then(function() {
-
-			//now that we have have the student names and UID array we can craft the roll call box..
-
-			CreateRollCallBox(studentNamesArr, studentUIDArr, streamName, subject, grade);
-
-			//now need to attach click events to submit and cancel roll calls
-			//for clicking cancel roll call
-			$(".CancelRollCall").click(function() {
-
-				FadeOutANDRemove('fast', '.RollCallCont');
-				UnBlurAnimate('.MainContent');
-				//$('.MainContent').css('-webkit-filter', 'blur(0px');
-				return false;
-			});
-
-			//for clicking submit roll call
-			$(".SubmitRollCall").click(function() {
-
-				FadeInLoadingFrame();
-
-				console.log('Submit roll call clicked!');
-
-				address = String($(this).attr("data-address"));
-
-				//first get all the checked boxes
-				var CheckBox_CHECKED = $('.RollCall_CBOX:checked').map(function() {
-					return $(this).val();
-				}).get();
-
-				//then get all the unchecked box
-				var CheckBox_UNCHECKED = $('.RollCall_CBOX:not(:checked)').map(function() {
-					return $(this).val();
-				}).get();
-
-				console.log(CheckBox_CHECKED);
-				console.log(CheckBox_UNCHECKED);
-
-				//now insert this into class attendance tab
-				today = new Date().toISOString().slice(0, 10);
-
-				for (var i = 0; i < CheckBox_CHECKED.length; i++) {
-					//loop through and update each students roll call for present
-					var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + address + 'AcceptedStudents/' + String(CheckBox_CHECKED[i]) + '/ClassAttendance/');
-
-					var data = {
-						[today]: 'Present'
-					}
-
-					ref.update(data);
-
-				}
-
-
-				for (var i = 0; i < CheckBox_UNCHECKED.length; i++) {
-					//loop through and update each students roll call for present
-					var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + address + 'AcceptedStudents/' + String(CheckBox_UNCHECKED[i]) + '/ClassAttendance/');
-
-					var data = {
-						[today]: 'Absent'
-					}
-
-					ref.update(data);
-				}
-
-				FadeOutANDRemove('fast', '.RollCallCont');
-				UnBlurAnimate('.MainContent');
-				//$('.MainContent').css('-webkit-filter', 'blur(0px');
-				FadeOutLoadingFrame();
-				BoxAlert('Roll calls updated: ' + String(today));
-
-				return false;
-			});
-
-			FadeOutLoadingFrame();
-		});
-
-
-		function ReceivedData(data) {
-			tableData = data.val();
-
-			BlurAnimate('.MainContent');
-			//$('.MainContent').css('-webkit-filter', 'blur(30px');
-
-			//now we can loop through them and fill the student name and UID arrays
-			var key;
-			for (key in tableData) {
-				CurrentStudentUID = key;
-
-				CurrentStudentName = tableData[key]['StudentName'];
-
-				studentNamesArr.push(CurrentStudentName);
-				studentUIDArr.push(CurrentStudentUID);
-			}
-
-		}
-
-		function errData(err) {
-			console.log('Error!');
-			console.log(err);
-		}
-
-
-		return false;
-	});
-
-	//for clicking on each student in accepted row
-	$(".OneStudentLine").click(function(e) {
-		console.log('clicked user one student line!');
-		FadeInLoadingFrame();
-
-		UID = String($(this).attr("data-uid"));
-
-		Address = String($(this).attr("data-address"));
-		streamName = String($(this).attr("data-streamName"));
-		grade = String($(this).attr("data-grade"));
-		subject = String($(this).attr("data-subject"));
-		studentname = String($(this).attr("data-studentName"));
-
-		today = new Date().toISOString().slice(0, 10);
-		currentYear = today.split('-')[0];
-		MonthsArr = ['Jan', 'Feb', 'Mar', 'April', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-
-		//access the firebase database and extract all the necessary info
-		//first we gotta get the roll call arrays from the firebase database
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID + '/').once('value').then(function(snapshot) {
-			var myData = snapshot.val();
-
-			console.log(myData);
-
-			rollCallDateArray_ = [];
-			rollCallAttendanceArr_ = [];
-
-			TutionMothYearArray = [];
-			TutionPaidDayArray = [];
-
-			//separate the obtained json into the three parts - rollcall, tution, exam
-
-			//get the roll call stuff
-			ClassAttendanceJSON = myData['ClassAttendance'];
-
-			//now we can loop through them and fill the roll call date and attendance arrays
-			var key; //where key is each data in the table
-			for (key in ClassAttendanceJSON) {
-				CurrentDate = key;
-
-				CurrentAttendance = ClassAttendanceJSON[key];
-
-				rollCallDateArray_.push(CurrentDate);
-				rollCallAttendanceArr_.push(CurrentAttendance);
-			}
-
-			//get the tution paid stuff
-			TutionPaidJSON = myData['TutionPaid'];
-
-			//now we can loop through the dates of tution paid and insert them into the respective arrays
-			var key; //where key is each year.month in the table 201805 and value is day
-			for (key in TutionPaidJSON) {
-				MonthYear = key;
-
-				Day_ = TutionPaidJSON[key];
-
-				TutionMothYearArray.push(MonthYear);
-				TutionPaidDayArray.push(Day_);
-			}
-
-			//if needed to reverse the date and month arrays
-			newTutionMothYearArray = TutionMothYearArray.reverse();
-			newTutionPaidDayArray = TutionPaidDayArray.reverse();
-
-
-			//now that we have our all input arrays we can call the function to craft them
-			//first we need to find the pending month based on the last paid month and add 1 to it
-			//if a last paid month exists then make the current one the next one of last paid
-			if (newTutionMothYearArray[0]) {
-				LastPaidMonthIndex = parseInt(newTutionMothYearArray[0].substring(4, 6));
-				monthArrIndex = LastPaidMonthIndex - 1;
-
-				//but make sure to reset it back to 0 if we get 11 i.e december and also increase year by 1
-				if (monthArrIndex == 11) {
-					PendingMonth = MonthsArr[0];
-					currentYear = parseInt(currentYear) + 1;
-
-				} else {
-					PendingMonth = MonthsArr[monthArrIndex + 1];
-				}
-
-				PendingMonthYear = PendingMonth + ' ' + currentYear;
-			}
-			//otherwise just set the pending month to the actual current month
-			else {
-				//set pending month to current month
-				now_ = new Date().toISOString().slice(0, 10);
-				thisYear = now_.split('-')[0];
-				thisMonth = MonthsArr[parseInt(now_.split('-')[1]) - 1];
-				PendingMonthYear = thisMonth + ' ' + thisYear;
-			}
-
-			FadeOutLoadingFrame();
-			BlurAnimate('.MainContent');
-
-			CreateStudentInfoBox(rollCallDateArray_, rollCallAttendanceArr_, studentname, UID, streamName, subject, grade, PendingMonthYear, newTutionMothYearArray, newTutionPaidDayArray);
-
-			//now attach click events to this newly made student info box
-			$("#StudentInfoContCloseIcon").click(function() {
-				FadeOutANDRemove('fast', '.StudentInfoCont');
-				UnBlurAnimate('.MainContent');
-				return false;
-			});
-
-			$(".TutionAcceptButton").click(function() {
-				//accept the tution and update the database
-				FadeInLoadingFrame();
-
-				now_ = new Date().toISOString().slice(0, 10);
-
-				UID = String($(this).attr("data-uid"));
-
-				Address = String($(this).attr("data-address"));
-
-				studentName = String($(this).attr("data-studentname"));
-
-				//crafted value needs to be of the form 201809 or year.month without the dot
-
-				innerValue = String($(this).attr("data-value"));
-
-				//inner value is of the form Jul 2018 e.g
-
-				year_ = innerValue.split(' ')[1];
-
-				findIndexMonth = parseInt(MatchAndFindIndex(MonthsArr, innerValue.split(' ')[0])) + 1;
-
-				formattedFindIndexMonth = (findIndexMonth).toLocaleString('en-US', {
-					minimumIntegerDigits: 2,
-					useGrouping: false
-				});
-
-				craftedValue = String(year_) + String(formattedFindIndexMonth);
-
-				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID + '/TutionPaid/');
-
-				var data = {
-					[craftedValue]: now_
-				};
-
-				ref.update(data).then(ReloadBackEndData).then(function() {
-					BoxAlert('Payment Month: ' + innerValue + ' accepted for ' + String(studentName));
-					UnBlurAnimate('.MainContent');
-					FadeOutLoadingFrame();
-				})
-
-				return false;
-			});
-
-			//attach events to deleting last paid entry
-			$(".fa-eraser").click(function() {
-
-				FadeInLoadingFrame();
-
-				UID = String($(this).attr("data-uid"));
-
-				Address = String($(this).attr("data-address"));
-
-				studentName = String($(this).attr("data-studentname"));
-
-				key_ = String($(this).attr("data-value"));
-
-				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID + '/TutionPaid/' + String(key_) + '/');
-
-				ref.remove().then(ReloadBackEndData).then(function() {
-					BoxAlert('Last Paid Month deleted for ' + String(studentName));
-					UnBlurAnimate('.MainContent');
-					FadeOutLoadingFrame();
-				});
-
-				return false;
-			});
-
-			//attach event to flip the attendance of clicked on entry
-			$(".fa-exchange-alt").click(function() {
-
-				FadeInLoadingFrame();
-
-				UID = String($(this).attr("data-uid"));
-
-				Address = String($(this).attr("data-address"));
-
-				key_ = String($(this).attr("data-key"));
-
-				studentName = String($(this).attr("data-studentname"));
-
-				currentAttendance = String($(this).attr("data-current"));
-
-				finalVal = '';
-
-				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID + '/ClassAttendance/');
-
-				if (currentAttendance == 'Present') {
-
-					finalVal = 'Absent';
-				} else if (currentAttendance == 'Absent') {
-					finalVal = 'Present';
-				} else {
-					console.log('Problem in flipping present or absent!')
-				}
-
-				var data = {
-					[key_]: finalVal
-				};
-
-				ref.update(data).then(ReloadBackEndData).then(function() {
-					BoxAlert('Date: ' + key_ + ' flipped to ' + finalVal + ' for ' + studentName);
-					UnBlurAnimate('.MainContent');
-					FadeOutLoadingFrame();
-				});
-
-				return false;
-			});
-
-			//clicking on plot bar chart of roll calls
-			$(".PlotRollCallHistogram").click(function() {
-
-				createCanvasChartJS();
-				BarChartRollCallJS('.OneAttendanceEntryCont', '.OneAttendanceEntry');
-
-				//attach close event for this
-				$("#CloseChart").click(function() {
-					$('.MegaCanvasCont').fadeOut('slow', function() {
-						$('.MegaCanvasCont').remove();
-					});
-					return false;
-				});
-
-				return false;
-			});
-
-			//clicking on plot line chart of roll calls
-			$(".PlotRollCallGraph").click(function() {
-
-				createCanvasChartJS();
-				LineChartRollCallJS('.OneAttendanceEntryCont', '.OneAttendanceEntry');
-
-				//attach close event for this
-				$("#CloseChart").click(function() {
-					$('.MegaCanvasCont').fadeOut('slow', function() {
-						$('.MegaCanvasCont').remove();
-					});
-					return false;
-				});
-
-				return false;
-			});
-
-		});
-
-		return false;
-	});
-
-	//shortcut tution accept button
-	$(".ShortcutTutionAccept").click(function() {
-		console.log('Shortcut button clicked!');
-		//accept the tution and update the database
-		FadeInLoadingFrame();
-
-		now_ = new Date().toISOString().slice(0, 10);
-
-		UID = String($(this).attr("data-uid"));
-
-		Address = String($(this).attr("data-address"));
-
-		studentName = String($(this).attr("data-studentname"));
-
-		//crafted value needs to be of the form 201809 or year.month without the dot
-
-		innerValue = String($(this).attr("data-value"));
-
-		//inner value is of the form Jul 2018 e.g
-
-		year_ = innerValue.split(' ')[1];
-
-		findIndexMonth = parseInt(MatchAndFindIndex(MonthsArr, innerValue.split(' ')[0])) + 1;
-
-		formattedFindIndexMonth = (findIndexMonth).toLocaleString('en-US', {
-			minimumIntegerDigits: 2,
-			useGrouping: false
-		});
-
-		craftedValue = String(year_) + String(formattedFindIndexMonth);
-
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID + '/TutionPaid/');
-
-		var data = {
-			[craftedValue]: now_
-		};
-
-		ref.update(data).then(ReloadBackEndData).then(function() {
-			BoxAlert('Payment Month: ' + innerValue + ' accepted for ' + String(studentName));
-			UnBlurAnimate('.MainContent');
-			FadeOutLoadingFrame();
-		})
-
-		return false;
-	});
-
+    //now add it to the godfather permanent element
+    streambox_ref.append(EachStreamBox);
 }
 
-//attach event to lecture clicks()
-function AttachEventToLectureClick() {
+//timetable database stuff
 
-	$(".LectureLink").click(function() {
+function PopulateTimeTable(inputTable) {
 
-		PDF_LINK = String($(this).attr("data-main"));
+    //first find out how many subject grades there are..
+    SubjectGrades = ReturnAsArrayChildOfTable(inputTable['UserClass']);
 
-		window.open(PDF_LINK);
+    //now loop through the subject grades and use the names as the address prefix
 
-		return false
+    for (var x = 0; x < SubjectGrades.length; x++) {
 
-	});
+        CurrentSubjectGrade = SubjectGrades[x];
 
-	//click on edit lecture link
-	$('.fa-pencil-ruler').click(function() {
-		console.log('Edit lecture link clicked!');
+        //this will return as a JSON all the childs of working subject grade
+        //convert it into working array of subjects e.g ['Physics', 'Chemistry', 'Biology']
+        CurrentGrade_SubjectArray = ReturnAsArrayChildOfTable(inputTable['UserClass'][CurrentSubjectGrade]);
 
-		BlurAnimate('.MainContent');
+        for (var y = 0; y < CurrentGrade_SubjectArray.length; y++) {
 
-		IndexNum = String($(this).attr("data-index"));
-		Address = String($(this).attr("data-address"));
+            ThisGrade = CurrentSubjectGrade;
+            ThisSubject = CurrentGrade_SubjectArray[y];
 
-		subject = String($(this).attr("data-subject"));
-		grade = String($(this).attr("data-grade"));
+            //now that we have the grade and subject we need to find the number of streams each subject has
 
-		LectureName = String($(this).attr("data-name"));
-		LectureURL = String($(this).attr("data-url"));
+            StreamsArray = ReturnAsArrayChildOfTable(inputTable['UserClass'][ThisGrade][ThisSubject]['Streams']);
 
-		CreateResourceEditBox(subject, grade, Address, LectureName, LectureURL, IndexNum);
+            //now we can loop through each stream
+            for (var z = 0; z < StreamsArray.length; z++) {
 
-		$('.EditResourceCancel').click(function() {
-			FadeOutANDRemove('fast', '.EditSingleResource');
-			UnBlurAnimate('.MainContent');
-
-		});
-
-		$('.EditResourceSubmit').click(function() {
-			console.log('Submit new resource!');
-
-			FadeInLoadingFrame();
-
-			Address = String($(this).attr("data-address"));
-
-			IndexNum = String($(this).attr("data-index"));
-
-			prevName = String($(this).attr("data-name"));
-
-			prevURL = String($(this).attr("data-url"));
-
-			//first get the inputs
-			newResourceName = document.getElementById('NewResourceNameEdit_ID').value;
-			newResourceURL = document.getElementById('NewResourceURLEdit_ID').value;
-
-			if (newResourceName == '') {
-				console.log('reset to prevname');
-				newResourceName = prevName;
-			}
-
-			if (newResourceURL == '') {
-				console.log('reset to prevurl');
-				newResourceURL = prevURL;
-			}
+                ThisLoopGrade = ThisGrade;
+                ThisLoopSubject = ThisSubject;
+                ThisLoopStreamName = StreamsArray[z];
+                ThisStreamColor = inputTable['UserClass'][ThisGrade][ThisSubject]['Streams'][ThisLoopStreamName]['StreamColor'];
 
 
-			//get into firebase and update it with this new data
-			encodedname = EncodeString(newResourceName)
-			encodedURL = EncodeString(newResourceURL);
+                TimingsJSON = inputTable['UserClass'][ThisGrade][ThisSubject]['Streams'][ThisLoopStreamName]['Timings'];
 
-			var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum));
+                TimingsArray = $.map(TimingsJSON, function (el) {
+                    return el;
+                });
 
-			//delete the previous entry
-			ref.remove().then(function() {
+                for (var q = 0; q < TimingsArray.length; q++) {
 
-				//now enter this data
-				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum));
-
-				data = {
-					[encodedname]: encodedURL
-				}
-
-				ref.update(data).then(ReloadBackEndData).then(function() {
-					FadeOutLoadingFrame();
-					FadeOutANDRemove('fast', '.EditSingleResource');
-					UnBlurAnimate('.MainContent');
-					BoxAlert('Resource ' + String(newResourceName) + ' Edited');
-				})
-
-			})
-
-		});
-
-		return false;
-	});
-
-	$('.fa-calendar-times').click(function() {
-		console.log('delete lecture link clciked!');
-
-		FadeInLoadingFrame();
-		BlurAnimate('.MainContent');
-
-		IndexNum = String($(this).attr("data-index"));
-		Address = String($(this).attr("data-address"));
-
-		var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum) + '/');
-
-		ref.remove().then(ReloadBackEndData).then(function() {
-			FadeOutLoadingFrame();
-			UnBlurAnimate('.MainContent');
-			BoxAlert('Lecture resource deleted');
-		})
-
-		return false;
-	});
-
-
-	//for clicking add new resource
-	$(".AddResource").click(function() {
-		console.log('add resource clicked!');
-
-		subject_ = String($(this).attr("data-subject"));
-
-		grade_ = String($(this).attr("data-grade"));
-
-		address_ = String($(this).attr("data-address"));
-
-		maxindex_ = String($(this).attr("data-maxindex"));
-
-		CreateResourceAddBox(subject_, grade_, address_, maxindex_);
-		BlurAnimate('.MainContent');
-
-		//now bind the inner elements events here of add resource box
-		$('.AddResourceCancel').click(function() {
-			FadeOutANDRemove('fast', '.ResourceAddBox');
-			UnBlurAnimate('.MainContent');
-
-		});
-		$('.AddResourceSubmit').click(function() {
-			console.log('Submit new resource!');
-
-			FadeInLoadingFrame();
-
-			Address = String($(this).attr("data-address"));
-
-			MaxIndex = parseInt($(this).attr("data-maxindex"));
-
-			//first get the inputs
-			newResourceName = document.getElementById('ResourceName_ID').value;
-			newResourceURL = document.getElementById('ResourceURL_ID').value;
-
-			if ((newResourceName == '') || (newResourceURL == '')) {
-				BoxAlert('Empty fields cannot be accepted..');
-			} else {
-
-				//get into firebase and update it with this new data
-				encodedname = EncodeString(newResourceName)
-				encodedURL = EncodeString(newResourceURL);
-
-				var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(MaxIndex + 1));
-
-				data = {
-					[encodedname]: encodedURL
-				}
-
-				ref.update(data).then(ReloadBackEndData).then(function() {
-					FadeOutLoadingFrame();
-					FadeOutANDRemove('fast', '.ResourceAddBox');
-					UnBlurAnimate('.MainContent');
-					BoxAlert('New Resource ' + String(newResourceName) + ' Added');
-				})
-
-			}
-
-		});
-		return false;
-	});
-
+                    CraftAndInjectTimeTable(TimingsArray[q], ThisLoopGrade, ThisLoopSubject, ThisLoopStreamName, ThisStreamColor);
+                }
+            }
+        }
+    }
 
 }
-
 
 function CreateTimeTableHTML() {
 	//this will completely the base form of the timetable from scratch
@@ -1052,6 +386,56 @@ function CreateTimeTableHTML() {
 	cdscheduleloading.append(coverlayer);
 
 	document.getElementById('MainTimeTableCont_ID').appendChild(cdscheduleloading);
+
+}
+
+function CraftAndInjectTimeTable(TimingString, Grade, Subject, StreamName, color) {
+
+    SplitArray = TimingString.split(' ');
+
+    Day = SplitArray[0];
+    StartTime = SplitArray[1];
+    EndTime = SplitArray[3];
+
+    DayULString = Day + 'UL';
+
+    //now we need to find the element in the page with this days name
+    DayUL = document.getElementById(DayULString);
+
+    //this is what the name and subject of the box in timetable will be
+    var thisEvent = document.createElement("em");
+    thisEvent.setAttribute("class", "event-name");
+
+    var t = document.createTextNode(Grade);
+    thisEvent.append(t);
+    thisEvent.appendChild(document.createElement("br"));
+    var t = document.createTextNode(Subject);
+    thisEvent.append(t);
+    thisEvent.appendChild(document.createElement("br"));
+    var t = document.createTextNode(StreamName);
+    thisEvent.append(t);
+
+
+    var thisLink = document.createElement("a");
+    thisLink.setAttribute("href", "");
+
+    thisLink.append(thisEvent);
+
+    //now make the LI class
+
+    var thisLI = document.createElement("li");
+    thisLI.setAttribute("class", "single-event");
+    thisLI.setAttribute("data-start", StartTime);
+    thisLI.setAttribute("data-end", EndTime);
+    thisLI.setAttribute("data-content", 'event-abs-circuit');
+    thisLI.setAttribute("data-event", StreamName);
+
+    thisLI.style.background = color;
+
+    thisLI.append(thisLink);
+
+    DayUL.append(thisLI);
+
 
 }
 
@@ -2463,5 +1847,56 @@ function CreateResourceEditBox(subject, grade, address, lecturename, lectureurl,
 	document.body.appendChild(EditSingleResource);
 
 	$('.EditSingleResource').fadeIn('slow');
+
+}
+
+
+function CraftTimingArray() {
+    //this function will return an array containing the timings from 7AM to 10PM in 30min intervals
+
+    var Crafted_Timings = [];
+
+    for (var i = 7; i < 25; i++) {
+        var currentTIming = String(i) + ':00';
+
+        Crafted_Timings.push(currentTIming);
+
+        var currentTIming = String(i) + ':30';
+
+        Crafted_Timings.push(currentTIming);
+    }
+
+    return Crafted_Timings
+
+}
+
+function InjectTimingsIntoHTML() {
+
+    timingsArray = CraftTimingArray();
+
+    var myUL = document.getElementById("timingArray_ul_ID");
+
+    var startTime = document.getElementById("StreamStartTime_ID");
+    var endTime = document.getElementById("StreamEndTime_ID");
+
+    for (var i = 0; i < timingsArray.length; i++) {
+
+        //make the timings on the side of the timetable
+        var myLI = document.createElement("li");
+        var mySPAN = document.createElement("span");
+
+        var t = document.createTextNode(timingsArray[i]);
+        mySPAN.append(t);
+        myLI.append(mySPAN);
+
+        myUL.append(myLI);
+
+        //now inject it into stream config add options
+        var myoption = new Option(timingsArray[i], timingsArray[i]);
+        startTime.append(myoption);
+
+        var myoption = new Option(timingsArray[i], timingsArray[i]);
+        endTime.append(myoption);
+    }
 
 }
