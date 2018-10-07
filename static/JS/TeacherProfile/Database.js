@@ -111,6 +111,11 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade) {
         //create streambox element
         ThisStreamBox = CreateStreamBox(currentWorking_Subject, subjectGrade);
 
+        //Exam JSON of this subject
+        Exam_JSON = tableData['UserClass'][subjectGrade][currentWorking_Subject]['Exams'];
+        //now create the exam boxes for each subject in the exam tab
+        createOneBatchExamCont(currentWorking_Subject, subjectGrade, Exam_JSON);
+
         //Now get the stream timings to inject 
         AllStreamsJSON_of_ThisSubject = tableData['UserClass'][subjectGrade][currentWorking_Subject]['Streams']
 

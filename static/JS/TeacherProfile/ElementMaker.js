@@ -1903,6 +1903,41 @@ function InjectTimingsIntoHTML() {
 
 
 //exam tab element creation stuff
+function createOneBatchExamCont(subject, grade, examJSON){
+
+	OneBatchExamCont = document.createElement('div');
+	OneBatchExamCont.setAttribute('class', 'OneBatchExamCont');
+
+	//main heading part
+	OneBatchExamHeading = document.createElement('div');
+	OneBatchExamHeading.setAttribute('class', 'OneBatchExamHeading');
+
+	examBatchName = document.createElement('span');
+	examBatchName.setAttribute('class', 'examBatchName');
+
+	t = document.createTextNode(`${subject} | ${grade}`);
+	examBatchName.append(t);
+
+	OneBatchExamHeading.append(examBatchName);
+
+	//add new button
+	addNewExam = document.createElement('span');
+	addNewExam.setAttribute('class', 'addNewExam');
+	addNewExam.setAttribute('id', 'addNewExam_ID');
+
+	t = document.createTextNode('ADD NEW');
+	addNewExam.append(t);
+	OneBatchExamHeading.append(addNewExam);
+
+	OneBatchExamCont.append(OneBatchExamHeading);
+
+	//now for the live exams column
+	
+
+}
+
+
+
 function CreateOneQuestion(qNum, qName, qContent, qOpt1, qOpt2, qOpt3, qOpt4, correctIndex){
 
 	OneQuestionBox = document.createElement('div');
@@ -1953,7 +1988,345 @@ function CreateOneQuestion(qNum, qName, qContent, qOpt1, qOpt2, qOpt3, qOpt4, co
 	opt4.append(t);
 	OneQuestionBox.append(opt4);
 
-	document.getElementById('QuestionCont_ID').appendChild(OneQuestionBox);
+	document.getElementById('QuestionsCont_ID').appendChild(OneQuestionBox);
 }
 
+function createAddNewExamCont(subject, grade){
 
+	//main window
+	addNewExamCont = document.createElement('div');
+	addNewExamCont.setAttribute('class', 'addNewExamCont');
+
+	//heading part
+	topContQuestions = document.createElement('div');
+	topContQuestions.setAttribute('class', 'topContQuestions');
+
+	mainHeading = document.createElement('div');
+	mainHeading.setAttribute('class', 'mainHeading');
+
+	s = document.createElement('span');
+	t = document.createTextNode(`New Exam for ${subject} ${grade}`);
+	s.append(t);
+
+	mainHeading.append(s);
+
+	cancelNewExam = document.createElement('span');
+	cancelNewExam.setAttribute('class', 'cancelNewExam');
+	t = document.createTextNode('Cancel');
+	cancelNewExam.append(t);
+
+	mainHeading.append(cancelNewExam);
+
+	submitNewExam = document.createElement('span');
+	submitNewExam.setAttribute('class', 'submitNewExam');
+	t = document.createTextNode('Submit');
+	submitNewExam.append(t);
+
+	mainHeading.append(submitNewExam);
+
+	topContQuestions.append(mainHeading);
+
+	addNewExamCont.append(topContQuestions);
+
+	//full editor part
+	editorCont = document.createElement('div');
+	editorCont.setAttribute('class', 'editorCont');
+
+	//editor part
+	MainEditorCont = document.createElement('div');
+	MainEditorCont.setAttribute('class', 'MainEditorCont');
+
+	//general editor part
+	generalEditorCont = document.createElement('div');
+	generalEditorCont.setAttribute('class', 'generalEditorCont');
+
+	titleGeneraleditor = document.createElement('div');
+	titleGeneraleditor.setAttribute('class', 'titleGeneraleditor');
+
+	t = document.createTextNode('General Editor');
+	titleGeneraleditor.append(t);
+
+	generalEditorCont.append(titleGeneraleditor);
+
+	generalStuffCont = document.createElement('div');
+	generalStuffCont.setAttribute('class', 'generalStuffCont');
+
+	//exam name input
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 1%; width: 100%; float: left;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('class', 'generalEditorSpan');
+
+	t = document.createTextNode('Exam Name: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInput = document.createElement('input');
+	generalInput.setAttribute('class', 'generalInput');
+	generalInput.setAttribute('type', 'text')
+
+	d.append(generalInput);
+
+	generalStuffCont.append(d);
+
+	//exam date input
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 1%; width: 100%; float: left;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('class', 'generalEditorSpan');
+
+	t = document.createTextNode('Exam Date: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInput = document.createElement('input');
+	generalInput.setAttribute('class', 'generalInput');
+	generalInput.setAttribute('type', 'text')
+	generalInput.setAttribute('placeholder', 'dd/mm/yy')
+
+	d.append(generalInput);
+
+	generalStuffCont.append(d);
+
+	//starting time input
+	d = document.createElement('div');
+	d.setAttribute('style', 'width: 100%; margin-top: 1%; display: inline-block;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('class', 'generalEditorSpan');
+
+	t = document.createTextNode('Starting Time: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInputSelect = document.createElement('select');
+	generalInputSelect.setAttribute('class', 'generalInputSelect');
+
+	fulltimingsArray = CraftTimingArray();
+
+	for (time_ of fulltimingsArray) {
+		var option = new Option(String(time_), String(time_));
+		generalInputSelect.append(option);
+	}
+
+	d.append(generalInputSelect);
+
+	generalStuffCont.append(d);
+
+	//time limit input
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 1%; width: 100%; float: left;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('class', 'generalEditorSpan');
+
+	t = document.createTextNode('Time Limit: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInput = document.createElement('input');
+	generalInput.setAttribute('class', 'generalInput');
+	generalInput.setAttribute('type', 'number');
+	generalInput.setAttribute('placeholder', 'in minutes..');
+	generalInput.setAttribute('min', '0');
+
+	d.append(generalInput);
+
+	generalStuffCont.append(d);
+
+	generalEditorCont.append(generalStuffCont);
+
+	MainEditorCont.append(generalEditorCont);
+
+
+	//now for the question editor part
+	QuestionEditorCont = document.createElement('div');
+	QuestionEditorCont.setAttribute('class', 'QuestionEditorCont');
+
+	titleQuestioneditor = document.createElement('div');
+	titleQuestioneditor.setAttribute('class', 'titleQuestioneditor');
+
+	t = document.createTextNode('Question Editor');
+	titleQuestioneditor.append(t);
+
+	QuestionEditorCont.append(titleQuestioneditor);
+
+	//question name
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 1%; width: 100%; float: left;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('style', 'color: black; width: 25%;display: inline-block;');
+
+	t = document.createTextNode('Question Name: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInput = document.createElement('input');
+	generalInput.setAttribute('class', 'optionInput');
+	generalInput.setAttribute('style', 'padding: 1.5%; background: black; color:white; width: 74%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;');
+	generalInput.setAttribute('type', 'text');
+
+	d.append(generalInput);
+
+	QuestionEditorCont.append(d);
+
+	//textarea
+	questionTextArea = document.createElement('textarea');
+	questionTextArea.setAttribute('class', 'questionTextArea');
+	questionTextArea.setAttribute('placeholder', 'Please enter your question..');
+
+	QuestionEditorCont.append(questionTextArea);
+
+	//option 1
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 1%; width: 45%; float: left; margin-left: 3%;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('style', 'color: black; width: 33%;display: inline-block;');
+
+	t = document.createTextNode('Option 1: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInput = document.createElement('input');
+	generalInput.setAttribute('class', 'optionInput');
+	generalInput.setAttribute('id', 'opt1_id');
+	generalInput.setAttribute('style', 'padding: 1.5%; background: black; color:white; width: 65%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;');
+	generalInput.setAttribute('type', 'text');
+
+	d.append(generalInput);
+
+	QuestionEditorCont.append(d);
+
+	//option 2
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 1%; width: 45%; float: left; margin-left: 3%;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('style', 'color: black; width: 33%;display: inline-block;');
+
+	t = document.createTextNode('Option 2: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInput = document.createElement('input');
+	generalInput.setAttribute('class', 'optionInput');
+	generalInput.setAttribute('id', 'opt2_id');
+	generalInput.setAttribute('style', 'padding: 1.5%; background: black; color:white; width: 65%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;');
+	generalInput.setAttribute('type', 'text');
+
+	d.append(generalInput);
+
+	QuestionEditorCont.append(d);
+
+	//option 3
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 1%; width: 45%; float: left; margin-left: 3%;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('style', 'color: black; width: 33%;display: inline-block;');
+
+	t = document.createTextNode('Option 3: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInput = document.createElement('input');
+	generalInput.setAttribute('class', 'optionInput');
+	generalInput.setAttribute('id', 'opt3_id');
+	generalInput.setAttribute('style', 'padding: 1.5%; background: black; color:white; width: 65%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;');
+	generalInput.setAttribute('type', 'text');
+
+	d.append(generalInput);
+
+	QuestionEditorCont.append(d);
+
+	//option 4
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 1%; width: 45%; float: left; margin-left: 3%;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('style', 'color: black; width: 33%;display: inline-block;');
+
+	t = document.createTextNode('Option 4: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	generalInput = document.createElement('input');
+	generalInput.setAttribute('class', 'optionInput');
+	generalInput.setAttribute('id', 'opt4_id');
+	generalInput.setAttribute('style', 'padding: 1.5%; background: black; color:white; width: 65%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;');
+	generalInput.setAttribute('type', 'text');
+
+	d.append(generalInput);
+
+	QuestionEditorCont.append(d);
+
+	//correct answer
+	d = document.createElement('div');
+	d.setAttribute('style', 'margin-top: 2%; width: 100%; display: inline-block;');
+
+	generalEditorSpan = document.createElement('span');
+	generalEditorSpan.setAttribute('style', 'color: black; width: 25%; margin-right: 2%;');
+
+	t = document.createTextNode('Correct Answer: ');
+	generalEditorSpan.append(t);
+
+	d.append(generalEditorSpan);
+
+	select_ = document.createElement('select');
+	select_.setAttribute('style', 'width: 40%; background-color: black; color: white; padding: 2%; border: 1px solid rgba(0,0,0,0);');
+
+	var option1 = new Option('1', 'Option 1');
+	var option2 = new Option('2', 'Option 2');
+	var option3 = new Option('3', 'Option 3');
+	var option4 = new Option('4', 'Option 4');
+	select_.append(option1);
+	select_.append(option2);
+	select_.append(option3);
+	select_.append(option4);
+
+	d.append(select_);
+
+	//add button
+	addQuestionButton = document.createElement('div');
+	addQuestionButton.setAttribute('class', 'addQuestionButton');
+	addQuestionButton.setAttribute('id', 'addQuestionButton_ID');
+
+	t = document.createTextNode('ADD');
+	addQuestionButton.append(t);
+
+	d.append(addQuestionButton);
+
+	QuestionEditorCont.append(d);
+
+	MainEditorCont.append(QuestionEditorCont);
+
+	editorCont.append(MainEditorCont);
+
+	//Question display part
+	QuestionsCont = document.createElement('div');
+	QuestionsCont.setAttribute('class', 'QuestionsCont');
+	QuestionsCont.setAttribute('id', 'QuestionsCont_ID');
+
+	editorCont.append(QuestionsCont);
+
+	//now add the whole thing to the page itself
+	addNewExamCont.append(editorCont);
+
+	document.body.appendChild(addNewExamCont);
+
+	//now fade it in
+	$('.addNewExamCont').fadeIn('slow');
+}

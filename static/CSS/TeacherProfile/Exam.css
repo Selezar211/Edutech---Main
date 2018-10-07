@@ -203,7 +203,7 @@
     font-family: 'Quattrocento';
     z-index: 106;
     position: fixed;
-    display: inline-block;
+    display: none;
     width: 89%;
     height: 95%;
     top: 2%;
