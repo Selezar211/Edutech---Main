@@ -1106,3 +1106,8 @@ function AttachEventToAddStreamOptions() {
 
 }
 
+//attach event to exam tab
+function AttachEventToExamTab(){
+
+
+}
