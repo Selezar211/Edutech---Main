@@ -1933,6 +1933,8 @@ function createOneBatchExamCont(subject, grade, examJSON){
 	addNewExam = document.createElement('span');
 	addNewExam.setAttribute('class', 'addNewExam');
 	addNewExam.setAttribute('id', 'addNewExam_ID');
+	addNewExam.setAttribute('data-subject', subject);
+	addNewExam.setAttribute('data-grade', grade);
 
 	t = document.createTextNode('ADD NEW');
 	addNewExam.append(t);
@@ -2026,7 +2028,20 @@ function createOneBatchExamCont(subject, grade, examJSON){
 
 }
 
+//fetch all the questions in specified exam name and populate it
+function FetchAllQuestionsInExams(subject, grade, examName){
 
+	fullAddress = 'USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Exams/Live/' + examName
+
+	var ref = database.ref(fullAddress).once('value').then(function (snapshot) {
+
+		fullJSON = snapshot.val();
+
+		console.log(fullJSON);
+
+	});
+
+}
 
 function CreateOneQuestion(qNum, qName, qContent, qOpt1, qOpt2, qOpt3, qOpt4, correctIndex){
 
@@ -2095,7 +2110,7 @@ function createAddNewExamCont(subject, grade){
 	mainHeading.setAttribute('class', 'mainHeading');
 
 	s = document.createElement('span');
-	t = document.createTextNode(`New Exam for ${subject} ${grade}`);
+	t = document.createTextNode(`New Exam for ${subject} | ${grade}`);
 	s.append(t);
 
 	mainHeading.append(s);
@@ -2155,6 +2170,7 @@ function createAddNewExamCont(subject, grade){
 
 	generalInput = document.createElement('input');
 	generalInput.setAttribute('class', 'generalInput');
+	generalInput.setAttribute('id', 'examName_ID');
 	generalInput.setAttribute('type', 'text')
 
 	d.append(generalInput);
@@ -2175,8 +2191,8 @@ function createAddNewExamCont(subject, grade){
 
 	generalInput = document.createElement('input');
 	generalInput.setAttribute('class', 'generalInput');
-	generalInput.setAttribute('type', 'text')
-	generalInput.setAttribute('placeholder', 'dd/mm/yy')
+	generalInput.setAttribute('type', 'date');
+	generalInput.setAttribute('id', 'examDate_ID');
 
 	d.append(generalInput);
 
@@ -2196,6 +2212,7 @@ function createAddNewExamCont(subject, grade){
 
 	generalInputSelect = document.createElement('select');
 	generalInputSelect.setAttribute('class', 'generalInputSelect');
+	generalInputSelect.setAttribute('id', 'startTime_ID');
 
 	fulltimingsArray = CraftTimingArray();
 
@@ -2222,6 +2239,7 @@ function createAddNewExamCont(subject, grade){
 
 	generalInput = document.createElement('input');
 	generalInput.setAttribute('class', 'generalInput');
+	generalInput.setAttribute('id', 'timeLimit_ID');
 	generalInput.setAttribute('type', 'number');
 	generalInput.setAttribute('placeholder', 'in minutes..');
 	generalInput.setAttribute('min', '0');
@@ -2261,6 +2279,7 @@ function createAddNewExamCont(subject, grade){
 
 	generalInput = document.createElement('input');
 	generalInput.setAttribute('class', 'optionInput');
+	generalInput.setAttribute('id', 'quesName_ID');
 	generalInput.setAttribute('style', 'padding: 1.5%; background: black; color:white; width: 74%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;');
 	generalInput.setAttribute('type', 'text');
 
@@ -2271,6 +2290,7 @@ function createAddNewExamCont(subject, grade){
 	//textarea
 	questionTextArea = document.createElement('textarea');
 	questionTextArea.setAttribute('class', 'questionTextArea');
+	questionTextArea.setAttribute('id', 'quesContent_ID');
 	questionTextArea.setAttribute('placeholder', 'Please enter your question..');
 
 	QuestionEditorCont.append(questionTextArea);
@@ -2376,6 +2396,7 @@ function createAddNewExamCont(subject, grade){
 	d.append(generalEditorSpan);
 
 	select_ = document.createElement('select');
+	select_.setAttribute('id', 'correctAnswerSelect_ID')
 	select_.setAttribute('style', 'width: 40%; background-color: black; color: white; padding: 2%; border: 1px solid rgba(0,0,0,0);');
 
 	var option1 = new Option('1', 'Option 1');
@@ -2393,6 +2414,8 @@ function createAddNewExamCont(subject, grade){
 	addQuestionButton = document.createElement('div');
 	addQuestionButton.setAttribute('class', 'addQuestionButton');
 	addQuestionButton.setAttribute('id', 'addQuestionButton_ID');
+	addQuestionButton.setAttribute('data-subject', subject);
+	addQuestionButton.setAttribute('data-grade', grade);
 
 	t = document.createTextNode('ADD');
 	addQuestionButton.append(t);

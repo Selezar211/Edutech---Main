@@ -58,6 +58,7 @@ function FetchAllDataFromDatabase() {
         AttachEventToAddStreamOptions();
         AttachEventToEachStudentClick();
         AttachEventToLectureClick();
+        AttachEventToExamTab();
     });
 
 }

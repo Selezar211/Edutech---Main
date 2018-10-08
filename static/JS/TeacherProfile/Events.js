@@ -1109,5 +1109,96 @@ function AttachEventToAddStreamOptions() {
 //attach event to exam tab
 function AttachEventToExamTab(){
 
+    //clicking on add new exam
+    $(".addNewExam").click(function () {
+
+        subject = String($(this).attr("data-subject"));
+        grade = String($(this).attr("data-grade"));
+
+        createAddNewExamCont(subject, grade);
+
+        //now add events for inside the addnewExamCont
+
+        //clicking on cancel on add new exam cont
+        $(".cancelNewExam").click(function(){
+            FadeOutANDRemove('fast', '.addNewExamCont');
+        });
+
+        $(".addQuestionButton").click(function(){
+
+            subject = String($(this).attr("data-subject"));
+            grade = String($(this).attr("data-grade"));
+
+            examName = $('#examName_ID').val();
+            examDate = $('#examDate_ID').val();
+            startingTime = $('#startTime_ID').find(":selected").text();
+            timeLimit = $("#timeLimit_ID").val();
+
+            questionName = $("#quesName_ID").val();
+            question = $("#quesContent_ID").val();
+            option1 = $("#opt1_id").val();
+            option2 = $("#opt2_id").val();
+            option3 = $("#opt3_id").val();
+            option4 = $("#opt4_id").val();
+
+            correct = $("#correctAnswerSelect_ID").find(":selected").text();
+
+            //carry out check to see if any fields are empty and reject if it is
+            if ((examName || examDate || startingTime || timeLimit || questionName || question || option1 || option2 || option3 || option4 || correct) == null ){
+                BoxAlert('Null Fields cannot be accepted!')
+            }
+            //first we need to add the question then we need to load everything from backend
+            else {
+
+                fullAddress = 'USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Exams/Live/' + examName
+
+                var ref = database.ref(fullAddress);
+
+                data = { 'QuestionName' : questionName,
+                            'Question' : question,
+                            'Option 1' : option1,
+                            'Option 2' : option2,
+                            'Option 3' : option3,
+                            'Option 4' : option4,
+                            'Correct' : correct
+                }
+
+                ref.push(data).then(function(){
+                    //after writing data successfully now read it back and reload it
+                    //first remove all existing questions
+                    $('.OneQuestionBox').remove();
+                    fullAddress = 'USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Exams/Live/' + examName
+
+                    var ref = database.ref(fullAddress).once('value').then(function (snapshot) {
+                
+                        fullJSON = snapshot.val();
+                
+                        //now loop through this JSON and create each question
+                        let key;
+                        let i = 1;
+                        for (key in fullJSON){
+
+                            _quesName = fullJSON[key]['QuestionName'];
+                            _question = fullJSON[key]['Question'];
+                            _opt1 = fullJSON[key]['Option 1'];
+                            _opt2 = fullJSON[key]['Option 2'];
+                            _opt3 = fullJSON[key]['Option 3'];
+                            _opt4 = fullJSON[key]['Option 4'];
+                            _correct = fullJSON[key]['Correct'];
+
+                            //now create a question with all these data
+                            CreateOneQuestion(String(i), _quesName, _question, _opt1, _opt2, _opt3, _opt4, _correct);
+
+                            i = i + 1;
+                        }
+                
+                    });
+
+                })
+            }
+
+        });
+
+    });
 
 }
