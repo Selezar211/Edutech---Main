@@ -177,6 +177,7 @@ function ReloadBackEndData() {
     $('.BatchBox').remove();
     $('.StudentInfoCont').remove();
     $('.LectureLinksContainer').remove();
+    $('.OneBatchExamCont').remove();
 
     //now recreate the streamboxes after fetching em all
     FetchAllDataFromDatabase();

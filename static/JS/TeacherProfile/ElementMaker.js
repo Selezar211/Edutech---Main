@@ -1972,6 +1972,9 @@ function createOneBatchExamCont(subject, grade, examJSON){
 		//delete this exam button
 		deleteLiveExam = document.createElement('span');
 		deleteLiveExam.setAttribute('class', 'deleteLiveExam');
+		deleteLiveExam.setAttribute('data-examName', examName);
+		deleteLiveExam.setAttribute('data-subject', subject);
+		deleteLiveExam.setAttribute('data-grade', grade);
 		t = document.createTextNode('Delete');
 		deleteLiveExam.append(t);
 
@@ -2028,21 +2031,6 @@ function createOneBatchExamCont(subject, grade, examJSON){
 
 }
 
-//fetch all the questions in specified exam name and populate it
-function FetchAllQuestionsInExams(subject, grade, examName){
-
-	fullAddress = 'USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Exams/Live/' + examName
-
-	var ref = database.ref(fullAddress).once('value').then(function (snapshot) {
-
-		fullJSON = snapshot.val();
-
-		console.log(fullJSON);
-
-	});
-
-}
-
 function CreateOneQuestion(qNum, qName, qContent, qOpt1, qOpt2, qOpt3, qOpt4, correctIndex){
 
 	OneQuestionBox = document.createElement('div');
@@ -2068,28 +2056,28 @@ function CreateOneQuestion(qNum, qName, qContent, qOpt1, qOpt2, qOpt3, qOpt4, co
 	opt1 = document.createElement('span');
 	opt1.setAttribute('style', 'width: 100%; float: left; font-weight: 600; margin-top: 2%;');
 	innerText = (correctIndex == 1) ? qOpt1 + String(' (correct)') : qOpt1;
-	t = document.createTextNode(innerText);
+	t = document.createTextNode(`1. ${innerText}`);
 	opt1.append(t);
 	OneQuestionBox.append(opt1);
 
 	opt2 = document.createElement('span');
 	opt2.setAttribute('style', 'width: 100%; float: left; font-weight: 600;');
 	innerText = (correctIndex == 2) ? qOpt2 + String(' (correct)') : qOpt2;
-	t = document.createTextNode(innerText)
+	t = document.createTextNode(`2. ${innerText}`)
 	opt2.append(t);
 	OneQuestionBox.append(opt2);
 
 	opt3 = document.createElement('span');
 	opt3.setAttribute('style', 'width: 100%; float: left; font-weight: 600;');
 	innerText = (correctIndex == 3) ? qOpt3 + String(' (correct)') : qOpt3;
-	t = document.createTextNode(innerText)
+	t = document.createTextNode(`3. ${innerText}`)
 	opt3.append(t);
 	OneQuestionBox.append(opt3);
 
 	opt4 = document.createElement('span');
 	opt4.setAttribute('style', 'width: 100%; float: left; font-weight: 600;');
 	innerText = (correctIndex == 4) ? qOpt4 + String(' (correct)') : qOpt4;
-	t = document.createTextNode(innerText)
+	t = document.createTextNode(`4. ${innerText}`)
 	opt4.append(t);
 	OneQuestionBox.append(opt4);
 
@@ -2117,17 +2105,17 @@ function createAddNewExamCont(subject, grade){
 
 	cancelNewExam = document.createElement('span');
 	cancelNewExam.setAttribute('class', 'cancelNewExam');
-	t = document.createTextNode('Cancel');
+	t = document.createTextNode('Finish');
 	cancelNewExam.append(t);
 
 	mainHeading.append(cancelNewExam);
 
-	submitNewExam = document.createElement('span');
-	submitNewExam.setAttribute('class', 'submitNewExam');
-	t = document.createTextNode('Submit');
-	submitNewExam.append(t);
+	// submitNewExam = document.createElement('span');
+	// submitNewExam.setAttribute('class', 'submitNewExam');
+	// t = document.createTextNode('Submit');
+	// submitNewExam.append(t);
 
-	mainHeading.append(submitNewExam);
+	// mainHeading.append(submitNewExam);
 
 	topContQuestions.append(mainHeading);
 
@@ -2148,7 +2136,7 @@ function createAddNewExamCont(subject, grade){
 	titleGeneraleditor = document.createElement('div');
 	titleGeneraleditor.setAttribute('class', 'titleGeneraleditor');
 
-	t = document.createTextNode('General Editor');
+	t = document.createTextNode('General Editor        (Do not change once you press the ADD button)');
 	titleGeneraleditor.append(t);
 
 	generalEditorCont.append(titleGeneraleditor);

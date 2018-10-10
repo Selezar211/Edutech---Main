@@ -1109,6 +1109,28 @@ function AttachEventToAddStreamOptions() {
 //attach event to exam tab
 function AttachEventToExamTab(){
 
+    //clicking on delete on any one of the exams in live
+    $(".deleteLiveExam").click(function(){
+
+        FadeInLoadingFrame();
+
+        subject = String($(this).attr("data-subject"));
+        grade = String($(this).attr("data-grade"));
+        examName = String($(this).attr("data-examName"));
+
+        fullAddress = 'USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Exams/Live/' + examName
+
+        var ref = database.ref(fullAddress);
+
+        ref.remove().then(function(){
+            ReloadBackEndData();
+            BoxAlert(`${examName} has been deleted!`);
+            FadeOutLoadingFrame();
+        })
+
+        return false;
+    });
+
     //clicking on add new exam
     $(".addNewExam").click(function () {
 
@@ -1144,7 +1166,7 @@ function AttachEventToExamTab(){
             correct = $("#correctAnswerSelect_ID").find(":selected").text();
 
             //carry out check to see if any fields are empty and reject if it is
-            if ((examName || examDate || startingTime || timeLimit || questionName || question || option1 || option2 || option3 || option4 || correct) == null ){
+            if (((examName || examDate || startingTime || timeLimit || questionName || question || option1 || option2 || option3 || option4 || correct) == null ) || ((examName || examDate || startingTime || timeLimit || questionName || question || option1 || option2 || option3 || option4 || correct) == '' )) {
                 BoxAlert('Null Fields cannot be accepted!')
             }
             //first we need to add the question then we need to load everything from backend
@@ -1160,7 +1182,10 @@ function AttachEventToExamTab(){
                             'Option 2' : option2,
                             'Option 3' : option3,
                             'Option 4' : option4,
-                            'Correct' : correct
+                            'Correct' : correct,
+                            'Date' : examDate,
+                            'timeGiven' : timeLimit,
+                            'startTime': startingTime
                 }
 
                 ref.push(data).then(function(){

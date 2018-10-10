@@ -235,7 +235,6 @@
 .cancelNewExam{
     margin-right: 2%;
     margin-left: 2%;
-    border-left: 1px solid white;
     padding-left: 2%;
     float: right;
     cursor: pointer;
