@@ -28,7 +28,7 @@
 		.LectureLinksContainer{
 			font-size: 1em;
 			float: left;
-			    width: 45%;
+			    width: 95%;
 			    display: inline-block;
 			    position: relative;
 			    margin-top: 2%;
@@ -58,6 +58,7 @@
 		}
 
 		.LectureLink{
+			font-size: 1.4em;
 				cursor: pointer;
 			    display: inline-block;
 			    position: relative;

@@ -75,7 +75,7 @@
     margin-left: 2%;
     margin-top: 1%;
     color: black;
-    width: 47%;
+    width: 96%;
     display: inline-block;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
     position: relative;
@@ -130,69 +130,6 @@
     background: beige;
     color: black;
 }
-
-
-
-.concludedExamCont{
-    font-size: 1em;
-    margin-left: 2%;
-    margin-top: 1%;
-    color: black;
-    width: 47%;
-    display: inline-block;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
-    position: relative;
-    float: left;
-}
-
-.concludedExamHeading{
-    color: white;
-    padding: 2%;
-    float: left;
-    width: 100%;
-    background-color: black;  
-}
-
-.OneConcludedExam{
-    font-size: 0.9em;
-    cursor: pointer;
-    width: 100%;
-    display: inline-block;
-    transition: 500ms;
-    position: relative;
-    padding: 1%;
-    padding-top: 2%;
-    padding-left: 2%;   
-}
-
-.OneConcludedExam:hover{
-    transition: 500ms;
-    background-color: silver;
-}
-
-.deleteConcludedExam{
-    float: right;
-    font-size: 0.8em;
-    cursor: pointer;
-    display: inline-block;
-    transition: 500ms;
-    position: relative;
-    color: white;
-    background-color: black;
-    padding-top: 1%;
-    padding-bottom: 0.5%;
-    padding-left: 2%;
-    padding-right: 2%;
-    margin-top: -1%;
-    margin-right: 2%;
-}
-
-.deleteConcludedExam:hover{
-    transition: 500ms;
-    background: beige;
-    color: black;
-}
-
 
 
 

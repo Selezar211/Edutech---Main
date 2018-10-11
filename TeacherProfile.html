@@ -22,6 +22,7 @@
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/Alert.css"> 
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/Chart.css"> 
 		<link rel="stylesheet" href="static/CSS/TeacherProfile/Exam.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Settings.css"> 
 
 
         <title> Profile Teacher</title>
@@ -98,12 +99,12 @@
 
 		<div class="Top_FA_Container">
 			<div class="TopFaDIV" id="HomeIcon"><i class="fas fa-home"></i> <span class="IconDescription">Home</span></div>
-			<div class="TopFaDIV" id="ExamIcon"><i class="fas fa-graduation-cap"></i><span class="IconDescription">Exam</span></div>
+			<div class="TopFaDIV" id="TeacherIcon"><i class="fas fa-chalkboard-teacher"></i><span class="IconDescription" id="StudentIconDesc">Students</span></div>	
 			<div class="TopFaDIV" id="TableIcon"><i class="fas fa-table"></i><span class="IconDescription" id="TimetableIcon">Timetable</span></div>
 			<div class="TopFaDIV" id="VidIcon"><i class="fas fa-video"></i><span class="IconDescription">Video</span></div>
 			<div class="TopFaDIV" id="Lecticn" ><i class="fas fa-file-alt"></i><span class="IconDescription" id="LectureIcon">Lecture</span></div>
-			<div class="TopFaDIV" id="TeacherIcon"><i class="fas fa-chalkboard-teacher"></i><span class="IconDescription" id="StudentIconDesc">Students</span></div>	
-			<div class="TopFaDIV"><i class="fas fa-cog"></i><span class="IconDescription" id="SettingsIcon">Settings</span></div>		
+			<div class="TopFaDIV" id="ExamIcon"><i class="fas fa-graduation-cap"></i><span class="IconDescription">Exam</span></div>
+			<div class="TopFaDIV" id="SettingsIcon_"><i class="fas fa-cog"></i><span class="IconDescription" id="SettingsIcon">Settings</span></div>		
 		</div>
 
 		<div class="MainContent">
@@ -137,15 +138,6 @@
 							<span class="BB_MainInfo_Child" id="UpcomingMock">Upcoming Mock : </span>
 							<span class="BB_MainInfo_Child" id="UpcomingMockInfo">Mathematics - 30th July 2:30 PM</span>
 						</div>
-
-
-
-
-
-
-
-
-
 
 
 
@@ -187,26 +179,8 @@
 
 						</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 						<div class="MainVideoPlayer_Cont">
-							<iframe class="VideoFrame_Youtube" src=""></iframe>
-
-
+							<h1 style="color:rgba(255,255,255,0.3);margin-top:25%;width:100%;text-align: center;">Video Streaming Coming Soon</h1>
 						</div>
 
 						<div class="MainLectureTab_Cont" id="MainLectureTab_Cont_ID">
@@ -259,10 +233,7 @@
 							<div class="StudentHeadingMain"><span>Students:</span></div>
 
 							<div class="BoxesContainer" id="BoxesContainer_ID">
-							
 
-
-								
 							</div>
 							
 						</div>
@@ -272,6 +243,14 @@
 							<div class="SetStreamsButton" id="SetStreamsButtonID"><i id="SetStreamIcon" class="fas fa-cogs"></i>Configure Batch</div>
 
 
+						</div>
+
+						<div class="MainSettingsCont" id="MainSettingsCont_ID">
+							<div class="SettingsHeading">Settings</div>
+							<div class="UID_Setting" id="UID_Setting_ID">UID: </div>
+							<div class="PasswordChangeButton">Change Password</div>
+							<div class="bugButton">Submit bug</div>
+							<div class="adminButton">Message Ekram</div>
 						</div>
 
 					</div>

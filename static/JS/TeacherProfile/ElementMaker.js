@@ -1986,47 +1986,6 @@ function createOneBatchExamCont(subject, grade, examJSON){
 
 	OneBatchExamCont.append(liveExamCont);
 
-	//now for the concluded exams column
-	concludedExamCont = document.createElement('div');
-	concludedExamCont.setAttribute('class', 'concludedExamCont');
-
-	concludedExamHeading = document.createElement('div');
-	concludedExamHeading.setAttribute('class', 'concludedExamHeading');
-
-	t = document.createTextNode('Concluded Exams');
-	concludedExamHeading.append(t);
-
-	concludedExamCont.append(concludedExamHeading);
-
-	//now make the concluded exams by looping through the exam JSON as well
-	concludedJSON = examJSON['Concluded'];
-
-	let key2;
-	for (key2 in concludedJSON){
-		//where key is name of each exam which is all we are concerned with right now
-		examName = key2;
-
-		OneConcludedExam = document.createElement('div');
-		OneConcludedExam.setAttribute('class', 'OneConcludedExam');
-
-		span_ = document.createElement('span');
-		t = document.createTextNode(examName);
-		span_.append(t);
-
-		//delete this exam button
-		deleteConcludedExam = document.createElement('span');
-		deleteConcludedExam.setAttribute('class', 'deleteConcludedExam');
-		t = document.createTextNode('Delete');
-		deleteConcludedExam.append(t);
-
-		OneConcludedExam.append(span_);
-		OneConcludedExam.append(deleteConcludedExam);
-
-		concludedExamCont.append(OneConcludedExam);
-	}
-
-	OneBatchExamCont.append(concludedExamCont);
-
 	document.getElementById('MainExamTab_Cont_ID').appendChild(OneBatchExamCont);
 
 }

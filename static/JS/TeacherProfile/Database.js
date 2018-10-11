@@ -36,6 +36,7 @@ function FetchAllDataFromDatabase() {
 
         //Change the top name to user name and change some stuff on the page to reflect the user
         document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Teacher#34 ' + tableData['UserName'];
+        document.getElementById("UID_Setting_ID").innerHTML = `Personal UID : ${Current_UID}`;
         document.title = tableData['UserName'] + ' - Profile';
 
         //now populate everything by looping through the obtained JSON and injecting it where it is needed

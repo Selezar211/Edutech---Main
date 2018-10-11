@@ -9,6 +9,7 @@ document.getElementById("HomeIcon").addEventListener('click', e => {
 	$(".MainVideoPlayer_Cont").fadeOut('fast');
 	$(".MainLectureTab_Cont").fadeOut('fast');
 	$(".MainExamTab_Cont").fadeOut('fast');
+	$(".MainSettingsCont").fadeOut('fast');
 
 	$(".Blackboard_container").css('background-color', 'rgb(10,14,17)');
 	$(".BlackBoard").css('background-color', 'rgb(10,14,17)');
@@ -33,6 +34,7 @@ document.getElementById("ExamIcon").addEventListener('click', e => {
 	$(".MainTimeTableCont").fadeOut('fast');
 	$(".MainVideoPlayer_Cont").fadeOut('fast');
 	$(".MainLectureTab_Cont").fadeOut('fast');
+	$(".MainSettingsCont").fadeOut('fast');
 
 	//fadeout all current stuff
 	$(".BlackBoard_MainInfo").fadeOut('fast');
@@ -58,6 +60,7 @@ document.getElementById("TableIcon").addEventListener('click', e => {
 	$(".MainVideoPlayer_Cont").fadeOut('fast');
 	$(".MainLectureTab_Cont").fadeOut('fast');
 	$(".MainExamTab_Cont").fadeOut('fast');
+	$(".MainSettingsCont").fadeOut('fast');
 
 	//fadeout all current stuff
 	$(".BlackBoard_MainInfo").fadeOut('fast');
@@ -101,6 +104,7 @@ document.getElementById("VidIcon").addEventListener('click', e => {
 	$(".MainTimeTableCont").fadeOut('fast');
 	$(".MainLectureTab_Cont").fadeOut('fast');
 	$(".MainExamTab_Cont").fadeOut('fast');
+	$(".MainSettingsCont").fadeOut('fast');
 
 	$(".Blackboard_container").css('background-color', 'rgb(0,0,0)');
 	$(".BlackBoard").css('background-color', 'rgb(10,14,17)');
@@ -126,6 +130,7 @@ document.getElementById("Lecticn").addEventListener('click', e => {
 	$(".MainVideoPlayer_Cont").fadeOut('fast');
 	$(".MainStudentTab_Cont").fadeOut('fast');
 	$(".MainExamTab_Cont").fadeOut('fast');
+	$(".MainSettingsCont").fadeOut('fast');
 
 	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
 	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
@@ -139,7 +144,7 @@ document.getElementById("Lecticn").addEventListener('click', e => {
 
 });
 
-//Teacher icon click event
+//Student icon click event
 document.getElementById("TeacherIcon").addEventListener('click', e => {
 
 	console.log('teacher clicked!');
@@ -150,6 +155,7 @@ document.getElementById("TeacherIcon").addEventListener('click', e => {
 	$(".MainVideoPlayer_Cont").fadeOut('fast');
 	$(".MainLectureTab_Cont").fadeOut('fast');
 	$(".MainExamTab_Cont").fadeOut('fast');
+	$(".MainSettingsCont").fadeOut('fast');
 
 	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
 	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
@@ -159,6 +165,30 @@ document.getElementById("TeacherIcon").addEventListener('click', e => {
 	$("#SignoutIcon2").css('color', 'black');
 
 	$(".MainStudentTab_Cont").fadeIn('slow');
+
+});
+
+//Settings icon click event
+document.getElementById("SettingsIcon_").addEventListener('click', e => {
+
+	console.log('Settings clicked!');
+
+	//fadeout all current stuff
+	$(".BlackBoard_MainInfo").fadeOut('fast');
+	$(".BlackBoardName_Date_Cont").fadeOut('fast');
+	$(".MainVideoPlayer_Cont").fadeOut('fast');
+	$(".MainLectureTab_Cont").fadeOut('fast');
+	$(".MainStudentTab_Cont").fadeOut('fast');
+	$(".MainExamTab_Cont").fadeOut('fast');
+
+	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
+	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
+	$(".NotificationOpenButton").css('background-color', 'rgba(0,0,0,0)');
+
+	$("#ExclaimIcon").css('color', 'black');
+	$("#SignoutIcon2").css('color', 'black');
+
+	$(".MainSettingsCont").fadeIn('slow');
 
 
 });
