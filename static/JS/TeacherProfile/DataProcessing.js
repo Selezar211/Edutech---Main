@@ -154,7 +154,7 @@ function ReturnUpcomingClass(subjectArray, dayArray, timeStartArray) {
             upcomingTime = ascTimings[s];
 
             upcomingSubject = jsonKey[upcomingTime];
-            upcomingSubject = upcomingSubject.split('|').join(' | ');
+            upcomingSubject = upcomingSubject.split('|').join(' - ');
             break;
         }
     }
@@ -170,4 +170,33 @@ function ReturnUpcomingClass(subjectArray, dayArray, timeStartArray) {
     output.push(upcomingSubject);
 
     return output;
+}
+
+function SetHomeTabStuff(tableData){
+    //Change the top name to user name and change some stuff on the page to reflect the user
+    document.getElementById("BlackBoardStudentName_ID").innerHTML = `Welcome back ${tableData['UserName']}!`;
+    document.getElementById("UID_Setting_ID").innerHTML = `Personal UID : ${Current_UID}`;
+    document.title = tableData['UserName'] + ' - Profile';
+
+    //pass in the full timing data to update upcoming class
+    UpdateUpcomingClass(tableData);
+    SetTodaysDate();
+}
+
+function UpdateUpcomingClass(tableData){
+    //this function will update the upcoming class in the home tab
+    receivedOutput = FlattenReceivedJSONToFindUpcomingClass(tableData['UserClass']);
+    received_ = ReturnUpcomingClass(receivedOutput[0], receivedOutput[1], receivedOutput[2]);
+    document.getElementById('NextClassInfo').innerHTML = `${received_[1]} || ${received_[0]}`;
+}
+
+function SetTodaysDate(){
+    monthArr = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = monthArr[today.getMonth()];
+    var yyyy = today.getFullYear();
+
+    //now set it in the home tab
+    document.getElementById('BlackBoardDate_ID').innerHTML = `${dd} ${mm} ${yyyy}`;
 }

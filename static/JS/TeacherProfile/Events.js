@@ -1227,3 +1227,7 @@ function AttachEventToExamTab(){
     });
 
 }
+
+function SetupAllIntervalEvents(){
+    
+}

@@ -32,15 +32,8 @@ function FetchAllDataFromDatabase() {
         tableData = snapshot.val();         //this is the full JSON from firebase database for this user
         console.log(tableData);
 
-        //Change the top name to user name and change some stuff on the page to reflect the user
-        document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Teacher#34 ' + tableData['UserName'];
-        document.getElementById("UID_Setting_ID").innerHTML = `Personal UID : ${Current_UID}`;
-        document.title = tableData['UserName'] + ' - Profile';
-
-        //pass in the full timing data to update upcoming class
-        receivedOutput = FlattenReceivedJSONToFindUpcomingClass(tableData['UserClass']);
-        received_ = ReturnUpcomingClass(receivedOutput[0], receivedOutput[1], receivedOutput[2]);
-        document.getElementById('NextClassInfo').innerHTML = `${received_[1]} ${received_[0]}`;
+        //set up the home tab
+        SetHomeTabStuff(tableData);
 
         //now populate everything by looping through the obtained JSON and injecting it where it is needed
         //so here we are going to have multi level FOR loops to propagate through our JSON structure
