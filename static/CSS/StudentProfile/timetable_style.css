@@ -27,6 +27,7 @@ Main Components
   /* never visible - this is used in js to check the current MQ */
   content: 'mobile';
   display: none;
+  text-decoration: none;
 }
 
 @media only screen {
@@ -205,7 +206,7 @@ Main Components
     margin-bottom: 0;
   }
   .cd-schedule .events .events-group > ul {
-    height: 950px;
+    height: 1800px;
     /* reset style */
     display: block;
     overflow: visible;
@@ -226,7 +227,7 @@ Main Components
     /* top position and height will be set using js */
     width: calc(100% + 2px);
     left: -1px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1), inset 0 -3px 0 rgba(0, 0, 0, 0.2);
     /* reset style */
     -ms-flex-negative: 1;
         flex-shrink: 1;
@@ -292,7 +293,7 @@ Main Components
 .cd-schedule .single-event[data-event="event-1"],
 .cd-schedule [data-event="event-1"] .header-bg {
   /* this is used to set a background color for the event and the modal window */
-  background: #577F92;
+  background: black;
 }
 
 .cd-schedule .single-event[data-event="event-1"]:hover {

@@ -1,0 +1,64 @@
+
+
+.BoxAlert{
+	transition: 500ms;
+    font-family: 'Quattrocento';
+    display: none;
+    z-index: 107;
+    position: fixed;
+    width: 28%;
+    top: 3%;
+    right: 2%;
+    background-color: white;
+    border-radius: 1em;
+   	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.BoxAlert: hover{
+	transition: 500ms;
+	background-color: lightgray;
+}
+
+.AlertText{
+	font-family: 'Quattrocento';
+	display: inline-block;
+	float: left;
+	font-size: 0.9em;
+	width: 90%;
+	padding: 4%;
+	line-height: 120%;
+	color: black;
+	position: relative;
+	top: 0%;	
+	transition: 500ms;	
+}
+
+.AlertClose{
+	border-radius: 1em;
+	text-align: center;
+	align-content: center;
+	display: inline-block;
+	float: left;
+	width: 10%;
+	margin-top: 1%;
+	padding-top: 2%;
+	padding-left: 2%;
+	padding-right: 2%;
+	color: black;
+	position: relative;
+	top: 0%;	
+	transition: 500ms;
+}
+
+#AlertCloseIcon{
+	transform: scale(1.4,1.4);
+	transition: 500ms;
+	cursor: pointer;
+}
+
+
+#AlertCloseIcon:hover {
+	color: darkgray;
+	transform: scale(1.4,1.4) rotate(90deg);
+	transition: 500ms;
+}

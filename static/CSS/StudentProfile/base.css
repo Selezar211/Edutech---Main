@@ -52,3 +52,77 @@
 			::-webkit-scrollbar-corner {
 			    background-color: transparent;
 			   }
+
+
+
+.DoubleCheckBox{
+	position: fixed;
+	width: 30%;
+	display: inline-block;
+	padding-bottom: 1%;
+	top: 25%;
+	left: 33%;
+    background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+    z-index: 107;
+    border-radius: 0.7em;
+}
+
+
+.MainText{
+	width: 100%;
+	text-align: center;
+	padding: 4%;
+	padding-top: 6%;
+	color: white;
+	font-family: 'Quattrocento';
+	font-size: 1em;
+	float: left;
+	position: relative;
+	display: inline-block;
+}
+
+
+.YesButton{
+	margin-left: 13%;
+	cursor: pointer;
+	width: 35%;
+	float: left;
+	position: relative;
+	background-color: black;
+	text-align: center;
+	padding: 2%;
+	color: white;
+	font-family: 'Quattrocento';
+	font-size: 1.2em;
+	border-radius: 0.3em;
+		transition: 500ms;
+}
+
+
+.NoButton{
+	margin-left: 5%;
+	transition: 500ms;
+	cursor: pointer;
+	width: 35%;
+	float: left;
+	position: relative;
+	background-color: black;
+	text-align: center;
+	padding: 2%;
+	color: white;
+	border-radius: 0.3em;
+	font-family: 'Quattrocento';
+	font-size: 1.2em;
+}
+
+.YesButton:hover, .NoButton:hover{
+	transition: 500ms;
+	color: black;
+	background-color: white;
+}
+
+
+
+
+
+

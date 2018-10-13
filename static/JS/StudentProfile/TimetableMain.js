@@ -1,4 +1,8 @@
-jQuery(document).ready(function($){
+
+
+
+
+
 	var transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
 	var transitionsSupported = ( $('.csstransitions').length > 0 );
 	//if browser does not support transitions - use a different event to trigger them
@@ -98,7 +102,8 @@ jQuery(document).ready(function($){
 			
 			$(this).css({
 				top: (eventTop -1) +'px',
-				height: (eventHeight+1)+'px'
+				height: (eventHeight-1)+'px',
+				overflow: 'auto'
 			});
 		});
 
@@ -331,13 +336,24 @@ jQuery(document).ready(function($){
 	var schedules = $('.cd-schedule');
 	var objSchedulesPlan = [],
 		windowResize = false;
-	
-	if( schedules.length > 0 ) {
-		schedules.each(function(){
-			//create SchedulePlan objects
-			objSchedulesPlan.push(new SchedulePlan($(this)));
-		});
+
+	function FormatTimeTable(){
+
+		var schedules = $('.cd-schedule');
+		var objSchedulesPlan = [],
+			windowResize = false;
+		
+		if( schedules.length > 0 ) {
+			schedules.each(function(){
+				//create SchedulePlan objects
+				objSchedulesPlan.push(new SchedulePlan($(this)));
+			});
+		}
+
+		return objSchedulesPlan
+
 	}
+
 
 	$(window).on('resize', function(){
 		if( !windowResize ) {
@@ -378,4 +394,4 @@ jQuery(document).ready(function($){
 			'transform': value
 		});
 	}
-});
+

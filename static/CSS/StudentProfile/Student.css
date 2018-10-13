@@ -1,0 +1,779 @@
+/*			Student Tab stuff*/
+		.MainStudentTab_Cont{
+				color: black;
+			    width: 100%;
+			  	height: 100%;
+			    display: none;
+			    position: relative;
+			    overflow: auto;
+		}
+
+		.StudentHeadingMain{
+				width: 40%;
+			    margin-top: 3%;
+			    height: 12%;
+			    display: inline-block;
+			    position: relative;
+			    top: 3%;
+			    margin-left: 30%;
+			    font-size: 4em;
+			    text-align: center;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+		}
+
+		.BoxesContainer{
+			    width: 100%;
+			    display: inline-block;
+			    position: relative;
+			    margin-top: 3%;
+		}
+
+		.BatchBox{
+			font-size: 1.1em;
+			    width: 85%;
+			    display: inline-block;
+			    overflow: auto;
+			    position: relative;
+			    margin-top: 4%;
+			    margin-bottom: 2%;
+			    margin-left: 7%;
+			    padding-bottom: 2%;
+			    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+		}
+
+		.BatchBoxHeading{
+			font-size: 1.1em;
+				color: white;
+				width: 100%;
+				display: inline-block;
+				padding-top: 2%;
+				padding-bottom: 2%;
+				padding-left: 2%;
+				padding-right: 2%;
+				background-color: rgb(20,24,27);
+				position: relative;
+				top: 0%;
+		}
+
+
+		.BatchName{
+			float: left;
+		}
+
+		.BatchFillRate{
+			float: left;
+			margin-left: 1%;
+		}
+
+		.BatchSubject{
+			border-right: 0.1vw solid white;
+			padding-right: 1%;
+			float: right;
+		}
+
+		.BatchGrade{
+			padding-left: 1%;
+			float: right;
+		}
+
+		.AcceptedBox{
+			font-size: 1em;
+			margin-left: 2%;
+			margin-top: 1%;
+				color: black;
+				width: 47%;
+				display: inline-block;
+				box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+				position: relative;
+				float: left;
+		}
+
+		.AcceptedBoxHeading,.PendingBoxHeading{
+			color: white;
+			padding: 2%;
+			float: left;
+			width: 100%;
+			background-color: black;
+		}
+
+		.MessageIcon{
+			cursor: pointer;
+			padding-right: 4%;
+			border-right: 0.1vw solid white;
+			float: right;
+			transition: 400ms;
+		}
+
+		.RollCallIcon{
+			cursor: pointer;
+			padding-left: 4%;
+			padding-right: 2%;
+			float: right;
+			transition: 400ms;
+		}
+
+		.DismissAll{
+			cursor: pointer;
+			padding-right: 1%;
+			float: right;
+			transition: 400ms;
+		}
+
+		.MessageIcon:hover, .RollCallIcon:hover, .DismissAll:hover {
+			color: gray;
+			transition: 400ms;
+		}
+
+		.OneStudentLine{
+			font-size: 0.9em;
+			cursor: pointer;
+			width: 100%;
+			display: inline-block;
+			transition: 500ms;
+			position: relative;
+			padding: 1%;
+			padding-top: 2%;
+			padding-left: 2%;
+		}
+
+		.OneStudentLinePending{
+			font-size: 0.9em;
+			width: 100%;
+			display: inline-block;
+			transition: 500ms;
+			position: relative;
+			padding: 1%;
+			padding-top: 2%;
+			padding-left: 2%;
+		}
+
+		.ShortcutTutionAccept{
+			float: right;
+			font-size: 0.8em;
+			cursor: pointer;
+			display: inline-block;
+			transition: 500ms;
+			position: relative;
+			color: white;
+			background-color: black;
+			padding-top: 1%;
+			padding-bottom: 1%;
+			padding-left: 2%;	
+			padding-right: 2%;
+			margin-top: -1%;
+			margin-right: 2%;
+		}
+
+		.ShortcutTutionAccept:hover{
+			background-color: beige;
+			color: black;
+			transition: 500ms;
+		}
+
+
+		.OneStudentLine:hover{
+			transition: 500ms;
+			background-color: silver;
+		}
+
+		.StudentName{
+			font-size: 1em;
+		}
+
+
+
+
+
+
+
+		.PendingBox{
+			font-size: 1em;
+			margin-left: 2%;
+			margin-top: 1%;
+				color: black;
+				width: 47%;
+				display: inline-block;
+				box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+				position: relative;
+				float: left;
+		}
+
+
+
+
+
+
+
+
+
+		.BatchHeadingIcons{
+			position: relative;
+			display: inline-block;
+			float: left;
+			margin-left: 20%;
+		}
+
+
+
+		#BanIcon, #Addicon{
+			transform: scale(1,1);
+			margin-top: 0.5%;
+			margin-left: 1%;
+			margin-right: 1%;
+			color: black;
+			float: right;
+			display: inline-block;
+			cursor: pointer;
+			transition: 200ms;
+		}
+
+		#BanIcon:hover , #Addicon:hover {
+			transform: scale(1.3,1.3);
+			color: white;
+			transition: 200ms;
+		}
+
+
+
+/*SEND MESSAGE BOX*/
+
+.MessageBatchBox{
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+	font-family: 'Quattrocento';
+	padding-bottom: 1%;
+	z-index: 107;
+	position: fixed;
+	display: inline-block;
+	width: 40%;
+	top: 20%;
+	left: 33%;
+	background: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+}
+
+.MessageBoxHeading{
+	color: white;
+	width: 100%;
+	background-color: black;
+	display: inline-block;
+	position: relative;
+	padding: 3%;
+}
+
+.SendMessageInput{
+	min-height: 230px;
+	margin-top: 2.5%;
+	background: white;
+	color: black;
+	word-break: break-word;
+	position: relative;
+	display: inline-block;
+	margin-bottom: 1%;
+	width: 96%;
+	margin-left: 2%;
+	padding: 2%;
+}
+
+.SendMessage{
+	cursor: pointer;
+	padding: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+	margin-left: 3%;
+	position: relative;
+	display: inline-block;
+	float: left;
+	background-color: black;
+	transition: 400ms;
+	color: white;
+}
+
+.CancelMessage{
+	cursor: pointer;
+	padding: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+	margin-left: 3%;
+	position: relative;
+	display: inline-block;
+	float: left;
+	background-color: black;
+	transition: 400ms;
+	color: white;
+}
+
+.SendMessage:hover, .CancelMessage:hover {
+	transition: 400ms;
+	background-color: white;
+	color: black;
+}
+
+/*ROLL CALL BOX*/
+.RollCallCont{
+	overflow: auto;
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+	font-family: 'Quattrocento';
+	padding-bottom: 0.5%;
+	z-index: 107;
+	position: fixed;
+	display: inline-block;
+	width: 50%;
+	height: 75%;
+	top: 10%;
+	left: 28%;
+	background: linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+}
+
+.RollCallHeading{
+	margin-bottom: 1.5%;
+	font-size: 1.1em;
+		color: white;
+		width: 100%;
+		display: inline-block;
+		padding-top: 2%;
+		padding-bottom: 2%;
+		padding-left: 2%;
+		padding-right: 2%;
+		background-color: rgb(20,24,27);
+		position: relative;
+		top: 0%;
+}
+
+.SubmitRollCall{
+	float: right;
+	padding-right: 2%;
+	transition: 400ms;
+	cursor: pointer;
+}
+
+.CancelRollCall{
+	float: right;
+	transition: 400ms;
+	cursor: pointer;
+	padding-left: 2%;
+}
+
+.SubmitRollCall:hover, .CancelRollCall:hover{
+	color: gray;
+	transition: 400ms;
+}
+
+.LineCont{
+	position: relative;
+	display: inline-block;
+	width: 100%;
+	margin-top: -1.5%;
+}
+
+.CBOX_LABEL{
+	transition: 400ms;
+	font-size: 1.2em;
+		cursor: pointer;
+		color: black;
+		font-family: 'Quattrocento';
+		padding-left: 2%;
+		padding-top: 1%;
+		margin-left: 3%;
+		width: 80%;
+		position: relative;
+		display: inline-block;
+		float: left;
+}
+
+.LineCont:hover{
+	transition: 400ms;
+	background-color: silver;
+}
+
+
+
+.RollCall_CBOX{
+	margin-top: 1.5%;
+	margin-left: 4%;
+		cursor: pointer;
+		color: black;
+		font-family: 'Quattrocento';
+		position: relative;
+		display: inline-block;
+		float: left;
+}
+
+
+
+
+/*STUDENT INFO BOX*/
+.StudentInfoCont{
+	box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+	font-family: 'Quattrocento';
+	z-index: 106;
+	position: fixed;
+	display: none;
+	width: 64%;
+	height: 80%;
+	top: 10%;
+	left: 19%;
+	padding-left: 3%;
+	padding-right: 3%;
+	padding-top: 3%;
+	background:  linear-gradient(to right, #84fab0 0%, #8fd3f4 51%, #84fab0 100%);
+}
+
+.StudentInfoTopBox{
+	width: 100%;
+	height: 9%;
+	position: relative;
+	display: inline-block;
+	float: left;
+	border-bottom: 0.1vw solid black;
+}
+
+.StudentNameRollCall{
+	font-size: 2.3em;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+	float: left;
+	height: 100%;
+	color: black;
+}
+
+.StudentIDRollCall{
+	margin-left: 4%;
+	font-size: 2.3em;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+	float: left;
+	height: 100%;
+	color: black;
+}
+
+.StudentMessageRollCall{
+	cursor: pointer;
+	border-radius: 0.3vw;
+	font-size: 1.3em;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    padding: 2%;
+    padding-top: 1%;
+    margin-right: 8%;
+    float: right;
+    height: 85%;
+    color: white;
+    background-color: black;
+    transition: 400ms;
+}
+
+.StudentMessageRollCall:hover, .TutionAcceptButton:hover, .PlotRollCallGraph:hover, .PlotRollCallHistogram:hover{
+	transition: 400ms;
+	color: black;
+	background-color: beige;
+}
+
+
+
+
+
+
+.StudentInfoRollCallCont{
+	overflow: auto;
+	border-right: 0.1vw solid black;
+	margin-top: 2%;
+	width: 33%;
+	height: 83%;
+	position: relative;
+	display: inline-block;
+	padding-right: 2%;
+	float: left;
+}
+
+#StudentInfoContCloseIcon{
+	transition: 400ms;
+	cursor: pointer;
+	color: black;
+	position: absolute;
+	top: 1.5%;
+	right: 1%;
+	transform: scale(1.7,1.7);
+}
+
+#StudentInfoContCloseIcon:hover {
+	transition: 400ms;
+	color: gray;
+}
+
+.fa-exchange-alt{
+	cursor: pointer;
+	transition: 400ms;
+	cursor: pointer;
+	color: black;
+	position: relative;
+	transform: scale(1,1);
+	float: right;
+	padding-top: 1%;
+	margin-right: 2%;
+}
+
+.fa-exchange-alt:hover{
+	transition: 400ms;
+	color: white;
+}
+
+
+.StudentInfoRollCallHeading{
+	font-weight: bolder;
+	margin-top: 2%;
+	margin-bottom: 5%;
+	width: 100%;
+	font-size: 1.4em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	float: left;
+	color: black;
+}
+
+.StudentInfoRollCallAction{
+	border-bottom: 0.1vw solid black;
+	padding-bottom: 8%;
+	margin-bottom: 2%;
+	width: 100%;
+	font-size: 1em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	float: left;
+	color: black;
+}
+
+.RollCallGraphHeading{
+	padding-top: 3%;
+}
+
+.PlotRollCallGraph{
+	margin-left: 3%;
+	transition: 400ms;
+	padding: 3%;
+	padding-left: 4%;
+	padding-right: 4%;
+	cursor: pointer;
+	background-color: black;
+	color: white;
+}
+
+.PlotRollCallHistogram{
+	margin-left: 3%;
+	transition: 400ms;
+	padding: 3%;
+	padding-left: 4%;
+	padding-right: 4%;
+	cursor: pointer;
+	background-color: black;
+	color: white;
+}
+
+
+.OneAttendanceEntry{
+	padding-left:2%;
+	padding-right:2%;
+	cursor: pointer;
+	margin-top: 2%;
+	width: 100%;
+	font-size: 1em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	transition: 400ms;
+	float: left;
+	color: black;
+}
+
+.OneAttendanceEntry:hover {
+	background-color: silver;
+	transition: 400ms;
+}
+
+.RollCallDate{
+	float: left;
+}
+
+.RollCallResult{
+	font-weight: bolder;
+	float: left;
+	margin-left: 10%;
+}
+
+
+/*Tution part*/
+.StudentInfoTutionCont{
+	overflow: auto;
+	border-right: 0.1vw solid black;
+	margin-top: 2%;
+	width: 33%;
+	height: 83%;
+	position: relative;
+	display: inline-block;
+	padding-right: 2%;
+	padding-left: 2%;
+	float: left;
+}
+
+.fa-eraser{
+	cursor: pointer;
+	transition: 400ms;
+	cursor: pointer;
+	color: black;
+	position: relative;
+	transform: scale(1,1);
+	float: right;
+	padding-top: 2%;
+	margin-right: 2%;
+}
+
+.fa-eraser:hover{
+	transition: 400ms;
+	color: white;
+}
+
+
+.StudentInfoTutionHeading{
+	font-weight: bolder;
+	margin-top: 2%;
+	margin-bottom: 6%;
+	width: 100%;
+	font-size: 1.4em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	float: left;
+	color: black;
+}
+
+.StudentInfoTutionAction{
+	border-bottom: 0.1vw solid black;
+	padding-bottom: 8%;
+	margin-bottom: 2%;
+	width: 100%;
+	font-size: 1em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	float: left;
+	color: black;
+}
+
+.PendingHeading{
+	padding-top: 3%;
+}
+
+.PendingMonth{
+	font-weight: bolder;
+	margin-left: 2%;
+	border: 0.1vw solid black;
+	padding: 3%;
+	padding-left: 4%;
+	padding-right: 4%;
+	color: black;
+}
+
+.TutionAcceptButton{
+	margin-left: 3%;
+	transition: 400ms;
+	padding: 3%;
+	padding-left: 4%;
+	padding-right: 4%;
+	cursor: pointer;
+	background-color: black;
+	color: white;
+}
+
+
+.OneTutionEntry{
+	padding-left:2%;
+	padding-right:2%;
+	cursor: pointer;
+	margin-top: 2%;
+	width: 100%;
+	font-size: 1em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	transition: 400ms;
+	float: left;
+	color: black;
+}
+
+.OneTutionEntry:hover {
+	background-color: silver;
+	transition: 400ms;
+}
+
+.TutionDate{
+	float: left;
+}
+
+.TutionResult{
+	font-weight: bolder;
+	float: left;
+	margin-left: 4%;
+}
+
+.PaidDate{
+	float: left;
+	margin-left: 4%;
+}
+
+
+
+/*EXAM TAB*/
+.StudentInfoExamCont{
+	overflow: auto;
+	margin-top: 2%;
+	width: 33%;
+	height: 83%;
+	position: relative;
+	display: inline-block;
+	padding-right: 2%;
+	padding-left: 2%;
+	float: left;
+}
+
+.StudentInfoExamHeading{
+	font-weight: bolder;
+	margin-top: 2%;
+	margin-bottom: 3%;
+	width: 100%;
+	font-size: 1.4em;
+	text-align: left;
+	position: relative;
+	display: inline-block;
+	float: left;
+	color: black;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

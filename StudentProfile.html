@@ -7,22 +7,25 @@
 
 		<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 
-		<link rel="stylesheet" href="static/CSS/StudentProfile/base.css">
-		<link rel="stylesheet" href="static/CSS/StudentProfile/SideIconBar.css"> 
-		<link rel="stylesheet" href="static/CSS/StudentProfile/Blackboard.css"> 
-		<link rel="stylesheet" href="static/CSS/StudentProfile/Notification.css">
-		<link rel="stylesheet" href="static/CSS/StudentProfile/MainTimeTable.css">
-		<link rel="stylesheet" href="static/CSS/StudentProfile/timetable_reset.css"> 
-		<link rel="stylesheet" href="static/CSS/StudentProfile/timetable_style.css">
-		<link rel="stylesheet" href="static/CSS/StudentProfile/Teacher.css"> 
-		<link rel="stylesheet" href="static/CSS/StudentProfile/Loading.css"> 
-		<link rel="stylesheet" href="static/CSS/StudentProfile/Footer.css"> 
-		<link rel="stylesheet" href="static/CSS/StudentProfile/Lecture.css"> 
-		<link rel="stylesheet" href="static/CSS/StudentProfile/Video.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/base.css">
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/SideIconBar.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Blackboard.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Notification.css">
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/MainTimeTable.css">
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/timetable_reset.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/timetable_style.css">
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Student.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Loading.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Footer.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Lecture.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Video.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Alert.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Chart.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Exam.css"> 
+		<link rel="stylesheet" href="static/CSS/TeacherProfile/Settings.css"> 
 
 
-
-        <title> Ekram - Profile</title>
+        <title> Profile Teacher</title>
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
@@ -49,6 +52,9 @@
 
         <style>
 
+        input:focus {
+   			 outline:none;
+			}
 
 		/*Top BANNER STUFF*/
 			.PageBanner{
@@ -93,12 +99,12 @@
 
 		<div class="Top_FA_Container">
 			<div class="TopFaDIV" id="HomeIcon"><i class="fas fa-home"></i> <span class="IconDescription">Home</span></div>
-			<div class="TopFaDIV"><i class="fas fa-graduation-cap"></i><span class="IconDescription">Exam</span></div>
+			<div class="TopFaDIV" id="TeacherIcon"><i class="fas fa-chalkboard-teacher"></i><span class="IconDescription" id="StudentIconDesc">Students</span></div>	
 			<div class="TopFaDIV" id="TableIcon"><i class="fas fa-table"></i><span class="IconDescription" id="TimetableIcon">Timetable</span></div>
 			<div class="TopFaDIV" id="VidIcon"><i class="fas fa-video"></i><span class="IconDescription">Video</span></div>
 			<div class="TopFaDIV" id="Lecticn" ><i class="fas fa-file-alt"></i><span class="IconDescription" id="LectureIcon">Lecture</span></div>
-			<div class="TopFaDIV" id="TeacherIcon"><i class="fas fa-chalkboard-teacher"></i><span class="IconDescription">Teacher</span></div>	
-			<div class="TopFaDIV"><i class="fas fa-cog"></i><span class="IconDescription" id="SettingsIcon">Settings</span></div>		
+			<div class="TopFaDIV" id="ExamIcon"><i class="fas fa-graduation-cap"></i><span class="IconDescription">Exam</span></div>
+			<div class="TopFaDIV" id="SettingsIcon_"><i class="fas fa-cog"></i><span class="IconDescription" id="SettingsIcon">Settings</span></div>		
 		</div>
 
 		<div class="MainContent">
@@ -115,8 +121,8 @@
 						<div class="BlackBoardChalk2"></div>
 
 						<div class="BlackBoardName_Date_Cont">
-							<span class="BlackBoardStudentName" id="BlackBoardStudentName_ID">Student#34 Md Ekram</span>
-							<span class="BlackBoardDate">25th July 2018</span>
+							<span class="BlackBoardStudentName" id="BlackBoardStudentName_ID">Welcome </span>
+							<span class="BlackBoardDate" id="BlackBoardDate_ID">25th July 2018</span>
 						</div>
 							
 
@@ -133,18 +139,77 @@
 							<span class="BB_MainInfo_Child" id="UpcomingMockInfo">Mathematics - 30th July 2:30 PM</span>
 						</div>
 
-						<div class="MainVideoPlayer_Cont">
-							<iframe class="VideoFrame_Youtube" src="https://www.youtube.com/embed/rfscVS0vtbw"></iframe>
 
+
+
+						<div class="MainExamTab_Cont" id="MainExamTab_Cont_ID">
+							<div class="ExamHeadingMain">Exam</div>
+
+							<!-- <div class="OneBatchExamCont">
+
+								<div class="OneBatchExamHeading">
+									<span class="examBatchName">KewlBatch | Physics | O LEVEL</span>
+									<span class="addNewExam">ADD NEW</span>
+								</div>
+
+
+								<div class="liveExamCont">
+									<div class="liveExamHeading"><span>Live Exams</span></div>
+
+									<div class="OneLiveExam">
+										<span>Astrophysics</span>
+										<span class="deleteLiveExam">Delete</span>
+									</div>
+
+
+								</div>
+
+								<div class="concludedExamCont">
+									<div class="concludedExamHeading"><span>Conluded Exams</span></div>
+
+									<div class="OneConcludedExam">
+										<span>Mechanics</span>
+										<span class="deleteConcludedExam">Delete</span>
+									</div>
+
+
+								</div>
+
+							</div> -->
 
 						</div>
 
-						<div class="MainLectureTab_Cont">
+						<div class="MainVideoPlayer_Cont">
+							<h1 style="color:rgba(255,255,255,0.3);margin-top:25%;width:100%;text-align: center;">Video Streaming Coming Soon</h1>
+						</div>
+
+						<div class="MainLectureTab_Cont" id="MainLectureTab_Cont_ID">
 							<div class="LectureHeadingMain">Lecture Notes/Slides</div>
 
+<!-- 							<div class="LectureLinksContainer">
+
+								<div class="LectureBoxHeading"><span>BatchOne  |  Physics  |  A LEVEL</span><span class="AddResource">Add New Resource</span></div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">
+									<span>Lecture 1 Notes</span>
+									<i id="penSquare" class="fas fa-pen-square"></i>
+									<i id="minusSquare" class="fas fa-minus-square"></i>
+								</div>
+
+
+							</div>
+
 							<div class="LectureLinksContainer">
 
-								<div class="LectureTeacherName">Sabbir Sir | Physics | A Level</div>
+								<div class="LectureBoxHeading"><span>BatchTwo  |  Mathematics  |  A Level</span><span class="AddResource">Add New Resource</span></div>
+
+								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf"><span>Lecture 1 Notes</span><i id="penSquare" class="fas fa-pen-square"></i><i id="minusSquare" class="fas fa-minus-square"></i></div>
+
+							</div>
+
+							<div class="LectureLinksContainer">
+
+								<div class="LectureBoxHeading"><span>BatchTwo  |  Mathematics  |  A Level</span><span class="AddResource">Add New Resource</span></div>
 
 								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 1 Notes</div>
 
@@ -156,255 +221,36 @@
 
 							<div class="LectureLinksContainer">
 
-								<div class="LectureTeacherName">Shakib Sir | Mathematics | A Level</div>
+								<div class="LectureBoxHeading"><span>BatchTwo  |  Mathematics  |  A Level</span><span class="AddResource">Add New Resource</span></div>
 
 								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 1 Notes</div>
 
-								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 1 Slides</div>
-
-								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
-
-								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
-
-								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
-
-								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
-
-								<div class="LectureLink" data-main="http://gahp.net/wp-content/uploads/2017/09/sample.pdf">Lecture 2 Notes</div>
-
-							</div>
+							</div> -->
 
 						</div>
 
-						<div class="MainTeacherTab_Cont">
-							<div class="TeacherHeadingMain"><span>Teachers:</span></div>
+						<div class="MainStudentTab_Cont">
+							<div class="StudentHeadingMain"><span>Students:</span></div>
 
-							<div class="BoxesContainer">
-								
-								<div class="TeacherBox">
-									<div class="TeacherBoxHeading">
-										<span class="TeacherName">Sabbir Sir -</span>
-										<span class="TeacherAddress">&nbsp Dhanmondi Road 15/A</span>
-										<span class="TeacherGrade">&nbsp A Level</span>
-										<span class="TeacherSubject">Physics |</span>
-									</div>
+							<div class="BoxesContainer" id="BoxesContainer_ID">
 
-									<div class="Stream">
-										<span class="Timings">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 0 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-times"></i></span>
-									</div>
-
-									<div class="Stream">
-										<span class="Timings">Tuesday 1:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Saturday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 2 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-plus"></i></span>
-									</div>
-
-									<div class="Stream">
-										<span class="Timings">Friday 6:30PM - 7:30PM | Wednesday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 10 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-plus"></i></span>
-									</div>
-
-								</div>
-
-								<div class="TeacherBox">
-									<div class="TeacherBoxHeading">
-										<span class="TeacherName">Shakib Sir -</span>
-										<span class="TeacherAddress">&nbsp Dhanmondi Road 27</span>
-										<span class="TeacherGrade">&nbsp O Level, A Level</span>
-										<span class="TeacherSubject">Mathematics |</span>
-									</div>
-
-									<div class="Stream">
-										<span class="Timings">Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 0 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-times"></i></span>
-									</div>
-
-									<div class="Stream">
-										<span class="Timings">Tuesday 1:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Saturday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 2 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-plus"></i></span>
-									</div>
-
-									<div class="Stream">
-										<span class="Timings">Friday 6:30PM - 7:30PM | Wednesday 5:00PM - 7:00PM | Thursday 8:00 - 9:30</span>
-										<span class="SeatVacancy">Vacant Seats: 10 |&nbsp <i id="SeatVacancyIcon" class="fas fa-user-plus"></i></span>
-									</div>
-
-								</div>
-								
 							</div>
 							
 						</div>
 
-						<div class="MainTimeTableCont">
+						<div class="MainTimeTableCont" id="MainTimeTableCont_ID">
 							<div class="TimeTableHeading">Timetable</div>
-							<div class="cd-schedule loading">
-
-								<div class="timeline">
-									<ul>
-										<li><span>1:00 PM</span></li>
-										<li><span>1:30 PM</span></li>
-										<li><span>2:00 PM</span></li>
-										<li><span>2:30 PM</span></li>
-										<li><span>3:00 PM</span></li>
-										<li><span>3:30 PM</span></li>
-										<li><span>4:00 PM</span></li>
-										<li><span>4:30 PM</span></li>
-										<li><span>5:00 PM</span></li>
-										<li><span>5:30 PM</span></li>
-										<li><span>6:00 PM</span></li>
-										<li><span>6:30 PM</span></li>
-										<li><span>7:00 PM</span></li>
-										<li><span>7:30 PM</span></li>
-										<li><span>8:00 PM</span></li>
-										<li><span>8:30 PM</span></li>
-										<li><span>9:00 PM</span></li>
-										<li><span>9:30 PM</span></li>
-										<li><span>10:00 PM</span></li>
-									</ul>
-								</div> <!-- .timeline -->
-
-								<div class="events">
-									<ul>
-
-						<!-- 				Sunday -->
-										<li class="events-group">
-											<div class="top-info"><span>Sunday</span></div>
-
-											<ul>
-												<li class="single-event" data-start="6:30 PM" data-end="7:30 PM" data-content="event-abs-circuit" data-event="event-1">
-													<a href="#0">
-														<em class="event-name">Physics - Sabbir Sir</em>
-													</a>
-												</li>
-
-												<li class="single-event" data-start="1:00 PM" data-end="3:00 PM" data-content="event-rowing-workout" data-event="event-2">
-													<a href="#0">
-														<em class="event-name">Chemistry - Qudrot Sir</em>
-													</a>
-												</li>
-
-											</ul>
-										</li>
-
-						<!-- 				Monday -->
-										<li class="events-group">
-											<div class="top-info"><span>Monday</span></div>
-
-											<ul>
-												<li class="single-event" data-start="3:30 PM" data-end="4:30 PM" data-content="event-abs-circuit" data-event="event-1">
-													<a href="#0">
-														<em class="event-name">Physics - Sabbir Sir</em>
-													</a>
-												</li>
-
-												<li class="single-event" data-start="2:00 PM" data-end="3:30 PM" data-content="event-rowing-workout" data-event="event-2">
-													<a href="#0">
-														<em class="event-name">Chemistry - Qudrot Sir</em>
-													</a>
-												</li>
-
-											</ul>
-										</li>
-
-						<!-- 				Tuesday -->
-										<li class="events-group">
-											<div class="top-info"><span>Tuesday</span></div>
-
-											<ul>
-
-												<li class="single-event" data-start="9:30 PM" data-end="10:00 PM" data-content="event-abs-circuit" data-event="event-1">
-													<a href="#0">
-														<em class="event-name">Abs Circuit</em>
-													</a>
-												</li>
-
-											</ul>
-										</li>
-
-						<!-- 				Wednesday -->
-										<li class="events-group">
-											<div class="top-info"><span>Wednesday</span></div>
-
-											<ul>
+							<div class="SetStreamsButton" id="SetStreamsButtonID"><i id="SetStreamIcon" class="fas fa-cogs"></i>Configure Batch</div>
 
 
-											</ul>
-										</li>
+						</div>
 
-						<!-- 				Thursday -->
-										<li class="events-group">
-											<div class="top-info"><span>Thursday</span></div>
-
-											<ul>
-
-											</ul>
-										</li>
-
-						<!-- 				Friday -->
-										<li class="events-group">
-											<div class="top-info"><span>Friday</span></div>
-
-											<ul>
-												<li class="single-event" data-start="4:00 PM" data-end="4:30 PM"  data-content="event-rowing-workout" data-event="event-2">
-													<a href="#0">
-														<em class="event-name">Rowing Workout</em>
-													</a>
-												</li>
-
-												<li class="single-event" data-start="6:30 PM" data-end="7:00 PM" data-content="event-abs-circuit" data-event="event-1">
-													<a href="#0">
-														<em class="event-name">Abs Circuit</em>
-													</a>
-												</li>
-
-											</ul>
-										</li>
-
-						<!-- 				Saturday -->
-										<li class="events-group">
-											<div class="top-info"><span>Saturday</span></div>
-
-											<ul>
-												<li class="single-event" data-start="1:00 PM" data-end="1:30 PM"  data-content="event-rowing-workout" data-event="event-2">
-													<a href="#0">
-														<em class="event-name">Rowing Workout</em>
-													</a>
-												</li>
-
-												<li class="single-event" data-start="2:30 PM" data-end="5:00 PM" data-content="event-abs-circuit" data-event="event-1">
-													<a href="#0">
-														<em class="event-name">Abs Circuit</em>
-													</a>
-												</li>
-												
-											</ul>
-										</li>
-									</ul>
-								</div>
-
-								<div class="event-modal">
-									<header class="header">
-										<div class="content">
-											<span class="event-date"></span>
-											<h3 class="event-name"></h3>
-										</div>
-
-										<div class="header-bg"></div>
-									</header>
-
-									<div class="body">
-										<div class="event-info"></div>
-										<div class="body-bg"></div>
-									</div>
-
-									<a href="#0" class="close">Close</a>
-								</div>
-
-								<div class="cover-layer"></div>
-
-							</div> <!-- .cd-schedule -->
-
-
+						<div class="MainSettingsCont" id="MainSettingsCont_ID">
+							<div class="SettingsHeading">Settings</div>
+							<div class="UID_Setting" id="UID_Setting_ID">UID: </div>
+							<div class="PasswordChangeButton">Change Password</div>
+							<div class="bugButton">Submit bug</div>
+							<div class="adminButton">Message Admin</div>
 						</div>
 
 					</div>
@@ -439,61 +285,6 @@
 								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
 							</div>
 
-							<div class="NotificationBox">
-								<div class="NotifBoxHeading">
-									<span class="NotifBoxSender">Sabbir Sir</span>
-									<span class="NotifDateTime">28 July, 2:30 PM</span>
-								</div>
-								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
-							</div>
-
-							<div class="NotificationBox">
-								<div class="NotifBoxHeading">
-									<span class="NotifBoxSender">Sabbir Sir</span>
-									<span class="NotifDateTime">28 July, 2:30 PM</span>
-								</div>
-								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
-							</div>
-
-							<div class="NotificationBox">
-								<div class="NotifBoxHeading">
-									<span class="NotifBoxSender">Sabbir Sir</span>
-									<span class="NotifDateTime">28 July, 2:30 PM</span>
-								</div>
-								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
-							</div>
-
-							<div class="NotificationBox">
-								<div class="NotifBoxHeading">
-									<span class="NotifBoxSender">Sabbir Sir</span>
-									<span class="NotifDateTime">28 July, 2:30 PM</span>
-								</div>
-								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
-							</div>
-
-							<div class="NotificationBox">
-								<div class="NotifBoxHeading">
-									<span class="NotifBoxSender">Sabbir Sir</span>
-									<span class="NotifDateTime">28 July, 2:30 PM</span>
-								</div>
-								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
-							</div>
-
-							<div class="NotificationBox">
-								<div class="NotifBoxHeading">
-									<span class="NotifBoxSender">Sabbir Sir</span>
-									<span class="NotifDateTime">28 July, 2:30 PM</span>
-								</div>
-								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
-							</div>
-
-							<div class="NotificationBox">
-								<div class="NotifBoxHeading">
-									<span class="NotifBoxSender">Sabbir Sir</span>
-									<span class="NotifDateTime">28 July, 2:30 PM</span>
-								</div>
-								<div class="NotifBoxMessage">Class cancelled for today because of rain. Makeup classes tomorrow at 6. Shoot me a private message if you can't make it at that time.</div>
-							</div>
 						</div>
 					</div>
 					
@@ -505,7 +296,7 @@
 		
 	</div>
 
-    <div class="Footer">
+    <!-- <div class="Footer">
         <div class="TradeMark">
             &#169; 2018 EduTech. All rights reserved. Work in progress by Ekram
         </div>
@@ -523,19 +314,282 @@
         <div class=divider3></div>
         <div class="Support_">Support</div>
   
-    </div>
+    </div> -->
 
     <div class="LoadingContainer">
     	<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     	<span class="LoadingText">Edutech - Please Wait a Moment..</span>
     </div>
 
-    <div class="PDF_VIEWER">
-    	<iframe id="Iframe_PDF" src="" style="width:100%; height:100%;" frameborder="0"></iframe>
+    <div class="StreamConfigOptions" id="StreamConfigOptions_ID">
+
+    		<div class="StreamConfigTitle"><span>Batch Configuration:</span><i id="StreamConfigCloseIcon" class="fas fa-times-circle"></i></div>
+
+    		<div class="CreateNewStreamBox">
+
+				<label class="StreamSubjectLabel">Subject: </label>
+				<select id="StreamSubjectSelect_ID" class="StreamSubjectSelect" name="subject"></select>
+
+				<label class="StreamNameLabel">Batch Name: </label>
+				<input type="text" class="StreamInput" id="StreamName_ID" name="StreamName">
+
+				<label class="StreamColorLabel">Batch Color: </label>
+				<input type="text" class="StreamInput" id="StreamColor_ID" name="StreamColor">
+
+				<label class="StreamSeatLabel">Batch Total Seats: </label>
+				<input type="number" min="0" class="StreamInput" id="StreamTotalSeat_ID" name="StreamSeats">
+
+				<div class="CreateNewStream" id="CreateNewStream_ID"><span>Create New Batch</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
+
+    		</div>
+
+			<div class="StreamAddBox">
+
+				<label class="StreamNameLabelADDBOX">Batch Name: </label>
+				<select class="StreamNameSelectADDBOX" id="StreamNameSelectADDBOX_ID" name="StreamAddTimingSelect">
+				</select>
+
+				<label class="StreamDayLabel">Batch Day: </label>
+				<select class="StreamDaySelect" id="StreamDaySelect_ID" name="days">
+					<option value="Sunday">Sunday</option>
+					<option value="Monday">Monday</option>
+					<option value="Tuesday">Tuesday</option>
+					<option value="Wednesday">Wednesday</option>
+					<option value="Thursday">Thursday</option>
+					<option value="Friday">Friday</option>
+					<option value="Saturday">Saturday</option>
+				</select>
+
+				<label class="StreamStartLabel">Batch Start Time: </label>
+				<select class="StreamStartTime" id="StreamStartTime_ID" name="StreamST">
+				</select>
+
+				<label class="StreamEndLabel">Batch End Time: </label>
+				<select class="StreamEndTime" id="StreamEndTime_ID" name="StreamET">
+				</select>
+
+				<div class="AddNewTiming" id="AddNewTiming_ID"><span>Add New Timing</span><i id="AddStreamIcon" class="fas fa-plus"></i></div>
+
+
+			</div>
+
+    		<div class="CurrentStreamsTitle"><span>Current Batches: </span></div>
+
+
     </div>
 
-    <i id="PDFCLOSE_ICON" class="fas fa-times-circle"></i>
+    <div class="BoxAlert">
+    	<div class="AlertText" id="AlertText_ID"></div>
 
+    	<div class="AlertClose"><i id="AlertCloseIcon" class="fas fa-times"></i></div>
+
+    </div>
+
+
+<!--     <div class="StudentInfoCont">
+
+    	<i id="StudentInfoContCloseIcon" class="far fa-times-circle"></i>
+    	
+    	<div class="StudentInfoTopBox">
+    		<div class="StudentNameRollCall">Naruto</div>
+    		<div class="StudentIDRollCall">#3458734957349</div>
+    		<div class="StudentMessageRollCall">Message</div>
+    	</div>
+
+    	<div class="StudentInfoRollCallCont">
+    		<div class="StudentInfoRollCallHeading">Roll Call - Attendance</div>
+
+    		<div class="OneAttendanceEntry"><span class="RollCallDate">12-12-2018</span><span class="RollCallResult">Present</span><i class="fas fa-exchange-alt"></i></div>
+    		<div class="OneAttendanceEntry"><span class="RollCallDate">12-12-2018</span><span class="RollCallResult">Present</span><i class="fas fa-exchange-alt"></i></div>
+    		<div class="OneAttendanceEntry"><span class="RollCallDate">12-12-2018</span><span class="RollCallResult">Present</span><i class="fas fa-exchange-alt"></i></div>
+    	</div>
+
+    	<div class="StudentInfoTutionCont">
+    		<div class="StudentInfoTutionHeading">Tution</div>
+
+    		<div class="StudentInfoTutionAction">
+    			<span class="PendingHeading">Pending:</span>
+
+    			<span class="PendingMonth">Aug 2018</span>
+
+    			<span class="TutionAcceptButton">Accept</span>
+    		</div>
+
+    		<div class="OneTutionEntry"><span class="TutionDate">Jul 2018</span><span class="TutionResult">PAID</span><span class="PaidDate">12-12-2018</span><i class="fas fa-eraser"></i></div>
+    		<div class="OneTutionEntry"><span class="TutionDate">Jun 2018</span><span class="TutionResult">PAID</span><span class="PaidDate">12-12-2018</span></div>
+    		<div class="OneTutionEntry"><span class="TutionDate">May 2018</span><span class="TutionResult">PAID</span><span class="PaidDate">12-12-2018</span></div>
+
+    	</div>
+
+    	<div class="StudentInfoExamCont">
+    		
+    		<div class="StudentInfoExamHeading">Exam</div>
+
+
+    	</div>
+
+    </div> -->
+
+
+<!--     <div class="EditSingleResource">
+    	<span class="EditSingleResourceHeading">Editing</span>
+    	
+    	<input type="text" name="NewResourceNameEdit" class="NewResourceNameEdit" id="NewResourceNameEdit_ID" placeholder="New Resource Name">
+    	<input type="text" name="NewResourceURLEdit" class="NewResourceURLEdit" id="NewResourceURLEdit_ID" placeholder="New Resource URL">
+
+    	<div class="EditResourceSubmit" id="EditResourceSubmit_ID">Edit</div>
+    	<div class="EditResourceCancel" id="EditResourceCancel_ID">Cancel</div>
+    </div> -->
+
+
+	<!-- <div class="addNewExamCont">
+            <div class="topContQuestions">
+				<div class="mainHeading">
+					<span>New Exam for Physics | O LEVEL</span>
+					<span class="cancelNewExam">Cancel</span>
+					<span class="submitNewExam">Submit</span>
+				</div>
+			</div>
+	
+			<div class="editorCont">
+				
+				<div class="MainEditorCont">
+	
+					<div class="generalEditorCont">
+						<div class="titleGeneraleditor">General Editor</div>
+	
+						<div class="generalStuffCont">
+
+							<div style="margin-top: 1%; width: 100%; float: left;">
+								<span class="generalEditorSpan">Exam Name:</span>
+								<input class="generalInput" type="text">
+							</div>
+	
+							<div style="margin-top: 1%; width: 100%; float: left;">
+								<span class="generalEditorSpan">Exam Date:</span>
+								<input class="generalInput" type="text" placeholder="dd/mm/yy">
+							</div>
+							
+							<div style="width: 100%; margin-top: 1%; display: inline-block;">
+								<span class="generalEditorSpan">Starting Time: </span>
+								<select class="generalInputSelect">
+									<option value="12:30">12:30</option>
+									<option value="1:30">1:30</option>
+									<option value="2:30">2:30</option>
+								</select>                            
+							</div>
+							
+							<div style="margin-top: 1%; width: 100%; float: left;">
+								<span class="generalEditorSpan">Time Limit:</span>
+								<input class="generalInput" type="text" placeholder="in Minutes">
+							</div>
+						</div>
+
+					</div>
+
+					<div class="QuestionEditorCont">
+						<div class="titleQuestioneditor">Question Editor</div>
+	
+						<div style="margin-top: 1%; width: 100%; float: left;">
+							<span style="color: black; width: 25%;display: inline-block;">Question Name:</span>
+							<input class="optionInput" style="padding: 1.5%; background: black; color:white; width: 74%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;" type="text">
+						</div>
+	
+						<textarea class="questionTextArea" placeholder="Please Enter your question.."></textarea>
+	
+						<div style="margin-top: 1%; width: 45%; float: left; margin-left: 3%;">
+							<span style="color: black; width: 33%;display: inline-block;">Option 1:</span>
+							<input class="optionInput" style="padding: 1.5%; background: black; color:white; width: 65%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;" type="text>
+						</div>
+
+						<div style="margin-top: 1%; width: 45%; float: left; margin-left: 3%;">
+							<span style="color: black; width: 33%;display: inline-block;">Option 2:</span>
+							<input class="optionInput" style="padding: 1.5%; background: black; color:white; width: 65%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;" type="text" >
+						</div>
+
+						<div style="margin-top: 1%; width: 45%; float: left; margin-left: 3%;">
+							<span style="color: black; width: 33%;display: inline-block;">Option 3:</span>
+							<input class="optionInput" style="padding: 1.5%; background: black; color:white; width: 65%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;" type="text" min="0">
+						</div>
+
+
+						<div style="margin-top: 1%; width: 45%; float: left; margin-left: 3%;">
+							<span style="color: black; width: 33%;display: inline-block;">Option 4:</span>
+							<input class="optionInput" style="padding: 1.5%; background: black; color:white; width: 65%; border: 1px solid rgba(0,0,0,0); margin-bottom: 1%;" type="text">
+						</div>
+
+						<div style="margin-top: 2%; width: 100%; display: inline-block;">
+							<span style="color: black; width: 25%; margin-right: 2%;">Correct Answer:</span>
+							<select style="width: 40%; background-color: black; color: white; padding: 2%; border: 1px solid rgba(0,0,0,0);">
+								<option>Option 1</option>
+								<option>Option 2</option>
+								<option>Option 3</option>
+								<option>Option 4</option>
+							</select>
+							<div class="addQuestionButton">ADD</div>
+						</div>
+		
+					</div>
+				</div>
+
+
+				<div class="QuestionsCont" id="QuestionCont_ID">
+
+					<div class="OneQuestionBox" >
+					
+						<span style="margin-bottom:2%;width:100%; font-weight: bold; font-size: 1.3em; float: left;">Question 1: Astrophysics</span>
+						<span>How many times would you have to boost your rocket with 50 pounds of force to go from the surface of the moon to the outer edges of the sun?</span>
+
+						<span style="width: 100%; float: left; font-weight: 600; margin-top: 2%;">Option 1: 48 times</span>
+						<span style="width: 100%; float: left; font-weight: 600;">Option 2: 20 times</span>
+						<span style="width: 100%; float: left; font-weight: 600;">Option 3: 100 times</span>
+						<span style="width: 100%; float: left; font-weight: 700;">Option 4: 1000 times (correct)</span>
+					
+					</div>
+
+					<div class="OneQuestionBox" >
+					
+						<span style="margin-bottom:2%;width:100%; font-weight: bold; font-size: 1.3em; float: left;">Question 1: Astrophysics</span>
+						<span>How many times would you have to boost your rocket with 50 pounds of force to go from the surface of the moon to the outer edges of the sun?</span>
+
+						<span style="width: 100%; float: left; font-weight: 600; margin-top: 2%;">Option 1: 48 times</span>
+						<span style="width: 100%; float: left; font-weight: 600;">Option 2: 20 times</span>
+						<span style="width: 100%; float: left; font-weight: 600;">Option 3: 100 times</span>
+						<span style="width: 100%; float: left; font-weight: 700;">Option 4: 1000 times (correct)</span>
+					
+					</div>
+
+					<div class="OneQuestionBox">
+					
+						<span style="margin-bottom:2%;width:100%; font-weight: bold; font-size: 1.3em; float: left;">Question 1: Astrophysics</span>
+						<span>How many times would you have to boost your rocket with 50 pounds of force to go from the surface of the moon to the outer edges of the sun?</span>
+
+						<span style="width: 100%; float: left; font-weight: 600; margin-top: 2%;">Option 1: 48 times</span>
+						<span style="width: 100%; float: left; font-weight: 600;">Option 2: 20 times</span>
+						<span style="width: 100%; float: left; font-weight: 600;">Option 3: 100 times</span>
+						<span style="width: 100%; float: left; font-weight: 700;">Option 4: 1000 times (correct)</span>
+					
+					</div>
+
+					<div class="OneQuestionBox">
+					
+						<span style="margin-bottom:2%;width:100%; font-weight: bold; font-size: 1.3em; float: left;">Question 1: Astrophysics</span>
+						<span>How many times would you have to boost your rocket with 50 pounds of force to go from the surface of the moon to the outer edges of the sun?</span>
+
+						<span style="width: 100%; float: left; font-weight: 600; margin-top: 2%;">Option 1: 48 times</span>
+						<span style="width: 100%; float: left; font-weight: 600;">Option 2: 20 times</span>
+						<span style="width: 100%; float: left; font-weight: 600;">Option 3: 100 times</span>
+						<span style="width: 100%; float: left; font-weight: 700;">Option 4: 1000 times (correct)</span>
+					
+					</div>
+
+				</div>
+
+			</div>
+	
+	</div> -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 	<!-- Firebase App is always required and must be first -->
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-app.js"></script>
 
@@ -544,14 +598,19 @@
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-database.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase-functions.js"></script>
 
+	<script src="static/JS/TeacherProfile/ElementMaker.js"></script> 
+	<script src="static/JS/modernizr.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 
-<script src="static/JS/modernizr.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-<script>
-	if( !window.jQuery ) document.write('<script src="static/JS/jquery-3.0.0.min.js"><\/script>');
-</script>
-<script src="static/JS/StudentProfile/TimetableMain.js"></script> 
-<script src="static/JS/StudentProfile/Main.js"></script> 
+	<script>
+		if( !window.jQuery ) document.write('<script src="static/JS/jquery-3.0.0.min.js"><\/script>');
+	</script>
 
+	<script src="static/JS/TeacherProfile/TimetableMain.js"></script>
+	<script src="static/JS/TeacherProfile/Database.js"></script> 
+	<script src="static/JS/TeacherProfile/Interface.js"></script> 
+	<script src="static/JS/TeacherProfile/Events.js"></script>
+	<script src="static/JS/TeacherProfile/DataProcessing.js"></script>
+	<script src="static/JS/Misc.js"></script> 
 </body>
 </html>
