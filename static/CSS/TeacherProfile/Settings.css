@@ -35,10 +35,10 @@
 }
 
 .PasswordChangeButton, .bugButton, .adminButton{
+    display: inline-block;
     border-radius: 5%;
     margin-bottom: 2%;
     color: white;
-    width: 18%;
     text-align: center;
     margin-left: 10%;
     background-color: black;

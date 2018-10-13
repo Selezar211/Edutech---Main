@@ -131,6 +131,7 @@ document.getElementById("Lecticn").addEventListener('click', e => {
 	$(".MainStudentTab_Cont").fadeOut('fast');
 	$(".MainExamTab_Cont").fadeOut('fast');
 	$(".MainSettingsCont").fadeOut('fast');
+	$(".MainTimeTableCont").fadeOut('fast');
 
 	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
 	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
@@ -156,6 +157,7 @@ document.getElementById("TeacherIcon").addEventListener('click', e => {
 	$(".MainLectureTab_Cont").fadeOut('fast');
 	$(".MainExamTab_Cont").fadeOut('fast');
 	$(".MainSettingsCont").fadeOut('fast');
+	$(".MainTimeTableCont").fadeOut('fast');
 
 	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
 	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');
@@ -180,6 +182,7 @@ document.getElementById("SettingsIcon_").addEventListener('click', e => {
 	$(".MainLectureTab_Cont").fadeOut('fast');
 	$(".MainStudentTab_Cont").fadeOut('fast');
 	$(".MainExamTab_Cont").fadeOut('fast');
+	$(".MainTimeTableCont").fadeOut('fast');
 
 	$(".Blackboard_container").css('background-color', 'rgba(0,0,0,0)');
 	$(".BlackBoard").css('background-color', 'rgba(0,0,0,0)');

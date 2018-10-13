@@ -1,7 +1,5 @@
-	//Author: Ekram
-	//Whats the plan? The kind where we make it as we go along of course - the best kind 8)
-	//If I had any idea how difficult and the wild ride this would eventually turn out to be I would honestly never have started. Good thing I didnt, buckle up for the spaghetti code ahead 8)
-
+    
+//Author: Ekram
 
 // Initialize Firebase
 var config = {
@@ -38,6 +36,11 @@ function FetchAllDataFromDatabase() {
         document.getElementById("BlackBoardStudentName_ID").innerHTML = 'Teacher#34 ' + tableData['UserName'];
         document.getElementById("UID_Setting_ID").innerHTML = `Personal UID : ${Current_UID}`;
         document.title = tableData['UserName'] + ' - Profile';
+
+        //pass in the full timing data to update upcoming class
+        receivedOutput = FlattenReceivedJSONToFindUpcomingClass(tableData['UserClass']);
+        received_ = ReturnUpcomingClass(receivedOutput[0], receivedOutput[1], receivedOutput[2]);
+        document.getElementById('NextClassInfo').innerHTML = `${received_[1]} ${received_[0]}`;
 
         //now populate everything by looping through the obtained JSON and injecting it where it is needed
         //so here we are going to have multi level FOR loops to propagate through our JSON structure
