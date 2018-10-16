@@ -12,8 +12,8 @@ form {
   transform: perspective(-50%) translateY(0%);
   position: fixed;
   width: 90vw;
-  top: 86vh;
-  left: -14vw;
+  top: 10vh;
+  left: 33vw;
   font-size: 1.75rem;
   text-align: center;
   overflow: hidden;

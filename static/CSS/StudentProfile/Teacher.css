@@ -1,0 +1,74 @@
+
+
+.TeacherBox{
+    width: 85%;
+    display: inline-block;
+    overflow: auto;
+    position: relative;
+    margin-top: 4%;
+    margin-bottom: 2%;
+    margin-left: 7%;
+    padding-bottom: 2%;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+}
+
+.TeacherBoxHeading{
+    color: white;
+    width: 100%;
+    display: inline-block;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    background-color: rgb(20,24,27);
+    position: relative;
+    top: 0%;
+}
+
+.TeacherName{
+float: left;
+}
+
+.TeacherSubject{
+float: right;
+}
+
+.TeacherGrade{
+float: right;
+}
+
+.Stream{
+    color: black;
+    width: 90%;
+    display: inline-block;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 2px rgba(255, 255, 255, 0.5);
+    position: relative;
+    margin-top:2%;
+    padding-bottom: 2%;
+    left: 5%;
+}
+
+.Timings{
+float: left;
+}
+
+.SeatVacancy{
+float: right;
+}
+
+#SeatVacancyIcon{
+transform: scale(1.1,1.1);
+color: black;
+display: inline-block;
+cursor: pointer;
+transition: 200ms;
+}
+
+#SeatVacancyIcon:hover {
+transform: scale(1.5,1.5);
+color: white;
+transition: 200ms;
+}
