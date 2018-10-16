@@ -1231,3 +1231,18 @@ function AttachEventToExamTab(){
 function SetupAllIntervalEvents(){
     
 }
+
+function SetupTeacherTabEvents(){
+    $('.searchSubmitButton').click(function (e) {
+        $(this).toggleClass('submit');
+        $('body').toggleClass('hue');
+        $('form').toggleClass('rotate');
+        $('input').toggleClass('grow');
+      
+        if(!($('.searchSubmitButton').hasClass('submit'))){
+          console.log('submit form');
+        }
+      
+        e.preventDefault();
+      });
+}

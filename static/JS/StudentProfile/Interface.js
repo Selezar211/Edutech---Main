@@ -78,19 +78,6 @@ document.getElementById("TableIcon").addEventListener('click', e => {
 
 });
 
-//open config options tab
-document.getElementById("SetStreamsButtonID").addEventListener('click', e => {
-	$('.StreamConfigOptions').fadeIn('slow');
-});
-
-
-//close config options tab
-document.getElementById("StreamConfigCloseIcon").addEventListener('click', e => {
-
-	$('.StreamConfigOptions').css('-webkit-filter', 'blur(0px)');
-	$('.StreamConfigOptions').fadeOut('slow');
-
-});
 
 
 
