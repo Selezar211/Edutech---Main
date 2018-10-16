@@ -512,7 +512,7 @@ function CraftTimingArray() {
 
 
 //teacher tab stuff
-function CreateTeacherBox(subject, grade, teacherName){
+function CreateTeacherBox(subject, grade, teacherName, streamArr, vacancyArr){
 
 	TeacherBox = document.createElement('div');
 	TeacherBox.setAttribute('class', 'TeacherBox');
@@ -546,6 +546,42 @@ function CreateTeacherBox(subject, grade, teacherName){
 	TeacherBoxHeading.append(TeacherSubject);
 	TeacherBox.append(TeacherBoxHeading);
 
-	
+	for (let i=0; i<streamArr.length; i++){
+
+		Stream_ = document.createElement('div');
+		Stream_.setAttribute('class', 'Stream_');
+
+		Timings = document.createElement('span');
+		Timings.setAttribute('class', 'Timings');
+
+		t = document.createTextNode(streamArr[i]);
+		Timings.append(t);
+
+		Stream_.append(Timings);
+
+		SeatVacancy = document.createElement('span');
+		SeatVacancy.setAttribute('class', 'SeatVacancy');
+
+		t = document.createTextNode(`Vacant Seats: ${vacancyArr[i]} |&nbsp`);
+		SeatVacancy.append(t);
+
+		//icon
+		SeatVacancyIcon = document.createElement('i');
+		if (parseInt(vacancyArr[i])==0){
+			SeatVacancyIcon.setAttribute('class', 'fas fa-user-times');
+		}
+		else {
+			SeatVacancyIcon.setAttribute('class', 'fas fa-user-plus');
+		}
+		SeatVacancyIcon.setAttribute('id', 'SeatVacancyIcon');
+
+		SeatVacancy.append(SeatVacancyIcon);
+
+		Stream_.append(SeatVacancy);
+
+		TeacherBox.append(Stream_);
+	}
+
+	document.getElementById('BoxesContainer_ID').appendChild(TeacherBox);
 
 }
