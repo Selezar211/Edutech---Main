@@ -1233,16 +1233,85 @@ function SetupAllIntervalEvents(){
 }
 
 function SetupTeacherTabEvents(){
-    $('.searchSubmitButton').click(function (e) {
-        $(this).toggleClass('submit');
-        $('body').toggleClass('hue');
-        $('form').toggleClass('rotate');
-        $('input').toggleClass('grow');
-      
-        if(!($('.searchSubmitButton').hasClass('submit'))){
-          console.log('submit form');
+    $('.searchButton').click(function (e) {
+        //first check to see that this is empty and non null
+
+        searchQuery = $('.searchInput').val();
+
+        if ((searchQuery=='') || (searchQuery==null)){
+            BoxAlert('Null Fields cannot be accepted!');
+        }        
+        else {
+            print(`Commencing search with query ${searchQuery}`);
+
+            //now we need to look for this persons UID first and see if we can get it
+            var ref = database.ref().once('value').then(function (snapshot) {
+
+                fullJSON = snapshot.val();
+
+                queryTeacher = fullJSON['Teachers'][searchQuery];
+
+                if (queryTeacher) {
+                    queryUID = queryTeacher['UID'];
+
+                    //now that we have the queried TEACHER UID we can access their database and pull all the info we need
+                    teacherJSON = fullJSON['USERS'][queryUID]['UserClass'];
+
+                    teacherName = fullJSON['USERS'][queryUID]['UserName'];
+                    teacherEmail = fullJSON['USERS'][queryUID]['UserEmail'];
+
+                    //now we can start looping through the classes and make a teacher box for each:
+                    let key;
+                    for (key in teacherJSON){
+                        grade = key;
+
+                        let key2;
+                        for (key2 in teacherJSON[grade]){
+                            subject = key2;
+
+                            TimingsArr = [];
+                            vacancyArr = [];
+
+                            let key3;
+                            for (key3 in teacherJSON[grade][subject]['Streams']){
+
+                                batchName = key3;
+
+                                FilledSeats = teacherJSON[grade][subject]['Streams'][batchName]['FilledSeats'];
+                                TotalSeats = teacherJSON[grade][subject]['Streams'][batchName]['TotalSeats'];
+                                vacancy = parseInt(TotalSeats) - parseInt(FilledSeats);
+
+                                timingString = '';
+                                timingString = `${batchName} - `;
+
+                                //loop through the timings:
+                                let key4;
+                                for (key4 in teacherJSON[grade][subject]['Streams'][batchName]['Timings']){
+
+                                    timing = teacherJSON[grade][subject]['Streams'][batchName]['Timings'][key4];
+                                    timingString = timingString + timing + ' | ';
+                                }
+                                //now we have the full timing string for this batch
+                                print(`Working on batch ${batchName} of subject ${subject} of grade ${grade} with vacancy ${String(vacancy)} and timings ${timingString}`);
+                                TimingsArr.push(timingString);
+                                vacancyArr.push(String(vacancy));
+                            }
+
+                            print(TimingsArr);
+                            print(vacancyArr);
+
+                            CreateTeacherBox(subject, grade, teacherName, TimingsArr, vacancyArr);
+                        }
+                    }
+                }
+                else{
+                    BoxAlert('Queried teacher not found');
+                }
+
+            });
         }
-      
+
+
         e.preventDefault();
       });
 }

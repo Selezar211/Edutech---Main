@@ -40,6 +40,7 @@ function FetchAllDataFromDatabase() {
     }).then(function() {
         FormatTimeTable();
         SetupTeacherTabEvents();
+       // CreateTeacherBox('Physics', 'A LEVEL', 'Ramisa', ['Timing 1', 'Timing 2', 'Timing 3'], [1, 0, 5]);
     });
 
 }

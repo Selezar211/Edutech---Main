@@ -514,6 +514,8 @@ function CraftTimingArray() {
 //teacher tab stuff
 function CreateTeacherBox(subject, grade, teacherName, streamArr, vacancyArr){
 
+	//streamArr = ['Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30', 'Tuesday 1:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Saturday 8:00 - 9:30', 'Friday 6:30PM - 7:30PM | Wednesday 5:00PM - 7:00PM | Thursday 8:00 - 9:30']
+
 	TeacherBox = document.createElement('div');
 	TeacherBox.setAttribute('class', 'TeacherBox');
 
@@ -562,7 +564,7 @@ function CreateTeacherBox(subject, grade, teacherName, streamArr, vacancyArr){
 		SeatVacancy = document.createElement('span');
 		SeatVacancy.setAttribute('class', 'SeatVacancy');
 
-		t = document.createTextNode(`Vacant Seats: ${vacancyArr[i]} |&nbsp`);
+		t = document.createTextNode(`Vacant Seats: ${vacancyArr[i]} | `);
 		SeatVacancy.append(t);
 
 		//icon
