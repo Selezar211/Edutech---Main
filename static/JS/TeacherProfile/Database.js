@@ -15,6 +15,7 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 var Current_UID;
+var ownName;
 
 //Fetch all relevant data for logged in user from our database using UID
 //this is the main function which will fetch the data from backend and then call the functions to craft the data into various places
@@ -31,6 +32,8 @@ function FetchAllDataFromDatabase() {
 
         tableData = snapshot.val();         //this is the full JSON from firebase database for this user
         console.log(tableData);
+
+        ownName = tableData['UserName'];
 
         //set up the home tab
         SetHomeTabStuff(tableData);

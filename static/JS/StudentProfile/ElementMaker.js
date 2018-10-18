@@ -512,7 +512,7 @@ function CraftTimingArray() {
 
 
 //teacher tab stuff
-function CreateTeacherBox(subject, grade, teacherName, streamArr, vacancyArr){
+function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancyArr, batchArr){
 
 	//streamArr = ['Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30', 'Tuesday 1:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Saturday 8:00 - 9:30', 'Friday 6:30PM - 7:30PM | Wednesday 5:00PM - 7:00PM | Thursday 8:00 - 9:30']
 
@@ -526,7 +526,7 @@ function CreateTeacherBox(subject, grade, teacherName, streamArr, vacancyArr){
 	TeacherName = document.createElement('span');
 	TeacherName.setAttribute('class', 'TeacherName');
 
-	t = document.createTextNode(teacherName);
+	t = document.createTextNode(`${teacherName} - ${email}`);
 	TeacherName.append(t);
 
 	TeacherBoxHeading.append(TeacherName);
@@ -556,7 +556,7 @@ function CreateTeacherBox(subject, grade, teacherName, streamArr, vacancyArr){
 		Timings = document.createElement('span');
 		Timings.setAttribute('class', 'Timings');
 
-		t = document.createTextNode(streamArr[i]);
+		t = document.createTextNode(streamArr[i].slice(0,-2));
 		Timings.append(t);
 
 		Stream_.append(Timings);
@@ -564,18 +564,27 @@ function CreateTeacherBox(subject, grade, teacherName, streamArr, vacancyArr){
 		SeatVacancy = document.createElement('span');
 		SeatVacancy.setAttribute('class', 'SeatVacancy');
 
-		t = document.createTextNode(`Vacant Seats: ${vacancyArr[i]} | `);
-		SeatVacancy.append(t);
+		SeatVacancyText = document.createElement('span');
+		SeatVacancyText.setAttribute('class', 'SeatVacancyText');
+
+		t = document.createTextNode(`Vacant Seats: ${vacancyArr[i]}  | `);
+		SeatVacancyText.append(t);
+
+		SeatVacancy.append(SeatVacancyText);
 
 		//icon
 		SeatVacancyIcon = document.createElement('i');
 		if (parseInt(vacancyArr[i])==0){
 			SeatVacancyIcon.setAttribute('class', 'fas fa-user-times');
+			SeatVacancyIcon.setAttribute('id', 'SeatVacancyIconCross');
 		}
 		else {
 			SeatVacancyIcon.setAttribute('class', 'fas fa-user-plus');
+			SeatVacancyIcon.setAttribute('id', 'SeatVacancyIcon');
+			SeatVacancyIcon.setAttribute('data-subject', subject);
+			SeatVacancyIcon.setAttribute('data-grade', grade);
+			SeatVacancyIcon.setAttribute('data-batch', batchArr[i]);
 		}
-		SeatVacancyIcon.setAttribute('id', 'SeatVacancyIcon');
 
 		SeatVacancy.append(SeatVacancyIcon);
 

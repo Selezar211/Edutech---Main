@@ -18,6 +18,12 @@ function AttachEventToEachStudentClick() {
 
         FilledSeats = parseInt($(this).attr("data-fillseats"));
 
+        //get subject, grade and batchname
+        splitString = Address.split('/');
+        grade = splitString[0];
+        subject = splitString[1];
+        batchName = splitString[3];
+
         //now first check to see if the batch is filled, if it is then do nothing, otherwise add in this dude
         if (FilledSeats < TotalSeats) {
             //add in this dude
@@ -47,6 +53,20 @@ function AttachEventToEachStudentClick() {
                     ref.update(data).then(ReloadBackEndData).then(function () {
                         BoxAlert('User accepted successfully!');
                         FadeOutLoadingFrame();
+                    }).then(function(){
+                        //now we need to access this students database and write these entries in his/her user class
+
+                        var ref = database.ref('USERS/' + UID + '/UserClass/');
+
+                        var data = {
+                            'TeacherName': ownName,
+                            'TeacherUID': Current_UID,
+                            'Subject': subject,
+                            'Grade': grade
+                        }
+
+                        ref.push(data);
+
                     });
 
                 });

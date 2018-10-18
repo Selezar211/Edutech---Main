@@ -1271,6 +1271,7 @@ function SetupTeacherTabEvents(){
 
                             TimingsArr = [];
                             vacancyArr = [];
+                            batchArr = [];
 
                             let key3;
                             for (key3 in teacherJSON[grade][subject]['Streams']){
@@ -1295,14 +1296,38 @@ function SetupTeacherTabEvents(){
                                 print(`Working on batch ${batchName} of subject ${subject} of grade ${grade} with vacancy ${String(vacancy)} and timings ${timingString}`);
                                 TimingsArr.push(timingString);
                                 vacancyArr.push(String(vacancy));
+                                batchArr.push(batchName);
                             }
 
-                            print(TimingsArr);
-                            print(vacancyArr);
-
-                            CreateTeacherBox(subject, grade, teacherName, TimingsArr, vacancyArr);
+                            CreateTeacherBox(subject, grade, teacherName, teacherEmail, TimingsArr, vacancyArr, batchArr);
                         }
                     }
+
+                    //add events to clicking on subscribing to a class
+                    $('.fa-user-plus').click(function () {
+                        //subscribe to this class
+                        teacherUID = queryUID;
+
+                        subject = String($(this).attr("data-subject"));
+                        grade = String($(this).attr("data-grade"));
+                        batch_name = String($(this).attr("data-batch"));
+
+                        var ref = database.ref('USERS/' + queryUID + '/UserClass/' + grade + '/' + subject + '/Streams/' + batch_name + '/PendingStudents/');
+
+                        var data = {};
+
+                        data[Current_UID] = {};
+                     
+                        data[Current_UID] = {
+                         'StudentName' : ownName
+                        };
+
+                        ref.update(data).then(function(){
+                            BoxAlert('You are now on the pending list!');
+                        })
+
+                        return false
+                    });
                 }
                 else{
                     BoxAlert('Queried teacher not found');

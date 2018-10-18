@@ -23,6 +23,7 @@
     background-color: rgb(20,24,27);
     position: relative;
     top: 0%;
+    font-size: 1.3em;
 }
 
 .TeacherName{
@@ -34,6 +35,9 @@ float: right;
 }
 
 .TeacherGrade{
+    border-left: 1px solid white;
+    padding-left: 1%;
+    margin-left: 1%;
 float: right;
 }
 
@@ -65,6 +69,12 @@ color: black;
 display: inline-block;
 cursor: pointer;
 transition: 200ms;
+}
+
+#SeatVacancyIconCross{
+    transform: scale(1.1,1.1);
+    color: black;
+    display: inline-block;
 }
 
 #SeatVacancyIcon:hover {
