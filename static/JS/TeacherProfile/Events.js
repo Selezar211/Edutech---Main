@@ -58,7 +58,11 @@ function AttachEventToEachStudentClick() {
 
                         var ref = database.ref('USERS/' + UID + '/UserClass/');
 
-                        var data = {
+                        var data = {};
+
+                        data[Current_UID + grade + subject] = {};
+
+                        data[Current_UID + grade + subject]  = {
                             'TeacherName': ownName,
                             'TeacherUID': Current_UID,
                             'Subject': subject,
