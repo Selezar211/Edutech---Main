@@ -200,3 +200,25 @@ function SetTodaysDate(){
     //now set it in the home tab
     document.getElementById('BlackBoardDate_ID').innerHTML = `${dd} ${mm} ${yyyy}`;
 }
+
+function SetupPendingClasses(){
+
+}
+
+function SetupAcceptedClasses(inputJSON){
+
+    loopJSON = inputJSON['UserClass'];
+
+    let key;
+    for (key in loopJSON){
+
+        thisLoopGrade = loopJSON[key]['Grade'];
+        thisLoopSubject = loopJSON[key]['Subject'];
+        thisLoopTeacherName = loopJSON[key]['TeacherName'];
+        thisLoopTeacherUID = loopJSON[key]['TeacherUID'];
+
+        AcceptedClasses.push(`${thisLoopTeacherUID}|${thisLoopGrade}|${thisLoopSubject}`);
+    }
+
+    print(AcceptedClasses);
+}

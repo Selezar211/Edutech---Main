@@ -1324,7 +1324,22 @@ function SetupTeacherTabEvents(){
 
                         ref.update(data).then(function(){
                             BoxAlert('You are now on the pending list!');
-                        })
+
+                            //now need to update own database and place this class in pending there
+                            var ref = database.ref('USERS/' + Current_UID + '/PendingClass/');
+
+                            var data = {};
+
+                            data[teacherUID+grade+subject] = {};
+                         
+                            data[teacherUID+grade+subject] = {
+                             'TeacherUID' : teacherUID,
+                             'Subject': subject,
+                             'Grade': grade,
+                             'BatchName': batch_name
+                            };
+                            ref.update(data);
+                        });
 
                         return false
                     });

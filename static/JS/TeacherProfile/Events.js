@@ -96,6 +96,12 @@ function AttachEventToEachStudentClick() {
 
         Address = String($(this).attr("data-address"));
 
+        //get subject, grade and batchname
+        splitString = Address.split('/');
+        grade = splitString[0];
+        subject = splitString[1];
+        batchName = splitString[3];
+
         //access the firebase database and remove this entry
 
         var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'PendingStudents/' + UID);
@@ -103,6 +109,12 @@ function AttachEventToEachStudentClick() {
         ref.remove().then(ReloadBackEndData).then(function () {
             BoxAlert('User dismissed successfully!');
             FadeOutLoadingFrame();
+        }).then(function(){
+            //now need to access the students dataabse and remove this from his pending too
+
+            var ref = database.ref('USERS/' + UID + '/PendingClass/' + (Current_UID+grade+subject));
+
+            ref.remove();
         });
 
         return false;

@@ -39,12 +39,13 @@ function FetchAllDataFromDatabase() {
         //set up the home tab
         SetHomeTabStuff(tableData);
 
+        SetupAcceptedClasses(tableData);
+
         FadeOutLoadingFrame();  //loading frame was ON by default and hence make it fadeout after everything is loaded
 
     }).then(function() {
         FormatTimeTable();
         SetupTeacherTabEvents();
-       // CreateTeacherBox('Physics', 'A LEVEL', 'Ramisa', ['Timing 1', 'Timing 2', 'Timing 3'], [1, 0, 5]);
     });
 
 }
