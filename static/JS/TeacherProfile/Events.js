@@ -146,6 +146,12 @@ function AttachEventToEachStudentClick() {
 
         FilledSeats = parseInt($(this).attr("data-fillseats"));
 
+        //get subject, grade and batchname
+        splitString = Address.split('/');
+        grade = splitString[0];
+        subject = splitString[1];
+        batchName = splitString[3];
+
         //access the firebase database and remove this entry
 
         var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'AcceptedStudents/' + UID);
@@ -163,6 +169,13 @@ function AttachEventToEachStudentClick() {
             ref.update(data).then(ReloadBackEndData).then(function () {
                 BoxAlert('User deleted successfully!');
                 FadeOutLoadingFrame();
+            }).then(function(){
+                //now need to access the students database and delete it from there too
+
+                var ref = database.ref('USERS/' + UID + '/UserClass/' + (Current_UID + grade + subject));
+
+                ref.remove();
+
             });
 
         });
