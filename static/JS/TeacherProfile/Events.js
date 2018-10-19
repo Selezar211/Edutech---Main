@@ -66,7 +66,8 @@ function AttachEventToEachStudentClick() {
                             'TeacherName': ownName,
                             'TeacherUID': Current_UID,
                             'Subject': subject,
-                            'Grade': grade
+                            'Grade': grade,
+                            'BatchName': batchName
                         }
 
                         ref.update(data).then(function(){

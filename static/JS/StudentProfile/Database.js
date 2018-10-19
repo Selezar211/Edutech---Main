@@ -40,6 +40,7 @@ function FetchAllDataFromDatabase() {
         SetHomeTabStuff(tableData);
 
         SetupAcceptedClasses(tableData);
+        SetupPendingClasses(tableData);
 
         FadeOutLoadingFrame();  //loading frame was ON by default and hence make it fadeout after everything is loaded
 

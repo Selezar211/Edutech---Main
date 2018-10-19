@@ -201,7 +201,21 @@ function SetTodaysDate(){
     document.getElementById('BlackBoardDate_ID').innerHTML = `${dd} ${mm} ${yyyy}`;
 }
 
-function SetupPendingClasses(){
+function SetupPendingClasses(inputJSON){
+
+    loopJSON = inputJSON['PendingClass'];
+
+    let key;
+    for (key in loopJSON){
+
+        loopGrade = loopJSON[key]['Grade'];
+        loopTeacherUID = loopJSON[key]['TeacherUID'];
+        loopSubject = loopJSON[key]['Subject'];
+        loopBatch = loopJSON[key]['BatchName'];
+
+        PendingClasses.push(`${loopTeacherUID}|${loopGrade}|${loopSubject}|${loopBatch}`)
+
+    }
 
 }
 
@@ -216,9 +230,9 @@ function SetupAcceptedClasses(inputJSON){
         thisLoopSubject = loopJSON[key]['Subject'];
         thisLoopTeacherName = loopJSON[key]['TeacherName'];
         thisLoopTeacherUID = loopJSON[key]['TeacherUID'];
+        thisLoopBatch = loopJSON[key]['BatchName'];
 
-        AcceptedClasses.push(`${thisLoopTeacherUID}|${thisLoopGrade}|${thisLoopSubject}`);
+        AcceptedClasses.push(`${thisLoopTeacherUID}|${thisLoopGrade}|${thisLoopSubject}|${thisLoopBatch}`);
     }
 
-    print(AcceptedClasses);
 }

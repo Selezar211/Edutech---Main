@@ -572,21 +572,70 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 
 		SeatVacancy.append(SeatVacancyText);
 
-		//icon
-		SeatVacancyIcon = document.createElement('i');
-		if (parseInt(vacancyArr[i])==0){
-			SeatVacancyIcon.setAttribute('class', 'fas fa-user-times');
-			SeatVacancyIcon.setAttribute('id', 'SeatVacancyIconCross');
-		}
-		else {
-			SeatVacancyIcon.setAttribute('class', 'fas fa-user-plus');
-			SeatVacancyIcon.setAttribute('id', 'SeatVacancyIcon');
-			SeatVacancyIcon.setAttribute('data-subject', subject);
-			SeatVacancyIcon.setAttribute('data-grade', grade);
-			SeatVacancyIcon.setAttribute('data-batch', batchArr[i]);
+		//now first check to see if the class is in accepted or pending classes and if not then make the USER ICONS PLUS OR CROSS
+		for (let i=0; i<AcceptedClasses.length; i++){
+
+			currAcceptedStr = AcceptedClasses[i].split('|');
+
+			teacherGrade = currAcceptedStr[1];
+			teacherSubject = currAcceptedStr[2];
+			teacherBatchname = currAcceptedStr[3];
+
+			if ((subject==teacherSubject) && (grade==teacherGrade) && (teacherBatchname==batchArr[i])){
+		
+				AcceptedSpanText = document.createElement('span');
+				AcceptedSpanText.setAttribute('class', 'AcceptedSpanText');
+		
+				t = document.createTextNode('Accepted');
+				AcceptedSpanText.append(t);
+		
+				SeatVacancy.append(AcceptedSpanText);
+			}
+
+			else{
+				//now we need to check if it is the pending classes
+
+				for (let i=0; i<PendingClasses.length; i++){
+
+					currPendingStr = PendingClasses[i].split('|');
+
+					pendingGrade = currPendingStr[1];
+					pendingSubject = currPendingStr[2];
+					pendingBatchname = currPendingStr[3];
+
+					if ((subject==pendingSubject) && (grade==pendingGrade) && (pendingBatchname==batchArr[i])){
+						//make the pending span
+						PendingSpanText = document.createElement('span');
+						PendingSpanText.setAttribute('class', 'PendingSpanText');
+				
+						t = document.createTextNode('Pending');
+						PendingSpanText.append(t);
+				
+						SeatVacancy.append(PendingSpanText);
+					}
+
+					else{
+						//now we can just make the user cross and plus icons since this is not in accepted or pending batch
+						//icon
+						SeatVacancyIcon = document.createElement('i');
+						if (parseInt(vacancyArr[i])==0){
+							SeatVacancyIcon.setAttribute('class', 'fas fa-user-times');
+							SeatVacancyIcon.setAttribute('id', 'SeatVacancyIconCross');
+						}
+						else {
+							SeatVacancyIcon.setAttribute('class', 'fas fa-user-plus');
+							SeatVacancyIcon.setAttribute('id', 'SeatVacancyIcon');
+							SeatVacancyIcon.setAttribute('data-subject', subject);
+							SeatVacancyIcon.setAttribute('data-grade', grade);
+							SeatVacancyIcon.setAttribute('data-batch', batchArr[i]);
+						}
+
+						SeatVacancy.append(SeatVacancyIcon);
+					}
+				}
+			}
 		}
 
-		SeatVacancy.append(SeatVacancyIcon);
 
 		Stream_.append(SeatVacancy);
 
