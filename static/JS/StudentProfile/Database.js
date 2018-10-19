@@ -16,6 +16,8 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var Current_UID;
 var ownName;
+var AcceptedClasses = [];
+var PendingClasses = [];
 
 //Fetch all relevant data for logged in user from our database using UID
 //this is the main function which will fetch the data from backend and then call the functions to craft the data into various places

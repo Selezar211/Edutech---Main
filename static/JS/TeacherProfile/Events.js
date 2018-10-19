@@ -69,7 +69,7 @@ function AttachEventToEachStudentClick() {
                             'Grade': grade
                         }
 
-                        ref.push(data);
+                        ref.update(data);
 
                     });
 
