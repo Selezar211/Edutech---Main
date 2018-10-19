@@ -54,7 +54,7 @@ function AttachEventToEachStudentClick() {
                         BoxAlert('User accepted successfully!');
                         FadeOutLoadingFrame();
                     }).then(function(){
-                        //now we need to access this students database and write these entries in his/her user class
+                        //now we need to access this students database and write these entries in his/her accepted user class
 
                         var ref = database.ref('USERS/' + UID + '/UserClass/');
 
@@ -69,7 +69,13 @@ function AttachEventToEachStudentClick() {
                             'Grade': grade
                         }
 
-                        ref.update(data);
+                        ref.update(data).then(function(){
+                            //now we need to remove this from the students pending classes since the students been accepted
+                            var ref = database.ref('USERS/' + UID + '/PendingClass/' + (Current_UID+grade+subject));
+
+                            ref.remove();
+
+                        });
 
                     });
 
