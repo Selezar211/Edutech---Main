@@ -233,6 +233,16 @@ function SetupAcceptedClasses(inputJSON){
         thisLoopBatch = loopJSON[key]['BatchName'];
 
         AcceptedClasses.push(`${thisLoopTeacherUID}|${thisLoopGrade}|${thisLoopSubject}|${thisLoopBatch}`);
+
+        //now make a lecture tab for each of these
+        var ref = database.ref('USERS/' + thisLoopTeacherUID + '/UserClass/' + thisLoopGrade + '/' + thisLoopSubject + '/Resources/').once('value').then(function (snapshot) {
+
+            resourceFullJSON = snapshot.val();
+
+            //call the lecture link creator box
+            CreateLectureLinkBox(thisLoopTeacherName, thisLoopSubject, thisLoopGrade, resourceFullJSON);
+            AttachEventToLectureClick();
+        });
     }
 }
 

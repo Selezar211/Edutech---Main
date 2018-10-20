@@ -39,6 +39,7 @@
 		.LectureBoxHeading{
 				color: white;
 				width: 100%;
+				font-size: 1.2em;
 				display: inline-block;
 				padding: 2%;
 				background-color: rgb(20,24,27);
@@ -46,19 +47,12 @@
 				top: 0%;
 		}
 
-		.AddResource{
+		.AddResourceMod{
 			float: right;
-			cursor: pointer;
-			transition: 400ms;
-		}
-
-		.AddResource:hover{
-			color: gray;
-			transition: 400ms;
 		}
 
 		.LectureLink{
-			font-size: 1.4em;
+			font-size: 1.2em;
 				cursor: pointer;
 			    display: inline-block;
 			    position: relative;

@@ -383,9 +383,7 @@ function CreateMessageBox(streamName, subject, grade) {
 
 
 
-function CreateLectureLinkBox(subject, grade, streamName, ResourceJSON) {
-
-	address = grade + '/' + subject + '/Streams/' + streamName + '/';
+function CreateLectureLinkBox(teacherName, subject, grade, ResourceJSON) {
 
 	//first get the lecturename and lecture url arrays
 	lectureNameArr = [];
@@ -418,17 +416,13 @@ function CreateLectureLinkBox(subject, grade, streamName, ResourceJSON) {
 
 	var BoxHeadingText = document.createElement('span');
 
-	var t = document.createTextNode(subject + ' | ' + grade);
+	var t = document.createTextNode(teacherName);
 	BoxHeadingText.append(t);
 
 	var AddResource = document.createElement('span');
-	AddResource.setAttribute('class', 'AddResource');
-	AddResource.setAttribute('data-subject', subject);
-	AddResource.setAttribute('data-grade', grade);
-	AddResource.setAttribute('data-address', address);
-	AddResource.setAttribute('data-maxindex', MaxIndexNumber);
+	AddResource.setAttribute('class', 'AddResourceMod');
 
-	var t = document.createTextNode('Add New Resource');
+	var t = document.createTextNode(subject + ' | ' + grade);
 	AddResource.append(t);
 
 	LectureBoxHeading.append(BoxHeadingText);
@@ -452,26 +446,6 @@ function CreateLectureLinkBox(subject, grade, streamName, ResourceJSON) {
 		LectureName.append(t);
 
 		LectureLink.append(LectureName);
-
-		var penSquare = document.createElement('i');
-		penSquare.setAttribute('class', 'fas fa-pencil-ruler');
-		penSquare.setAttribute('id', 'penSquare');
-		penSquare.setAttribute('data-index', lectureIndexNumbers[i]);
-		penSquare.setAttribute('data-address', address);
-		penSquare.setAttribute('data-name', currentLectureName);
-		penSquare.setAttribute('data-url', currentLectureURL);
-		penSquare.setAttribute('data-subject', subject);
-		penSquare.setAttribute('data-grade', grade);
-
-		LectureLink.append(penSquare);
-
-		var minusSquare = document.createElement('i');
-		minusSquare.setAttribute('class', 'far fa-calendar-times');
-		minusSquare.setAttribute('id', 'minusSquare');
-		minusSquare.setAttribute('data-index', lectureIndexNumbers[i]);
-		minusSquare.setAttribute('data-address', address);
-
-		LectureLink.append(minusSquare);
 
 		LectureLinksContainer.append(LectureLink);
 	}
@@ -616,7 +590,6 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 		//icon
 		print(`User icon bool before entering icon if loop ${userIconBool}`);
 		if(userIconBool==true){
-
 			SeatVacancyIcon = document.createElement('i');
 			if (parseInt(vacancyArr[i])==0){
 				SeatVacancyIcon.setAttribute('class', 'fas fa-user-times');
