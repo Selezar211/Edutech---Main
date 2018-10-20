@@ -42,13 +42,16 @@ function FetchAllDataFromDatabase() {
         SetupAcceptedClasses(tableData);
         SetupPendingClasses(tableData);
 
+        //this will craft the 24 hour clock timings beside the timetable
+        InjectTimingsIntoHTML();
+
+        PopulateTimeTable(tableData);
+
         FadeOutLoadingFrame();  //loading frame was ON by default and hence make it fadeout after everything is loaded
 
     }).then(function() {
-        FormatTimeTable();
         SetupTeacherTabEvents();
     });
-
 }
 
 

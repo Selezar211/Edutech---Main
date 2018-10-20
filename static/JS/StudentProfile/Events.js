@@ -1244,6 +1244,8 @@ function SetupTeacherTabEvents(){
         else {
             print(`Commencing search with query ${searchQuery}`);
 
+            FadeInLoadingFrame();
+
             //now we need to look for this persons UID first and see if we can get it
             var ref = database.ref().once('value').then(function (snapshot) {
 
@@ -1293,7 +1295,7 @@ function SetupTeacherTabEvents(){
                                     timingString = timingString + timing + ' | ';
                                 }
                                 //now we have the full timing string for this batch
-                                print(`Working on batch ${batchName} of subject ${subject} of grade ${grade} with vacancy ${String(vacancy)} and timings ${timingString}`);
+                                //print(`Working on batch ${batchName} of subject ${subject} of grade ${grade} with vacancy ${String(vacancy)} and timings ${timingString}`);
                                 TimingsArr.push(timingString);
                                 vacancyArr.push(String(vacancy));
                                 batchArr.push(batchName);
@@ -1301,6 +1303,8 @@ function SetupTeacherTabEvents(){
 
                             CreateTeacherBox(subject, grade, teacherName, teacherEmail, TimingsArr, vacancyArr, batchArr);
                         }
+
+                        FadeOutLoadingFrame();
                     }
 
                     //add events to clicking on subscribing to a class

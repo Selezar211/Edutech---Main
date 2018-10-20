@@ -1,55 +1,6 @@
 
 //timetable database stuff
 
-function PopulateTimeTable(inputTable) {
-
-    //first find out how many subject grades there are..
-    SubjectGrades = ReturnAsArrayChildOfTable(inputTable['UserClass']);
-
-    //now loop through the subject grades and use the names as the address prefix
-
-    for (var x = 0; x < SubjectGrades.length; x++) {
-
-        CurrentSubjectGrade = SubjectGrades[x];
-
-        //this will return as a JSON all the childs of working subject grade
-        //convert it into working array of subjects e.g ['Physics', 'Chemistry', 'Biology']
-        CurrentGrade_SubjectArray = ReturnAsArrayChildOfTable(inputTable['UserClass'][CurrentSubjectGrade]);
-
-        for (var y = 0; y < CurrentGrade_SubjectArray.length; y++) {
-
-            ThisGrade = CurrentSubjectGrade;
-            ThisSubject = CurrentGrade_SubjectArray[y];
-
-            //now that we have the grade and subject we need to find the number of streams each subject has
-
-            StreamsArray = ReturnAsArrayChildOfTable(inputTable['UserClass'][ThisGrade][ThisSubject]['Streams']);
-
-            //now we can loop through each stream
-            for (var z = 0; z < StreamsArray.length; z++) {
-
-                ThisLoopGrade = ThisGrade;
-                ThisLoopSubject = ThisSubject;
-                ThisLoopStreamName = StreamsArray[z];
-                ThisStreamColor = inputTable['UserClass'][ThisGrade][ThisSubject]['Streams'][ThisLoopStreamName]['StreamColor'];
-
-
-                TimingsJSON = inputTable['UserClass'][ThisGrade][ThisSubject]['Streams'][ThisLoopStreamName]['Timings'];
-
-                TimingsArray = $.map(TimingsJSON, function (el) {
-                    return el;
-                });
-
-                for (var q = 0; q < TimingsArray.length; q++) {
-
-                    CraftAndInjectTimeTable(TimingsArray[q], ThisLoopGrade, ThisLoopSubject, ThisLoopStreamName, ThisStreamColor);
-                }
-            }
-        }
-    }
-
-}
-
 function CreateTimeTableHTML() {
 	//this will completely the base form of the timetable from scratch
 
@@ -342,6 +293,45 @@ function CraftAndInjectTimeTable(TimingString, Grade, Subject, StreamName, color
 
 }
 
+function CraftTimingArray() {
+    //this function will return an array containing the timings from 7AM to 10PM in 30min intervals
+
+    var Crafted_Timings = [];
+
+    for (var i = 7; i < 25; i++) {
+        var currentTIming = String(i) + ':00';
+
+        Crafted_Timings.push(currentTIming);
+
+        var currentTIming = String(i) + ':30';
+
+        Crafted_Timings.push(currentTIming);
+    }
+
+    return Crafted_Timings
+
+}
+
+function InjectTimingsIntoHTML() {
+	//this will put the 24 hour timings beside the timetable
+
+    timingsArray = CraftTimingArray();
+
+    var myUL = document.getElementById("timingArray_ul_ID");
+
+    for (var i = 0; i < timingsArray.length; i++) {
+
+        //make the timings on the side of the timetable
+        var myLI = document.createElement("li");
+        var mySPAN = document.createElement("span");
+
+        var t = document.createTextNode(timingsArray[i]);
+        mySPAN.append(t);
+        myLI.append(mySPAN);
+
+        myUL.append(myLI);
+    }
+}
 
 
 
@@ -515,7 +505,6 @@ function CraftTimingArray() {
 function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancyArr, batchArr){
 
 	//streamArr = ['Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30', 'Tuesday 1:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Saturday 8:00 - 9:30', 'Friday 6:30PM - 7:30PM | Wednesday 5:00PM - 7:00PM | Thursday 8:00 - 9:30']
-
 	TeacherBox = document.createElement('div');
 	TeacherBox.setAttribute('class', 'TeacherBox');
 
@@ -552,26 +541,31 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 
 		Stream_ = document.createElement('div');
 		Stream_.setAttribute('class', 'Stream_');
-
+		
 		Timings = document.createElement('span');
 		Timings.setAttribute('class', 'Timings');
-
+		
 		t = document.createTextNode(streamArr[i].slice(0,-2));
 		Timings.append(t);
-
+		
 		Stream_.append(Timings);
-
+		
 		SeatVacancy = document.createElement('span');
 		SeatVacancy.setAttribute('class', 'SeatVacancy');
-
+		
 		SeatVacancyText = document.createElement('span');
 		SeatVacancyText.setAttribute('class', 'SeatVacancyText');
-
+		
 		t = document.createTextNode(`Vacant Seats: ${vacancyArr[i]}  | `);
 		SeatVacancyText.append(t);
-
+		
 		SeatVacancy.append(SeatVacancyText);
+		
+		userIconBool = true;
 
+		print('                  ');
+		print(`On stream: ${streamArr[i]}`);
+		print(`User Icon Bool ${userIconBool}`);
 		//now first check to see if the class is in accepted or pending classes and if not then make the USER ICONS PLUS OR CROSS
 		for (let i=0; i<AcceptedClasses.length; i++){
 
@@ -590,50 +584,55 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 				AcceptedSpanText.append(t);
 		
 				SeatVacancy.append(AcceptedSpanText);
+
+				userIconBool = false;
 			}
+		}
+		//now we need to check if it is the pending classes
 
-			else{
-				//now we need to check if it is the pending classes
+		for (let i=0; i<PendingClasses.length; i++){
 
-				for (let i=0; i<PendingClasses.length; i++){
+			currPendingStr = PendingClasses[i].split('|');
 
-					currPendingStr = PendingClasses[i].split('|');
+			pendingGrade = currPendingStr[1];
+			pendingSubject = currPendingStr[2];
+			pendingBatchname = currPendingStr[3];
 
-					pendingGrade = currPendingStr[1];
-					pendingSubject = currPendingStr[2];
-					pendingBatchname = currPendingStr[3];
+			if ((subject==pendingSubject) && (grade==pendingGrade) && (pendingBatchname==batchArr[i])){
+				//make the pending span
+				PendingSpanText = document.createElement('span');
+				PendingSpanText.setAttribute('class', 'PendingSpanText');
+		
+				t = document.createTextNode('Pending');
+				PendingSpanText.append(t);
+		
+				SeatVacancy.append(PendingSpanText);
 
-					if ((subject==pendingSubject) && (grade==pendingGrade) && (pendingBatchname==batchArr[i])){
-						//make the pending span
-						PendingSpanText = document.createElement('span');
-						PendingSpanText.setAttribute('class', 'PendingSpanText');
-				
-						t = document.createTextNode('Pending');
-						PendingSpanText.append(t);
-				
-						SeatVacancy.append(PendingSpanText);
-					}
-
-					else{
-						//now we can just make the user cross and plus icons since this is not in accepted or pending batch
-						//icon
-						SeatVacancyIcon = document.createElement('i');
-						if (parseInt(vacancyArr[i])==0){
-							SeatVacancyIcon.setAttribute('class', 'fas fa-user-times');
-							SeatVacancyIcon.setAttribute('id', 'SeatVacancyIconCross');
-						}
-						else {
-							SeatVacancyIcon.setAttribute('class', 'fas fa-user-plus');
-							SeatVacancyIcon.setAttribute('id', 'SeatVacancyIcon');
-							SeatVacancyIcon.setAttribute('data-subject', subject);
-							SeatVacancyIcon.setAttribute('data-grade', grade);
-							SeatVacancyIcon.setAttribute('data-batch', batchArr[i]);
-						}
-
-						SeatVacancy.append(SeatVacancyIcon);
-					}
-				}
+				userIconBool = false;
 			}
+		}
+
+		//now we can just make the user cross and plus icons since this is not in accepted or pending batch
+		//icon
+		print(`User icon bool before entering icon if loop ${userIconBool}`);
+		if(userIconBool==true){
+
+			SeatVacancyIcon = document.createElement('i');
+			if (parseInt(vacancyArr[i])==0){
+				SeatVacancyIcon.setAttribute('class', 'fas fa-user-times');
+				SeatVacancyIcon.setAttribute('id', 'SeatVacancyIconCross');
+			}
+			else {
+				SeatVacancyIcon.setAttribute('class', 'fas fa-user-plus');
+				SeatVacancyIcon.setAttribute('id', 'SeatVacancyIcon');
+				SeatVacancyIcon.setAttribute('data-subject', subject);
+				SeatVacancyIcon.setAttribute('data-grade', grade);
+				SeatVacancyIcon.setAttribute('data-batch', batchArr[i]);
+			}
+			SeatVacancy.append(SeatVacancyIcon);
+		}
+		else{
+			print('Not Making user icon!');
 		}
 
 

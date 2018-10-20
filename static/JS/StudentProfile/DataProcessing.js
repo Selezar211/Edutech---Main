@@ -234,5 +234,51 @@ function SetupAcceptedClasses(inputJSON){
 
         AcceptedClasses.push(`${thisLoopTeacherUID}|${thisLoopGrade}|${thisLoopSubject}|${thisLoopBatch}`);
     }
+}
 
+function SetupLectureTab(inputJSON){
+
+
+
+}
+
+function PopulateTimeTable(inputJSON) {
+
+    //first find the classes to get the timings from
+    loopJSON = inputJSON['UserClass'];
+
+    //now loop through this
+    let key;
+    for (key in loopJSON){
+
+        thisLoopGrade = loopJSON[key]['Grade'];
+        thisLoopSubject = loopJSON[key]['Subject'];
+        thisLoopTeacherName = loopJSON[key]['TeacherName'];
+        thisLoopTeacherUID = loopJSON[key]['TeacherUID'];
+        thisLoopBatch = loopJSON[key]['BatchName'];
+
+        //now need to access this teachers database and read this batches timing
+        var ref = database.ref('USERS/' + thisLoopTeacherUID + '/UserClass/' + thisLoopGrade + '/' + thisLoopSubject + '/Streams/' + thisLoopBatch).once('value').then(function (snapshot) {
+
+            innerData = snapshot.val();
+
+            timingColor = innerData['StreamColor'];
+
+            timingJSON = innerData['Timings'];
+
+            DayArray = [];
+            startTimeArr = [];
+            endTimeArr = [];
+
+            let key;
+            for (key in timingJSON){
+                timing = timingJSON[key];    //the timing is in the foramt:  Monday 9:00 - 12:00  :
+
+                //now we can call our time table entry creator function with these values
+                CraftAndInjectTimeTable(timing, thisLoopGrade, thisLoopSubject, thisLoopBatch, timingColor);
+            }
+        }).then(function(){
+            FormatTimeTable();
+        });
+    }
 }
