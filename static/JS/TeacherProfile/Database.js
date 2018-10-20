@@ -117,6 +117,10 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade) {
         //now create the exam boxes for each subject in the exam tab
         createOneBatchExamCont(currentWorking_Subject, subjectGrade, Exam_JSON);
 
+        //create the lecture tab boxes
+        var ResourceJSON = tableData['UserClass'][subjectGrade][currentWorking_Subject]['Resources'];
+        CreateLectureLinkBox(currentWorking_Subject, subjectGrade, key, ResourceJSON);
+
         //Now get the stream timings to inject 
         AllStreamsJSON_of_ThisSubject = tableData['UserClass'][subjectGrade][currentWorking_Subject]['Streams']
 
@@ -135,11 +139,6 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade) {
                 return el;
             });
 
-            //get the lecture resource json
-            var ResourceJSON = AllStreamsJSON_of_ThisSubject[key]['Resources'];
-
-            //need to loop through the resource json and get lecturename array and lecture links array
-
             //now this timing needs to be injected as an html
             FillEachStreamBoxAndDropDownBox(ThisStreamTiming, key, SeatVacancy, ThisStreamBox, currentWorking_Subject, subjectGrade, streamColor);
 
@@ -150,11 +149,6 @@ function LoopThroughSubjectsAndInjectThem(inputSubjectArray, subjectGrade) {
             CreateStudentBatchBox(key, currentWorking_Subject, subjectGrade, SeatVacancy);
             CreateAcceptedStudentBatchBox(AcceptedStudentJSON, subjectGrade, currentWorking_Subject, key, TotalSeats, FilledSeats);
             CreatePendingStudentBatchBox(PendingStudentJSON, subjectGrade, currentWorking_Subject, key, TotalSeats, FilledSeats);
-
-            //create the lecturetab stuff
-            CreateLectureLinkBox(currentWorking_Subject, subjectGrade, key, ResourceJSON);
-
-            //create the exam tab stuff
             
         }
 

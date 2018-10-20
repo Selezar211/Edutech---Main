@@ -732,6 +732,10 @@ function AttachEventToLectureClick() {
 
             Address = String($(this).attr("data-address"));
 
+            splitString = Address.split('/');
+            grade = splitString[0];
+            subject = splitString[1];
+
             IndexNum = String($(this).attr("data-index"));
 
             prevName = String($(this).attr("data-name"));
@@ -757,13 +761,13 @@ function AttachEventToLectureClick() {
             encodedname = EncodeString(newResourceName)
             encodedURL = EncodeString(newResourceURL);
 
-            var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum));
+            var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Resources/' + String(IndexNum));
 
             //delete the previous entry
             ref.remove().then(function () {
 
                 //now enter this data
-                var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum));
+                var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Resources/' + String(IndexNum));
 
                 data = {
                     [encodedname]: encodedURL
@@ -792,7 +796,11 @@ function AttachEventToLectureClick() {
         IndexNum = String($(this).attr("data-index"));
         Address = String($(this).attr("data-address"));
 
-        var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(IndexNum) + '/');
+        splitString = Address.split('/');
+        grade = splitString[0];
+        subject = splitString[1];
+
+        var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Resources/' + String(IndexNum) + '/');
 
         ref.remove().then(ReloadBackEndData).then(function () {
             FadeOutLoadingFrame();
@@ -832,6 +840,12 @@ function AttachEventToLectureClick() {
 
             Address = String($(this).attr("data-address"));
 
+            //get subject, grade and batchname
+            splitString = Address.split('/');
+            grade = splitString[0];
+            subject = splitString[1];
+            batchName = splitString[3];
+
             MaxIndex = parseInt($(this).attr("data-maxindex"));
 
             //first get the inputs
@@ -846,7 +860,7 @@ function AttachEventToLectureClick() {
                 encodedname = EncodeString(newResourceName)
                 encodedURL = EncodeString(newResourceURL);
 
-                var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + Address + 'Resources/' + String(MaxIndex + 1));
+                var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Resources/' + String(MaxIndex + 1));
 
                 data = {
                     [encodedname]: encodedURL
