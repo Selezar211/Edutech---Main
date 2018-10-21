@@ -476,7 +476,7 @@ function CraftTimingArray() {
 
 
 //teacher tab stuff
-function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancyArr, batchArr){
+function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancyArr){
 
 	//streamArr = ['Sunday 2:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Thursday 8:00 - 9:30', 'Tuesday 1:30PM - 4:30PM | Monday 5:00PM - 7:00PM | Saturday 8:00 - 9:30', 'Friday 6:30PM - 7:30PM | Wednesday 5:00PM - 7:00PM | Thursday 8:00 - 9:30']
 	TeacherBox = document.createElement('div');
@@ -520,6 +520,7 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 		Timings.setAttribute('class', 'Timings');
 		
 		t = document.createTextNode(streamArr[i].slice(0,-2));
+		batchNameFromString = streamArr[i].slice(0,-2).split(' ')[0];
 		Timings.append(t);
 		
 		Stream_.append(Timings);
@@ -539,7 +540,7 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 
 		print('                  ');
 		print(`On stream: ${streamArr[i]}`);
-		print(`User Icon Bool ${userIconBool}`);
+		print(`User Icon Bool before starting on accepted loop:  ${userIconBool}`);
 		//now first check to see if the class is in accepted or pending classes and if not then make the USER ICONS PLUS OR CROSS
 		for (let i=0; i<AcceptedClasses.length; i++){
 
@@ -549,8 +550,8 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 			teacherSubject = currAcceptedStr[2];
 			teacherBatchname = currAcceptedStr[3];
 
-			if ((subject==teacherSubject) && (grade==teacherGrade) && (teacherBatchname==batchArr[i])){
-		
+			if ((subject==teacherSubject) && (grade==teacherGrade) && (batchNameFromString==teacherBatchname)){
+				print(`Found a match for accepted class with ${subject}:${teacherSubject} and ${grade}:${teacherGrade} and ${batchNameFromString}:${teacherBatchname}`);	
 				AcceptedSpanText = document.createElement('span');
 				AcceptedSpanText.setAttribute('class', 'AcceptedSpanText');
 		
@@ -567,13 +568,15 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 		for (let i=0; i<PendingClasses.length; i++){
 
 			currPendingStr = PendingClasses[i].split('|');
+			print(`On Batch ${batchNameFromString}`);
 
 			pendingGrade = currPendingStr[1];
 			pendingSubject = currPendingStr[2];
 			pendingBatchname = currPendingStr[3];
 
-			if ((subject==pendingSubject) && (grade==pendingGrade) && (pendingBatchname==batchArr[i])){
+			if ((subject==pendingSubject) && (grade==pendingGrade) && (batchNameFromString==pendingBatchname)){
 				//make the pending span
+				print(`Found a match for pending class with ${subject}:${pendingSubject} and ${grade}:${pendingGrade} and ${batchNameFromString}:${pendingBatchname}`);
 				PendingSpanText = document.createElement('span');
 				PendingSpanText.setAttribute('class', 'PendingSpanText');
 		
@@ -600,7 +603,7 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 				SeatVacancyIcon.setAttribute('id', 'SeatVacancyIcon');
 				SeatVacancyIcon.setAttribute('data-subject', subject);
 				SeatVacancyIcon.setAttribute('data-grade', grade);
-				SeatVacancyIcon.setAttribute('data-batch', batchArr[i]);
+				SeatVacancyIcon.setAttribute('data-batch', batchNameFromString);
 			}
 			SeatVacancy.append(SeatVacancyIcon);
 		}

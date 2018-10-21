@@ -1110,7 +1110,6 @@ function SetupTeacherTabEvents(){
 
                             TimingsArr = [];
                             vacancyArr = [];
-                            batchArr = [];
 
                             let key3;
                             for (key3 in teacherJSON[grade][subject]['Streams']){
@@ -1135,10 +1134,9 @@ function SetupTeacherTabEvents(){
                                 //print(`Working on batch ${batchName} of subject ${subject} of grade ${grade} with vacancy ${String(vacancy)} and timings ${timingString}`);
                                 TimingsArr.push(timingString);
                                 vacancyArr.push(String(vacancy));
-                                batchArr.push(batchName);
                             }
 
-                            CreateTeacherBox(subject, grade, teacherName, teacherEmail, TimingsArr, vacancyArr, batchArr);
+                            CreateTeacherBox(subject, grade, teacherName, teacherEmail, TimingsArr, vacancyArr);
                         }
 
                         FadeOutLoadingFrame();
