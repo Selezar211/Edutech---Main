@@ -620,3 +620,94 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 	document.getElementById('BoxesContainer_ID').appendChild(TeacherBox);
 
 }
+
+
+function CreateSignedUpClassesEntries(teacherName, batchName, subject, grade, teacherUID){
+
+	signedUpClassEntry = document.createElement('div');
+	signedUpClassEntry.setAttribute('class', 'signedUpClassEntry');
+
+	signedUpText = document.createElement('span');
+	signedUpText.setAttribute('class', 'signedUpText');
+
+	signedUpTextln1 = document.createElement('span');
+	signedUpTextln1.setAttribute('class', 'signedUpTextln1');
+
+	t = document.createTextNode(`${teacherName} - ${batchName}`);
+	signedUpTextln1.append(t);
+
+	signedUpText.append(signedUpTextln1);
+
+	signedUpTextln2 = document.createElement('span');
+	signedUpTextln2.setAttribute('class', 'signedUpTextln2');
+
+	t = document.createTextNode(`${subject} | ${grade}`);
+	signedUpTextln2.append(t);
+
+	signedUpText.append(signedUpTextln2);
+
+	signedUpClassEntry.append(signedUpText);
+
+	//now for the buttons
+	dropOutButton = document.createElement('span');
+	dropOutButton.setAttribute('class', 'dropOutButton');
+
+	t = document.createTextNode(`Drop Out`);
+	dropOutButton.append(t);
+
+	MessageTeacherButton = document.createElement('span');
+	MessageTeacherButton.setAttribute('class', 'MessageTeacherButton');
+
+	t = document.createTextNode(`Message Teacher`);
+	MessageTeacherButton.append(t);
+
+	MessageStudentButton = document.createElement('span');
+	MessageStudentButton.setAttribute('class', 'MessageStudentButton');
+
+	t = document.createTextNode(`Message Class-Mates`);
+	MessageStudentButton.append(t);
+
+	signedUpClassEntry.append(dropOutButton);
+	signedUpClassEntry.append(MessageTeacherButton);
+	signedUpClassEntry.append(MessageStudentButton);
+
+	document.getElementById('TeacherPersistentBoxSignedUp_ID').appendChild(signedUpClassEntry);
+}
+
+function CreateRequestedClassesEntries(teacherName, batchName, subject, grade, teacherUID){
+
+	signedUpClassEntry = document.createElement('div');
+	signedUpClassEntry.setAttribute('class', 'signedUpClassEntry');
+
+	signedUpText = document.createElement('span');
+	signedUpText.setAttribute('class', 'signedUpText');
+
+	signedUpTextln1 = document.createElement('span');
+	signedUpTextln1.setAttribute('class', 'signedUpTextln1');
+
+	t = document.createTextNode(`${teacherName} - ${batchName}`);
+	signedUpTextln1.append(t);
+
+	signedUpText.append(signedUpTextln1);
+
+	signedUpTextln2 = document.createElement('span');
+	signedUpTextln2.setAttribute('class', 'signedUpTextln2');
+
+	t = document.createTextNode(`${subject} | ${grade}`);
+	signedUpTextln2.append(t);
+
+	signedUpText.append(signedUpTextln2);
+
+	signedUpClassEntry.append(signedUpText);
+
+	//now for the buttons
+	cancelPendingButton = document.createElement('span');
+	cancelPendingButton.setAttribute('class', 'cancelPendingButton');
+
+	t = document.createTextNode(`Cancel Request`);
+	cancelPendingButton.append(t);
+
+	signedUpClassEntry.append(cancelPendingButton);
+
+	document.getElementById('TeacherPersistentBoxPending_ID').appendChild(signedUpClassEntry);
+}

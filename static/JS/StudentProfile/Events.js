@@ -1083,6 +1083,19 @@ function SetupTeacherTabEvents(){
 
             FadeInLoadingFrame();
 
+            //first get rid of any existing/previously searched elements
+            $('.searchQueryHeading').remove();
+            $('.TeacherBox').remove();
+
+            //make the search query heading and insert it
+            searchQueryHeading = document.createElement('div');
+            searchQueryHeading.setAttribute('class', 'searchQueryHeading');
+
+            t = document.createTextNode(`Search Query: ${searchQuery} (scroll down)`)
+            searchQueryHeading.append(t);
+
+            document.getElementById('BoxesContainer_ID').appendChild(searchQueryHeading);
+
             //now we need to look for this persons UID first and see if we can get it
             var ref = database.ref().once('value').then(function (snapshot) {
 
@@ -1175,7 +1188,8 @@ function SetupTeacherTabEvents(){
                              'TeacherUID' : teacherUID,
                              'Subject': subject,
                              'Grade': grade,
-                             'BatchName': batch_name
+                             'BatchName': batch_name,
+                             'TeacherName': teacherName
                             };
                             ref.update(data);
                         });

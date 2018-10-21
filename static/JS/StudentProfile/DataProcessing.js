@@ -212,8 +212,11 @@ function SetupPendingClasses(inputJSON){
         loopTeacherUID = loopJSON[key]['TeacherUID'];
         loopSubject = loopJSON[key]['Subject'];
         loopBatch = loopJSON[key]['BatchName'];
+        loopTeacherName = loopJSON[key]['TeacherName'];
 
-        PendingClasses.push(`${loopTeacherUID}|${loopGrade}|${loopSubject}|${loopBatch}`)
+        PendingClasses.push(`${loopTeacherUID}|${loopGrade}|${loopSubject}|${loopBatch}`);
+
+        CreateRequestedClassesEntries(loopTeacherName, loopBatch, loopSubject, loopGrade, loopTeacherUID);
 
     }
 
@@ -243,6 +246,9 @@ function SetupAcceptedClasses(inputJSON){
             CreateLectureLinkBox(thisLoopTeacherName, thisLoopSubject, thisLoopGrade, resourceFullJSON);
             AttachEventToLectureClick();
         });
+
+        //now set up the signed up classes in the teacher tab
+        CreateSignedUpClassesEntries(thisLoopTeacherName, thisLoopBatch, thisLoopSubject, thisLoopGrade, thisLoopTeacherUID);
     }
 }
 
