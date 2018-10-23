@@ -249,6 +249,7 @@ function SetupAcceptedClasses(inputJSON){
 
         //now set up the signed up classes in the teacher tab
         CreateSignedUpClassesEntries(thisLoopTeacherName, thisLoopBatch, thisLoopSubject, thisLoopGrade, thisLoopTeacherUID);
+        AttachEventsSignedUpClasses();
     }
 }
 

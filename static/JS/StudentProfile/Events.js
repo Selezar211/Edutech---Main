@@ -1157,6 +1157,7 @@ function SetupTeacherTabEvents(){
 
                     //add events to clicking on subscribing to a class
                     $('.fa-user-plus').click(function () {
+                        FadeInLoadingFrame();
                         //subscribe to this class
                         teacherUID = queryUID;
 
@@ -1175,6 +1176,7 @@ function SetupTeacherTabEvents(){
                         };
 
                         ref.update(data).then(function(){
+                            //remove the already searched queries
                             BoxAlert('You are now on the pending list!');
 
                             //now need to update own database and place this class in pending there
@@ -1182,16 +1184,19 @@ function SetupTeacherTabEvents(){
 
                             var data = {};
 
-                            data[teacherUID+grade+subject] = {};
+                            data[teacherUID+grade+subject+batch_name] = {};
                          
-                            data[teacherUID+grade+subject] = {
+                            data[teacherUID+grade+subject+batch_name] = {
                              'TeacherUID' : teacherUID,
                              'Subject': subject,
                              'Grade': grade,
                              'BatchName': batch_name,
                              'TeacherName': teacherName
                             };
-                            ref.update(data);
+                            ref.update(data).then(function(){
+                                ReloadBackEndData();
+                                FadeOutLoadingFrame();
+                            });
                         });
 
                         return false
@@ -1207,4 +1212,24 @@ function SetupTeacherTabEvents(){
 
         e.preventDefault();
       });
+
+}
+
+function AttachEventsSignedUpClasses(){
+
+    $('.dropOutButton').click(function(){
+        //delete this accepted class from the user and from the teacher end
+        subject = $(this).attr("data-subject");
+        grade = $(this).attr("data-grade");
+        batch = $(this).attr("data-batchName");
+        teacherUID = $(this).attr("data-teacherUID");
+
+        //first delete from own accepted classes
+
+
+        return false
+    });
+
+
+
 }

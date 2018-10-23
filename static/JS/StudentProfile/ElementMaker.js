@@ -651,6 +651,10 @@ function CreateSignedUpClassesEntries(teacherName, batchName, subject, grade, te
 	//now for the buttons
 	dropOutButton = document.createElement('span');
 	dropOutButton.setAttribute('class', 'dropOutButton');
+	dropOutButton.setAttribute('data-grade', grade);
+	dropOutButton.setAttribute('data-subject', subject);
+	dropOutButton.setAttribute('data-teacherUID', teacherUID);
+	dropOutButton.setAttribute('data-batchName', batchName);
 
 	t = document.createTextNode(`Drop Out`);
 	dropOutButton.append(t);

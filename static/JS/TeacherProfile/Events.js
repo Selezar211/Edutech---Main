@@ -60,9 +60,9 @@ function AttachEventToEachStudentClick() {
 
                         var data = {};
 
-                        data[Current_UID + grade + subject] = {};
+                        data[Current_UID + grade + subject + batchName] = {};
 
-                        data[Current_UID + grade + subject]  = {
+                        data[Current_UID + grade + subject + batchName]  = {
                             'TeacherName': ownName,
                             'TeacherUID': Current_UID,
                             'Subject': subject,
@@ -72,7 +72,7 @@ function AttachEventToEachStudentClick() {
 
                         ref.update(data).then(function(){
                             //now we need to remove this from the students pending classes since the students been accepted
-                            var ref = database.ref('USERS/' + UID + '/PendingClass/' + (Current_UID+grade+subject));
+                            var ref = database.ref('USERS/' + UID + '/PendingClass/' + (Current_UID+grade+subject+batchName));
 
                             ref.remove();
 

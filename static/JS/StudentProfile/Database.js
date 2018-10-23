@@ -64,14 +64,15 @@ function FetchAllDataFromDatabase() {
 function ReloadBackEndData() {
 
     //remove all inner streamboxes
-    $('.StreamBox').remove();
-    $('.SubjectDropDOWN').remove();
-    $('.ADDTimingDropDOWN').remove();
     $('.single-event').remove();
     $('.BatchBox').remove();
-    $('.StudentInfoCont').remove();
     $('.LectureLinksContainer').remove();
-    $('.OneBatchExamCont').remove();
+    $('.signedUpClassEntry').remove();
+    $('.searchQueryHeading').remove();
+    $('.TeacherBox').remove();
+
+    AcceptedClasses = [];
+    PendingClasses = [];
 
     //now recreate the streamboxes after fetching em all
     FetchAllDataFromDatabase();
