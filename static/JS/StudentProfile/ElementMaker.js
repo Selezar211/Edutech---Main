@@ -538,9 +538,9 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 		
 		userIconBool = true;
 
-		print('                  ');
-		print(`On stream: ${streamArr[i]}`);
-		print(`User Icon Bool before starting on accepted loop:  ${userIconBool}`);
+		// print('                  ');
+		// print(`On stream: ${streamArr[i]}`);
+		// print(`User Icon Bool before starting on accepted loop:  ${userIconBool}`);
 		//now first check to see if the class is in accepted or pending classes and if not then make the USER ICONS PLUS OR CROSS
 		for (let i=0; i<AcceptedClasses.length; i++){
 
@@ -551,7 +551,7 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 			teacherBatchname = currAcceptedStr[3];
 
 			if ((subject==teacherSubject) && (grade==teacherGrade) && (batchNameFromString==teacherBatchname)){
-				print(`Found a match for accepted class with ${subject}:${teacherSubject} and ${grade}:${teacherGrade} and ${batchNameFromString}:${teacherBatchname}`);	
+				//print(`Found a match for accepted class with ${subject}:${teacherSubject} and ${grade}:${teacherGrade} and ${batchNameFromString}:${teacherBatchname}`);	
 				AcceptedSpanText = document.createElement('span');
 				AcceptedSpanText.setAttribute('class', 'AcceptedSpanText');
 		
@@ -568,7 +568,7 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 		for (let i=0; i<PendingClasses.length; i++){
 
 			currPendingStr = PendingClasses[i].split('|');
-			print(`On Batch ${batchNameFromString}`);
+			//print(`On Batch ${batchNameFromString}`);
 
 			pendingGrade = currPendingStr[1];
 			pendingSubject = currPendingStr[2];
@@ -591,7 +591,7 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 
 		//now we can just make the user cross and plus icons since this is not in accepted or pending batch
 		//icon
-		print(`User icon bool before entering icon if loop ${userIconBool}`);
+		//print(`User icon bool before entering icon if loop ${userIconBool}`);
 		if(userIconBool==true){
 			SeatVacancyIcon = document.createElement('i');
 			if (parseInt(vacancyArr[i])==0){
@@ -608,7 +608,7 @@ function CreateTeacherBox(subject, grade, teacherName, email, streamArr, vacancy
 			SeatVacancy.append(SeatVacancyIcon);
 		}
 		else{
-			print('Not Making user icon!');
+			//print('Not Making user icon!');
 		}
 
 
@@ -707,6 +707,10 @@ function CreateRequestedClassesEntries(teacherName, batchName, subject, grade, t
 	//now for the buttons
 	cancelPendingButton = document.createElement('span');
 	cancelPendingButton.setAttribute('class', 'cancelPendingButton');
+	cancelPendingButton.setAttribute('data-grade', grade);
+	cancelPendingButton.setAttribute('data-subject', subject);
+	cancelPendingButton.setAttribute('data-teacherUID', teacherUID);
+	cancelPendingButton.setAttribute('data-batchName', batchName);
 
 	t = document.createTextNode(`Cancel Request`);
 	cancelPendingButton.append(t);

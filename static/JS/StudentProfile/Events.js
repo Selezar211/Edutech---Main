@@ -1072,6 +1072,9 @@ function SetupAllIntervalEvents(){
 function SetupTeacherTabEvents(){
     $('.searchButton').click(function (e) {
         //first check to see that this is empty and non null
+        //first get rid of any existing/previously searched elements
+        $('.searchQueryHeading').remove();
+        $('.TeacherBox').remove();
 
         searchQuery = $('.searchInput').val();
 
@@ -1082,10 +1085,6 @@ function SetupTeacherTabEvents(){
             print(`Commencing search with query ${searchQuery}`);
 
             FadeInLoadingFrame();
-
-            //first get rid of any existing/previously searched elements
-            $('.searchQueryHeading').remove();
-            $('.TeacherBox').remove();
 
             //make the search query heading and insert it
             searchQueryHeading = document.createElement('div');
@@ -1152,7 +1151,6 @@ function SetupTeacherTabEvents(){
                             CreateTeacherBox(subject, grade, teacherName, teacherEmail, TimingsArr, vacancyArr);
                         }
 
-                        FadeOutLoadingFrame();
                     }
 
                     //add events to clicking on subscribing to a class
@@ -1196,6 +1194,7 @@ function SetupTeacherTabEvents(){
                             ref.update(data).then(function(){
                                 ReloadBackEndData();
                                 FadeOutLoadingFrame();
+                                location.reload();
                             });
                         });
 
@@ -1206,6 +1205,8 @@ function SetupTeacherTabEvents(){
                     BoxAlert('Queried teacher not found');
                 }
 
+            }).then(function(){
+                FadeOutLoadingFrame();
             });
         }
 
@@ -1218,6 +1219,7 @@ function SetupTeacherTabEvents(){
 function AttachEventsSignedUpClasses(){
 
     $('.dropOutButton').click(function(){
+        FadeInLoadingFrame();
         //delete this accepted class from the user and from the teacher end
         subject = $(this).attr("data-subject");
         grade = $(this).attr("data-grade");
@@ -1225,11 +1227,49 @@ function AttachEventsSignedUpClasses(){
         teacherUID = $(this).attr("data-teacherUID");
 
         //first delete from own accepted classes
+        var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + (teacherUID+grade+subject+batch));
 
+        ref.remove().then(function(){
+            //now remove this student from the teachers accpeted student database
+            var ref = database.ref('USERS/' + teacherUID + '/UserClass/' + grade + '/' + subject + '/Streams/' + batch + '/AcceptedStudents/' + Current_UID);
+            ref.remove().then(function(){
+                ReloadBackEndData();
+                FadeOutLoadingFrame();
+                BoxAlert(`You have been dropped from batch ${batch}`);
+                location.reload();
+            });
+        });
 
         return false
     });
 
+}
 
+function AttachEventsPendingClasses(){
+
+    $('.cancelPendingButton').click(function(){
+        FadeInLoadingFrame();
+        //delete this pending class from the user and from the teacher end
+        subject = $(this).attr("data-subject");
+        grade = $(this).attr("data-grade");
+        batch = $(this).attr("data-batchName");
+        teacherUID = $(this).attr("data-teacherUID");
+
+        //first delete from own pending classes
+        var ref = database.ref('USERS/' + Current_UID + '/PendingClass/' + (teacherUID+grade+subject+batch));
+
+        ref.remove().then(function(){
+            //now remove this student from the teachers pending student database
+            var ref = database.ref('USERS/' + teacherUID + '/UserClass/' + grade + '/' + subject + '/Streams/' + batch + '/PendingStudents/' + Current_UID);
+            ref.remove().then(function(){
+                ReloadBackEndData();
+                FadeOutLoadingFrame();
+                BoxAlert(`Your request has been cancelled for batch ${batch}`);
+                location.reload();
+            });
+        });
+
+        return false
+    });
 
 }

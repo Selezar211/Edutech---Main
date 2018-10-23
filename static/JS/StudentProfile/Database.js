@@ -23,6 +23,9 @@ var PendingClasses = [];
 //this is the main function which will fetch the data from backend and then call the functions to craft the data into various places
 function FetchAllDataFromDatabase() {
 
+    AcceptedClasses = [];
+    PendingClasses = [];
+
     var ref = database.ref('USERS/' + Current_UID).once('value').then(function(snapshot) {
 
         //first remove the timetable if it exists and create it afresh
@@ -51,6 +54,11 @@ function FetchAllDataFromDatabase() {
 
     }).then(function() {
         SetupTeacherTabEvents();
+
+        print('Data has been reloaded');
+
+        print(`Accepted Classes: ${AcceptedClasses}`);
+        print(`Pending Classes: ${PendingClasses}`);
     });
 }
 
@@ -63,6 +71,9 @@ function FetchAllDataFromDatabase() {
 //this will remove all dependant data from the page and reload them from backend
 function ReloadBackEndData() {
 
+    print(`Accepted Classes: ${AcceptedClasses}`);
+    print(`Pending Classes: ${PendingClasses}`);
+
     //remove all inner streamboxes
     $('.single-event').remove();
     $('.BatchBox').remove();
@@ -74,7 +85,7 @@ function ReloadBackEndData() {
     AcceptedClasses = [];
     PendingClasses = [];
 
-    //now recreate the streamboxes after fetching em all
+    //now recreate the streamboxes after fetching em all  IMPORTANT : the next function is asynchronous so place anything you want to happen in this functions callback and not after this
     FetchAllDataFromDatabase();
 }
 

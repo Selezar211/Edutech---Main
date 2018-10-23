@@ -93,7 +93,7 @@
 	SchedulePlan.prototype.placeEvents = function() {
 		var self = this;
 		this.singleEvents.each(function(){
-			print('Placing this item in the grid');
+			//print('Placing this item in the grid');
 			//place each event in the grid -> need to set top position and height
 			var start = getScheduleTimestamp($(this).attr('data-start')),
 				duration = getScheduleTimestamp($(this).attr('data-end')) - start;
@@ -340,7 +340,7 @@
 
 	function FormatTimeTable(){
 
-		print('Formatting timetable..');
+		//print('Formatting timetable..');
 
 		var schedules = $('.cd-schedule');
 		var objSchedulesPlan = [],
@@ -349,7 +349,7 @@
 		if( schedules.length > 0 ) {
 			schedules.each(function(){
 				//create SchedulePlan objects
-				print('Creating new schedule object');
+				//print('Creating new schedule object');
 				objSchedulesPlan.push(new SchedulePlan($(this)));
 			});
 		}

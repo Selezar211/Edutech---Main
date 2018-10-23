@@ -217,7 +217,7 @@ function SetupPendingClasses(inputJSON){
         PendingClasses.push(`${loopTeacherUID}|${loopGrade}|${loopSubject}|${loopBatch}`);
 
         CreateRequestedClassesEntries(loopTeacherName, loopBatch, loopSubject, loopGrade, loopTeacherUID);
-
+        AttachEventsPendingClasses();
     }
 
 }
