@@ -735,6 +735,7 @@ function AttachEventToLectureClick() {
             splitString = Address.split('/');
             grade = splitString[0];
             subject = splitString[1];
+            batchName = splitString[3];
 
             IndexNum = String($(this).attr("data-index"));
 
@@ -770,7 +771,12 @@ function AttachEventToLectureClick() {
                 var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Resources/' + String(IndexNum));
 
                 data = {
-                    [encodedname]: encodedURL
+                    'ResourceName': encodedname,
+                    'ResourceURL': encodedURL,
+                    'ResourceSubject': subject,
+                    'ResourceGrade': grade,
+                    'ResourceBatch': batchname,
+                    'ResourceTeacher': ownName
                 }
 
                 ref.update(data).then(ReloadBackEndData).then(function () {
@@ -863,7 +869,12 @@ function AttachEventToLectureClick() {
                 var ref = database.ref('USERS/' + Current_UID + '/UserClass/' + grade + '/' + subject + '/Resources/' + String(MaxIndex + 1));
 
                 data = {
-                    [encodedname]: encodedURL
+                    'ResourceName': encodedname,
+                    'ResourceURL': encodedURL,
+                    'ResourceSubject': subject,
+                    'ResourceGrade': grade,
+                    'ResourceBatch': batchname,
+                    'ResourceTeacher': ownName
                 }
 
                 ref.update(data).then(ReloadBackEndData).then(function () {

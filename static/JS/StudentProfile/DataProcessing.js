@@ -238,26 +238,18 @@ function SetupAcceptedClasses(inputJSON){
         AcceptedClasses.push(`${thisLoopTeacherUID}|${thisLoopGrade}|${thisLoopSubject}|${thisLoopBatch}`);
 
         //now make a lecture tab for each of these
-        var ref = database.ref('USERS/' + thisLoopTeacherUID + '/UserClass/' + thisLoopGrade + '/' + thisLoopSubject + '/Resources/').once('value').then(function (snapshot) {
+        address = 'USERS/' + thisLoopTeacherUID + '/UserClass/' + thisLoopGrade + '/' + thisLoopSubject + '/Resources/';
+        var ref = database.ref(address).once('value').then(function (snapshot) {
 
             resourceFullJSON = snapshot.val();
 
             //call the lecture link creator box
-            CreateLectureLinkBox(thisLoopTeacherName, thisLoopSubject, thisLoopGrade, resourceFullJSON);
+            CreateLectureLinkBox(resourceFullJSON);
             AttachEventToLectureClick();
         });
-
-        //now set up the signed up classes in the teacher tab
-        CreateSignedUpClassesEntries(thisLoopTeacherName, thisLoopBatch, thisLoopSubject, thisLoopGrade, thisLoopTeacherUID);
-        AttachEventsSignedUpClasses();
     }
 }
 
-function SetupLectureTab(inputJSON){
-
-
-
-}
 
 function PopulateTimeTable(inputJSON) {
 

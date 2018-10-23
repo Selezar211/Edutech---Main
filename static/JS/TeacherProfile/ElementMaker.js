@@ -1629,11 +1629,8 @@ function CreateLectureLinkBox(subject, grade, streamName, ResourceJSON) {
 
 		ActualJSON = ResourceJSON[key];
 
-		var key2;
-		for (key2 in ActualJSON) {
-			lectureNameArr.push(DecodeString(key2));
-			lectureURLArr.push(DecodeString(ActualJSON[key2]));
-		}
+		lectureNameArr.push(DecodeString(ActualJSON['ResourceName']));
+		lectureURLArr.push(DecodeString(ActualJSON['ResourceURL']));
 
 		lectureIndexNumbers.push(key);
 		MaxIndexNumber = key;
