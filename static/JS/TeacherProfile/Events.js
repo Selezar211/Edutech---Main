@@ -775,7 +775,7 @@ function AttachEventToLectureClick() {
                     'ResourceURL': encodedURL,
                     'ResourceSubject': subject,
                     'ResourceGrade': grade,
-                    'ResourceBatch': batchname,
+                    'ResourceBatch': batchName,
                     'ResourceTeacher': ownName
                 }
 
@@ -873,7 +873,7 @@ function AttachEventToLectureClick() {
                     'ResourceURL': encodedURL,
                     'ResourceSubject': subject,
                     'ResourceGrade': grade,
-                    'ResourceBatch': batchname,
+                    'ResourceBatch': batchName,
                     'ResourceTeacher': ownName
                 }
 
