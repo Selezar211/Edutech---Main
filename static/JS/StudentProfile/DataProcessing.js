@@ -257,6 +257,7 @@ function PopulateTimeTable(inputJSON) {
 
     //first find the classes to get the timings from
     loopJSON = inputJSON['UserClass'];
+    promises = [];
 
     //now loop through this
     let key;
@@ -290,8 +291,13 @@ function PopulateTimeTable(inputJSON) {
                 //now we can call our time table entry creator function with these values
                 CraftAndInjectTimeTable(timing, Grade, teacherSubject, batch, timingColor);
             }
-        }).then(function(){
-            FormatTimeTable();
         });
+        
+        promises.push(ref);  
     }
+
+    Promise.all(promises).then(function(){
+        print(`All threads have ended now formatting the timetable`);
+        FormatTimeTable();
+    });
 }

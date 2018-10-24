@@ -1,7 +1,7 @@
 //Home icon click event
 document.getElementById("HomeIcon").addEventListener('click', e => {
 
-	console.log('Home clicked!');
+	//console.log('Home clicked!');
 
 	//fadeout all current stuff
 	$(".MainStudentTab_Cont").fadeOut('fast');
@@ -27,7 +27,7 @@ document.getElementById("HomeIcon").addEventListener('click', e => {
 //Exam icon click event
 document.getElementById("ExamIcon").addEventListener('click', e => {
 
-	console.log('Exam clicked!');
+	//console.log('Exam clicked!');
 
 	//fadeout all current stuff
 	$(".MainStudentTab_Cont").fadeOut('fast');
@@ -54,7 +54,7 @@ document.getElementById("ExamIcon").addEventListener('click', e => {
 //Timetable icon click event
 document.getElementById("TableIcon").addEventListener('click', e => {
 
-	console.log('Timetable clicked!');
+	//console.log('Timetable clicked!');
 
 	$(".MainStudentTab_Cont").fadeOut('fast');
 	$(".MainVideoPlayer_Cont").fadeOut('fast');
@@ -85,7 +85,7 @@ document.getElementById("TableIcon").addEventListener('click', e => {
 //Video icon click event
 document.getElementById("VidIcon").addEventListener('click', e => {
 
-	console.log('Video icon clicked!');
+	//console.log('Video icon clicked!');
 
 	$(".MainStudentTab_Cont").fadeOut('fast');
 	$(".MainTimeTableCont").fadeOut('fast');
@@ -109,7 +109,7 @@ document.getElementById("VidIcon").addEventListener('click', e => {
 //Lecture icon click event
 document.getElementById("Lecticn").addEventListener('click', e => {
 
-	console.log('lecture clicked!');
+	//console.log('lecture clicked!');
 
 	//fadeout all current stuff
 	$(".BlackBoard_MainInfo").fadeOut('fast');
@@ -135,7 +135,7 @@ document.getElementById("Lecticn").addEventListener('click', e => {
 //Student icon click event
 document.getElementById("TeacherIcon").addEventListener('click', e => {
 
-	console.log('teacher clicked!');
+	//console.log('teacher clicked!');
 
 	//fadeout all current stuff
 	$(".BlackBoard_MainInfo").fadeOut('fast');
@@ -160,7 +160,7 @@ document.getElementById("TeacherIcon").addEventListener('click', e => {
 //Settings icon click event
 document.getElementById("SettingsIcon_").addEventListener('click', e => {
 
-	console.log('Settings clicked!');
+	//console.log('Settings clicked!');
 
 	//fadeout all current stuff
 	$(".BlackBoard_MainInfo").fadeOut('fast');

@@ -70,6 +70,7 @@
 
 		this.singleEvents.each(function(){
 			//create the .event-date element for each event
+			print(`creating span element with ${$(this).data('start')} and ${$(this).data('end')}`);
 			var durationLabel = '<span class="event-date">'+$(this).data('start')+' - '+$(this).data('end')+'</span>';
 			$(this).children('a').prepend($(durationLabel));
 

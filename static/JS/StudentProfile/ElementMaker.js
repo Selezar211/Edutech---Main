@@ -245,6 +245,8 @@ function CreateTimeTableHTML() {
 
 function CraftAndInjectTimeTable(TimingString, Grade, Subject, StreamName, color) {
 
+	print(`Crafting time table box for ${StreamName} with timing ${TimingString}`);
+
     SplitArray = TimingString.split(' ');
 
     Day = SplitArray[0];
@@ -276,7 +278,6 @@ function CraftAndInjectTimeTable(TimingString, Grade, Subject, StreamName, color
     thisLink.append(thisEvent);
 
     //now make the LI class
-
     var thisLI = document.createElement("li");
     thisLI.setAttribute("class", "single-event");
     thisLI.setAttribute("data-start", StartTime);
