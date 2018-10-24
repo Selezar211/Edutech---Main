@@ -383,11 +383,16 @@ function CreateMessageBox(streamName, subject, grade) {
 
 
 
-function CreateLectureLinkBox(teacherName, subject, grade, ResourceJSON) {
+function CreateLectureLinkBox(ResourceJSON) {
 
 	//first get the lecturename and lecture url arrays
 	lectureNameArr = [];
 	lectureURLArr = [];
+
+	lectureTeacher = '';
+	lectureSubject = '';
+	lectureGrade = '';
+
 	lectureIndexNumbers = [];
 	MaxIndexNumber = 1000;
 
@@ -398,12 +403,13 @@ function CreateLectureLinkBox(teacherName, subject, grade, ResourceJSON) {
 
 		lectureNameArr.push(DecodeString(ActualJSON['ResourceName']));
 		lectureURLArr.push(DecodeString(ActualJSON['ResourceURL']));
+		lectureTeacher = (ActualJSON['ResourceTeacher']);
+		lectureSubject = (ActualJSON['ResourceSubject']);
+		lectureGrade = (ActualJSON['ResourceGrade']);
 
 		lectureIndexNumbers.push(key);
 		MaxIndexNumber = key;
 	}
-
-
 
 	var LectureLinksContainer = document.createElement('div');
 	LectureLinksContainer.setAttribute('class', 'LectureLinksContainer');
@@ -413,13 +419,13 @@ function CreateLectureLinkBox(teacherName, subject, grade, ResourceJSON) {
 
 	var BoxHeadingText = document.createElement('span');
 
-	var t = document.createTextNode(teacherName);
+	var t = document.createTextNode(lectureTeacher);
 	BoxHeadingText.append(t);
 
 	var AddResource = document.createElement('span');
 	AddResource.setAttribute('class', 'AddResourceMod');
 
-	var t = document.createTextNode(subject + ' | ' + grade);
+	var t = document.createTextNode(lectureSubject + ' | ' + lectureGrade);
 	AddResource.append(t);
 
 	LectureBoxHeading.append(BoxHeadingText);

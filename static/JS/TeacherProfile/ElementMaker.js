@@ -730,10 +730,17 @@ function CreateNewStream(subject, streamName, color, TotalSeats) {
 	function InjectNewStream() {
 		//we are a go to create the new stream database table
 		var tableaddress = 'USERS/' + Current_UID + '/UserClass/' + subject + '/Streams/' + streamName;
+		actualSubject = subject.split('/')[1];
+		actualGrade = subject.split('/')[0];
 		var data = {
 			StreamColor: color,
 			TotalSeats: TotalSeats,
-			FilledSeats: 0
+			FilledSeats: 0,
+			TeacherUID: Current_UID,
+			TeacherName: ownName,
+			Subject: actualSubject,
+			Grade: actualGrade,
+			BatchName: streamName
 		}
 
 		const pr = InsertDataIntoTable(data, tableaddress);

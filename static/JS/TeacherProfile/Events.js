@@ -775,7 +775,6 @@ function AttachEventToLectureClick() {
                     'ResourceURL': encodedURL,
                     'ResourceSubject': subject,
                     'ResourceGrade': grade,
-                    'ResourceBatch': batchName,
                     'ResourceTeacher': ownName
                 }
 
@@ -873,7 +872,6 @@ function AttachEventToLectureClick() {
                     'ResourceURL': encodedURL,
                     'ResourceSubject': subject,
                     'ResourceGrade': grade,
-                    'ResourceBatch': batchName,
                     'ResourceTeacher': ownName
                 }
 
@@ -905,14 +903,14 @@ function AttachEventToAddStreamOptions() {
         //first get all the input values nicely
 
         var e = document.getElementById("StreamSubjectSelect_ID");
-        var ChosenSubject = e.options[e.selectedIndex].value; //e.g O LEVEL/Physics
+        var ChosenSubjectwithGrade = e.options[e.selectedIndex].value; //e.g O LEVEL/Physics
 
         var ChosenStreamName = document.getElementById('StreamName_ID').value;
 
         var ChosenStreamColor = document.getElementById('StreamColor_ID').value;
         var ChosenStreamTotalSeats = document.getElementById('StreamTotalSeat_ID').value;
 
-        CreateNewStream(ChosenSubject, ChosenStreamName, ChosenStreamColor, ChosenStreamTotalSeats);
+        CreateNewStream(ChosenSubjectwithGrade, ChosenStreamName, ChosenStreamColor, ChosenStreamTotalSeats);
 
         return false;
     });

@@ -237,6 +237,8 @@ function SetupAcceptedClasses(inputJSON){
 
         AcceptedClasses.push(`${thisLoopTeacherUID}|${thisLoopGrade}|${thisLoopSubject}|${thisLoopBatch}`);
 
+        CreateSignedUpClassesEntries(thisLoopTeacherName, thisLoopBatch, thisLoopSubject, thisLoopGrade, thisLoopTeacherUID);
+
         //now make a lecture tab for each of these
         address = 'USERS/' + thisLoopTeacherUID + '/UserClass/' + thisLoopGrade + '/' + thisLoopSubject + '/Resources/';
         var ref = database.ref(address).once('value').then(function (snapshot) {
@@ -275,16 +277,18 @@ function PopulateTimeTable(inputJSON) {
 
             timingJSON = innerData['Timings'];
 
-            DayArray = [];
-            startTimeArr = [];
-            endTimeArr = [];
+            //teacherName = innerData['TeacherName'];
+            //teacherUID = innerData['TeacherUID'];
+            teacherSubject = innerData['Subject'];
+            batch = innerData['BatchName'];
+            Grade = innerData['Grade'];
 
             let key;
             for (key in timingJSON){
-                timing = timingJSON[key];    //the timing is in the foramt:  Monday 9:00 - 12:00  :
+                timing = timingJSON[key];    //the timing is in the foramt:  Monday 9:00 - 12:00  
 
                 //now we can call our time table entry creator function with these values
-                CraftAndInjectTimeTable(timing, thisLoopGrade, thisLoopSubject, thisLoopBatch, timingColor);
+                CraftAndInjectTimeTable(timing, Grade, teacherSubject, batch, timingColor);
             }
         }).then(function(){
             FormatTimeTable();
